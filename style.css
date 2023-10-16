@@ -1534,7 +1534,7 @@ textarea:focus {
 		padding: 0 15px 0 55px;
 }
 .item-icon::before {
-		content: "\f291";
+		content: "\f07a";
 		position: absolute;
 		font-family: fontawesome;
 		left: 10px;
@@ -1558,8 +1558,8 @@ textarea:focus {
 }
 .cart-item-count {
 		position: absolute;
-		top: -25px;
-		left: -60px;
+		top: -10px;
+		left: -20px;
 		display: block;
 		overflow: hidden;
 		min-width: 26px;

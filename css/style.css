@@ -1314,7 +1314,7 @@ textarea:focus {
 /*Header Top*/
 .header-top {
 	background: #f8f9f9;
-	padding: 12px 0;
+	padding: 5px 5px;
 	border-bottom: 1px solid #e1e1e1;
 }
 /*Phone Wrap*/
@@ -1436,7 +1436,8 @@ textarea:focus {
 }
 /*Header Middle*/
 .header-middle {
-	padding: 30px;
+	padding: 10px;
+	padding-bottom: 4px;
 }
 .hm-searchbox {
 	display: flex;

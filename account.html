@@ -44,25 +44,28 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <style>
             .card {
-                box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-            }
-    
-            .card {
                 position: relative;
                 display: flex;
                 flex-direction: column;
                 min-width: 0;
                 word-wrap: break-word;
-                background-color: #fff;
                 background-clip: border-box;
-                border: 0 solid rgba(0,0,0,.125);
-                border-radius: .25rem;
             }
-    
+            
+            .account-nav a {
+                display: flex;
+                align-items: center;
+            }
+
             .card-body {
                 flex: 1 1 auto;
                 min-height: 1px;
                 padding: 1rem;
+            }
+
+            .tab-pane hr {
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
     
             .gutters-sm {
@@ -78,14 +81,8 @@
                 margin-bottom: 1rem!important;
             }
     
-            .bg-gray-300 {
-                background-color: #e2e8f0;
-            }
             .h-100 {
                 height: 100%!important;
-            }
-            .shadow-none {
-                box-shadow: none!important;
             }
         </style>
     </head>
@@ -300,6 +297,7 @@
                                                     <li>
                                                         <ul>
                                                             <li><a href="index.html">Home</a></li>
+                                                            <li><a href="account.html">Account</a></li>
                                                             <li><a href="login-register.html">Login & Register</a></li>
                                                             <li><a href="checkout.html">Checkout</a></li>
                                                             <li><a href="compare.html">Compare</a></li>
@@ -350,7 +348,7 @@
                     <div class="col-md-4 d-none d-md-block">
                         <div class="card">
                             <div class="card-body">
-                                <nav class="nav flex-column nav-pills nav-gap-y-1">
+                                <nav class="nav flex-column nav-pills nav-gap-y-1 account-nav">
                                     <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile Information
                                     </a>
@@ -390,8 +388,6 @@
                             </div>
                         <div class="card-body tab-content">
                             <div class="tab-pane active" id="profile">
-                                <h6>YOUR PROFILE INFORMATION</h6>
-                                <hr>
                                 <form>
                                     <div class="form-group">
                                         <label for="fullName">Full Name</label>
@@ -410,8 +406,6 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="account">
-                                <h6>ACCOUNT SETTINGS</h6>
-                                <hr>
                                 <form>
                                     <div class="form-group">
                                         <label for="username">Username</label>
@@ -427,8 +421,6 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="security">
-                                <h6>SECURITY SETTINGS</h6>
-                                <hr>
                                 <form>
                                     <div class="form-group">
                                         <label class="d-block">Change Password</label>
@@ -463,14 +455,13 @@
                                 </form>
                                 </div>
                                 <div class="tab-pane" id="billing">
-                                    <h6>BILLING SETTINGS</h6>
-                                    <hr>
                                     <form>
                                         <div class="form-group">
-                                            class="d-block mb-0">Payment Method</label>
+                                            <label class="d-block mb-0">Payment Method</label>
                                             <div class="small text-muted mb-3">You have not added a payment method</div>
                                             <button class="btn btn-info" type="button">Add Payment Method</button>
                                         </div>
+                                        <hr>
                                         <div class="form-group mb-0">
                                             <label class="d-block">Payment History</label>
                                             <div class="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">You have not made any payment.</div>

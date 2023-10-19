@@ -1146,7 +1146,6 @@ textarea:focus {
   background: #5d9cec;
 }
 .cart-quantity {
-	margin-top: 25px;
 	overflow: hidden;
 	float: left;
 	width: 100%;

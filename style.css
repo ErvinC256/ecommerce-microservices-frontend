@@ -1483,6 +1483,9 @@ textarea:focus {
 		top: 25px;
 		color: #7e7e7e;
 }
+.hm-searchbox select {
+	width: 50%;
+}
 .hm-searchbox input {
 		font-size: 13px;
 		color: #a5a5a5;
@@ -2598,6 +2601,7 @@ textarea:focus {
 	width: 100%;
 	display: inline-block;
 	position: relative;
+	padding: 0;
 }
 .li-section-title > h2 {
 	float: left;

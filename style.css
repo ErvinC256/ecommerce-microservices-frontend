@@ -2029,7 +2029,8 @@ textarea:focus {
 }
 .slider-content {
 	position: absolute;
-	padding-left: 58px;
+	top: 20px;
+	left: 20px;
 }
 .slider-content > h5 {
 	font-weight: 400;

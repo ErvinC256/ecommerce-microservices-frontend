@@ -1700,6 +1700,7 @@ textarea:focus {
 /*Header Bottom Menu*/
 .header-bottom {
 		margin-bottom: 20px;
+		border-bottom: 1px solid #d2d2d2;
 }
 .hb-menu > nav > ul {
 		position: relative;
@@ -1716,7 +1717,7 @@ textarea:focus {
 	text-transform: uppercase;
 	font-size: 14px;
 	line-height: 35px;
-	font-weight: 500;
+	/* font-weight: 500; */
 	padding: 8px 0;
 }
 .hb-menu-2 nav > ul > li > a {
@@ -1728,7 +1729,8 @@ textarea:focus {
 	font-weight: 500;
 	padding: 8px 0;
 }
-.hb-menu nav > ul > li > a::after {
+.hb-menu nav > ul > li:nth-child(1) > a::after,
+.hb-menu nav > ul > li:nth-child(7) > a::after {
 	content: "\f107";
 	position: absolute;
 	top: 8px;
@@ -1737,9 +1739,6 @@ textarea:focus {
 	font-size: 18px;
 	transition: all 0.3s ease-in-out;
 	color: #242424;
-}
-.hb-menu nav > ul > li:nth-child(n+5) > a::after {
-	content: none;
 }
 .hb-menu nav > ul > li:hover  a::after {
 	transform: rotate(180deg);
@@ -1856,9 +1855,6 @@ textarea:focus {
 	transform: translateY(0)
 }
 /*Header Bottom Megamenu*/
-.hb-menu nav > ul > li:nth-child(4) {
-	margin-right: -20px;
-}
 .megamenu-static-holder {
 	position: static !important;
 }

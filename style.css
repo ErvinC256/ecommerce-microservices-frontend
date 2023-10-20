@@ -324,7 +324,6 @@ button.li-btn {
 	position: absolute;
 	right: -1px;
 	top: -1px;
-	transition: all 0.3s ease-in-out;
 	cursor: pointer;
 }
 button.li-btn:hover {
@@ -1441,54 +1440,17 @@ textarea:focus {
 .hm-searchbox {
 	display: flex;
 	position: relative;
-	background: #fff;
 	border-radius: 5px;
 	border: 1px solid #e1e1e1;
 	min-width: 638px;
 	height: 45px;
 	float: left;
 }
-.hm-searchbox .nice-select.select-search-category {
-	width: auto;
-	line-height: 43px;
-	height: 43px;
-	margin: 0;
-	border: 0;
-	padding: 0 28px 0 25px;
-	color: #242424;
-	font-size: 13px;
-	border-radius: 15px 0 0 15px;
-	font-family: 'Rubik',sans-serif;
-	font-weight: 400;
-	position: relative;
-}
-.select-search-category ul.list {
-	height: 440px;
-	overflow-y: auto;
-	overscroll-behavior-x: none;
-}
-.hm-searchbox .current::after {
-	content: "";
-	position: absolute;
-	display: block;
-	height: 22px;
-	width: 1px;
-	background: #e1e1e1;
-	top: 10px;
-	right: -10px;
-	font-size: 13px;
-}
-.hm-searchbox .nice-select.select-search-category::before {
-		right: 30px;
-		top: 25px;
-		color: #7e7e7e;
-}
 .hm-searchbox select {
 	width: 50%;
 }
 .hm-searchbox input {
-		font-size: 13px;
-		color: #a5a5a5;
+		font-size: 14px;
 		height: 45px;
 		background: transparent;
 		border: none;

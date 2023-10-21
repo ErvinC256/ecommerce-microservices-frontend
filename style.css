@@ -408,7 +408,6 @@ select {
 	width: 100%;
 	background: #eceff8;
 	border: 2px solid #eceff8;
-	height: 45px;
 	padding-left: 10px;
 	box-shadow: none;
 	font-size: 14px;
@@ -1311,7 +1310,7 @@ textarea:focus {
 /*----------------------------------------*/
 /*Header Top*/
 .header-top {
-	background: #f8f9f9;
+	background-color: #f5f6f7;
 	padding: 5px 5px;
 	border-bottom: 1px solid #e1e1e1;
 }
@@ -1434,14 +1433,16 @@ textarea:focus {
 }
 /*Header Middle*/
 .header-middle {
-	padding: 10px;
-	padding-bottom: 4px;
+	background-color: #f5f6f7;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e1e1e1;
 }
 .hm-searchbox {
 	display: flex;
 	position: relative;
 	border-radius: 5px;
-	border: 1px solid #e1e1e1;
+	border: 2px solid #e1e1e1;
 	min-width: 638px;
 	height: 45px;
 	float: left;
@@ -1462,27 +1463,6 @@ textarea:focus {
 		display: flex;
 		justify-content: flex-end;
 }
-/*Header Middle Wishlist*/
-.hm-wishlist {
-	float: left;
-	margin-right: 25px;
-	position: relative;
-}
-.hm-wishlist > a {
-	border: 1px solid #e1e1e1;
-	font-size: 20px;
-	color: #242424;
-	width: 45px;
-	text-align: center;
-	height: 45px;
-	line-height: 45px;
-	display: block;
-	transition: all 0.3s ease-in-out;
-}
-.hm-wishlist > a:hover {
-	border-color: #fed700;
-	color: #fed700;
-}
 /*Header Middle Minicart*/
 .hm-minicart {
 		display: inline-block;
@@ -1490,8 +1470,9 @@ textarea:focus {
 }
 .hm-minicart-trigger {
 		border-radius: 2px;
-		background: #e80f0f;
-		color: #fff;
+		/* background: #e80f0f; */
+		/* color: #fff; */
+		color: black;
 		height: 45px;
 		cursor: pointer;
 		display: block;
@@ -1699,8 +1680,9 @@ textarea:focus {
 }
 /*Header Bottom Menu*/
 .header-bottom {
-		margin-bottom: 20px;
-		border-bottom: 1px solid #d2d2d2;
+	background-color: #f5f6f7;
+	margin-bottom: 20px;
+	border-bottom: 2px solid #e1e1e1;
 }
 .hb-menu > nav > ul {
 		position: relative;
@@ -2708,7 +2690,7 @@ textarea:focus {
 /*  2.9 Footer
 /*----------------------------------------*/
 .footer {
-	background: #f7f7f7;
+	background-color: #f5f6f7;
 	border-top: 1px solid #e1e1e1;
 }
 .footer-static-top-3 {

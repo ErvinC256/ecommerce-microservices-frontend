@@ -395,7 +395,6 @@ a.review-links:hover {
 /*  1.6 Input
 /*----------------------------------------*/
 input {
-	background: #eceff8;
 	border: 2px solid #eceff8;
 	height: 45px;
 	box-shadow: none;
@@ -1444,19 +1443,13 @@ textarea:focus {
 	border-radius: 5px;
 	border: 2px solid #e1e1e1;
 	min-width: 638px;
-	height: 45px;
 	float: left;
 }
 .hm-searchbox select {
 	width: 50%;
 }
 .hm-searchbox input {
-		font-size: 14px;
-		height: 45px;
-		background: transparent;
-		border: none;
-		width: 100%;
-		padding: 0 60px 0 33px;
+	border: none;
 }
 /*Header Middle Right*/
 .header-middle-right {

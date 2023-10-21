@@ -1307,10 +1307,13 @@ textarea:focus {
 /*----------------------------------------*/
 /*  2.1 Header
 /*----------------------------------------*/
+.header {
+	margin-bottom: 20px;
+	background-color: #f5f6f7;
+}
 /*Header Top*/
 .header-top {
-	background-color: #f5f6f7;
-	padding: 5px 5px;
+	padding: 5px;
 	border-bottom: 1px solid #e1e1e1;
 }
 /*Phone Wrap*/
@@ -1350,91 +1353,12 @@ textarea:focus {
 .ht-menu > li:last-child::after {
 	content: unset;
 }
-.ht-menu > li:last-child {
-	padding-right: 0;
-}
 .ht-menu > li span {
 	font-size: 12px;
 }
-/*Header Top Currency*/
-.currency-selector-wrapper, .language-selector-wrapper {
-	margin-right: 5px;
-}
-.ht-menu > li > span i {
-	font-size: 10px;
-	font-weight: 400;
-	color: #a4a4a4;
-	display: inline-block;
-	position: relative;
-}
-.ht-setting-trigger, .ht-currency-trigger, .ht-language-trigger {
-	cursor: pointer;
-	transition: all 0.3s ease-in-out;
-}
-.ht-currency-trigger:hover, .ht-language-trigger:hover {
-	color: #fed700;
-}
-.ht-currency-trigger:hover i, .ht-language-trigger:hover i{
-	color: #fed700;
-}
-.ht-setting, .ht-currency, .ht-language {
-	position: absolute;
-	right: 0;
-	top: 100%;
-	z-index: 9;
-	display: none;
-}
-.setting, .currency, .language {
-		border-top: 2px solid #fed700;
-		padding: 20px 20px 10px;
-		background: #ffffff;
-		text-align: left;
-		-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-		box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-		transition: all 0.3s ease-in-out;
-}
-.setting {
-		min-width: 150px;
-}
-.currency, .language {
-		min-width: 120px;
-}
-.currency li {
-		padding: 0 10px;
-		color: #636363;
-		line-height: 22px;
-		font-size: 12px;
-}
-.ht-setting-list > li {
-		transition: all 0.3s ease-in-out;
-}
-.ht-setting-list > li.active {
-	background: #fed700;
-}
-.ht-setting-list > li:hover {
-		background: #fed700;
-}
-.ht-setting-list > li > a {
-	padding: 0 10px;
-	display: block;
-	font-size: 12px;
-	line-height: 22px;
-	margin-bottom: 10px;
-}
-.ht-setting-list > li:hover > a {
-	color: #ffffff;
-}
-.ht-setting-list > li.active > a {
-	color: #fff;
-}
-.ht-setting-list > li > a > img {
-	padding-right: 5px;
-}
 /*Header Middle*/
 .header-middle {
-	background-color: #f5f6f7;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 10px;
 	border-bottom: 1px solid #e1e1e1;
 }
 .hm-searchbox {
@@ -1673,8 +1597,7 @@ textarea:focus {
 }
 /*Header Bottom Menu*/
 .header-bottom {
-	background-color: #f5f6f7;
-	margin-bottom: 20px;
+	padding: 10px;
 	border-bottom: 2px solid #e1e1e1;
 }
 .hb-menu > nav > ul {
@@ -1692,24 +1615,14 @@ textarea:focus {
 	text-transform: uppercase;
 	font-size: 14px;
 	line-height: 35px;
-	/* font-weight: 500; */
-	padding: 8px 0;
-}
-.hb-menu-2 nav > ul > li > a {
-	display: flex;
-	color: #242424;
-	text-transform: uppercase;
-	font-size: 14px;
-	line-height: 35px;
-	font-weight: 500;
-	padding: 8px 0;
+	font-weight: 400;
 }
 .hb-menu nav > ul > li:nth-child(1) > a::after,
 .hb-menu nav > ul > li:nth-child(7) > a::after {
 	content: "\f107";
 	position: absolute;
-	top: 8px;
-	right: 15px;
+	top: 0px;
+	right: 20px;
 	font-family: fontawesome;
 	font-size: 18px;
 	transition: all 0.3s ease-in-out;
@@ -1762,10 +1675,10 @@ textarea:focus {
 	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
-	padding: 30px 15px;
-	-webkit-transition: all .3s ease-in-out 0s;
-	-o-transition: all .3s ease-in-out 0s;
-	transition: all .3s ease-in-out 0s;
+	padding: 10px 10px;
+	-webkit-transition: all .1s ease-in-out 0s;
+	-o-transition: all .1s ease-in-out 0s;
+	transition: all .1s ease-in-out 0s;
 	visibility: hidden;
 	opacity: 0;
 	-webkit-transform: translateY(30px);
@@ -2683,6 +2596,7 @@ textarea:focus {
 /*  2.9 Footer
 /*----------------------------------------*/
 .footer {
+	margin-top: 20px;
 	background-color: #f5f6f7;
 	border-top: 1px solid #e1e1e1;
 }

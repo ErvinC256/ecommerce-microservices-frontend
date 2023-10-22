@@ -2035,7 +2035,6 @@ option {
 /*  2.9 Footer
 /*----------------------------------------*/
 .footer {
-	margin-top: 20px;
 	background-color: #f5f6f7;
 	border-top: 1px solid #e1e1e1;
 }
@@ -2537,6 +2536,7 @@ li.right-menu .cat-mega-menu-2 > li {
 }
 /*Li's Breadcrumb*/
 .breadcrumb-area {
+	margin-bottom: 20px;
 	padding: 10px;
 	background: #f9f9f9;
 }

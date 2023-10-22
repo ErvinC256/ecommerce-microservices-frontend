@@ -2705,73 +2705,17 @@ li.right-menu .cat-mega-menu-2 > li {
 /*----------------------------------------*/
 /* 6.5 Li's Login Register
 /*----------------------------------------*/
-.login-title {
-	font-size: 20px;
-	line-height: 23px;
-	text-transform: capitalize;
-	font-weight: 700;
-	margin-bottom: 30px;
+.login-form,
+.register-form {
+    margin-top: 10px;
 }
-.login-form {
-	background-color: #ffffff;
-	-webkit-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.1);
-	box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.1); 
-}
-.login-form label {
-	display: block;
-	font-size: 14px;
-	margin-bottom: 12px;
-	font-weight: 500;
-	text-transform: capitalize; 
-}
-.login-form .nice-select {
-	width: 100%;
-	background-color: transparent;
-	border: 1px solid #999999;
-	border-radius: 0;
-	line-height: 23px;
-	padding: 10px 20px;
-	font-size: 14px;
-	height: 45px;
-	color: #7a7a7a;
-	margin-bottom: 15px; 
-}
-.login-form .nice-select::after {
-	width: 6px;
-	height: 6px;
-	border-width: 1px;
-	right: 20px;
-	border-color: #7a7a7a; 
-}
-.login-form .nice-select .current {
-	color: #7a7a7a;
-	display: block;
-	line-height: 23px; 
-}
-.login-form .nice-select .list {
-	width: 100%; 
+
+.login-form div,
+.register-form div {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 /*-- Place Order --*/
-.register-button {
-	display: block;
-	margin-top: 40px;
-	width: 140px;
-	border-radius: 0;
-	height: 36px;
-	border: none;
-	line-height: 24px;
-	padding: 6px 20px;
-	float: left;
-	font-weight: 400;
-	text-transform: uppercase;
-	color: #ffffff;
-	background-color: #363f4d;
-	border-radius: 3px;
-	transition: all 0.1s ease-in-out;
-}
-.register-button:hover {
-	background: #fed700;
-}
 /*----------------------------------------*/
 /* 	6.6 Li's Shopping Cart
 /*----------------------------------------*/

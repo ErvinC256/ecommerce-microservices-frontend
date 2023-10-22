@@ -1725,31 +1725,7 @@ option {
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
-.section-title-2 {
-  margin-bottom: 25px;
-  position: relative;
-  text-align: center;
-}
-.section-title-2 > h2 {
-  background: #ffffff none repeat scroll 0 0;
-  display: inline-block;
-  font-size: 24px;
-  line-height: 24px;
-  margin: 0;
-  padding: 0 20px;
-  position: relative;
-  text-align: center;
-}
 .product-image {
-  position: relative;
-}
-.section-title-3 > h2 {
-  background: #ffffff none repeat scroll 0 0;
-  display: inline-block;
-  font-size: 24px;
-  line-height: 18px;
-  margin: 0;
-  padding: 0 30px 0 0;
   position: relative;
 }
 .section-title-3 {
@@ -1867,10 +1843,7 @@ option {
 }
 .li-section-title > h2 {
 	float: left;
-	font-size: 18px;
-	font-weight: 500;
 	letter-spacing: -.025em;
-	padding: 0;
 	line-height: 1;
 	padding-bottom: 13px;
 	z-index: 0;
@@ -1893,7 +1866,7 @@ option {
 .li-sub-category-list > li > a::after, .li-section-title > h2 > span::before {
 	content: "";
 	position: absolute;
-	bottom: -23px;
+	bottom: -21px;
 	background: #fed700;
 	height: 1px;
 	left: 0;
@@ -1942,19 +1915,6 @@ option {
 .li-static-home-content > p span {
 	color: #e80f0f;
 }
-.li-static-home-content > h2 {
-	font-weight: 400;
-	font-size: 36px;
-	line-height: 30px;
-	letter-spacing: -.025em;
-}
-.li-static-home-content > h2 {
-	color: #242424;
-	font-weight: 400;
-	font-size: 36px;
-	line-height: 30px;
-	letter-spacing: -.025em;
-}
 .li-static-home-content > p.schedule{
 	font-size: 14px;
 	color: #242424;
@@ -1974,14 +1934,6 @@ option {
 	display: inline-block;
 	margin: 0;
 	border-bottom: 1px solid #e1e1e1;
-}
-.li-trending-product-tab h2 {
-	display: inline-block;
-	margin: 0;
-	text-align: left;
-	line-height: 20px;
-	font-size: 20px;
-	font-weight: 500;
 }
 .li-trending-product-tab > h2 > span {
 	position: relative;

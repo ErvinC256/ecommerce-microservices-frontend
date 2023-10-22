@@ -125,23 +125,16 @@ h6 a {
 	color: inherit
 }
 h1 {
-	font-size: 35px;
+	font-size: 20px;
 	font-weight: 500;
 }
 h2 {
-	font-size: 30px;
+	font-size: 18px;
+	font-weight: 500;
 }
 h3 {
-	font-size: 28px;
-}
-h4 {
-	font-size: 22px;
-}
-h5 {
-	font-size: 18px;
-}
-h6 {
 	font-size: 16px;
+	font-weight: 500;
 }
 ul {
 	margin: 0px;
@@ -155,7 +148,8 @@ p {
 	font-weight: normal;
 	line-height: 24px;
 	color: #898989;
-	margin-bottom: 15px;
+	margin: 0px;
+	padding: 0px;
 }
 hr {
 	margin: 0px;
@@ -302,7 +296,11 @@ input, textarea {
 	color: #626262;
 	width: 100%;
 	border-radius: 2px;
-	border: 0.5px solid black;
+	outline: none;
+	border: 1px solid #e1e1e1;
+}
+input:focus, textarea:focus {
+	outline: 1px solid blue;
 }
 select {
 	background: #eceff8;
@@ -982,15 +980,12 @@ option {
 .hm-searchbox {
 	display: flex;
 	position: relative;
-	border: 2px solid #e1e1e1;
+	border: 1px solid #e1e1e1;
 	min-width: 638px;
 	float: left;
 }
 .hm-searchbox select {
 	width: 50%;
-}
-.hm-searchbox input {
-	border: none;
 }
 /*Header Middle Right*/
 .header-middle-right {
@@ -1317,13 +1312,6 @@ option {
 }
 .slider-content > h5 > span {
 	color: #e80f0f;
-}
-.slider-content > h2 {
-	font-size: 35px;
-	font-weight: 400;
-	text-transform: capitalize;
-	max-width: 310px;
-	margin-bottom: 20px;
 }
 .slider-content > h3 {
 	font-size: 18px;
@@ -3368,48 +3356,24 @@ h5.compare-product-name a:hover {
 #google-map {
   height: 400px; 
 }
-h3.contact-page-title {
-  font-size: 32px;
-  line-height: 32px;
-  color: #363f4d;
-  font-weight: 500;
-  margin-bottom: 20px;
+.contact-page {
+	margin-top: 10px;
 }
-.single-contact-block {
-  padding-bottom: 8px;
-  margin-bottom: 27px;
-  border-bottom: 1px solid #e1e1e1;
+.contact-page div {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e1e1e1;
 }
-.single-contact-block > h4 {
-  margin-bottom: 23px;
-}
-.single-contact-block.last-child {
-	border-bottom: none;
-}
-span.required {
-  color: #ff0000; 
+.contact-page div:last-child {
+    border-bottom: none; /* Remove the border for the last child */
 }
 /*----------  contact form  ----------*/
-.contact-form .li-btn-3 {
-  background: #f2f2f2;
-  line-height: 12px;
-  display: inline-block;
-  padding: 16px 30px;
-  border-radius: 3px;
-  color: #363f4d;
-  font-weight: 500;
-  font-size: 12px;
-  background-color: #242424;
-  border: 1px solid #242424;
-  color: #ffffff;
-  text-transform: uppercase;
-  transition: all 0.1s ease-in-out;
+.contact-form {
+	margin-top: 10px;
 }
- .contact-form .li-btn-3:hover {
-  background-color: #fed700;
-  color: #ffffff;
-  background-color: #fed700;
-  border-color: #fed700; 
+.contact-form div {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 /*----------------------------------------*/
 /* 6.10 Li's About Us Page
@@ -4127,79 +4091,6 @@ span.required {
 /*----------------------------------------*/
 /* 6.21 Error 404 Page
 /*----------------------------------------*/
-.error-text h1 {
-	color: #fed700;
-	font-size: 200px;
-	font-weight: 900;
-	letter-spacing: 10px;
-	line-height: 200px;
-	margin-bottom: 30px;
-}
-.error-text h2 {
-  color: #242424;
-  font-size: 35px;
-  font-weight: 700;
-  line-height: 35px;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-.error-text > p {
-  color: #242424;
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 25px;
-  margin-bottom: 30px;
-}
- #search-form {
-  position: relative;
-  width: 450px;
-  text-align: center;
-  display: inline-block;
-}
-#search-form input {
-  background: #e1e1e1 none repeat scroll 0 0;
-  border: 1px solid #e1e1e1;
-  border-radius: 30px;
-  color: #242424;
-  float: left;
-  font-size: 14px;
-  height: 45px;
-  padding-left: 20px;
-  padding-right: 55px;
-  width: 100%;
-}
-#search-form button {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: medium none;
-  color: #4f4f4f;
-  font-size: 18px;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: all 0.1s ease 0s;
-  width: 50px;
-}
- #search-form button:hover {
- 	color:#fed700;
- }
- .error-button a {
- 	background: #fed700 none repeat scroll 0 0;
- 	border-radius: 35px;
- 	color: #ffffff;
- 	display: inline-block;
- 	font-size: 12px;
- 	font-weight: bold;
- 	line-height: 40px;
- 	margin-top: 53px;
- 	padding: 0 30px;
- 	text-transform: uppercase;
- 	transition: all 0.1s ease-in-out;
-}
-.error-button a:hover{background:#242424;color:#fff;}
-.small-version {
-  display: none;
-}
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

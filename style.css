@@ -100,12 +100,6 @@ a:hover {
 	color: #fed700;
 	text-decoration: none;
 }
-a,
-button,
-input {
-	outline: medium none;
-	color: #a5a5a5;
-}
 button:focus {
 	outline: none;
 }
@@ -307,6 +301,8 @@ input, textarea {
 	font-size: 14px;
 	color: #626262;
 	width: 100%;
+	border-radius: 2px;
+	border: 0.5px solid black;
 }
 select {
 	background: #eceff8;
@@ -986,7 +982,6 @@ option {
 .hm-searchbox {
 	display: flex;
 	position: relative;
-	border-radius: 5px;
 	border: 2px solid #e1e1e1;
 	min-width: 638px;
 	float: left;
@@ -2542,7 +2537,7 @@ li.right-menu .cat-mega-menu-2 > li {
 }
 /*Li's Breadcrumb*/
 .breadcrumb-area {
-	padding: 21px 0 22px;
+	padding: 10px;
 	background: #f9f9f9;
 }
 .breadcrumb-content li {
@@ -2840,22 +2835,6 @@ li.right-menu .cat-mega-menu-2 > li {
 /*----------------------------------------*/
 /* 	6.6 Li's Shopping Cart
 /*----------------------------------------*/
-.li-product-quantity input {
-	border: none;
-	color: #222555;
-	font-size: 14px;
-	font-weight: normal;
-	border: 1px solid #ededed;
-	height: 40px;
-	width: 55px;
-}
-.li-product-quantity>input {
-	width: 80px;
-	border-radius: 3px;
-}
-.li-product-quantity>input:focus {
-	background: #eceff8;
-}
 .table-content table td.product-subtotal {
 	font-size: 16px;
 	font-weight: 700;
@@ -3411,17 +3390,6 @@ span.required {
   color: #ff0000; 
 }
 /*----------  contact form  ----------*/
-.contact-form .form-group {
-  margin-bottom: 20px; 
-}
-.contact-form label {
-  display: block;
-  font-size: 15px;
-  line-height: 29px;
-  font-weight: 400;
-  color: #888888;
-  margin-bottom: 20px;
-}
 .contact-form .li-btn-3 {
   background: #f2f2f2;
   line-height: 12px;
@@ -3442,10 +3410,6 @@ span.required {
   color: #ffffff;
   background-color: #fed700;
   border-color: #fed700; 
-}
-.contact-page-side-content {
-  background-color: #F2F2F2;
-  padding: 25px 30px 19px;
 }
 /*----------------------------------------*/
 /* 6.10 Li's About Us Page

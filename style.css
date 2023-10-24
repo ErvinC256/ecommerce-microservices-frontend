@@ -79,13 +79,14 @@ body {
 	font-weight: normal;
 	overflow-x: hidden;
 }
-a {
+a {	
+	color: inherit;
 	text-decoration: none;
 	transition: 0.1s ease-in-out;
 }
 a:hover {
-	text-decoration: underline;
-	color: purple;
+	color: blue;
+	text-decoration: none;
 }
 .img {
 	max-width: 100%;
@@ -947,8 +948,8 @@ option {
 .ht-menu > li:last-child::after {
 	content: unset;
 }
-.ht-menu > li span {
-	font-size: 12px;
+.ht-menu > li a:hover {
+	color: blue;
 }
 /*Header Middle*/
 .header-middle {
@@ -980,11 +981,7 @@ option {
 }
 .hb-menu nav > ul > li > a {
 	display: flex;
-	color: inherit;
 	text-transform: uppercase;
-}
-.hb-menu nav > ul > li > a:hover {
-	color: purple;
 }
 .hb-menu nav > ul > li:nth-child(1) > a::after,
 .hb-menu nav > ul > li:nth-child(7) > a::after {
@@ -994,7 +991,6 @@ option {
 	right: 20px;
 	font-family: fontawesome;
 	transition: all 0.1s ease-in-out;
-	color: inherit;
 }
 .hb-menu nav > ul > li:hover  a::after {
 	transform: rotate(180deg);
@@ -1027,14 +1023,8 @@ option {
 }
 .megamenu > li > a {
 	display: block;
-	color: inherit; 
-}
-.megamenu-holder .megamenu > li > a:hover, 
-.megamenu-holder .megamenu li ul li a:hover {
-	color: purple;
 }
 .megamenu-holder .megamenu li ul li a {
-	color: inherit;
 	padding: 7px 0;
 	display: block;
 }
@@ -1139,22 +1129,6 @@ option {
 }
 .li-product-menu > li > a > span {
 	position: relative;
-}
-.li-product-menu > li > a.active span::before {
-	background: #fed700;
-	opacity: 1;
-}
-.li-product-menu > li:hover > a span::before {
-	opacity: 1;
-	background: #fed700;
-}
-.li-product-menu li span.active::before {
-	opacity: 1;
-	width: 100%;
-}
-.li-product-menu li span:hover::before {
-	opacity: 1;
-	width: 100%;
 }
 .li-product-menu li a {
 	color: #c8c8c8;
@@ -1622,13 +1596,8 @@ option {
 	display: inline-block;
 }
 .li-sub-category-list > li > a {
-	color: inherit;
 	margin: 0 20px 0;
 	position: relative;
-}
-.li-sub-category-list > li > a:hover {
-	color: purple;
-	text-decoration: none;
 }
 /*----------------------------------------*/
 /*  2.7 Li's Static Home Banner
@@ -1670,48 +1639,6 @@ option {
 /*----------------------------------------*/
 /*  2.8 Li's Trending Products
 /*----------------------------------------*/
-.li-trending-product-tab {
-	width: 100%;
-	display: inline-block;
-	margin: 0;
-	border-bottom: 1px solid #e1e1e1;
-}
-.li-trending-product-tab > h2 > span {
-	position: relative;
-	z-index: 999;
-}
-.li-trending-product-tab > h2 > span::before {
-	content: "";
-	position: absolute;
-	background: #fed700;
-	height: 1px;
-	width: 100%;
-	bottom: -10px;
-	left: 0;
-}
-.li-trending-product-menu {
-	text-align: right;
-	display: inline-block;
-	float: right;
-	width: auto;
-	border-bottom: none;
-}
-.li-trending-product-menu li {
-	padding-right: 20px;
-}
-.li-trending-product-menu li:last-child {
-	padding-right: 0;
-}
-.li-trending-product-menu li a {
-	padding-right: 0px;
-	border-right: none;
-	font-size: 14px;
-	cursor: pointer;
-}
-.li-product-menu > li > a span::before, 
-.li-product-menu > li > a.active span::before {
-	bottom: -12px;
-}
 /*----------------------------------------*/
 /*  2.9 Footer
 /*----------------------------------------*/

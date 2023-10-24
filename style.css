@@ -584,9 +584,6 @@ option {
 	min-width: 638px;
 	float: left;
 }
-.hm-searchbox select {
-	width: 50%;
-}
 /*Header Bottom*/
 .header-bottom {
 	padding: 10px;

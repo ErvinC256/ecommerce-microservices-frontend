@@ -198,6 +198,13 @@ input:focus, textarea:focus {
 }
 select {
 	font-size: 14px;
+	border-radius: 2px;
+	border: none;
+	outline: 1px solid #e1e1e1;
+	overflow-y:auto;
+}
+option {
+	overflow-y:scroll;
 }
 /*----------------------------------------*/
 /*  1.4 Background Variation Set
@@ -574,7 +581,6 @@ select {
 .hm-searchbox {
 	display: flex;
 	position: relative;
-	border: 1px solid #e1e1e1;
 	min-width: 638px;
 	float: left;
 }

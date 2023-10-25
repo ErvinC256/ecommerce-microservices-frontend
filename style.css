@@ -98,20 +98,16 @@ li {
 	list-style: none
 }
 p {
-	font-size: 14px;
-	color: #898989;
+	font-size: 16px;
 	margin: 0px;
 	padding: 0px;
 }
 hr {
 	margin: 0px;
 	padding: 0px;
-	border-bottom: 1px solid #eceff8;
-	border-top: 0px;
 }
 label {
 	font-size: 14px;
-	color: #626262;
 }
 *::-moz-selection {
 	background: #4fc1f0;
@@ -596,7 +592,6 @@ option {
 .hb-menu nav > ul > li > a {
 	display: flex;
 	font-size: 16px;
-	font-weight: 500;
 }
 .hb-menu nav > ul > li > a:hover {
 	text-decoration: none;

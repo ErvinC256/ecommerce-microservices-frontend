@@ -854,34 +854,18 @@ option {
   position: relative;
 }
 .product_desc .product_desc_info .product_name {
-	color: #0363cd;
+	color: blue;
 	display: block;
 	font-size: 14px;
 	text-transform: capitalize;
 }
 .product_desc .product_desc_info .product_name:hover {
-  text-decoration: underline;
+	color: purple;
+  	text-decoration: underline;
 }
-.product_desc .product_desc_info .new-price ,
-.featured-price-box .new-price,
-.featured-price-box .new-price-2{
-  color: #2f333a;
-  font-size: 14px;
-  padding-right: 10px;
-}
-.product_desc .product_desc_info .price-box .new-price-2,
-.featured-price-box .new-price-2 {
-	color: #e80f0f !important;
-}
-.product_desc .product_desc_info .price-box .discount-percentage,
-.featured-price-box .discount-percentage {
-	float: right;
-	color: #e80f0f;
-}
- .product_desc .product_desc_info .old-price {
-  color: #666;
-  font-size: 14px;
-  text-decoration: line-through;
+.product_desc .product_desc_info .new-price {
+	font-size: 18px;
+	font-weight: bold;
 }
 .product_desc .product_desc_info .price-box {
   margin-top: 16px;

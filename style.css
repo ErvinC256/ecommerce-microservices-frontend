@@ -160,12 +160,6 @@ span.tooltip-content {
 	width: auto;
 	max-width: 100%;
 }
-.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
-	background-color: #fed700;
-}
-.nice-select .option:hover {
-	color: #ffffff;
-}
 iframe {
 	width: 100%;
 	height: 300px;
@@ -1410,9 +1404,6 @@ text-align: center;
 	.shop-bar-inner {
 		margin-bottom: 10px;
 	}
-	.product-short .nice-select {
-		margin-bottom: 5px;
-	}
 }
 .shop-item-filter-list li a {
 	color: #aaa;
@@ -1443,36 +1434,9 @@ text-align: center;
 .single-banner img {
   width: 100%;
 }
-.product-short .nice-select {
-	border-radius: 0;
-	color: #242424;
-	font-size: 14px;
-	height: 30px;
-	width: 320px;
-	z-index: 999;
-}
-@media only screen and (max-width: 767px) {
-	.product-short .nice-select {
-		width: 180px;
-	}
-}
-.product-short .nice-select .list {
-  border-radius: 0px;
-  width: 100%;
-  z-index: 99;
-}
 .shop-top-bar {
   padding: 15px;
   border: 1px solid #ededed;
-}
-@media only screen and (max-width: 767px) {
-	.shop-top-bar {
-		display: flex;
-		flex-wrap: wrap;
-	}
-}
-.product-short  .nice-select .option {
-  min-height: 30px;
 }
 .product-image > a img {
   width: 100%;

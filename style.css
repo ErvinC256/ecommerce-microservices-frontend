@@ -764,13 +764,13 @@ option {
 	position: relative;
 	display: inline-block;
 	width: 100%;
+	padding-bottom: 10px;
 	border-bottom: 1px solid #e1e1e1;
 }
 .li-product-menu li {
 	display: inline-block;
 	position: relative;
 	padding-right: 30px;
-	padding-bottom: 5px;
 	z-index: 99;
 }
 .li-product-menu > li > a > span {
@@ -779,8 +779,6 @@ option {
 .li-product-menu li a {
 	color: #c8c8c8;
 	display: inline-block;
-	font-size: 18px;
-	font-weight: 600;
 	padding: 0 30px 0 0;
 	position: relative;
 	text-transform: capitalize;

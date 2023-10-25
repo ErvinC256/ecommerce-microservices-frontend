@@ -98,7 +98,6 @@ li {
 	list-style: none
 }
 p {
-	font-size: 16px;
 	margin: 0px;
 	padding: 0px;
 }
@@ -260,30 +259,6 @@ option {
 .owl-item.active .animation-style-02 .slider-content-2 .img-slide {
     -webkit-animation: 1000ms ease-in-out 0s normal none 1 running slideInUp;
     animation: 1000ms ease-in-out 0s normal none 1 running slideInUp;
-}
-
-/* animation-style-02 */
-.owl-item.active .animation-style-02 .slider-content h5,
-.owl-item.active .animation-style-02 .slider-content-2 h5 {
-    -webkit-animation: 800ms ease-in-out 0s normal none 1 running zoomInUp;
-    animation: 800ms ease-in-out 0s normal none 1 running zoomInUp;
-}
-
-.owl-item.active .animation-style-02 .slider-content h2 {
-    -webkit-animation: 1200ms ease-in-out 0s normal none 1 running zoomInUp;
-    animation: 1200ms ease-in-out 0s normal none 1 running zoomInUp;
-}
-
-.owl-item.active .animation-style-02 .slider-content h3,
-.owl-item.active .animation-style-02 .slider-content-2 h3 {
-    -webkit-animation: 1600ms ease-in-out 0s normal none 1 running zoomInUp;
-    animation: 1600ms ease-in-out 0s normal none 1 running zoomInUp;
-}
-
-.owl-item.active .animation-style-02 .slider-content .slide-btn,
-.owl-item.active .animation-style-02 .slider-content-2 .slide-btn {
-    -webkit-animation: 2000ms ease-in-out 0s normal none 1 running zoomInUp;
-    animation: 2000ms ease-in-out 0s normal none 1 running zoomInUp;
 }
 @-webkit-keyframes timebar {
 	0% {
@@ -449,12 +424,7 @@ option {
 	overflow: visible;
 }
 .product-area .owl-carousel .owl-item {
-	padding: 25px 0;
-}
-.product-area .owl-carousel .owl-stage-outer {
-	margin: 0 0 -100px;
-	padding: 0 0 85px;
-	position: relative;
+	padding: 0 0;
 }
 /*----------------------------------------*/
 /*  1.7 Scroll Up
@@ -993,6 +963,7 @@ option {
 	width: 100%;
 	display: inline-block;
 	position: relative;
+	margin-bottom: 5px;
 }
 .li-section-title > h2 {
 	float: left;

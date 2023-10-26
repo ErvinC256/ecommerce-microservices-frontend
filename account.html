@@ -1,11 +1,11 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
     
-<!-- index28:48-->
+<!-- single-product31:30-->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Home Version One || limupa - Digital Products Store eCommerce Bootstrap 4 Template</title>
+        <title>Single Product || limupa - Digital Products Store eCommerce Bootstrap 4 Template</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -42,12 +42,6 @@
         <link rel="stylesheet" href="css/responsive.css">
         <!-- Modernizr js -->
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <style>
-            .account-nav a {
-                display: flex;
-                align-items: center;
-            }
-        </style>
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -190,101 +184,32 @@
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li class="active">My Account</li>
+                            <li class="active">Single Product</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- Li's Breadcrumb Area End Here -->
-            <!-- Li's Account Area Start Here -->
-            <div class="section">
-                <div class="section container">
+            <!-- Begin Product Area -->
+            <div class="section product-area">
+                <div class="container">
                     <div class="row">
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <nav class="nav flex-column nav-pills nav-gap-y-1 account-nav">
-                                        <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile Information
-                                        </a>
-                                        <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Security
-                                        </a>
-                                        <a href="#billing" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Billing
-                                        </a>
-                                    </nav>
-                                </div>
+                        <div class="col-12">
+                            <div class="li-product-tab">
+                                <ul class="nav li-product-menu">
+                                   <li><a class="active" data-toggle="tab" href="#li-new-product"><h2>New Arrival</h2></a></li>
+                                   <li><a data-toggle="tab" href="#li-bestseller-product"><h2>Bestseller</h2></a></li>
+                                </ul>               
                             </div>
+                            <!-- Begin Li's Tab Menu Content Area -->
                         </div>
-                        <div class="col-8">
-                            <div class="card">
-                                <div class="card-header border-bottom d-md-none">
-                                    <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
-                                        <li class="nav-item">
-                                            <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#billing" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            <div class="card-body tab-content">
-                                <div class="tab-pane active" id="profile">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="username">Username</label>
-                                            <input type="text" id="username" placeholder="Enter your username">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="location">Location</label>
-                                            <input type="text" id="location" placeholder="Enter your location">
-                                        </div>
-                                        <button type="button" class="btn btn-primary">Update Profile</button>
-                                    </form>
-                                </div>
-                                <div class="tab-pane" id="security">
-                                    <form>
-                                        <div class="form-group">
-                                            <label class="d-block">Change Password</label>
-                                            <input type="text"  placeholder="Enter your old password">
-                                            <input type="text" placeholder="New password">
-                                            <input type="text" placeholder="Confirm new password">
-                                        </div>
-                                        <button type="button" class="btn btn-primary">Update Password</button>
-                                    </form>
-                                    <hr>
-                                    <form>
-                                        <div class="form-group">
-                                            <label class="d-block">Two Factor Authentication</label>
-                                            <button class="btn btn-info" type="button">Enable two-factor authentication</button>
-                                            <p class="small text-muted mt-2">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.</p>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="tab-pane" id="billing">
-                                    <form>
-                                        <div class="form-group">
-                                            <label class="d-block mb-0">Payment Method</label>
-                                            <div class="small text-muted mb-3">You have not added a payment method</div>
-                                            <button class="btn btn-info" type="button">Add Payment Method</button>
-                                        </div>
-                                        <hr>
-                                        <div class="form-group mb-0">
-                                            <label class="d-block">Payment History</label>
-                                            <div class="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">You have not made any payment.</div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="tab-content">
+                        
                     </div>
                 </div>
             </div>
-            <!-- Li's Account Area End Here -->
+            <!-- Product Area End Here -->
             <!-- Begin Li's Laptop Product Area -->
             <div class="section product-area li-laptop-product">
                 <div class="container">
@@ -583,9 +508,6 @@
             <!-- Footer Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
-        <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
         <!-- jQuery-V1.12.4 -->
         <script src="js/vendor/jquery-1.12.4.min.js"></script>
         <!-- Popper js -->
@@ -630,5 +552,5 @@
         <script src="js/main.js"></script>
     </body>
 
-<!-- index30:23-->
+<!-- single-product31:32-->
 </html>

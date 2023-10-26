@@ -179,6 +179,10 @@ input, textarea {
 	border: none;
 	outline: 1px solid #e1e1e1;
 }
+input[type=checkbox] {
+	width: auto;
+	height: auto;
+}
 input:focus, textarea:focus {
 	outline: 1px solid blue;
 }
@@ -802,7 +806,7 @@ option {
 	text-transform: capitalize;
 }
 .product_desc .product_desc_info .product_name:hover {
-	color: purple;
+	color: blue;
   	text-decoration: underline;
 }
 .product_desc .product_desc_info .new-price {
@@ -1335,7 +1339,7 @@ text-align: center;
 .color-categoriy ul li span.Orange {
   background: #F39C11;
 }
-.color-categoriy ul li span.Blue  {
+.color-categoriy ul li span.blue  {
   background: #5D9CEC;
 }
 .color-categoriy li {

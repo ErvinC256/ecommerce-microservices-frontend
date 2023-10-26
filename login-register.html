@@ -200,25 +200,59 @@
                             </div><br><br>
                             <div class="login-div">
                                 <form action="#" class="login-form">
-                                    <div>
-                                        <label>Email Address*</label>
-                                        <input type="email" placeholder="Email Address">
+                                    <div class="input-field">
+                                        <input type="email" required> 
+                                        <label>Email Address</label>
                                     </div>
-                                    <div>
+                                    <div class="input-field" style="padding-bottom: 10px;">
+                                        <input type="password" required> 
                                         <label>Password</label>
-                                        <input type="password" placeholder="Password">
+                                    </div>
+                                    <div style="display: flex; align-items: flex-start;">
+                                        <svg
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            style="margin-right: 5px;"
+                                        >
+                                            <path
+                                                d="M11 10.9794C11 10.4271 11.4477 9.97937 12 9.97937C12.5523 9.97937 13 10.4271 13 10.9794V16.9794C13 17.5317 12.5523 17.9794 12 17.9794C11.4477 17.9794 11 17.5317 11 16.9794V10.9794Z"
+                                                fill="currentColor"
+                                            />
+                                            <path
+                                                d="M12 6.05115C11.4477 6.05115 11 6.49886 11 7.05115C11 7.60343 11.4477 8.05115 12 8.05115C12.5523 8.05115 13 7.60343 13 7.05115C13 6.49886 12.5523 6.05115 12 6.05115Z"
+                                                fill="currentColor"
+                                            />
+                                            <path
+                                                fill-rule="evenodd"
+                                                clip-rule="evenodd"
+                                                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
+                                        <p style="font-size: 12px;">Passwords must be between 8 and 20 characters in length and contain 1 upper case letter, 1 lower case letter, and 1 number.</p>
                                     </div>
                                     <div>
-                                        <a href="#"> Forgotten password?</a>
+                                        <p style="font-size: 12px;">We take your privacy and security seriously. We are committed to safeguarding your personal information. When you log in to your account, we collect and use your data for authentication purposes only. We do not share your information with third parties without your consent. If you have any questions or concerns about your privacy or data security, please don't hesitate to contact our support team. </p>
+                                    </div>
+                                    <div style="display: flex; justify-content: flex-start; align-items: flex-start;">
+                                        <input type="checkbox" id="agree" name="agreement" value="agreed" style="margin-right: 10px;">
+                                        <label for="agree" style="position: relative; bottom: 4.5px;">I agree to the terms and conditions.</label>    
                                     </div>
                                     <div>
                                         <button class="my-button">Login</button>
+                                    </div>
+                                    <div>
+                                        <p>Don't have an account? <a href="" style="color: blue;">Create an account</a> here.</p>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="li-section-title">
+                            <img src="images/login-register/adrian-regeci-0FdUU3zlVlI-unsplash.jpg" alt="" style="width: 100%; height: 100%;">
+                            <!-- <div class="li-section-title">
                                 <h2>Register</h2>
                             </div><br><br>
                             <div class="register-div">
@@ -249,7 +283,7 @@
                                         </div>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

@@ -207,22 +207,20 @@ option {
 	background: #f1f1f1;
 	cursor: pointer;
 }
-.input-field{
+.input-field {
 	position: relative;
 }
 .input-field label{
 	position: absolute;
 	top: 35%;
-	left: 10px;
+	left: 25px;
 	transform: translateY(-50%);
 	transition: 0.1s;
 }
 .input-field input:focus ~ label,
-.input-field textarea:focus ~ label,
-.input-field input:valid ~ label,
-.input-field textarea:valid ~ label {
+.input-field textarea:focus ~ label {
 	top: 0;
-	left: 5px;
+	left: 20px;
 	padding: 0 5px;
 	font-size: 12px;
 	color: blue;
@@ -1151,7 +1149,10 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.3 Login Register Page
 /*----------------------------------------*/
-.login-register-form div:not(:last-child) {
+.register-form div:not(:last-child) {
+    padding-bottom: 20px;
+}
+.login-form div:not(:last-child) {
     padding-bottom: 20px;
 }
 /*----------------------------------------*/
@@ -1545,6 +1546,12 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.8 Account Page
 /*----------------------------------------*/
+.account-area {
+	margin-bottom: 100px;
+}
+.basic-info-form div:not(:last-child) {
+    padding-bottom: 20px;
+}
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

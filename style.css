@@ -799,7 +799,7 @@ option {
     position: relative;
 }
 .tab-content {
-	margin-top: 15px;
+	padding-top: 5px;
 }
 .tab-content .tab-pane {
   display: block;
@@ -963,7 +963,6 @@ option {
 	width: 100%;
 	display: inline-block;
 	position: relative;
-	margin-bottom: 10px;
 }
 .li-section-title > h2 {
 	float: left;
@@ -1257,6 +1256,17 @@ text-align: center;
 /*----------------------------------------*/
 .map {
 	margin-bottom: 50px;
+}
+.contact-form {
+	padding-top: 20px;
+}
+.contact-form div, .contact-page div {
+	padding-bottom: 20px;
+}
+.contact-page {
+	padding-top: 20px;
+	padding-left: 5px;
+	background-color: #f5f6f7;
 }
 /*----------------------------------------*/
 /*  3.6 Category Page

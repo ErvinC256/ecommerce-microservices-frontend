@@ -191,6 +191,17 @@ select {
 option {
 	overflow-y:scroll;
 }
+.button-my {
+	color: blue;
+	background: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	border: 1px solid blue;
+}
+.button-my:hover {
+	background: #f1f1f1;
+	cursor: pointer;
+}
 /*----------------------------------------*/
 /*  1.3 Background Variation Set
 /*----------------------------------------*/
@@ -815,97 +826,14 @@ option {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   visibility: visible;
 }
-.product-active .owl-nav button,.product-active-2 .owl-nav button {
-  background: #dddddd none repeat scroll 0 0 !important;
-  border-radius: 50%;
-  font-size: 20px !important;
-  height: 50px;
-  margin: auto 0;
-  position: absolute;
-  right: auto;
-  text-align: center;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 50px;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  visibility: hidden;
-  -webkit-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
-}
-.product-active .owl-nav button:hover,.product-active-2 .owl-nav button:hover {
-  background: #fed700 !important;
-  color: #fff;
-}
 .product-active .owl-nav .owl-prev,.product-active-2 .owl-nav .owl-prev {
   left: 0;
 }
 .product-active .owl-nav .owl-next,.product-active-2 .owl-nav .owl-next {
   right: 0;
 }
-.product-active:hover .owl-nav button, .product-active-2:hover .owl-nav button{
-  visibility: visible;
-  opacity: 1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-}
 .product-image {
   position: relative;
-}
-.section-title-3 {
-  position: relative;
-  margin-bottom: 25px;
-}
-.product-tabs-list-2 .nav {
-  background: #ffffff none repeat scroll 0 0;
-  padding-right: 50px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.product-tabs-list-2 .nav li {
-  display: inline-block;
-  padding: 0 0 0 20px;
-  vertical-align: top;
-}
-.product-tabs-list-2 .nav li a {
-  color: #555;
-  cursor: pointer;
-  display: block;
-  font-size: 16px;
-  position: relative;
-  text-transform: capitalize;
-  -webkit-transition: all 300ms ease-in 0s;
-  transition: all 300ms ease-in 0s;
-}
-.product-tabs-list-2 .nav li a.active {
-  color: #222;
-}
-.product-active-3 .owl-nav button,.pos-product-active .owl-nav button,.latest-blog-active .owl-nav button{
-  font-size: 22px !important;
-  position: absolute;
-  right: 15px;
-  top: -55px;
-  -webkit-transition: all 0.1s ease-in-out 0s;
-  transition: all 0.1s ease-in-out 0s;
-}
-.product-active-3 .owl-nav button.owl-prev,.pos-product-active .owl-nav button.owl-prev,.latest-blog-active .owl-nav button.owl-prev {
-  right: 35px;
-}
-.product-active-3 .owl-nav button:hover,.pos-product-active .owl-nav button,.latest-blog-active .owl-nav button:hover {
-  color: #fed700;
-  -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1);
-}
-.product-active-3 .owl-nav button.owl-next,.pos-product-active .owl-nav button.owl-next,.latest-blog-active .owl-nav button.owl-next{
-  background: #ffffff none repeat scroll 0 0;
-  padding: 0 0 0 10px !important;
-}
-.product-active-3 .owl-nav button.owl-prev,.pos-product-active .owl-nav button.owl-prev,.latest-blog-active .owl-nav button.owl-prev{
-  background: #ffffff none repeat scroll 0 0;
-  padding: 0 0 0 15px !important;
 }
 /*----------------------------------------*/
 /*  2.5 Li's Banner
@@ -1257,14 +1185,11 @@ text-align: center;
 .map {
 	margin-bottom: 50px;
 }
-.contact-form {
-	padding-top: 20px;
-}
-.contact-form div, .contact-page div {
-	padding-bottom: 20px;
+.contact-form div:not(:last-child),
+.contact-page div:not(:last-child) {
+    padding-bottom: 20px;
 }
 .contact-page {
-	padding-top: 20px;
 	padding-left: 5px;
 	background-color: #f5f6f7;
 }

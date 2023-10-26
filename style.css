@@ -1151,8 +1151,7 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.3 Login Register Page
 /*----------------------------------------*/
-.login-form div:not(:last-child),
-.register-form div div:not(:last-child) {
+.login-register-form div:not(:last-child) {
     padding-bottom: 20px;
 }
 /*----------------------------------------*/

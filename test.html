@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Input Label Animaton | CoderGirl</title>
+  <!---Custom CSS File--->
+  <style>
+    .input-field{
+        position: relative;
+    }
+    .input-field label{
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        transition: 0.1s;
+    }
+    .input-field input:focus ~ label,
+    .input-field input:valid ~ label{
+        top: 0;
+        left: 15px;
+        padding: 0 2px;
+        font-size: 10px;
+        background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="input-field">
+    <input type="text" required> 
+    <label>Enter email</label>
+  </div>
+</body>
+</html>

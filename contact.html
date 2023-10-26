@@ -221,7 +221,7 @@
                                 </div><br><br>
                                 <div class="contact-form">
                                     <form  id="contact-form" action="http://demo.hasthemes.com/limupa-v3/limupa/mail.php" method="post">
-                                        <div>
+                                        <!-- <div>
                                             <label>Your Name <span class="required">*</span></label>
                                             <input type="text" name="customerName" id="customername" required>
                                         </div>
@@ -236,9 +236,25 @@
                                         <div>
                                             <label>Your Message</label>
                                             <textarea name="contactMessage" id="contactMessage" ></textarea>
+                                        </div> -->
+                                        <div class="input-field">
+                                            <input type="text" required> 
+                                            <label>Your Name</label>
+                                        </div>
+                                        <div class="input-field">
+                                            <input type="email" required> 
+                                            <label>Your Email</label>
+                                        </div>
+                                        <div class="input-field">
+                                            <input type="text" required> 
+                                            <label>Subject</label>
+                                        </div>
+                                        <div class="input-field">
+                                            <textarea type="text" required></textarea>
+                                            <label>Your Message</label>
                                         </div>
                                         <div>
-                                            <button type="submit" class="button-my" value="submit" id="submit" name="submit">Send</button>
+                                            <button type="submit" class="my-button" value="submit" id="submit" name="submit">Send</button>
                                         </div>
                                     </form>
                                 </div>

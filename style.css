@@ -107,6 +107,7 @@ hr {
 }
 label {
 	font-size: 14px;
+	color: grey;
 }
 *::-moz-selection {
 	background: #4fc1f0;
@@ -174,7 +175,7 @@ input, textarea {
 	padding: 10px;
 	font-size: 14px;
 	width: 100%;
-	border-radius: 2px;
+	border-radius: 1px;
 	border: none;
 	outline: 1px solid #e1e1e1;
 }
@@ -191,16 +192,37 @@ select {
 option {
 	overflow-y:scroll;
 }
-.button-my {
+.my-button {
 	color: blue;
 	background: none;
 	padding: 10px 20px;
 	font-size: 16px;
 	border: 1px solid blue;
 }
-.button-my:hover {
+.my-button:hover {
 	background: #f1f1f1;
 	cursor: pointer;
+}
+.input-field{
+	position: relative;
+}
+.input-field label{
+	position: absolute;
+	top: 35%;
+	left: 10px;
+	transform: translateY(-50%);
+	transition: 0.1s;
+}
+.input-field input:focus ~ label,
+.input-field textarea:focus ~ label,
+.input-field input:valid ~ label,
+.input-field textarea:valid ~ label {
+	top: 0;
+	left: 5px;
+	padding: 0 5px;
+	font-size: 12px;
+	color: blue;
+	background: white;
 }
 /*----------------------------------------*/
 /*  1.3 Background Variation Set
@@ -1125,15 +1147,9 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.3 Login Register Page
 /*----------------------------------------*/
-.login-form,
-.register-form {
-    margin-top: 10px;
-}
-
-.login-form div,
-.register-form div {
-    padding-top: 10px;
-    padding-bottom: 10px;
+.login-form div:not(:last-child),
+.register-form div div:not(:last-child) {
+    padding-bottom: 20px;
 }
 /*----------------------------------------*/
 /* 	3.4 Shopping Cart Page

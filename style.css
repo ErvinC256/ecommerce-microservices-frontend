@@ -517,6 +517,7 @@ option {
 .hb-menu nav > ul > li > a {
 	display: flex;
 	font-size: 16px;
+	transition: all 0.1s ease-in-out;
 }
 .hb-menu nav > ul > li > a:hover {
 	text-decoration: none;
@@ -536,7 +537,7 @@ option {
 .megamenu {
     display: flex;
     justify-content: space-between;
-    padding: 10px 10px;
+    padding: 10px;
     visibility: hidden;
     opacity: 0;
     transform: translateY(30px);
@@ -546,9 +547,10 @@ option {
     right: auto;
     top: 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+	transition: all 0.1s ease-in-out;
 }
 .megamenu > li {
-	padding: 0 20px;
+	padding: 0 15px;
 	padding-top: 5px;
 	min-width: 200px;
 	border-right: 1px solid #e1e1e1;
@@ -561,6 +563,7 @@ option {
 }
 .megamenu > li > a {
 	display: block;
+	transition: all 0.1s ease-in-out;
 }
 .megamenu > li > a:hover {
 	text-decoration: none;
@@ -795,6 +798,9 @@ option {
     display: block;
     position: relative;
 }
+.tab-content {
+	margin-top: 15px;
+}
 .tab-content .tab-pane {
   display: block;
   height: 0;
@@ -957,7 +963,7 @@ option {
 	width: 100%;
 	display: inline-block;
 	position: relative;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 .li-section-title > h2 {
 	float: left;

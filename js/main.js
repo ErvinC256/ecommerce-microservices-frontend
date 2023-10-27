@@ -35,6 +35,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		24. Star Rating Js
 		25. Zoom Product Venobox
 		26. WOW
+		27. Input Fields
 
 -----------------------------------------------------------------------------------*/
 (function ($) {
@@ -531,6 +532,27 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
     new WOW().init();
 })(jQuery);
+/*----------------------------------------*/
+/* 27. WOW
+/*----------------------------------------*/
+window.onload = function() {
+	var inputs = document.querySelectorAll('.input-field input, .input-field textarea');
+	inputs.forEach(function(input) {
+		input.addEventListener('change', function() {
+			if (this.value) {
+				this.classList.add('has-value');
+			} else {
+				this.classList.remove('has-value');
+			}
+		});
+	});
+	// Add 'has-value' class to inputs with predefined values
+	inputs.forEach(function(input) {
+		if (input.value) {
+			input.classList.add('has-value');
+		}
+	});
+};
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

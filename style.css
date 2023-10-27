@@ -199,8 +199,8 @@ option {
 .my-button {
 	color: blue;
 	background: none;
-	padding: 10px 20px;
-	font-size: 16px;
+	padding: 5px 10px;
+	font-size: 14px;
 	border: 1px solid blue;
 }
 .my-button:hover {

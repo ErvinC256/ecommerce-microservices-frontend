@@ -40,6 +40,7 @@
         <link rel="stylesheet" href="style.css">
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="css/responsive.css">
+        <link href='https://unpkg.com/css.gg@2.0.0/icons/css/info.css' rel='stylesheet'>
         <!-- Modernizr js -->
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
@@ -199,6 +200,7 @@
                                 <ul class="nav li-product-menu">
                                    <li><a class="active" data-toggle="tab" href="#basic-info"><h2>Basic Information</h2></a></li>
                                    <li><a data-toggle="tab" href="#shipping-info"><h2>Shipping</h2></a></li>
+                                   <li><a data-toggle="tab" href="#order-info"><h2>Your Orders</h2></a></li>
                                 </ul>               
                             </div>
                             <!-- Begin Li's Tab Menu Content Area -->
@@ -222,13 +224,21 @@
                                                 <input type="email" value="samantha@email.com" placeholder="example@email.com" required> 
                                                 <label>Email Address</label>
                                             </div>
+                                            <div class="input-field col-12">
+                                                <input type="text" value="123-123-123" placeholder="Enter your contact" required> 
+                                                <label>Contact</label>
+                                            </div>
                                             <div class="input-field col-6">
                                                 <input type="password" value="password" placeholder="Enter your password" required> 
                                                 <label>Password</label>
                                             </div>
                                             <div class="input-field col-6">
-                                                <input type="password" value="password" placeholder="Confirm your password" required> 
+                                                <input type="password" placeholder="Confirm your password" required> 
                                                 <label>Confirm Password</label>
+                                            </div>
+                                            <div class="col-12" style="display: flex; align-items: center; position: relative; bottom: 10px;">
+                                                <i class="gg-info" style="margin-right: 5px;"></i>
+                                                <p style="font-size: 12px;">Passwords must be at least 6 characters.</p>
                                             </div>
                                             <div class="col-12">
                                                 <button class="my-button">Update</button>
@@ -282,6 +292,13 @@
                                             </div>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="order-info" class="tab-pane" role="tabpanel">
+                            <div class="row">
+                                <div class="col-6">
+                                    
                                 </div>
                             </div>
                         </div>

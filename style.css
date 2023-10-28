@@ -1114,6 +1114,10 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.3 Login Register Page
 /*----------------------------------------*/
+.login-form a,
+.register-form a {
+	color: #0673ca;
+}
 .login-section img,
 .register-section img {
 	width: 100%;

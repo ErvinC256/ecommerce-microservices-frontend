@@ -56,7 +56,7 @@ body {
 a {	
 	color: inherit;
 	text-decoration: none;
-	transition: 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
 }
 a:hover {
 	color: #0673ca;
@@ -371,22 +371,18 @@ option {
 .slider-active .owl-nav div, 
 .product-active .owl-nav div, 
 .special-product-active .owl-nav div {
-	color: rgba(36,36,36,.15);
+	color: #e1e1e1;
 	display: block;
 	left: 0;
 	opacity: 0;
 	position: absolute;
 	text-align: center;
 	top: 50%;
-	-webkit-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%); 
 	transform: translateY(-50%);
 	-webkit-transition: all 0.5s ease-in-out 0s;
 	transition: all 0.5s ease-in-out 0s;
 	z-index: 8;
-}
-.slider-active .owl-nav div:hover, 
-.product-active .owl-nav div:hover {
-	color: #fed700;
 }
 .slider-active:hover .owl-nav div, .product-active:hover .owl-nav div {
 	opacity: 1;
@@ -405,7 +401,7 @@ option {
 .product-active .owl-nav > .owl-prev > i, 
 .slider-active .owl-nav > .owl-next > i,
 .product-active .owl-nav > .owl-next > i {
-	font-size: 50px;
+	font-size: 30px;
 }
 /*Product Active Nav Direction*/
 .product-active:hover .owl-nav div.owl-prev {
@@ -421,52 +417,6 @@ option {
 	.product-active .owl-nav {
 		display: none;
 	}
-}
-/* Default Pagination */
-.owl-dots {
-	bottom: 15px;
-	margin-top: 0;
-	position: absolute;
-	text-align: center;
-	width: 100%;
-	z-index: 12;
-}
-.slider-active .owl-dots {
-	display: none;
-}
-.owl-dots .owl-dot {
-	background: #fff none repeat scroll 0 0;
-	border-radius: 10px;
-	cursor: pointer;
-	display: inline-block;
-	font-size: 0;
-	height: 10px;
-	margin: 0 4px;
-	position: relative;
-	text-align: center;
-	-webkit-transition: all 300ms ease-in 0s;
-	transition: all 300ms ease-in 0s;
-	width: 10px;
-	z-index: 8;
-}
-.owl-dots .owl-dot.active {
-	background: #fed700 none repeat scroll 0 0;
-	width: 32px;
-}
-.testimonials-active .owl-dots .owl-dot {
-	background: #000 none repeat scroll 0 0;
-	border-radius: 0;
-	height: 7px;
-	width: 7px;
-}
-.testimonials-active .owl-dots .owl-dot.active, .testimonials-active-2 .owl-dots .owl-dot.active {
-	background: #fff none repeat scroll 0 0;
-}
-.testimonials-active-2 .owl-dots .owl-dot.active {
-	background: #ebebeb;
-}
-.slider-area-2 .owl-dots {
-	display: none;
 }
 /*----------------------------------------*/
 /*  1.6 Owl Carousel Box Shadow
@@ -577,24 +527,20 @@ option {
 		padding-right: 40px;
 }
 .hb-menu nav > ul > li > a {
-	display: flex;
-	font-size: 16px;
+    display: inline-block; /* Change flex to inline-block */
+    font-size: 16px;
+    transition: all 0.1s ease-in-out;
+	margin-right: 10px;
+}
+.hb-menu nav > ul > li i {
+	font-size: 12px;
 	transition: all 0.1s ease-in-out;
 }
 .hb-menu nav > ul > li > a:hover {
 	text-decoration: none;
 }
-.hb-menu nav > ul > li:nth-child(1) > a::after,
-.hb-menu nav > ul > li:nth-child(7) > a::after {
-	content: "\f107";
-	position: absolute;
-	top: 0px;
-	right: 20px;
-	font-family: fontawesome;
-	transition: all 0.1s ease-in-out;
-}
-.hb-menu nav > ul > li:hover  a::after {
-	transform: rotate(180deg);
+.hb-menu nav > ul > li:hover i {
+    transform: rotate(180deg); /* Rotate the icon 180 degrees on hover */
 }
 .megamenu {
     display: flex;

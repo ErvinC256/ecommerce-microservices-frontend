@@ -704,9 +704,6 @@ option {
 	padding-right: 30px;
 	z-index: 99;
 }
-.li-product-menu > li > a > span {
-	position: relative;
-}
 .li-product-menu li a {
 	color: #c8c8c8;
 	display: inline-block;
@@ -715,6 +712,8 @@ option {
 	text-transform: capitalize;
 	transition: all 0.1s ease-in-out;
 	border-right: 1px solid #e1e1e1;
+	font-size: 18px;
+	font-weight: 600;
 }
 .li-product-menu li:last-child a {
 		border-right: 1px solid transparent;

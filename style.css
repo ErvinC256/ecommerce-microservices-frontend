@@ -1501,21 +1501,8 @@ text-align: center;
 .product-details-right div {
 	margin-bottom: 10px;
 }
-.block-reassurance ul {
-    list-style-type: none;
-}
-
-.block-reassurance ul li {
-    margin-bottom: 10px;
-}
-
-.block-reassurance ul li div {
-    display: flex;
-    align-items: center;
-}
-
-.block-reassurance ul li div i {
-    margin-right: 10px;
+.block-reassurance table tr td {
+	padding: 10px 0px;
 }
 .product-description, .product-details-manufacturer, .product-reviews {
 	padding: 25px 0;

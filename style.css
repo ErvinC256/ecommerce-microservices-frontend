@@ -345,7 +345,7 @@ option {
 	position: absolute;
 	text-align: center;
 	top: 50%;
-	-webkit-transform: translateY(-50%); 
+	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 	-webkit-transition: all 0.5s ease-in-out 0s;
 	transition: all 0.5s ease-in-out 0s;
@@ -368,22 +368,22 @@ option {
 .product-active .owl-nav > .owl-prev > i, 
 .slider-active .owl-nav > .owl-next > i,
 .product-active .owl-nav > .owl-next > i {
-	font-size: 30px;
+	font-size: 28px;
+	font-weight: 600;
 }
 /*Product Active Nav Direction*/
+.product-active .owl-nav div.owl-prev {
+	left: -20px;
+}
 .product-active:hover .owl-nav div.owl-prev {
 	top: 50%;
-	left: -15px;
+}
+.product-active .owl-nav div.owl-next {
+	right: -20px;
 }
 .product-active:hover .owl-nav div.owl-next {
 	top: 50%;
-	right: -15px;
-}
-@media only screen and (max-width: 1199px) {
-	/*Product Nav Arrow*/
-	.product-active .owl-nav {
-		display: none;
-	}
+	right: -20px;
 }
 /*----------------------------------------*/
 /*  02. Home Page

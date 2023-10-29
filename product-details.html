@@ -8,6 +8,62 @@
         <link rel="stylesheet" href="css/helper.css">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <style>
+            .my-tooltip {
+                display:inline-block;
+                position:relative;
+                border-bottom:1px dashed grey;
+                cursor: pointer;
+            }
+            .my-tooltip .tooltip-position {
+                min-width:350px; 
+                top:-5px;
+                left:50%;
+                transform:translate(-50%, -100%);
+                /* color:#242424; */
+                background-color: #fff;
+                border-radius:5px;
+                position:absolute;
+                z-index:99999999;
+                box-sizing:border-box;
+                border:1px solid #e1e1e1;
+                box-shadow:0 1px 5px rgba(0,0,0,0.5);
+                display:none;
+            }
+            .my-tooltip:hover .tooltip-position {
+                display:block;
+            }
+
+            .my-tooltip .tooltip-position i {
+                position:absolute;
+                top:100%;
+                left:50%;
+                margin-left:-10px;
+                width:20px;
+                height:10px;
+                overflow:hidden;
+            }
+
+            .my-tooltip .tooltip-position i::after {
+                content:'';
+                position:absolute;
+                width:10px;
+                height:10px;
+                left:50%;
+                transform:translate(-50%,-50%) rotate(45deg);
+                background-color:#fff;
+                border:1px solid #e1e1e1;
+                box-shadow:0 1px 5px rgba(0,0,0,0.5);
+            }
+            .my-tooltip .tooltip-top {
+                padding: 5px 10px;
+                background-color: #f5f6f7;
+                border-bottom: 1px solid #e1e1e1;
+            }
+            .my-tooltip .tooltip-bottom {
+                padding: 0px 10px;
+            }
+        </style>
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -179,7 +235,19 @@
                             </div>
                             <div>
                                 <span style="font-size: 20px; font-weight: 700;">RM 57.98</span>
-                                <p><span style="border-bottom: 1px dashed grey;">Price above includes tax.</span></p>
+                                <p>
+                                    <div class="my-tooltip">Price above includes tax.
+                                        <div class="tooltip-position">
+                                            <div class="tooltip-top">
+                                                <p>Lorem Ipsum</p>
+                                            </div>
+                                            <div class="tooltip-bottom">
+                                                <p>Dolor sit amet, consectetur adipiscing elit.</p>
+                                            </div>
+                                            <i></i>
+                                        </div>
+                                    </div>
+                                </p>
                             </div>
                             <div style="margin-bottom: 30px;">
                                 <p style="margin-bottom: 5px; color: #008a00; font-size: 16px; font-weight: 700;">Stock Left: 10</p>

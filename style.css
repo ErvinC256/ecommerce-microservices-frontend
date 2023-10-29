@@ -14,7 +14,6 @@
 			1.3 Background Variation Set
 			1.4 Animation
 			1.5 All Navigation & Pagination
-			1.6 Scroll Up
 		02. Home Page
 			2.1 Header
 			2.2 Slider
@@ -416,36 +415,6 @@ option {
 	.product-active .owl-nav {
 		display: none;
 	}
-}
-/*----------------------------------------*/
-/*  1.6 Scroll Up
-/*----------------------------------------*/
-#scrollUp {
-	right: 25px;
-	bottom: 25px;
-	height: 50px;
-	width: 50px;
-	border-radius: 100%;
-	text-align: center;
-	background: #242424 none repeat scroll 0 0;
-	border: 1px solid #fff;
-	-webkit-animation: liSlideInUp 0.8s ease-in-out 1 both;
-	animation: liSlideInUp 0.8s ease-in-out 1 both;
-	z-index: 1000 !important;
-	overflow: hidden;
-	-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-#scrollUp:hover {
-	background: #fed700 none repeat scroll 0 0;
-}
-#scrollUp i {
-	color: #fff;
-	font-size: 30px;
-	display: block;
-}
-#scrollUp:hover i {
-	animation: liSlideInUp 1s infinite;
 }
 /*----------------------------------------*/
 /*  02. Home Page

@@ -388,7 +388,6 @@ option {
 /*  2.1 Header
 /*----------------------------------------*/
 .header {
-	margin-bottom: 20px;
 	background-color: #f5f6f7;
 }
 /*Header Top*/
@@ -887,6 +886,10 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.3 Login Register Page
 /*----------------------------------------*/
+.login-section,
+.register-section {
+	padding-top: 40px;
+}
 .login-section h2,
 .register-section h2 {
 	font-size: 24px;

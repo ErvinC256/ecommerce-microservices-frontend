@@ -191,25 +191,25 @@ option {
 	overflow-y:scroll;
 }
 .my-button {
-	color: #0673ca;
-	background: none;
-	padding: 5px 10px;
-	font-size: 14px;
-	border: 1px solid #0673ca;
-}
-.my-button:hover {
-	background: #f1f1f1;
-	cursor: pointer;
-}
-.my-button-inverse {
 	color: #fff;
 	background: #0673ca;
 	padding: 5px 10px;
 	font-size: 14px;
 	border: 1px solid #0673ca;
 }
-.my-button-inverse:hover {
+.my-button:hover {
     background: #3498db; /* Lighter background color on hover */
+	cursor: pointer;
+}
+.my-button-inverse {
+	color: #0673ca;
+	background: none;
+	padding: 5px 10px;
+	font-size: 14px;
+	border: 1px solid #0673ca;
+}
+.my-button-inverse:hover {
+	background: #f1f1f1;
 	cursor: pointer;
 }
 .input-field {

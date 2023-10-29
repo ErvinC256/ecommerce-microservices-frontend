@@ -887,14 +887,19 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.3 Login Register Page
 /*----------------------------------------*/
-.login-form a,
-.register-form a {
-	color: #0673ca;
+.login-section h2,
+.register-section h2 {
+	font-size: 24px;
+	font-weight: normal;
 }
 .login-section img,
 .register-section img {
 	width: 100%;
 	height: 100%;
+}
+.login-form a,
+.register-form a {
+	color: #0673ca;
 }
 .login-form div:not(:last-child) {
     padding-bottom: 20px;

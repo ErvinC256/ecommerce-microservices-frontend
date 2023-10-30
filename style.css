@@ -103,30 +103,6 @@ label {
 	font-size: 14px;
 	color: #808080;
 }
-*::-moz-selection {
-	background: #4fc1f0;
-	color: #fff;
-	text-shadow: none;
-}
-::-moz-selection {
-	background: #4fc1f0;
-	color: #fff;
-	text-shadow: none;
-}
-::selection {
-	background: #4fc1f0;
-	color: #fff;
-	text-shadow: none;
-}
-.mark,
-mark {
-	background: #4fc1f0 none repeat scroll 0 0;
-	color: #fff;
-}
-span.tooltip-content {
-	color: #00a9da;
-	cursor: help;
-}
 .uppercase {
 	text-transform: uppercase;
 }
@@ -269,10 +245,10 @@ option {
 .slider-active .owl-item.active .slider-progress {
 	-webkit-animation: 5000ms ease-in-out 0s normal none 1 running timebar;
 	animation: 10000ms ease-in-out 0s normal none 1 running timebar;
-	background: rgba(0, 0, 0, .3);
+	background: #e1e1e1;
 	height: 5px;
 	left: 0;
-	opacity: 0.8;
+	opacity: 0.5;
 	position: absolute;
 	top: 0;
 	z-index: 4;

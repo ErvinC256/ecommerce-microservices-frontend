@@ -548,7 +548,7 @@ option {
 	position: relative;
 	display: inline-block;
 	width: 100%;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 	border-bottom: 1px solid #e1e1e1;
 }
 .product-menu li {

@@ -161,9 +161,6 @@ iframe {
 	width: 100%;
 	height: 300px;
 }
-.section {
-	margin-bottom: 50px;
-}
 /*----------------------------------------*/
 /*  1.2 Input
 /*----------------------------------------*/
@@ -949,17 +946,13 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.3 Login Register Page
 /*----------------------------------------*/
-.login-section,
-.register-section {
-	padding-top: 40px;
-}
-.login-section h2,
-.register-section h2 {
+.login-content-area h2,
+.register-content-area h2 {
 	font-size: 24px;
 	font-weight: normal;
 }
-.login-section img,
-.register-section img {
+.login-content-area img,
+.register-content-area img {
 	width: 100%;
 	height: 100%;
 }
@@ -1125,9 +1118,6 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.8 Account Page
 /*----------------------------------------*/
-.account-section {
-	margin-bottom: 100px;
-}
 .basic-info-form div:not(:last-child),
 .shipping-info-form div:not(:last-child) {
     padding-bottom: 20px;

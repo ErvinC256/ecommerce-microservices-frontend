@@ -20,7 +20,6 @@
 			2.2 Slider
 			2.3 Product-Area with Tabs
 			2.4 Product-Area with Titles
-			2.5 Footer
 		03. Other Pages
 			3.1 FAQ Page
 			3.2 Checkout Page
@@ -595,7 +594,7 @@ option {
 	top: 0;
 	z-index: 1049;
 }
-/*Li's Breadcrumb*/
+/*Breadcrumb*/
 .breadcrumb-area {
 	padding: 10px;
 	background-color: #f5f6f7;
@@ -757,7 +756,7 @@ option {
 	padding-bottom: 10px;
 	border-bottom: 0.5px solid #fed700;
 }
-/*Li's Sub Category List*/
+/*Sub Category List*/
 .li-sub-category-list {
 	float: right;
 }
@@ -770,122 +769,6 @@ option {
 }
 .li-sub-category-list > li > a:hover {
 	text-decoration: none;
-}
-/*----------------------------------------*/
-/*  2.5 Footer
-/*----------------------------------------*/
-.footer {
-	background-color: #f5f6f7;
-	border-top: 1px solid #e1e1e1;
-}
-.footer-static-top-3 {
-	background: #fff;
-	border-bottom: 1px solid #e1e1e1;
-}
-.footer-shipping {
-	border-bottom: 1px dashed #e1e1e1;
-}
-.footer-static-top-3 .footer-shipping {
-	border-bottom: none;
-}
-/*Li's Sipping Inner Box*/
-.li-shipping-inner-box {
-	text-align: center;
-	z-index: 99;
-}
-.footer-static-top-3 .li-shipping-inner-box {
-	border-right: 1px solid #e1e1e1;
-	padding: 50px 10px 45px;
-}
-.footer-static-top-3 .li-shipping-inner-box.last-child {
-	border-right: none;
-}
-.shipping-icon {
-	display: inline-block;
-	width: 67px;
-	height: 57px;
-}
-.shipping-text {
-	padding-top: 15px;
-}
-.shipping-text h2 {
-	font-size: 16px;
-	color: #242424;
-	padding-bottom: 10px;
-}
-.shipping-text p {
-	margin: 0;
-	color: #888;
-	font-size: 14px;
-}
-/*Footer Middle*/
-.footer-logo-wrap {
-	border-bottom: 1px dashed #e1e1e1;
-}
-.footer-static-middle .footer-logo p.info {
-	margin: 20px 0 25px;
-	font-size: 14px;
-	color: #888;
-}
-.footer-static-middle .des > li {
-	color: #888;
-	font-size: 14px;
-	margin: 0;
-	margin-bottom: 15px;
-}
-.footer-static-middle ul.des > li span {
-	text-transform: uppercase;
-	font-size: 12px;
-}
-/*Footer Block*/
-.footer-block > h3 {
-	font-size: 20px;
-	color: #242424;
-	margin: 0 0 15px 0;
-	cursor: pointer;
-	padding-top: 20px;
-	text-transform: capitalize;
-}
-.footer-block > ul > li {
-	display: block;
-	margin: 0;
-	border: 0;
-	padding: 0;
-}
-.footer-block > ul > li > a {
-	font-size: 14px;
-	color: #888;
-	display: block;
-	position: relative;
-	transition: all 0.1s ease-in-out;
-}
-.footer-block > ul > li > a:hover {
-	color: #242424;
-	text-decoration: underline;
-	transition: all 0.1s ease-in-out;
-}
-/*Footer Static Bottom*/
-.footer-links {
-	padding: 0 40px 20px;
-}
-.footer-links > ul {
-text-align: center;
-}
-.footer-links > ul > li {
-	display: inline-block;
-	position: relative;
-}
-.footer-links > ul > li > a {
-	color: #888;
-	letter-spacing: 0.1px;
-}
-.footer-links > ul > li::after {
-	content: "/";
-	color: #888;
-}
-.footer-links > ul > li > a:hover {
-	color: #242424;
-	text-decoration: underline;
 }
 /*----------------------------------------*/
 /*  03. Other Pages

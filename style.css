@@ -365,21 +365,21 @@ option {
 	padding: 5px;
 	border-bottom: 1px solid #e1e1e1;
 }
-.ht-menu {
+.ht-menu > ul {
     display: flex;
     justify-content: flex-end;
 }
-.ht-menu > li {
+.ht-menu li {
 	padding: 0 15px;
 	position: relative;
 	display: flex;
 	align-items: center;
 	align-self: stretch;
 }
-.ht-menu > li:last-child {
+.ht-menu li:last-child {
     padding-right: 0; /* Set right padding to 0 for the last child */
 }
-.ht-menu > li::after {
+.ht-menu li::after {
 	content: "";
 	position: absolute;
 	background: #e1e1e1;
@@ -387,7 +387,7 @@ option {
 	width: 1.5px;
 	right: 0;
 }
-.ht-menu > li:last-child::after {
+.ht-menu li:last-child::after {
 	content: unset;
 }
 /*Header Middle*/

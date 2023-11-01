@@ -400,7 +400,7 @@ option {
 .hm-searchbox form {
 	display: flex;
 	position: relative;
-	top: 2px;
+	top: 5px;
 	min-width: 638px;
 	float: left;
 	border: 1 solid #b6b6b6;
@@ -426,7 +426,7 @@ option {
 .hb-menu > ul > li > a:hover {
 	text-decoration: none;
 }
-.hb-menu > ul > li:hover i {
+.hb-menu > ul > li > a:hover i {
     transform: rotate(180deg); /* Rotate the icon 180 degrees on hover */
 }
 .megamenu {
@@ -522,9 +522,6 @@ option {
 }
 .breadcrumb-content li:last-child::before {
 	display: none;
-}
-.breadcrumb-content li a:hover {
-	text-decoration: underline;
 }
 /*----------------------------------------*/
 /*  2.2 Slider Contents
@@ -906,15 +903,17 @@ option {
 .product-details-right span {
 	padding: 0px 5px;
 }
-.quantity-select label {
-	color: inherit; 
-	font-size: 16px;
-	/* font-weight: bold; */
+.quantity-select > p {
+	color: #008a00; 
+	font-size: 18px; 
+	font-weight: bold; 
+	margin-bottom: 5px;
 }
 .quantity-select select {
-	padding: 1px; 
+	padding: 2px; 
 	background: #f5f6f7; 
 	border: 1px solid #e1e1e1;
+	border-radius: 5px;
 }
 .product-details-right span::before {
 	content: "\2022";

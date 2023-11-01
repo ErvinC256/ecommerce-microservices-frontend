@@ -395,7 +395,7 @@ option {
 	padding: 10px;
 	border-bottom: 1px solid #e1e1e1;
 }
-.hm-searchbox {
+.hm-searchbox form {
 	display: flex;
 	position: relative;
 	top: 2px;

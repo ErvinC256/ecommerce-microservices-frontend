@@ -739,7 +739,7 @@ option {
 /*----------------------------------------*/
 .login-content-area h2,
 .register-content-area h2 {
-	font-size: 26px;
+	font-size: 28px;
 	font-weight: normal;
 }
 .login-content-area img,
@@ -762,7 +762,7 @@ option {
 /* 	3.4 Shopping Cart Page
 /*----------------------------------------*/
 .cart-contents-area h2 {
-	font-size: 26px;
+	font-size: 28px;
 	font-weight: normal;
 }
 .cart-table tr {
@@ -906,12 +906,27 @@ option {
 }
 .product-details-left p {
 	font-size: 12px;
+	position: relative; 
+	bottom: 20px;
 }
-.product-details-right div {
+.product-details-right > div {
 	margin-bottom: 10px;
+}
+.product-details-right h2 {
+	font-size: 28px; 
+	font-weight: normal;
 }
 .product-details-right span {
 	padding: 0px 5px;
+}
+.quantity-select label {
+	color: inherit; 
+	font-size: 16px;
+}
+.quantity-select select {
+	padding: 0 1px; 
+	background: #f5f6f7; 
+	border: 1px solid #e1e1e1;
 }
 .product-details-right span::before {
 	content: "\2022";

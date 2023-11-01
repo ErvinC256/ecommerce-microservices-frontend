@@ -149,6 +149,7 @@ input, textarea {
 	padding: 10px;
 	font-size: 14px;
 	width: 100%;
+	height: 100%;
 	border-radius: 1px;
 	border: none;
 	outline: 1px solid #e1e1e1;
@@ -166,6 +167,8 @@ select {
 	border: none;
 	outline: 1px solid #e1e1e1;
 	overflow-y:auto;
+	width: auto;
+	height: 100%;
 }
 option {
 	overflow-y:scroll;
@@ -579,6 +582,7 @@ option {
   -webkit-transition: all 0.1s ease-in-out;
   transition: all 300ms ease-in 0s;
   padding: 10px;
+  margin: 0 5px;
 }
 .single-product-wrap::before {
 	background: #fff none repeat scroll 0 0;
@@ -838,53 +842,35 @@ option {
 /*----------------------------------------*/
 .sidebar-categores-box {
 	background: #f5f6f7;
+	border: 1px solid #e1e1e1;
+	padding: 20px;
+}
+.sidebar-title {
+	border-bottom: 1px solid #e1e1e1;
+}
+.shop-top-bar {
 	padding: 10px;
 }
-.sidebar-categores-box hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
+.product-image > a img {
+  	width: 100%;
 }
-.sidebar-title h2 {
-	font-weight: normal;
+/*----- paginatoin-area  css -----*/
+.paginatoin-area {
+	background: #ffffff none repeat scroll 0 0;
+	margin: 50px 0 0;
+	padding: 10px;
 }
-.filter-sub-area {
-	margin-bottom: 20px;
+.pagination-box {
+  	text-align: right;
 }
-.filter-sub-area h5 {
-	font-size: 16px;
-	margin-bottom: 5px;
+.pagination-box > li {
+  	display: inline-block;
 }
-.filter-sub-area ul li {
-	display: flex;
-	align-items: center;
-	font-size: 16px;
+.pagination-box > li a {
+	padding: 0 10px;
 }
-.filter-sub-area ul li input {
-	margin-right: 10px;
-}
-.shop-products-wrapper .tab-content .tab-pane.active {
-    display: block;
-}
-.shop-products-wrapper .tab-content .tab-pane {
-    display: none;
-    height: auto;
-}
-.category-tags > ul > li {
-	background: #fff;
-	display: inline-block;
-	padding: 2px 10px;
-	border: 1px solid #ebebeb;
-	transition: all 0.1s ease-in-out;
-	margin: 0 2px 5px;
-}
-.category-tags > ul > li:first-child {
-	margin-top: 30px;
-}
-.category-tags > ul > li:hover {
-	background: #242424;
-}
-.category-tags > ul > li:hover a {
-	color: #fff;
+.pagination-box > li a:hover {
+	text-decoration: none;
 }
 /*----------------------------------------*/
 /*  3.7 Product Details Page
@@ -907,7 +893,7 @@ option {
 	font-size: 16px;
 }
 .quantity-select select {
-	padding: 0 1px; 
+	padding: 2px; 
 	background: #f5f6f7; 
 	border: 1px solid #e1e1e1;
 }

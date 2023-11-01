@@ -899,15 +899,8 @@ option {
 /*----------------------------------------*/
 /*  3.7 Product Details Page
 /*----------------------------------------*/
-.product-details-left {
-	display: flex; 
-	flex-direction: column; 
-	justify-content: space-between;
-}
 .product-details-left p {
 	font-size: 12px;
-	position: relative; 
-	bottom: 20px;
 }
 .product-details-right > div {
 	margin-bottom: 10px;

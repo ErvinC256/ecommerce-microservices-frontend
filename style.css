@@ -409,7 +409,7 @@ option {
 	border-bottom: 2px solid #e1e1e1;
 }
 .hb-menu > nav > ul {
-		position: relative;
+	position: relative;
 }
 .hb-menu nav > ul > li {
 		display: inline-block;

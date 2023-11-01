@@ -846,6 +846,25 @@ option {
 }
 .sidebar-title {
 	border-bottom: 1px solid #e1e1e1;
+	margin-bottom: 20px;
+}
+.sidebar-title h2 {
+	font-weight: normal;
+}
+.filter-sub-area ul li {
+	display: flex;
+	align-items: center;
+}
+.filter-sub-area ul li input {
+	margin-right: 10px;
+}
+.filter-sub-area h5 {
+	font-size: 16px; 
+	font-weight: normal; 
+	margin-bottom: 10px;
+}
+.filter-sub-area a:hover {
+	text-decoration: none;
 }
 .shop-top-bar {
 	padding: 10px;
@@ -890,9 +909,10 @@ option {
 .quantity-select label {
 	color: inherit; 
 	font-size: 16px;
+	/* font-weight: bold; */
 }
 .quantity-select select {
-	padding: 2px; 
+	padding: 1px; 
 	background: #f5f6f7; 
 	border: 1px solid #e1e1e1;
 }

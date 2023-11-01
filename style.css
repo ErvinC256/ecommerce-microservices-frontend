@@ -168,7 +168,6 @@ select {
 	outline: 1px solid #e1e1e1;
 	overflow-y:auto;
 	width: auto;
-	height: 100%;
 }
 option {
 	overflow-y:scroll;

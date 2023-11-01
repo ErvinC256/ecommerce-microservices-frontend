@@ -408,28 +408,23 @@ option {
 	padding: 10px;
 	border-bottom: 2px solid #e1e1e1;
 }
-.hb-menu > nav > ul {
+.hb-menu > ul > li {
+	display: inline-block;
 	position: relative;
+	padding-right: 40px;
 }
-.hb-menu nav > ul > li {
-		display: inline-block;
-		position: relative;
-		padding-right: 40px;
-}
-.hb-menu nav > ul > li > a {
-    display: inline-block; /* Change flex to inline-block */
+.hb-menu > ul > li > a {
     font-size: 16px;
-    transition: all 0.1s ease-in-out;
 	margin-right: 10px;
 }
-.hb-menu nav > ul > li i {
+.hb-menu > ul > li i {
 	font-size: 12px;
 	transition: all 0.1s ease-in-out;
 }
-.hb-menu nav > ul > li > a:hover {
+.hb-menu > ul > li > a:hover {
 	text-decoration: none;
 }
-.hb-menu nav > ul > li:hover i {
+.hb-menu > ul > li:hover i {
     transform: rotate(180deg); /* Rotate the icon 180 degrees on hover */
 }
 .megamenu {
@@ -483,7 +478,7 @@ option {
     opacity: 1;
     transform: translateY(0);
 }
-.hb-megamenu, .megamenu-holder .hb-megamenu {
+.megamenu-holder .megamenu {
 	background-image: url(images/menu/li-bg-menu.jpg);
 	background-size: cover;
 	background-position: top;
@@ -491,12 +486,7 @@ option {
 	top: auto;
 	left: 0;
 	z-index: 99;
-	width: 100%;
-}
-.megamenu-holder .hb-megamenu {
 	width: auto;
-	background-size: auto;
-	background-position: inherit;
 }
 /*Sticky*/
 .header-sticky.sticky {

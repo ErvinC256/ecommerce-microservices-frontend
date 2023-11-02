@@ -204,7 +204,7 @@ option {
 /*  1.3 Background Variation Set
 /*----------------------------------------*/
 .bg-1, .bg-2, .bg-3 {
-	background-image: url(images/slider/1.jpg);
+	background-image: url(images/slider/marvin-meyer-SYTO3xs06fU-unsplash.jpg);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -212,10 +212,10 @@ option {
 	width: 100%;
 }
 .bg-2 {
-	background-image: url(images/slider/2.jpg);
+	background-image: url(images/slider/domenico-loia-hGV2TfOh0ns-unsplash.jpg);
 }
 .bg-3 {
-	background-image: url(images/slider/3.jpg);
+	background-image: url(images/slider/cezar-sampaio-IJthre6PHHQ-unsplash.jpg);
 }
 /*----------------------------------------*/
 /*  1.4 Navigation
@@ -526,15 +526,6 @@ option {
 /*----------------------------------------*/
 /*  2.2 Slider Contents
 /*----------------------------------------*/
-.single-slide.align-center-left {
-	align-items: center;
-	display: flex;
-}
-.slider-content {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-}
 /*----------------------------------------*/
 /*  2.3 Product-Area with Tabs
 /*----------------------------------------*/
@@ -841,12 +832,20 @@ option {
 	border: 1px solid #e1e1e1;
 	padding: 20px;
 }
+.sidebar-categores-box hr {
+	margin: 20px 0;
+}
 .sidebar-title {
-	border-bottom: 1px solid #e1e1e1;
 	margin-bottom: 20px;
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center;
 }
 .sidebar-title h2 {
 	font-weight: normal;
+}
+.filter-sub-area {
+	margin-bottom: 20px;
 }
 .filter-sub-area ul li {
 	display: flex;
@@ -857,7 +856,7 @@ option {
 }
 .filter-sub-area h5 {
 	font-size: 16px; 
-	font-weight: normal; 
+	font-weight: bold; 
 	margin-bottom: 10px;
 }
 .filter-sub-area a:hover {

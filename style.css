@@ -477,15 +477,12 @@ option {
     transform: translateY(0);
 }
 .megamenu-holder .megamenu {
-	background-image: url(images/menu/li-bg-menu.jpg);
-	background-size: cover;
-	background-position: top;
-	background-repeat: no-repeat;
+	background: #fff;
 	top: auto;
 	left: 0;
 	z-index: 99;
 	width: auto;
-}
+  }  
 /*Sticky*/
 .header-sticky.sticky {
 	background: #f5f6f7;

@@ -132,123 +132,7 @@
             <!-- Begin Product Details Area -->
             <div class="product-details-area mb-50">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="product-details-left">
-                                <a href="images/product/large-size/1.jpg">
-                                    <img src="images/product/large-size/Vostro 3520 Laptop  15.6-inch HD display  Intel Core i5 processor  8GB DDR4 RAM  256GB SSD  Integrated Intel UHD graphics.jpg" alt="product image" style="width: 100%;">
-                                </a>
-                                <p>Images for illustrative purposes only - actual items may differ from images or based on configurations selected.</p>
-                            </div>
-                        </div>
-                        <div class="col-8">
-                            <div class="product-details-right">
-                                <div>
-                                    <h2>Dell Laptop 1 TB</h2>
-                                </div>
-                                <div style="border-bottom: 1px solid #e1e1e1;">
-                                    <p>100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom. Lorem ipsum dolor sit amet, consectetur adipisicing elit. quibusdam corporis, earum facilis et nostrum dolorum accusamus similique eveniet quia pariatur.</p>
-                                </div>
-                                <div>
-                                    <p style="font-size: 20px; font-weight: bold;">RM 57.98</p>
-                                    <p>
-                                        <div class="my-tooltip">Price above includes tax.
-                                            <div class="tooltip-position">
-                                                <div class="tooltip-top">
-                                                    <p>Price above includes tax.</p>
-                                                </div>
-                                                <div class="tooltip-bottom">
-                                                    <p>The displayed price already accounts for all applicable taxes, ensuring that there are no additional charges beyond what you see.</p>
-                                                </div>
-                                                <i></i>
-                                            </div>
-                                        </div>
-                                        <span>Free Shipping</span>
-                                    </p>
-                                </div>
-                                <div>
-                                    <form action="#"></form>
-                                        <div class="quantity-select">
-                                            <p>Stock Left: 10</p>
-                                            <select>
-                                                <option>Quantity: 1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                            </select>
-                                        </div>
-                                        <div style="margin-top: 10px;">
-                                            <button type="submit" class="my-button">Add to Cart</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="block-reassurance">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <i class="fas fa-shipping-fast"></i>
-                                            </td>
-                                            <td>
-                                                <div class="my-tooltip" >Timely and Reliable Delivery
-                                                    <div class="tooltip-position">
-                                                        <div class="tooltip-top">
-                                                            <p>Timely and Reliable Delivery</p>
-                                                        </div>
-                                                        <div class="tooltip-bottom">
-                                                            <p>You can expect your orders to arrive consistently on schedule, backed by a reliable delivery service. <a href="">Learn more</a></p>
-                                                        </div>
-                                                        <i></i>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <i class="fas fa-exchange"></i>
-                                            </td>
-                                            <td>
-                                                <div class="my-tooltip">Eligible for Return, Refund or Replacement within 30 Days
-                                                    <div class="tooltip-position">
-                                                        <div class="tooltip-top">
-                                                            <p>Eligible for Return, Refund or Replacement within 30 Days</p>
-                                                        </div>
-                                                        <div class="tooltip-bottom">
-                                                            <p>You can return this product in its original state within 30 days of receiving it for a full refund or a replacement. <a href="">Learn more</a></p>
-                                                        </div>
-                                                        <i></i>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <i class="far fa-credit-card"></i>
-                                            </td>
-                                            <td>
-                                                <div class="my-tooltip">Secure Transaction
-                                                    <div class="tooltip-position">
-                                                        <div class="tooltip-top">
-                                                            <p>Secure Transaction</p>
-                                                        </div>
-                                                        <div class="tooltip-bottom">
-                                                            <p>Our relentless commitment is to ensure the utmost protection for your security and privacy, and to safeguard your sensitive information. <a href="">Learn more</a></p>
-                                                        </div>
-                                                        <i></i>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>                                
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
+                    <!-- product details will be inserted here -->
                 </div>
             </div>
             <!-- Product Details Area End Here -->
@@ -361,5 +245,145 @@
         <script src="js/venobox.min.js"></script>
         <script src="js/scrollUp.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            window.onload = function() {
+                const params = new URLSearchParams(window.location.search);
+
+                const productId = params.get('product');
+
+                let apiURL = `http://localhost:8080/products/${productId}`;
+
+                fetch(apiURL) 
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(product => {
+                        const productsContainer = document.querySelector('.product-details-area .container');
+                        const productElement = document.createElement('div');
+                        productElement.className = 'row';
+                        productElement.innerHTML = `
+                            <div class="col-4">
+                                <div class="product-details-left">
+                                    <a href="">
+                                        <img src="images/product/large-size/${product.name}.jpg" alt="product image" style="width: 100%;">
+                                    </a>
+                                    <p>Images for illustrative purposes only - actual items may differ from images or based on configurations selected.</p>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="product-details-right">
+                                    <div>
+                                        <h2>${product.name}</h2>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #e1e1e1;">
+                                        <p>${product.description}</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-size: 20px; font-weight: bold;">$ ${product.price.toFixed(2)}</p>
+                                        <p>
+                                            <div class="my-tooltip">Price above includes tax.
+                                                <div class="tooltip-position">
+                                                    <div class="tooltip-top">
+                                                        <p>Price above includes tax.</p>
+                                                    </div>
+                                                    <div class="tooltip-bottom">
+                                                        <p>The displayed price already accounts for all applicable taxes, ensuring that there are no additional charges beyond what you see.</p>
+                                                    </div>
+                                                    <i></i>
+                                                </div>
+                                            </div>
+                                            <span>Free Shipping</span>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <form action="#"></form>
+                                            <div class="quantity-select">
+                                                <p>Stock Left: ${product.quantityInStock}</p>
+                                                <select>
+                                                    <option>Quantity: 1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+                                                    <option>8</option>
+                                                    <option>9</option>
+                                                    <option>10</option>
+                                                </select>
+                                            </div>
+                                            <div style="margin-top: 10px;">
+                                                <button type="submit" class="my-button">Add to Cart</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="block-reassurance">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <i class="fas fa-shipping-fast"></i>
+                                                </td>
+                                                <td>
+                                                    <div class="my-tooltip" >Timely and Reliable Delivery
+                                                        <div class="tooltip-position">
+                                                            <div class="tooltip-top">
+                                                                <p>Timely and Reliable Delivery</p>
+                                                            </div>
+                                                            <div class="tooltip-bottom">
+                                                                <p>You can expect your orders to arrive consistently on schedule, backed by a reliable delivery service. <a href="">Learn more</a></p>
+                                                            </div>
+                                                            <i></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <i class="fas fa-exchange"></i>
+                                                </td>
+                                                <td>
+                                                    <div class="my-tooltip">Eligible for Return, Refund or Replacement within 30 Days
+                                                        <div class="tooltip-position">
+                                                            <div class="tooltip-top">
+                                                                <p>Eligible for Return, Refund or Replacement within 30 Days</p>
+                                                            </div>
+                                                            <div class="tooltip-bottom">
+                                                                <p>You can return this product in its original state within 30 days of receiving it for a full refund or a replacement. <a href="">Learn more</a></p>
+                                                            </div>
+                                                            <i></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <i class="far fa-credit-card"></i>
+                                                </td>
+                                                <td>
+                                                    <div class="my-tooltip">Secure Transaction
+                                                        <div class="tooltip-position">
+                                                            <div class="tooltip-top">
+                                                                <p>Secure Transaction</p>
+                                                            </div>
+                                                            <div class="tooltip-bottom">
+                                                                <p>Our relentless commitment is to ensure the utmost protection for your security and privacy, and to safeguard your sensitive information. <a href="">Learn more</a></p>
+                                                            </div>
+                                                            <i></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>                                
+                                    </div>
+                                </div>
+                            </div> 
+                        `;
+                        productsContainer.appendChild(productElement);
+                    })
+                    .catch(error => {
+
+                    });
+            }
+        </script>
     </body>
 </html>

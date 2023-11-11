@@ -585,23 +585,23 @@ option {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   visibility: visible;
 }
-.product_desc_info {
+.product_desc {
   position: relative;
+}
+.product_desc hr {
+	margin-top: 5px;
+	margin-bottom: 0px;
 }
 .product_desc .manufacturer {
 	color: #808080;
 	font-size: 12px;
 }
 .product_desc .price {
-	font-weight: bold;
+	font-size: 24px;
 }
-.product_desc .product_desc_info .product_name {
+.product_desc .product_name {
 	color: #0673ca;
 	font-size: 14px;
-}
-.product_desc .product_desc_info .product_name:hover {
-	color: #0673ca;
-  	text-decoration: underline;
 }
 .tab-content {
 	padding-top: 5px;

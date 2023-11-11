@@ -323,20 +323,15 @@
                         const brandList = document.querySelector('.filter-sub-area ul');
 
                         brands.forEach(brand => {
-                            const listItem = document.createElement('li');
-                            const checkbox = document.createElement('input');
-                            checkbox.type = 'checkbox';
-                            checkbox.name = 'product-categori';
-
-                            const brandLink = document.createElement('a');
-                            brandLink.href = '#'; // You can specify the URL for each brand
-                            brandLink.textContent = brand;
-
-                            listItem.appendChild(checkbox);
-                            listItem.appendChild(brandLink);
-
-                            brandList.appendChild(listItem);
+                            const listItem = `
+                                <li>
+                                    <input type="checkbox" name="product-categori">
+                                    <a href="#">${brand}</a>
+                                </li>
+                            `;
+                            brandList.innerHTML += listItem;
                         });
+
                     })
                     .catch(error => {
 

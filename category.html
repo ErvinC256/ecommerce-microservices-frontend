@@ -143,23 +143,12 @@
                                 <div class="filter-sub-area">
                                     <h5>Brands</h5>
                                     <ul>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Dell</a></li>
+                                        <!-- list of brans will be inserted here -->
+                                        <!-- <li><input type="checkbox" name="product-categori"><a href="#">Dell</a></li>
                                         <li><input type="checkbox" name="product-categori"><a href="#">Toshiba</a></li>
                                         <li><input type="checkbox" name="product-categori"><a href="#">SAMSUNG</a></li>
                                         <li><input type="checkbox" name="product-categori"><a href="#">Seagate</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Western Digital</a></li>
-                                    </ul>
-                                 </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area">
-                                    <h5>Brands</h5>
-                                    <ul>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Dell</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Toshiba</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">SAMSUNG</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Seagate</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Western Digital</a></li>
+                                        <li><input type="checkbox" name="product-categori"><a href="#">Western Digital</a></li> -->
                                     </ul>
                                  </div>
                                 <!-- filter-sub-area end -->
@@ -329,6 +318,24 @@
                                 </div>
                             `;
                             productsContainer.appendChild(productElement);
+                        });
+                        const brands = [...new Set(data.map(product => product.manufacturer))];
+                        const brandList = document.querySelector('.filter-sub-area ul');
+
+                        brands.forEach(brand => {
+                            const listItem = document.createElement('li');
+                            const checkbox = document.createElement('input');
+                            checkbox.type = 'checkbox';
+                            checkbox.name = 'product-categori';
+
+                            const brandLink = document.createElement('a');
+                            brandLink.href = '#'; // You can specify the URL for each brand
+                            brandLink.textContent = brand;
+
+                            listItem.appendChild(checkbox);
+                            listItem.appendChild(brandLink);
+
+                            brandList.appendChild(listItem);
                         });
                     })
                     .catch(error => {

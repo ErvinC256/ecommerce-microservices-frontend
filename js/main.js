@@ -35,7 +35,6 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		24. Star Rating Js
 		25. Zoom Product Venobox
 		26. WOW
-		27. Input Fields
 
 -----------------------------------------------------------------------------------*/
 (function ($) {
@@ -70,6 +69,9 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /*  04. Nice Select
 /*----------------------------------------*/
+	// $(document).ready(function() {
+	// 	$('.nice-select').niceSelect();
+	// });
 /*----------------------------------------*/
 /* 05. Main Slider Activision
 /*----------------------------------------*/
@@ -316,21 +318,21 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 17. Price slider
 /*----------------------------------------*/
- var sliderrange = $('#slider-range');
- var amountprice = $('#amount');
- $(function() {
-     sliderrange.slider({
-         range: true,
-         min: 0,
-         max: 1200,
-         values: [300, 800],
-         slide: function(event, ui) {
-             amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
-         }
-     });
-     amountprice.val("$" + sliderrange.slider("values", 0) +
-         " - $" + sliderrange.slider("values", 1));
- });
+//  var sliderrange = $('#slider-range');
+//  var amountprice = $('#amount');
+//  $(function() {
+//      sliderrange.slider({
+//          range: true,
+//          min: 0,
+//          max: 1200,
+//          values: [300, 800],
+//          slide: function(event, ui) {
+//              amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
+//          }
+//      });
+//      amountprice.val("$" + sliderrange.slider("values", 0) +
+//          " - $" + sliderrange.slider("values", 1));
+//  });
  /*----------------------------------------*/
  /* 18. Category menu Activation
  /*----------------------------------------*/
@@ -512,11 +514,11 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 24. Star Rating Js
 /*----------------------------------------*/
-    $(function() {
-          $('.star-rating').barrating({
-            theme: 'fontawesome-stars'
-        });
-    });
+    // $(function() {
+    //       $('.star-rating').barrating({
+    //         theme: 'fontawesome-stars'
+    //     });
+    // });
 /*----------------------------------------*/
 /* 25. Zoom Product Venobox
 /*----------------------------------------*/
@@ -529,29 +531,6 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
     new WOW().init();
 })(jQuery);
-/*----------------------------------------*/
-/* 27. WOW
-/*----------------------------------------*/
-// window.onload = function() {
-// 	var inputs = document.querySelectorAll('.input-field input, .input-field textarea');
-// 	inputs.forEach(function(input) {
-// 		input.addEventListener('change', function() {
-// 			if (this.value) {
-// 				this.classList.add('has-value');
-// 			} else {
-// 				this.classList.remove('has-value');
-// 			}
-// 		});
-// 	});
-// 	// Add 'has-value' class to inputs with predefined values
-// 	inputs.forEach(function(input) {
-// 		if (input.value) {
-// 			input.classList.add('has-value');
-// 		}
-// 	});
-
-
-// };
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

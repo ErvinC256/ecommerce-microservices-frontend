@@ -78,7 +78,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 	$(".slider-active").owlCarousel({
 		loop: true,
 		margin: 0,
-		nav: true,
+		nav: false,
 		autoplay: true,
 		items: 1,
 		autoplayTimeout: 10000,

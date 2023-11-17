@@ -188,6 +188,24 @@ option {
 /*----------------------------------------*/
 /*  1.4 Navigation
 /*----------------------------------------*/
+.slider-banner-area .owl-prev {
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    top: 40%;
+    margin-left: -20px;
+    display: block !important;
+    border:0px solid black;
+}
+.slider-banner-area .owl-next {
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    top: 40%;
+    right: -20px;
+    display: block !important;
+    border:0px solid black;
+}
 .product-tab-area .owl-prev {
     width: 15px;
     height: 50px;

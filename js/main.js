@@ -78,10 +78,10 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 	$(".slider-active").owlCarousel({
 		loop: true,
 		margin: 0,
-		nav: false,
+		nav: true,
 		autoplay: true,
 		items: 1,
-		autoplayTimeout: 10000,
+		autoplayTimeout: 5000,
 		navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
 		dots: true,
 		autoHeight: true,

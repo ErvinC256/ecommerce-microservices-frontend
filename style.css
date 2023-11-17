@@ -630,12 +630,8 @@ option {
 .sub-category-list > li {
 	display: inline-block;
 }
-.sub-category-list > li > a {
+.sub-category-list > li {
 	margin: 0 20px 0;
-	position: relative;
-}
-.sub-category-list > li > a:hover {
-	text-decoration: none;
 }
 /*----------------------------------------*/
 /*  2.5 Footer

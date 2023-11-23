@@ -469,7 +469,7 @@
         <script src="js/main.js"></script>
         <script>
             //load laptop & tablets data
-            apiURL = 'http://localhost:8080/products/latest?limit=10';
+            apiURL = 'http://localhost:8080/product/latest?limit=10';
 
             fetch(apiURL) 
                 .then(response => {
@@ -533,7 +533,7 @@
                 });
 
             //load laptop & tablets data
-            apiURL = 'http://localhost:8080/products/category?category=1';
+            apiURL = 'http://localhost:8080/product/category?category=1';
 
             fetch(apiURL) 
                 .then(response => {
@@ -598,7 +598,7 @@
                 });
 
             //load electronics & accessories data
-            apiURL = 'http://localhost:8080/products/category?category=2';
+            apiURL = 'http://localhost:8080/product/category?category=2';
 
             fetch(apiURL) 
                 .then(response => {
@@ -663,7 +663,7 @@
                 });
             
             //load printers data
-            apiURL = 'http://localhost:8080/products/category?category=3';
+            apiURL = 'http://localhost:8080/product/category?category=3';
 
             fetch(apiURL) 
                 .then(response => {

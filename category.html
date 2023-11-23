@@ -280,9 +280,9 @@
 
             let apiURL;
             if (subcategoryId !== null) {
-                apiURL = `http://localhost:8080/products/category?category=${categoryId}&subcategory=${subcategoryId}`;
+                apiURL = `http://localhost:8080/product/category?category=${categoryId}&subcategory=${subcategoryId}`;
             } else {
-                apiURL = `http://localhost:8080/products/category?category=${categoryId}`;
+                apiURL = `http://localhost:8080/product/category?category=${categoryId}`;
             }
 
             fetch(apiURL) 

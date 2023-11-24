@@ -208,9 +208,16 @@
                         if (!response.ok) {
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
-                        localStorage.setItem('loggedIn', true);
+                        sessionStorage.setItem('loggedIn', true);
 
-                        window.location.href = "index.html";
+                        if (sessionStorage.getItem('redirectToPage') == null) {
+                            window.location.href = 'index.html';
+                        } else {
+                            const redirectToPage = sessionStorage.getItem('redirectToPage');
+                            sessionStorage.removeItem('redirectToPage');
+                            window.location.href = redirectToPage;
+                        }
+                        
                     })
                     .catch(error => {
                         

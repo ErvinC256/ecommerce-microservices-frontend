@@ -240,7 +240,7 @@
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>
-            window.onload = function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 const params = new URLSearchParams(window.location.search);
 
                 const productId = params.get('product');
@@ -375,7 +375,7 @@
                     .catch(error => {
 
                     });
-            }
+            });
         </script>
     </body>
 </html>

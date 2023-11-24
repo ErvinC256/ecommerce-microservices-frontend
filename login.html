@@ -171,5 +171,51 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get the elements
+                const button = document.querySelector(".my-button");
+                const usernameInput = document.querySelector("input[type='text']");
+                const passwordInput = document.querySelector("input[type='password']");
+
+                // Add click event to the Sign In button
+                button.addEventListener("click", function (event) {
+                    // Prevent the default form submission
+                    event.preventDefault();
+
+                    // Get the username and password values
+                    const username = usernameInput.value;
+                    const password = passwordInput.value;
+
+                    // Make the API call with a Fetch POST request
+                    signIn(username, password);
+                });
+            });
+
+            function signIn(username, password) {
+                fetch("http:localhost:8080/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password,
+                    }),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    
+                })
+                .catch(error => {
+                    
+                });
+            }
+        </script>
     </body>
 </html>

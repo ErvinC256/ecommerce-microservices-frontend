@@ -256,7 +256,7 @@
                 .then(data => {
                     sessionStorage.setItem('userId', data.userId);
 
-                    window.location.href = 'login.html';
+                    window.location.href = 'sign-in.html';
                 })
                 .catch(error => {
                     document.querySelector('.error-message').style.display = 'block';

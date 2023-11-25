@@ -537,6 +537,8 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 function signOut() {
 	sessionStorage.removeItem('loggedIn');
+	sessionStorage.removeItem('userId');
+	sessionStorage.removeItem('username');
 	window.location.href = 'sign-in.html';
 }
 /*----------------------------------------------------------------------------------------------------*/

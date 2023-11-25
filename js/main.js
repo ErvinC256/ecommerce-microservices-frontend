@@ -148,12 +148,12 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 08. Countdown
 /*----------------------------------------*/
-   $(".li-countdown")
-     .countdown("2019/12/01", function(event) {
-       $(this).html(
-         event.strftime('<div class="count">%D <span>Days:</span></div> <div class="count">%H <span>Hours:</span></div> <div class="count">%M <span>Mins:</span></div><div class="count"> %S <span>Secs</span></div>')
-       );
-     });
+//    $(".li-countdown")
+//      .countdown("2019/12/01", function(event) {
+//        $(this).html(
+//          event.strftime('<div class="count">%D <span>Days:</span></div> <div class="count">%H <span>Hours:</span></div> <div class="count">%M <span>Mins:</span></div><div class="count"> %S <span>Secs</span></div>')
+//        );
+//      });
 /*----------------------------------------*/
 /* 09. Tooltip Active
 /*----------------------------------------*/
@@ -165,11 +165,11 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 10. Scroll Up
 /*----------------------------------------*/
-	$.scrollUp({
-		scrollText: '<i class="fa fa-angle-double-up"></i>',
-		easingType: 'linear',
-		scrollSpeed: 900
-	});
+	// $.scrollUp({
+	// 	scrollText: '<i class="fa fa-angle-double-up"></i>',
+	// 	easingType: 'linear',
+	// 	scrollSpeed: 900
+	// });
 /*----------------------------------------*/
 /* 11. Category Menu
 /*----------------------------------------*/
@@ -288,33 +288,33 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 15. Li's Blog Gallery Slider
 /*----------------------------------------*/ 
-	var gallery = $('.li-blog-gallery-slider');
-	gallery.slick({
-		arrows: false,
-		autoplay: true,
-		autoplaySpeed: 5000,
-		pauseOnFocus: false,
-		pauseOnHover: false,
-		fade: true,
-		dots: true,
-		infinite: true,
-		slidesToShow: 1,
-		responsive: [
-			{
-				breakpoint: 768,
-					settings: {
-						arrows: false,
-				}
-			},
-		]
-	});
+	// var gallery = $('.li-blog-gallery-slider');
+	// gallery.slick({
+	// 	arrows: false,
+	// 	autoplay: true,
+	// 	autoplaySpeed: 5000,
+	// 	pauseOnFocus: false,
+	// 	pauseOnHover: false,
+	// 	fade: true,
+	// 	dots: true,
+	// 	infinite: true,
+	// 	slidesToShow: 1,
+	// 	responsive: [
+	// 		{
+	// 			breakpoint: 768,
+	// 				settings: {
+	// 					arrows: false,
+	// 			}
+	// 		},
+	// 	]
+	// });
 /*----------------------------------------*/
 /* 16. Counter Js
 /*----------------------------------------*/
-    $('.counter').counterUp({
-        delay: 10,
-        time: 1000
-    });
+    // $('.counter').counterUp({
+    //     delay: 10,
+    //     time: 1000
+    // });
 /*----------------------------------------*/
 /* 17. Price slider
 /*----------------------------------------*/
@@ -522,14 +522,14 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 25. Zoom Product Venobox
 /*----------------------------------------*/
-    $('.venobox').venobox({
-        spinner:'wave',
-        spinColor:'#cb9a00',
-    });
+    // $('.venobox').venobox({
+    //     spinner:'wave',
+    //     spinColor:'#cb9a00',
+    // });
 /*----------------------------------------*/
 /* 26. WOW
 /*----------------------------------------*/
-    new WOW().init();
+    // new WOW().init();
 })(jQuery);
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

@@ -918,7 +918,17 @@ text-align: center;
 .register-form div:not(:last-child) {
     padding-bottom: 20px;
 }
-
+.error-message {
+	display: none;
+	padding: 10px;
+}
+.error-message div {
+	border: 1px solid red;
+	border-radius: 5px;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+}
 /*----------------------------------------*/
 /* 	3.4 Shopping Cart Page
 /*----------------------------------------*/

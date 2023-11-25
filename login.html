@@ -145,7 +145,12 @@
                                         <button class="my-button">Sign In</button>
                                     </div>
                                     <div class="col-12">
-                                        <p>Don't have an account? <a href="">Create an account </a>here.</p>
+                                        <p>Don't have an account? <a href="register.html">Create an account </a>here.</p>
+                                    </div>
+                                    <div class="col-12 error-message">
+                                        <div>
+                                            <i class="fa fa-exclamation-triangle" style="margin-right: 5px; color: red;"></i><p></p>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -200,7 +205,9 @@
                     .then(response => {
 
                         if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
+                            return response.json().then(data => {
+                                throw new Error(data.message);
+                            });
                         }
                         sessionStorage.setItem('loggedIn', true);
 
@@ -214,7 +221,8 @@
                         
                     })
                     .catch(error => {
-                        
+                        document.querySelector('.error-message').style.display = 'block';
+                        document.querySelector('.error-message p').innerText = error.message;
                     });
             }
         </script>

@@ -225,6 +225,14 @@
                     return;
                 }
 
+                // Check if the agreement checkbox is not checked
+                const agreementCheckbox = document.getElementById('agree');
+                if (!agreementCheckbox.checked) {
+                    document.querySelector('.error-message').style.display = 'block';
+                    document.querySelector('.error-message p').innerText = 'Please agree to the terms and conditions';
+                    return;
+                }
+
                 fetch("http://localhost:8080/user/register", {
                     method: "POST",
                     headers: {

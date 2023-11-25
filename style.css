@@ -923,7 +923,7 @@ text-align: center;
 	padding: 10px;
 }
 .error-message div {
-	border: 1px solid red;
+	border: 1.5px solid red;
 	border-radius: 5px;
 	padding: 10px;
 	display: flex;

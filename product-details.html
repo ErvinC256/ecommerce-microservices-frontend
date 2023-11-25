@@ -25,13 +25,13 @@
                                 <li><a href="account.html">My Account</a></li>
                                 <li><a href="shopping-cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="login.html">Login</a></li>   
+                                <li id="login-link"><a href="login.html">Login</a></li>   
                                 <script>
                                     let loginLink = document.getElementById('login-link');
                                     if (sessionStorage.getItem('loggedIn')) {
-                                        loginLink.innerHTML = '<a href="logout.html">Sign Out</a>';
-                                    } 
-                                </script>            
+                                        loginLink.innerHTML = '<a href="#" onclick="signOut()">Sign Out</a>';
+                                    }
+                                </script>             
                             </ul>
                         </div>
                     </div>

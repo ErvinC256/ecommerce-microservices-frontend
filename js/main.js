@@ -35,6 +35,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		24. Star Rating Js
 		25. Zoom Product Venobox
 		26. WOW
+		27. Sign Out
 
 -----------------------------------------------------------------------------------*/
 (function ($) {
@@ -531,6 +532,13 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
     // new WOW().init();
 })(jQuery);
+/*----------------------------------------*/
+/* 27. Sign Out
+/*----------------------------------------*/
+function signOut() {
+	sessionStorage.removeItem('loggedIn');
+	window.location.href = 'login.html';
+}
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

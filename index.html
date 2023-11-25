@@ -29,7 +29,7 @@
                                 <script>
                                     let loginLink = document.getElementById('login-link');
                                     if (sessionStorage.getItem('loggedIn')) {
-                                        loginLink.innerHTML = '<a href="logout.html">Sign Out</a>';
+                                        loginLink.innerHTML = '<a href="#" onclick="signOut()">Sign Out</a>';
                                     }
                                 </script>     
                             </ul>

@@ -141,10 +141,10 @@
                             <form action="#" class="login-form">
                                 <div class="row">
                                     <div class="col-12">
-                                        <input type="text" name="username" placeholder="Enter your username" required> 
+                                        <input type="text" name="username" placeholder="Enter your username"> 
                                     </div>
                                     <div class="col-12">
-                                        <input type="password" name="password" placeholder="Enter your password" required> 
+                                        <input type="password" name="password" placeholder="Enter your password"> 
                                     </div>
                                     <div class="col-12">
                                         <button class="my-button">Sign In</button>
@@ -196,6 +196,13 @@
             });
 
             function signIn(username, password) {
+
+                // Check if the username or password is empty
+                if (!username || !password) {
+                    document.querySelector('.error-message').style.display = 'block';
+                    document.querySelector('.error-message p').innerText = 'Please fill in your credentials';
+                    return;
+                }
 
                 fetch("http://localhost:8080/user/authenticate", {
                     method: "POST",

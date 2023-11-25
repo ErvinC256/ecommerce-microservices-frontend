@@ -140,20 +140,17 @@
                             </div><br><br>
                             <form action="#" class="register-form">
                                 <div class="row">
-                                    <div class="col-6">
-                                        <input type="text" required placeholder="Enter your first name"> 
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" required placeholder="Enter your last name"> 
+                                    <div class="col-12">
+                                        <input type="text" name="username" placeholder="Enter your username"> 
                                     </div>
                                     <div class="col-12">
-                                        <input type="email" required placeholder="Enter your email address"> 
+                                        <input type="email" name="email" placeholder="Enter your email address"> 
                                     </div>
                                     <div class="col-6">
-                                        <input type="password" required placeholder="Enter your password"> 
+                                        <input type="password" name="password" placeholder="Enter your password"> 
                                     </div>
                                     <div class="col-6">
-                                        <input type="password" required placeholder="Confirm your password"> 
+                                        <input type="password" name="confirmPassword" placeholder="Confirm your password"> 
                                     </div>                                    
                                     <div class="col-12" style="display: flex; align-items: center; position: relative; bottom: 10px;">
                                         <i class="fa fa-info-circle" style="color: #0673ca; margin-right: 5px;"></i>
@@ -172,6 +169,11 @@
                                     <div class="col-12">
                                         <p>Already have an account? <a href="">Sign in</a> here.</p>
                                     </div>
+                                    <div class="col-12 error-message">
+                                        <div>
+                                            <i class="fa fa-exclamation-triangle" style="margin-right: 5px; color: red;"></i><p></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -189,5 +191,70 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get the elements
+                const button = document.querySelector(".my-button");
+                const usernameInput = document.querySelector(".register-form input[name='username']");
+                const emailInput = document.querySelector(".register-form input[name='email']");
+                const passwordInput = document.querySelector(".register-form input[name='password']");
+                const confirmPasswordInput = document.querySelector(".register-form input[name='confirmPassword']");
+
+                // Add click event to the Sign In button
+                button.addEventListener("click", function (event) {
+                    // Prevent the default form submission
+                    event.preventDefault();
+
+                    // Get the username and password values
+                    const username = usernameInput.value;
+                    const email = emailInput.value;
+                    const password = passwordInput.value;
+                    const confirmPassword = confirmPasswordInput.value;
+
+                    // Make the API call with a Fetch POST request
+                    register(username, email, password, confirmPassword);
+                });
+            });
+
+            function register(username, email, password, confirmPassword) {
+
+                // Check if the username or password is empty
+                if (!username || !email || !password || !confirmPassword) {
+                    document.querySelector('.error-message').style.display = 'block';
+                    document.querySelector('.error-message p').innerText = 'Please fill in your credentials';
+                    return;
+                }
+
+                fetch("http://localhost:8080/user/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        email: email,
+                        password: password,
+                        confirmPassword: confirmPassword
+                    }),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errorData => {
+                            throw new Error(errorData.message);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    sessionStorage.setItem('userId', data.userId);
+
+                    window.location.href = 'login.html';
+                })
+                .catch(error => {
+                    document.querySelector('.error-message').style.display = 'block';
+                    document.querySelector('.error-message p').innerText = error.message;
+                });
+            }
+        </script>
     </body>
 </html>

@@ -207,32 +207,30 @@
                         password: password,
                     }),
                 })
-                    .then(response => {
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errorData => {
+                            throw new Error(errorData.message);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    sessionStorage.setItem('loggedIn', true);
+                    sessionStorage.setItem('userId', data.userId);
 
-                        if (!response.ok) {
-                            return response.json().then(data => {
-                                throw new Error(data.message);
-                            });
-                        }
-                        
-                        return response.json();
-                    })
-                    .then(data => {
-                        sessionStorage.setItem('loggedIn', true);
-                        sessionStorage.setItem('userId', data.userId);
-
-                        if (sessionStorage.getItem('redirectToPage') == null) {
-                            window.location.href = 'index.html';
-                        } else {
-                            const redirectToPage = sessionStorage.getItem('redirectToPage');
-                            sessionStorage.removeItem('redirectToPage');
-                            window.location.href = redirectToPage;
-                        }
-                    })
-                    .catch(error => {
-                        document.querySelector('.error-message').style.display = 'block';
-                        document.querySelector('.error-message p').innerText = error.message;
-                    });
+                    if (sessionStorage.getItem('redirectToPage') == null) {
+                        window.location.href = 'index.html';
+                    } else {
+                        const redirectToPage = sessionStorage.getItem('redirectToPage');
+                        sessionStorage.removeItem('redirectToPage');
+                        window.location.href = redirectToPage;
+                    }
+                })
+                .catch(error => {
+                    document.querySelector('.error-message').style.display = 'block';
+                    document.querySelector('.error-message p').innerText = error.message;
+                });
             }
         </script>
     </body>

@@ -244,6 +244,8 @@
                         sessionStorage.removeItem('redirectToPage');
                         window.location.href = redirectToPage;
                     }
+
+                    console.log('Success');
                 })
                 .catch(error => {
                     document.querySelector('.error-message').style.display = 'block';

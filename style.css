@@ -325,6 +325,9 @@ option {
 	background: #f1f1f1;
 	cursor: pointer;
 }
+.my-button:active, .my-button:focus, .my-button-inverse:active, .my-button-inverse:focus {
+    outline: none;
+}
 /*----------------------------------------*/
 /*  02. Home Page
 /*----------------------------------------*/

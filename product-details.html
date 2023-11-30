@@ -303,20 +303,21 @@
                                             <div class="quantity-select">
                                                 <p>Stock Left: ${product.quantityInStock}</p>
                                                 <select>
-                                                    <option>Quantity: 1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
+                                                    <option value="1">Quantity: 1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
                                                 </select>
                                             </div>
+                                            <input type="hidden" name="product-id" value="${product.id}">
                                             <div style="margin-top: 10px;">
-                                                <button type="submit" class="my-button">Add to Cart</button>
+                                                <button type="submit" id="add-to-cart" class="my-button">Add to Cart</button>
                                             </div>
                                         </form>
                                     </div>
@@ -382,11 +383,49 @@
                             </div> 
                         `;
                         productsContainer.appendChild(productElement);
+
+                        document.querySelector('#add-to-cart').addEventListener('click', function(e) {
+                            e.preventDefault();
+
+                            // Get user id from session
+                            const userId = sessionStorage.getItem('userId');
+
+                            // Get product id from hidden input field
+                            const productId = document.querySelector('input[name="product-id"]').value;
+
+                            // Get selected quantity
+                            const quantity = document.querySelector('.quantity-select select').value;
+
+                            // Send data to server
+                            addItemToCart(userId, productId, quantity);
+                        });
                     })
                     .catch(error => {
 
                     });
             });
+
+            // functions
+            function addItemToCart(userId, productId, quantity) {
+                const url = 'http://localhost:8080/cart/add';
+                const cartItemData = { userId, productId, quantity };
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(cartItemData),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => console.log('Success:', data))
+                .catch(error => console.error('Error:', error));
+            }
         </script>
     </body>
 </html>

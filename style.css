@@ -372,10 +372,18 @@ option {
 	padding: 10px;
 	border-bottom: 1px solid #e1e1e1;
 }
+.hm-searchbox-area {
+	display: flex; 
+	align-items: center; 
+	justify-content: space-between;
+}
 .hm-searchbox form {
 	display: flex;
 	min-width: 638px;
 	border: 1 solid #b6b6b6;
+}
+#welcome-message {
+	font-size: 16px;
 }
 /*Header Bottom*/
 .header-bottom {
@@ -1051,6 +1059,9 @@ text-align: center;
 .shop-top-bar {
 	padding: 10px;
 }
+.shop-top-bar label {
+	font-size: 14px;
+}
 .product-image > a img {
   	width: 100%;
 }
@@ -1077,6 +1088,9 @@ text-align: center;
 /*----------------------------------------*/
 .product-details-left p {
 	font-size: 12px;
+}
+.product-details-left img {
+	width: 100%;
 }
 .product-details-right > div {
 	margin-bottom: 10px;

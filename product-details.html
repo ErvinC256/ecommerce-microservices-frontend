@@ -48,7 +48,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-9" style="display: flex; align-items: center; justify-content: space-between;">
+                            <div class="col-9 hm-searchbox-area">
                                 <div class="hm-searchbox">
                                     <form action="#">
                                         <select>
@@ -60,7 +60,7 @@
                                         <input type="text" placeholder="Enter your search key ...">
                                     </form>
                                 </div>
-                                <p style="font-size: 16px" id="welcome-message"></p>
+                                <p id="welcome-message"></p>
                                 <script>
                                     // Assume you have stored the username in sessionStorage
                                     const username = sessionStorage.getItem('username');
@@ -269,7 +269,7 @@
                     productElement.innerHTML = `
                         <div class="col-4">
                             <div class="product-details-left">
-                                <img src="images/product/large-size/${product.name}.jpg" alt="product image" style="width: 100%;">
+                                <img src="images/product/large-size/${product.name}.jpg" alt="product image">
                                 <p>Images for illustrative purposes only - actual items may differ from images or based on configurations selected.</p>
                             </div>
                         </div>

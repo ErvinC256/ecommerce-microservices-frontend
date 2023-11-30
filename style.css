@@ -1121,6 +1121,18 @@ text-align: center;
 .block-reassurance table tr td {
 	padding: 10px 0px;
 }
+.cart-message {
+	display: none;
+	padding: 10px;
+	padding-left: 0;
+}
+.cart-message div {
+	border: 1.5px dashed black;
+	border-radius: 5px;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+}
 /*----------------------------------------*/
 /*  3.8 Account Page
 /*----------------------------------------*/

@@ -319,6 +319,11 @@
                                         <div style="margin-top: 10px;">
                                             <button type="submit" id="add-to-cart" class="my-button">Add to Cart</button>
                                         </div>
+                                        <div class="col-12 cart-message">
+                                            <div>
+                                                <p></p>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="block-reassurance">
@@ -424,6 +429,9 @@
                     return response.json();
                 })
                 .then(data => {
+                    document.querySelector('.cart-message').style.display = 'block';
+                    document.querySelector('.cart-message p').innerText = 'Added to cart';
+
                     console.log('Success');
                 })
                 .catch(error => {

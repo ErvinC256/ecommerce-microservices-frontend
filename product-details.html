@@ -408,14 +408,17 @@
             // functions
             function addItemToCart(userId, productId, quantity) {
                 const url = 'http://localhost:8080/cart/add';
-                const cartItemData = { userId, productId, quantity };
 
                 fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(cartItemData),
+                    body: JSON.stringify({ 
+                        userId: userId, 
+                        productId: productId, 
+                        quantity: quantity 
+                    }),
                 })
                 .then(response => {
                     return response.json();

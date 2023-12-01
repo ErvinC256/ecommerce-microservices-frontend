@@ -311,14 +311,18 @@
                 const userId = sessionStorage.getItem('userId');
                 console.log(userId);
 
-                fetch(`http://localhost:8080/cart/${userId}`) 
+                fetch(`http://localhost:8080/cart/cart-item/all/${userId}`) 
                 .then(response => {
                     return response.json();
                 })
                 .then(data => {
                     const cartTable = document.querySelector('.cart-table');
-                    data.cartItems.forEach(cartItem => {
+                    data.forEach(cartItem => {
                         const cartItemElement = document.createElement('tr');
+                        let selectOptions = '';
+                        for(let i = 1; i <= cartItem.product.quantityInStock; i++) {
+                            selectOptions += `<option value="${i}" ${i === cartItem.quantity ? 'selected' : ''}>Quantity: ${i}</option>`;
+                        }
                         cartItemElement.innerHTML = `
                             <td>
                                 <div class="row">
@@ -338,23 +342,14 @@
                                                 <div class="quantity-select">
                                                     <p style="font-size: 16px;">Stock Left: ${cartItem.product.quantityInStock}</p>
                                                     <select>
-                                                        <option>Quantity: 1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
+                                                        ${selectOptions}
                                                     </select>
                                                 </div>
                                             </div>
                                             <div>
                                                 <ul class="cart-options">
                                                     <li><a href="">Checkout</a></li>
-                                                    <li><a href="">Remove</a></li>
+                                                    <li><a href="" class="remove" data-id="${cartItem.id}">Remove</a></li>
                                                     <li><a href="product-details.html?product=${cartItem.product.id}">View Details</a></li>      
                                                 </ul>
                                             </div>
@@ -367,6 +362,23 @@
                             </td>
                         `;
                         cartTable.appendChild(cartItemElement);
+                    });
+
+                    document.querySelectorAll('.remove').forEach(item => {
+                        item.addEventListener('click', function(event) {
+                            event.preventDefault();
+
+                            fetch('http:localhost:8080/cart/cart-item/' + this.dataset.id, {
+                                method: 'DELETE',
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                location.reload();
+                            })
+                            .catch((error) => {
+                                
+                            });
+                        });
                     });
                 })
                 .catch(error => {

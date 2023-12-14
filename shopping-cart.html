@@ -162,16 +162,9 @@
                         <div class="col-4">
                             <div class="basket-summary-container">
                                 <div class="basket-row">
-                                    <div>Subtotal <span>(2 items)</span></div>
-                                    <div>RM 100.00</div>
-                                </div>
-                                <div class="basket-row">
-                                    <div>Delivery</div>
-                                    <div>Free</div>
-                                </div>
-                                <div class="basket-row">
-                                    <div style="font-weight: bold;">Total</div>
-                                    <div style="font-weight: bold;">RM 100.00</div>
+                                    <!-- <div>Subtotal <span>(2 items)</span></div> -->
+                                    <div>Subtotal <span>(<span id="item-count">0</span> items)</span></div>
+                                    <div>RM <span id="subtotal">0.00</span></div>
                                 </div>
                                 <hr>
                                 <div style="text-align: right;">
@@ -348,6 +341,13 @@
                             });
                         });
                     });
+
+                    // Update basket summary
+                    const itemCountElement = document.getElementById('item-count');
+                    const subtotalElement = document.getElementById('subtotal');
+
+                    itemCountElement.textContent = data.cartItemDetails.length;
+                    subtotalElement.textContent = data.subtotal.toFixed(2);
                 })
                 .catch(error => {
 

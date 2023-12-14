@@ -333,7 +333,7 @@
                         item.addEventListener('click', function(event) {
                             event.preventDefault();
 
-                            fetch(`http:localhost:8080/carts/${userId}/cart-items/${this.dataset.id}`, {
+                            fetch(`http://localhost:8080/carts/${userId}/cart-items/${this.dataset.id}`, {
                                 method: 'DELETE',
                             })
                             .then(response => response.json())
@@ -355,6 +355,24 @@
                 })
                 .catch(error => {
 
+                });
+
+                document.getElementById('clear-cart').addEventListener('click', function() {
+                    event.preventDefault();
+
+                    const userId = sessionStorage.getItem('userId');
+
+                    fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Handle the error here
+                    });
                 });
             });
         </script>

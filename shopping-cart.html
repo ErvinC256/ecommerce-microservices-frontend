@@ -311,16 +311,16 @@
                 const userId = sessionStorage.getItem('userId');
                 console.log(userId);
 
-                fetch(`http://localhost:8080/cart/cart-item/all/${userId}`) 
+                fetch(`http://localhost:8080/carts/${userId}`) 
                 .then(response => {
                     return response.json();
                 })
                 .then(data => {
                     const cartTable = document.querySelector('.cart-table');
-                    data.forEach(cartItem => {
+                    data.cartItemDetails.forEach(cartItem => {
                         const cartItemElement = document.createElement('tr');
                         let selectOptions = '';
-                        for(let i = 1; i <= cartItem.product.quantityInStock; i++) {
+                        for(let i = 1; i <= cartItem.quantityInStock; i++) {
                             selectOptions += `<option value="${i}" ${i === cartItem.quantity ? 'selected' : ''}>Quantity: ${i}</option>`;
                         }
                         cartItemElement.innerHTML = `
@@ -329,18 +329,18 @@
                                     <div class="col-4">
                                         <div class="product-image">
                                             <a href="single-product.html">
-                                                <img src="images/product/large-size/${cartItem.product.name}.jpg" alt="Li's Product Image">
+                                                <img src="images/product/large-size/${cartItem.name}.jpg" alt="Li's Product Image">
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col-8">
                                         <div class="cart-product-details">
                                             <div>
-                                                <p style="font-size: 18px;">${cartItem.product.name}</p>
+                                                <p style="font-size: 18px;">${cartItem.name}</p>
                                             </div>
                                             <div>
                                                 <div class="quantity-select">
-                                                    <p style="font-size: 16px;">Stock Left: ${cartItem.product.quantityInStock}</p>
+                                                    <p style="font-size: 16px;">Stock Left: ${cartItem.quantityInStock}</p>
                                                     <select>
                                                         ${selectOptions}
                                                     </select>
@@ -349,8 +349,8 @@
                                             <div>
                                                 <ul class="cart-options">
                                                     <li><a href="">Checkout</a></li>
-                                                    <li><a href="" class="remove" data-id="${cartItem.id}">Remove</a></li>
-                                                    <li><a href="product-details.html?product=${cartItem.product.id}">View Details</a></li>      
+                                                    <li><a href="" class="remove" data-id="${cartItem.cartItemId}">Remove</a></li>
+                                                    <li><a href="product-details.html?product=${cartItem.productId}">View Details</a></li>      
                                                 </ul>
                                             </div>
                                         </div>
@@ -358,7 +358,7 @@
                                 </div>
                             </td>
                             <td style="text-align: right; width: 100px;">
-                                <p style="font-size: 16px; font-weight: bold;">RM ${cartItem.product.price.toFixed(2)}</p>
+                                <p style="font-size: 16px; font-weight: bold;">RM ${cartItem.price.toFixed(2)}</p>
                             </td>
                         `;
                         cartTable.appendChild(cartItemElement);

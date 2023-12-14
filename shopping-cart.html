@@ -278,6 +278,13 @@
 
                     dateElement.textContent = formattedDate;
 
+                    if (data.cartItemDetails.length === 0) {
+                        const messageRow = document.createElement('tr');
+                        messageRow.innerHTML = '<p style="font-size: 20px; text-align: center;">Your cart is empty</p>';
+                        cartTable.appendChild(messageRow);
+                        return;
+                    }
+
                     data.cartItemDetails.forEach(cartItem => {
                         const cartItemElement = document.createElement('tr');
                         let selectOptions = '';

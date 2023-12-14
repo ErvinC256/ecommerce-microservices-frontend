@@ -157,6 +157,10 @@
                                     </tr>
                                     <!-- cart items will be inserted here -->
                                 </table>
+                                <br>
+                                <div>
+                                    <button class="my-button-inverse" id="clear-cart">Clear Cart</button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-4">
@@ -273,7 +277,7 @@
 
                     if (data.cartItemDetails.length === 0) {
                         const messageRow = document.createElement('tr');
-                        messageRow.innerHTML = '<p style="font-size: 20px; text-align: center;">Your cart is empty</p>';
+                        messageRow.innerHTML = '<p style="font-size: 18px; text-align: center;">Your cart is empty</p>';
                         cartTable.appendChild(messageRow);
                         return;
                     }

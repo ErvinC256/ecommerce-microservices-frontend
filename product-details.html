@@ -400,42 +400,36 @@
                         // Get selected quantity
                         const quantity = document.querySelector('.quantity-select select').value;
 
-                        // Send data to server
-                        addItemToCart(userId, productId, quantity);
+                        const url = `http://localhost:8080/carts/${userId}/cart-items`;
+
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ 
+                                productId: productId, 
+                                quantity: quantity 
+                            }),
+                        })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            document.querySelector('.cart-message').style.display = 'block';
+                            document.querySelector('.cart-message p').innerText = 'Added to cart';
+
+                            console.log('Success');
+                        })
+                        .catch(error => {
+
+                        });
                     });
                 })
                 .catch(error => {
 
                 });
             });
-
-            // functions
-            function addItemToCart(userId, productId, quantity) {
-                const url = `http://localhost:8080/carts/${userId}/cart-items`;
-
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 
-                        productId: productId, 
-                        quantity: quantity 
-                    }),
-                })
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    document.querySelector('.cart-message').style.display = 'block';
-                    document.querySelector('.cart-message p').innerText = 'Added to cart';
-
-                    console.log('Success');
-                })
-                .catch(error => {
-
-                });
-            }
         </script>
     </body>
 </html>

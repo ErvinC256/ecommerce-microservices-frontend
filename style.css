@@ -309,6 +309,7 @@ option {
 	padding: 5px 10px;
 	font-size: 14px;
 	border: 1px solid #0673ca;
+	border-radius: 2px;
 }
 .my-button:hover {
     background: #3498db; /* Lighter background color on hover */
@@ -320,6 +321,7 @@ option {
 	padding: 5px 10px;
 	font-size: 14px;
 	border: 1px solid #0673ca;
+	border-radius: 2px;
 }
 .my-button-inverse:hover {
 	background: #f1f1f1;

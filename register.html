@@ -174,7 +174,7 @@
                                         <label for="agree" style="position: relative; bottom: 4.5px;">I agree to the terms and conditions.</label>    
                                     </div>
                                     <div class="col-12">
-                                        <button class="my-button">Create Account</button>
+                                        <button class="my-button" id="register-button">Create Account</button>
                                     </div>
                                     <div class="col-12">
                                         <p>Already have an account? <a href="">Sign in</a> here.</p>
@@ -204,14 +204,14 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 // Get the elements
-                const button = document.querySelector(".my-button");
+                const registerButton = document.querySelector("#register-button");
                 const usernameInput = document.querySelector(".register-form input[name='username']");
                 const emailInput = document.querySelector(".register-form input[name='email']");
                 const passwordInput = document.querySelector(".register-form input[name='password']");
                 const confirmPasswordInput = document.querySelector(".register-form input[name='confirmPassword']");
 
                 // Add click event to the Sign In button
-                button.addEventListener("click", function (event) {
+                registerButton.addEventListener("click", function (event) {
                     // Prevent the default form submission
                     event.preventDefault();
 
@@ -221,60 +221,54 @@
                     const password = passwordInput.value;
                     const confirmPassword = confirmPasswordInput.value;
 
-                    // Make the API call with a Fetch POST request
-                    register(username, email, password, confirmPassword);
+                    // Check if the username or password is empty
+                    if (!username || !email || !password || !confirmPassword) {
+                        document.querySelector('.error-message').style.display = 'block';
+                        document.querySelector('.error-message p').innerText = 'Please fill in your credentials';
+                        return;
+                    }
+
+                    // Check if the agreement checkbox is not checked
+                    const agreementCheckbox = document.querySelector('#agree');
+                    if (!agreementCheckbox.checked) {
+                        document.querySelector('.error-message').style.display = 'block';
+                        document.querySelector('.error-message p').innerText = 'Please agree to the terms and conditions';
+                        return;
+                    }
+
+                    fetch("http://localhost:8080/users", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            username: username,
+                            email: email,
+                            password: password,
+                            confirmPassword: confirmPassword
+                        }),
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(errorData => {
+                                throw new Error(errorData.message);
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        sessionStorage.setItem('userId', data.userId);
+
+                        window.location.href = 'sign-in.html';
+
+                        console.log('Success');
+                    })
+                    .catch(error => {
+                        document.querySelector('.error-message').style.display = 'block';
+                        document.querySelector('.error-message p').innerText = error.message;
+                    });
                 });
             });
-
-            function register(username, email, password, confirmPassword) {
-
-                // Check if the username or password is empty
-                if (!username || !email || !password || !confirmPassword) {
-                    document.querySelector('.error-message').style.display = 'block';
-                    document.querySelector('.error-message p').innerText = 'Please fill in your credentials';
-                    return;
-                }
-
-                // Check if the agreement checkbox is not checked
-                const agreementCheckbox = document.querySelector('#agree');
-                if (!agreementCheckbox.checked) {
-                    document.querySelector('.error-message').style.display = 'block';
-                    document.querySelector('.error-message p').innerText = 'Please agree to the terms and conditions';
-                    return;
-                }
-
-                fetch("http://localhost:8080/users", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        email: email,
-                        password: password,
-                        confirmPassword: confirmPassword
-                    }),
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(errorData => {
-                            throw new Error(errorData.message);
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    sessionStorage.setItem('userId', data.userId);
-
-                    window.location.href = 'sign-in.html';
-
-                    console.log('Success');
-                })
-                .catch(error => {
-                    document.querySelector('.error-message').style.display = 'block';
-                    document.querySelector('.error-message p').innerText = error.message;
-                });
-            }
         </script>
     </body>
 </html>

@@ -82,7 +82,7 @@
                             <ul>
                                 <li class="megamenu-holder"><a>Browse</a><i class="fa fa-angle-down"></i>
                                     <ul class="megamenu">
-                                        <li><a href="category.html?category=1&subcategory=">Laptops & Tablets</a>
+                                        <li><a href="category.html?category=1&subcategory=&categoryName=2">Laptops & Tablets</a>
                                             <br>
                                             <ul>
                                                 <li><a href="category.html?category=1&subcategory=1">Laptops</a></li>
@@ -135,7 +135,8 @@
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li class="active">Category</li>
+                            <li id="breadcrumb-category" class="active"></li>
+                            <li id="breadcrumb-subcategory" class="active"></li>
                         </ul>
                     </div>
                 </div>
@@ -287,6 +288,10 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const params = new URLSearchParams(window.location.search);
+                
+                console.log(params.get('category'));
+                console.log(params.get('subcategory'));
+                console.log(params.get('categoryName'));
 
                 const categoryId = params.get('category');
                 const subcategoryId = params.get('subcategory');

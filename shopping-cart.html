@@ -147,6 +147,7 @@
                         <div class="col-8">
                             <div class="section-title">
                                 <h2>Shopping Cart</h2>
+                                <p style="float: right;">Last Updated: <span id="last-updated"></span></p>
                             </div><br><br>
                             <div class="cart-contents">
                                 <table class="cart-table">
@@ -154,55 +155,7 @@
                                         <th>Item</th>
                                         <th style="text-align: right">Price</th>
                                     </tr>
-                                    <!-- cart-item-wrap start -->
-                                    <!-- <tr>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <div class="product-image">
-                                                        <a href="single-product.html">
-                                                            <img src="images/product/large-size/1.jpg" alt="Li's Product Image">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-8">
-                                                    <div class="cart-product-details">
-                                                        <div>
-                                                            <p style="font-size: 18px;">Dell Laptop 1 TBDell Laptop 1DellDell</p>
-                                                        </div>
-                                                        <div>
-                                                            <div class="quantity-select">
-                                                                <p style="font-size: 16px;">Stock Left: 10</p>
-                                                                <select>
-                                                                    <option>Quantity: 1</option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                    <option>6</option>
-                                                                    <option>7</option>
-                                                                    <option>8</option>
-                                                                    <option>9</option>
-                                                                    <option>10</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <ul class="cart-options">
-                                                                <li><a href="">Checkout</a></li>
-                                                                <li><a href="">Remove</a></li>
-                                                                <li><a href="">View Details</a></li>      
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td style="text-align: right; width: 100px;">
-                                            <p style="font-size: 16px; font-weight: bold;">RM 60.00</p>
-                                        </td>
-                                    </tr> -->
-                                    <!-- cart-item-wrap end -->
+                                    <!-- cart items will be inserted here -->
                                 </table>
                             </div>
                         </div>
@@ -317,6 +270,14 @@
                 })
                 .then(data => {
                     const cartTable = document.querySelector('.cart-table');
+                    const dateElement = document.querySelector('#last-updated');
+                    const lastUpdated = new Date(data.lastUpdated);
+
+                    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                    const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
+
+                    dateElement.textContent = formattedDate;
+
                     data.cartItemDetails.forEach(cartItem => {
                         const cartItemElement = document.createElement('tr');
                         let selectOptions = '';

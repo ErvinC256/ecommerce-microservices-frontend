@@ -301,7 +301,6 @@
                                 <div>
                                     <form action="#"></form>
                                         <div class="quantity-select">
-                                            <p>Stock Left: ${product.quantityInStock}</p>
                                             <select>
                                                 <option value="1">Quantity: 1</option>
                                                 <option value="2">2</option>
@@ -412,7 +411,7 @@
 
             // functions
             function addItemToCart(userId, productId, quantity) {
-                const url = 'http://localhost:8080/cart/cart-item';
+                const url = `http://localhost:8080/carts/${userId}/cart-items`;
 
                 fetch(url, {
                     method: 'POST',
@@ -420,7 +419,6 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({ 
-                        userId: userId, 
                         productId: productId, 
                         quantity: quantity 
                     }),

@@ -152,14 +152,14 @@
                 <div class="container">
                     <div class="product-tab">
                         <ul class="nav">
-                           <li><a class="active" data-toggle="tab" href="#product-details">Product Details</a></li>
+                           <li><a class="active" data-toggle="tab" href="#product-info">Product Information</a></li>
                            <li><a data-toggle="tab" href="#description">Description</a></li>
                         </ul>               
                     </div>
                     <div class="tab-content">
-                        <div id="product-specs" class="tab-pane active show" role="tabpanel">
-                            <table class="product-specs">
-                                <!-- product specs will be inserted here -->
+                        <div id="product-info" class="tab-pane active show" role="tabpanel">
+                            <table class="product-info">
+                                <!-- product information will be inserted here -->
                             </table>
                         </div>
                         <div id="description" class="tab-pane" role="tabpanel">
@@ -385,7 +385,7 @@
                     productsContainer.appendChild(productElement);
 
                     // populate specs table
-                    let table = document.querySelector("#product-specs table");
+                    let table = document.querySelector("#product-info table");
                     product.productSpecs.map(spec => {
                         let row = document.createElement("tr");
                         let nameCell = document.createElement("td");

@@ -1136,7 +1136,7 @@ text-align: center;
 	align-items: center;
 }
 .product-info {
-	width: 50%;
+	width: 100%;
 	border-collapse: collapse;
 }
 .product-info td {

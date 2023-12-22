@@ -1135,6 +1135,18 @@ text-align: center;
 	display: flex;
 	align-items: center;
 }
+.product-specs {
+	width: 50%;
+	border-collapse: collapse;
+}
+.product-specs td {
+	border: 1px solid #e1e1e1;
+	padding: 8px;
+}
+.product-specs td:first-child {
+    background-color: #f5f6f7;
+}
+
 /*----------------------------------------*/
 /*  3.8 Account Page
 /*----------------------------------------*/

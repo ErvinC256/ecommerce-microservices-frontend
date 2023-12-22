@@ -152,23 +152,19 @@
                 <div class="container">
                     <div class="product-tab">
                         <ul class="nav">
-                           <li><a class="active" data-toggle="tab" href="#description">Description</a></li>
-                           <li><a data-toggle="tab" href="#product-details">Product Details</a></li>
+                           <li><a class="active" data-toggle="tab" href="#product-details">Product Details</a></li>
+                           <li><a data-toggle="tab" href="#description">Description</a></li>
                         </ul>               
                     </div>
                     <div class="tab-content">
-                        <div id="description" class="tab-pane active show" role="tabpanel">
+                        <div id="product-specs" class="tab-pane active show" role="tabpanel">
+                            <table class="product-specs">
+                                <!-- product specs will be inserted here -->
+                            </table>
+                        </div>
+                        <div id="description" class="tab-pane" role="tabpanel">
                             <div class="product-description">
                                 <span>The best is yet to come! Give your walls a voice with a framed poster. This aesthethic, optimistic poster will look great in your desk or in an open-space office. Painted wooden frame with passe-partout for more depth.</span>
-                            </div>
-                        </div>
-                        <div id="product-details" class="tab-pane" role="tabpanel">
-                            <div class="product-details-manufacturer">
-                                <a href="#">
-                                    <img src="images/product-details/1.jpg" alt="Product Manufacturer Image">
-                                </a>
-                                <p><span>Reference</span> demo_7</p>
-                                <p><span>Reference</span> demo_7</p>
                             </div>
                         </div>
                     </div>
@@ -387,6 +383,22 @@
                         </div> 
                     `;
                     productsContainer.appendChild(productElement);
+
+                    // populate specs table
+                    let table = document.querySelector("#product-specs table");
+                    product.productSpecs.map(spec => {
+                        let row = document.createElement("tr");
+                        let nameCell = document.createElement("td");
+                        let valueCell = document.createElement("td");
+
+                        nameCell.textContent = spec.specName;
+                        valueCell.textContent = spec.specValue;
+
+                        row.appendChild(nameCell);
+                        row.appendChild(valueCell);
+
+                        table.appendChild(row);
+                    });
 
                     document.querySelector('#add-to-cart').addEventListener('click', function(e) {
                         e.preventDefault();

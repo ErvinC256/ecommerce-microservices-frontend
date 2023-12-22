@@ -380,7 +380,7 @@
                                                                         <p>Timely and Reliable Delivery</p>
                                                                     </div>
                                                                     <div class="tooltip-bottom">
-                                                                        <p>You can expect your orders to arrive consistently on schedule, backed by a reliable delivery service. <a href="">Learn more</a></p>
+                                                                        <p>You can expect your orders to arrive consistently on schedule, backed by a reliable delivery service.</p>
                                                                     </div>
                                                                     <i></i>
                                                                 </div>
@@ -398,7 +398,7 @@
                                                                         <p>Eligible for Return, Refund or Replacement within 30 Days</p>
                                                                     </div>
                                                                     <div class="tooltip-bottom">
-                                                                        <p>You can return this product in its original state within 30 days of receiving it for a full refund or a replacement. <a href="">Learn more</a></p>
+                                                                        <p>You can return this product in its original state within 30 days of receiving it for a full refund or a replacement.</p>
                                                                     </div>
                                                                     <i></i>
                                                                 </div>
@@ -416,7 +416,7 @@
                                                                         <p>Secure Transaction</p>
                                                                     </div>
                                                                     <div class="tooltip-bottom">
-                                                                        <p>Our relentless commitment is to ensure the utmost protection for your security and privacy, and to safeguard your sensitive information. <a href="">Learn more</a></p>
+                                                                        <p>Our relentless commitment is to ensure the utmost protection for your security and privacy, and to safeguard your sensitive information.</p>
                                                                     </div>
                                                                     <i></i>
                                                                 </div>
@@ -432,7 +432,7 @@
                                             <table class="product-details-table">
                                                 <tr>
                                                     <th>Manufacturer</td>
-                                                    <td><img src="images/manufacturer's logo/${product.manufacturer}.jpg" title="${product.manufacturer}" width="75%"></td>
+                                                    <td><img src="images/manufacturer's logo/${product.manufacturer}.jpg" title="${product.manufacturer}" width="100%"></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Ships from</td>
@@ -443,12 +443,17 @@
                                                     <td>E-Commerce.com</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Product Specs</td>
-                                                    <td><h2>Refer below</h2></td>
+                                                    <th>Delivery</th>
+                                                    <td>
+                                                        <p>Estimated between Jan 1, 2024 and Jan 3, 2024.</p> 
+                                                        <p id="moreText" style="display: none; color: #d47d57;">Delivery time varies based on buyer proximity, chosen postage, seller history, and factors, especially during peak periods.</p>
+                                                        <a href="#" id="moreLink" onclick="showMore(event)" style="color: #0673ca;">See more details <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                                        <a href="#" id="lessLink" style="display: none;" onclick="showLess(event)" style="color: #0673ca;">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Warranty</td>
-                                                    <td>Refer below</td>
+                                                    <th>Returns</td>
+                                                    <td>Returnable until Jan 31, 2024. Buyer pays for return shipping. <a href="#" style="color: #0673ca;">Learn More</a></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -517,6 +522,21 @@
 
                 });
             });
+        </script>
+        <script>
+            function showMore(e) {
+                e.preventDefault();
+                document.getElementById('moreText').style.display = 'inline';
+                document.getElementById('moreLink').style.display = 'none';
+                document.getElementById('lessLink').style.display = 'inline';
+            }
+        
+            function showLess(e) {
+                e.preventDefault();
+                document.getElementById('moreText').style.display = 'none';
+                document.getElementById('moreLink').style.display = 'inline';
+                document.getElementById('lessLink').style.display = 'none';
+            }
         </script>
     </body>
 </html>

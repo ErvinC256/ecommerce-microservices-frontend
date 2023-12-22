@@ -309,7 +309,7 @@
                             <div class="product-details-left">
                                 <img src="images/product/large-size/${product.name}.jpg" alt="product image">
                                 <p>Images for illustrative purposes only - actual items may differ from images or based on configurations selected.</p>
-                            </div>
+                            </div>       
                         </div>
                         <div class="col-8">
                             <div class="product-details-right">
@@ -320,140 +320,140 @@
                                     <p>${product.description}</p>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8 product-details-right">
-                                        <div>
-                                            <p style="font-size: 20px; font-weight: bold;">$ ${product.price.toFixed(2)}</p>
-                                            <p>
-                                                <div class="my-tooltip">Price above includes tax.
-                                                    <div class="tooltip-position">
-                                                        <div class="tooltip-top">
-                                                            <p>Price above includes tax.</p>
+                                    <div class="col-8">
+                                        <div class="add-to-cart-div">
+                                            <div>
+                                                <p style="font-size: 20px; font-weight: bold;">$ ${product.price.toFixed(2)}</p>
+                                                <p>
+                                                    <div class="my-tooltip">Price above includes tax.
+                                                        <div class="tooltip-position">
+                                                            <div class="tooltip-top">
+                                                                <p>Price above includes tax.</p>
+                                                            </div>
+                                                            <div class="tooltip-bottom">
+                                                                <p>The displayed price already accounts for all applicable taxes, ensuring that there are no additional charges beyond what you see.</p>
+                                                            </div>
+                                                            <i></i>
                                                         </div>
-                                                        <div class="tooltip-bottom">
-                                                            <p>The displayed price already accounts for all applicable taxes, ensuring that there are no additional charges beyond what you see.</p>
-                                                        </div>
-                                                        <i></i>
                                                     </div>
-                                                </div>
-                                                <span>Free Shipping</span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <form action="#"></form>
-                                                <div class="quantity-select">
-                                                    <select>
-                                                        <option value="1">Quantity: 1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
-                                                    </select>
-                                                </div>
-                                                <input type="hidden" name="product-id" value="${product.id}">
-                                                <div style="margin-top: 10px;">
-                                                    <button type="submit" id="add-to-cart" class="my-button">Add to Cart</button>
-                                                    <button type="submit" id="checkout" class="my-button-inverse">Checkout This Item</button>
-                                                </div>
-                                                <div class="col-12 cart-message">
-                                                    <div>
-                                                        <p></p>
+                                                    <span>Free Shipping</span>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <form action="#"></form>
+                                                    <div class="quantity-select">
+                                                        <select>
+                                                            <option value="1">Quantity: 1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                        </select>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                    <input type="hidden" name="product-id" value="${product.id}">
+                                                    <div style="margin-top: 10px;">
+                                                        <button type="submit" id="add-to-cart" class="my-button">Add to Cart</button>
+                                                        <button type="submit" id="checkout" class="my-button-inverse">Checkout This Item</button>
+                                                    </div>
+                                                    <div class="col-12 cart-message">
+                                                        <div>
+                                                            <p></p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="block-reassurance">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <i class="fas fa-shipping-fast"></i>
+                                                        </td>
+                                                        <td>
+                                                            <div class="my-tooltip" >Timely and Reliable Delivery
+                                                                <div class="tooltip-position">
+                                                                    <div class="tooltip-top">
+                                                                        <p>Timely and Reliable Delivery</p>
+                                                                    </div>
+                                                                    <div class="tooltip-bottom">
+                                                                        <p>You can expect your orders to arrive consistently on schedule, backed by a reliable delivery service. <a href="">Learn more</a></p>
+                                                                    </div>
+                                                                    <i></i>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i class="fas fa-exchange"></i>
+                                                        </td>
+                                                        <td>
+                                                            <div class="my-tooltip">Eligible for Return, Refund or Replacement within 30 Days
+                                                                <div class="tooltip-position">
+                                                                    <div class="tooltip-top">
+                                                                        <p>Eligible for Return, Refund or Replacement within 30 Days</p>
+                                                                    </div>
+                                                                    <div class="tooltip-bottom">
+                                                                        <p>You can return this product in its original state within 30 days of receiving it for a full refund or a replacement. <a href="">Learn more</a></p>
+                                                                    </div>
+                                                                    <i></i>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i class="far fa-credit-card"></i>
+                                                        </td>
+                                                        <td>
+                                                            <div class="my-tooltip">Secure Transaction
+                                                                <div class="tooltip-position">
+                                                                    <div class="tooltip-top">
+                                                                        <p>Secure Transaction</p>
+                                                                    </div>
+                                                                    <div class="tooltip-bottom">
+                                                                        <p>Our relentless commitment is to ensure the utmost protection for your security and privacy, and to safeguard your sensitive information. <a href="">Learn more</a></p>
+                                                                    </div>
+                                                                    <i></i>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>                                
+                                            </div>    
                                         </div>
-                                        <div class="block-reassurance">
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <i class="fas fa-shipping-fast"></i>
-                                                    </td>
-                                                    <td>
-                                                        <div class="my-tooltip" >Timely and Reliable Delivery
-                                                            <div class="tooltip-position">
-                                                                <div class="tooltip-top">
-                                                                    <p>Timely and Reliable Delivery</p>
-                                                                </div>
-                                                                <div class="tooltip-bottom">
-                                                                    <p>You can expect your orders to arrive consistently on schedule, backed by a reliable delivery service. <a href="">Learn more</a></p>
-                                                                </div>
-                                                                <i></i>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <i class="fas fa-exchange"></i>
-                                                    </td>
-                                                    <td>
-                                                        <div class="my-tooltip">Eligible for Return, Refund or Replacement within 30 Days
-                                                            <div class="tooltip-position">
-                                                                <div class="tooltip-top">
-                                                                    <p>Eligible for Return, Refund or Replacement within 30 Days</p>
-                                                                </div>
-                                                                <div class="tooltip-bottom">
-                                                                    <p>You can return this product in its original state within 30 days of receiving it for a full refund or a replacement. <a href="">Learn more</a></p>
-                                                                </div>
-                                                                <i></i>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <i class="far fa-credit-card"></i>
-                                                    </td>
-                                                    <td>
-                                                        <div class="my-tooltip">Secure Transaction
-                                                            <div class="tooltip-position">
-                                                                <div class="tooltip-top">
-                                                                    <p>Secure Transaction</p>
-                                                                </div>
-                                                                <div class="tooltip-bottom">
-                                                                    <p>Our relentless commitment is to ensure the utmost protection for your security and privacy, and to safeguard your sensitive information. <a href="">Learn more</a></p>
-                                                                </div>
-                                                                <i></i>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>                                
-                                        </div>    
                                     </div>
-                                    <div class="col-4" style="border: 1px solid #e1e1e1; border-radius: 5px; padding: 10px; font-size: 12px;">
-                                        <table class="">
-                                            <tr>
-                                                <th>Manufacturer</td>
-                                                <td><img src="images/manufacturer's logo/${product.manufacturer}.jpg" title="${product.manufacturer}" width="50%"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Quantity In Stock</td>
-                                                <td style="font-size: 30px;">${product.quantityInStock}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Ships from</td>
-                                                <td>E-Commerce.com</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Sold by</td>
-                                                <td>E-Commerce.com</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Product Specs</td>
-                                                <td><h2>Refer below</h2></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Warranty</td>
-                                                <td>Refer below</td>
-                                            </tr>
-                                        </table>
+                                    <div class="col-4">
+                                        <div class="product-details-table-div">
+                                            <table class="product-details-table">
+                                                <tr>
+                                                    <th>Manufacturer</td>
+                                                    <td><img src="images/manufacturer's logo/${product.manufacturer}.jpg" title="${product.manufacturer}" width="75%"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ships from</td>
+                                                    <td>E-Commerce.com</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Sold by</td>
+                                                    <td>E-Commerce.com</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Product Specs</td>
+                                                    <td><h2>Refer below</h2></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Warranty</td>
+                                                    <td>Refer below</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
+                                </div>  
                             </div>
                         </div> 
                     `;

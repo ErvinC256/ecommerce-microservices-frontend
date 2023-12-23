@@ -25,11 +25,13 @@
                                 <li><a href="account.html">My Account</a></li>
                                 <li><a href="shopping-cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
-                                <li id="sign-in-link"><a href="sign-in.html">Sign In</a></li>   
+                                <li><a id="sign-in-link" href="sign-in.html">Sign In</a></li>   
                                 <script>
                                     let signInLink = document.querySelector('#sign-in-link');
                                     if (sessionStorage.getItem('loggedIn')) {
-                                        signInLink.innerHTML = '<a href="#" onclick="signOut()">Sign Out</a>';
+                                        signInLink.innerHTML = '<a id="sign-out" href="#">Sign Out</a>';
+
+                                        document.querySelector('#sign-out').addEventListener('click', signOut);
                                     }
                                 </script>     
                             </ul>

@@ -36,6 +36,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		25. Zoom Product Venobox
 		26. WOW
 		27. Sign Out
+		28. Check Sign In Status
 
 -----------------------------------------------------------------------------------*/
 (function ($) {
@@ -541,6 +542,9 @@ function signOut() {
 	sessionStorage.removeItem('username');
 	window.location.href = 'sign-in.html';
 }
+/*----------------------------------------*/
+/* 28. Check Sign In Status
+/*----------------------------------------*/
 function checkSignInStatus() {
     let signInLink = document.querySelector('#sign-in-link');
     if (sessionStorage.getItem('loggedIn')) {

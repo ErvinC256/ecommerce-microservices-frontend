@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/helper.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css"> 
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -288,10 +288,6 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const params = new URLSearchParams(window.location.search);
-                
-                console.log(params.get('category'));
-                console.log(params.get('subcategory'));
-                console.log(params.get('categoryName'));
 
                 const categoryId = params.get('category');
                 const subcategoryId = params.get('subcategory');
@@ -312,6 +308,21 @@
                     data.forEach(product => {
                         const productElement = document.createElement('div');
                         productElement.className = 'col-4';
+
+                        // Generate star rating
+                        let starRating = '';
+                        for (let i = 1; i <= 5; i++) {
+                            let star = document.createElement('span');
+                            star.className = 'star';
+                            star.textContent = '★';
+                            if (i > Math.ceil(2.5)) {
+                                star.classList.add('empty'); // Use classList.add for adding classes
+                            } else if (i > 2.5) {
+                                star.classList.add('half');
+                            }
+                            starRating += star.outerHTML;
+                        }
+
                         productElement.innerHTML = `
                             <div class="single-product-wrap">
                                 <div class="product-image">
@@ -320,7 +331,10 @@
                                     </a>
                                 </div>
                                 <div class="product-desc">
-                                    <span class="product-manufacturer">${product.manufacturer}</span>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="product-manufacturer">${product.manufacturer}</span>
+                                        <span class="star-rating">${starRating}</span>
+                                    </div>
                                     <hr>
                                     <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
                                     <hr>

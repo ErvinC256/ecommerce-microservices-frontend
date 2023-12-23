@@ -493,6 +493,21 @@
                     productsContainer.innerHTML = '';
                     data.forEach(product => {
                         const productElement = document.createElement('div');
+
+                        // Generate star rating
+                        let starRating = '';
+                        for (let i = 1; i <= 5; i++) {
+                            let star = document.createElement('span');
+                            star.className = 'star';
+                            star.textContent = '★';
+                            if (i > Math.ceil(2.5)) {
+                                star.classList.add('empty'); // Use classList.add for adding classes
+                            } else if (i > 2.5) {
+                                star.classList.add('half');
+                            }
+                            starRating += star.outerHTML;
+                        }
+
                         productElement.innerHTML = `
                             <div class="single-product-wrap">
                                 <div class="product-image">
@@ -501,7 +516,10 @@
                                     </a>
                                 </div>
                                 <div class="product-desc">
-                                    <span class="product-manufacturer">${product.manufacturer}</span>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="product-manufacturer">${product.manufacturer}</span>
+                                        <span class="star-rating">${starRating}</span>
+                                    </div>
                                     <hr>
                                     <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
                                     <hr>
@@ -558,6 +576,21 @@
                     data.forEach(product => {
                         const productElement = document.createElement('div');
                         productElement.className = 'col-12';
+
+                        // Generate star rating
+                        let starRating = '';
+                        for (let i = 1; i <= 5; i++) {
+                            let star = document.createElement('span');
+                            star.className = 'star';
+                            star.textContent = '★';
+                            if (i > Math.ceil(2.5)) {
+                                star.classList.add('empty'); // Use classList.add for adding classes
+                            } else if (i > 2.5) {
+                                star.classList.add('half');
+                            }
+                            starRating += star.outerHTML;
+                        }
+
                         productElement.innerHTML = `
                             <div class="single-product-wrap">
                                 <div class="product-image">
@@ -566,7 +599,10 @@
                                     </a>
                                 </div>
                                 <div class="product-desc">
-                                    <span class="product-manufacturer">${product.manufacturer}</span>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="product-manufacturer">${product.manufacturer}</span>
+                                        <span class="star-rating">${starRating}</span>
+                                    </div>
                                     <hr>
                                     <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
                                     <hr>
@@ -623,6 +659,21 @@
                     data.forEach(product => {
                         const productElement = document.createElement('div');
                         productElement.className = 'col-12';
+
+                        // Generate star rating
+                        let starRating = '';
+                        for (let i = 1; i <= 5; i++) {
+                            let star = document.createElement('span');
+                            star.className = 'star';
+                            star.textContent = '★';
+                            if (i > Math.ceil(2.5)) {
+                                star.classList.add('empty'); // Use classList.add for adding classes
+                            } else if (i > 2.5) {
+                                star.classList.add('half');
+                            }
+                            starRating += star.outerHTML;
+                        }
+
                         productElement.innerHTML = `
                             <div class="single-product-wrap">
                                 <div class="product-image">
@@ -631,7 +682,10 @@
                                     </a>
                                 </div>
                                 <div class="product-desc">
-                                    <span class="product-manufacturer">${product.manufacturer}</span>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="product-manufacturer">${product.manufacturer}</span>
+                                        <span class="star-rating">${starRating}</span>
+                                    </div>
                                     <hr>
                                     <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
                                     <hr>
@@ -688,6 +742,21 @@
                     data.forEach(product => {
                         const productElement = document.createElement('div');
                         productElement.className = 'col-12';
+
+                        // Generate star rating
+                        let starRating = '';
+                        for (let i = 1; i <= 5; i++) {
+                            let star = document.createElement('span');
+                            star.className = 'star';
+                            star.textContent = '★';
+                            if (i > Math.ceil(2.5)) {
+                                star.classList.add('empty'); // Use classList.add for adding classes
+                            } else if (i > 2.5) {
+                                star.classList.add('half');
+                            }
+                            starRating += star.outerHTML;
+                        }
+
                         productElement.innerHTML = `
                             <div class="single-product-wrap">
                                 <div class="product-image">
@@ -696,7 +765,10 @@
                                     </a>
                                 </div>
                                 <div class="product-desc">
-                                    <span class="product-manufacturer">${product.manufacturer}</span>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="product-manufacturer">${product.manufacturer}</span>
+                                        <span class="star-rating">${starRating}</span>
+                                    </div>
                                     <hr>
                                     <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
                                     <hr>

@@ -15,6 +15,7 @@
 			1.4 Navigation
 			1.5 Tooltip
 			1.6 Button
+			1.7 Ratings
 		02. Home Page
 			2.1 Header
 			2.2 Slider Contents
@@ -308,6 +309,20 @@ option {
 }
 .my-button:active, .my-button:focus, .my-button-inverse:active, .my-button-inverse:focus {
     outline: none;
+}
+/*----------------------------------------*/
+/*  1.7 Ratings
+/*----------------------------------------*/
+.empty {
+	color: transparent;
+	text-shadow: none;
+	-webkit-text-stroke: 0.5px #000;
+}
+.half:before {
+	content: '★';
+	position: absolute;
+	clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+	color: #fff;
 }
 /*----------------------------------------*/
 /*  02. Home Page

@@ -541,6 +541,21 @@ function signOut() {
 	sessionStorage.removeItem('username');
 	window.location.href = 'sign-in.html';
 }
+function checkSignInStatus() {
+    let signInLink = document.querySelector('#sign-in-link');
+    if (sessionStorage.getItem('loggedIn')) {
+        signInLink.innerHTML = '<a id="sign-out" href="#">Sign Out</a>';
+        document.querySelector('#sign-out').addEventListener('click', signOut);
+    }
+
+    // Assume you have stored the username in sessionStorage
+    const username = sessionStorage.getItem('username');
+
+    // Update the HTML with the dynamically fetched username
+    if (username) {
+        document.querySelector('#welcome-message').innerText = `Welcome, ${username}`;
+    }
+}
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

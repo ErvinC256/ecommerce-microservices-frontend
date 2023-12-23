@@ -31,15 +31,7 @@
                                 <li><a href="account.html">My Account</a></li>
                                 <li><a href="shopping-cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
-                                <li><a id="sign-in-link" href="sign-in.html">Sign In</a></li>   
-                                <script>
-                                    let signInLink = document.querySelector('#sign-in-link');
-                                    if (sessionStorage.getItem('loggedIn')) {
-                                        signInLink.innerHTML = '<a id="sign-out" href="#">Sign Out</a>';
-
-                                        document.querySelector('#sign-out').addEventListener('click', signOut);
-                                    }
-                                </script>                  
+                                <li><a id="sign-in-link" href="sign-in.html">Sign In</a></li>                  
                             </ul>
                         </div>
                     </div>
@@ -69,15 +61,6 @@
                                     </form>
                                 </div>
                                 <p id="welcome-message"></p>
-                                <script>
-                                    // Assume you have stored the username in sessionStorage
-                                    const username = sessionStorage.getItem('username');
-
-                                    // Update the HTML with the dynamically fetched username
-                                    if (username) {
-                                        document.querySelector('#welcome-message').innerText = `Welcome, ${username}`
-                                    }
-                                </script>
                             </div>
                         </div>
                     </div>
@@ -223,5 +206,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                checkSignInStatus();
+            });
+        </script>
     </body>
 </html>

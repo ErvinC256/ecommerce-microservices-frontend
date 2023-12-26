@@ -9,13 +9,14 @@
 		CSS INDEX
 		===================
 		01. Default Style
-			1.1 Basic
-			1.2 Input
-			1.3 Background Variation Set
-			1.4 Navigation
-			1.5 Tooltip
-			1.6 Button
-			1.7 Ratings
+			1.1 CSS Reset
+			1.2 Basic
+			1.3 Input
+			1.4 Background Variation Set
+			1.5 Navigation
+			1.6 Tooltip
+			1.7 Button
+			1.8 Ratings
 		02. Home Page
 			2.1 Header
 			2.2 Slider Contents
@@ -36,14 +37,35 @@
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
 /*----------------------------------------*/
-/*  01. Dfault Style
+/*  01. Default Style
 /*----------------------------------------*/
 /*----------------------------------------*/
-/*  1.1 Basic
+/*  1.1 CSS Reset
+/*----------------------------------------*/
+html {
+	box-sizing: border-box;
+	font-size: 14px;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+body, h1, h2, h3, h4, h5, h6, p, ol, ul, hr {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+ol, ul {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+/*----------------------------------------*/
+/*  1.2 Basic
 /*----------------------------------------*/
 body {
 	font-family: 'Trebuchet MS', 'Verdana', 'Arial', sans-serif;
-	font-size: 14px;
 }
 a {	
 	color: inherit;
@@ -54,10 +76,6 @@ a:hover {
 	color: #0673ca;
 	text-decoration: underline;
 }
-.img {
-	height: auto;
-	width: 100%;
-}  
 h1 {
 	font-size: 20px;
 }
@@ -67,53 +85,10 @@ h2 {
 h3 {
 	font-size: 16px;
 }
-ul {
-	margin: 0px;
-	padding: 0px;
-}
-li {
-	list-style: none
-}
-p {
-	margin: 0px;
-	padding: 0px;
-}
-hr {
-	margin: 0px;
-	padding: 0px;
-}
-.uppercase {
-	text-transform: uppercase;
-}
-.capitalize {
-	text-transform: capitalize;
-}
-.f-left {
-	float: left;
-}
-.f-right {
-	float: right;
-}
-.fix {
-	overflow: hidden;
-}
-.t-center {
-	text-align: center;
-}
-.t-right {
-	text-align: right;
-}
-.t-left {
-	text-align: left;
-}
 .container {
 	width: auto;
 	max-width: 1200px;
 	outline: 0.5px solid black;
-}
-iframe {
-	width: 100%;
-	height: 300px;
 }
 table {
 	width: 100%;
@@ -122,7 +97,7 @@ table th {
 	font-weight: normal;
 }
 /*----------------------------------------*/
-/*  1.2 Input
+/*  1.3 Input
 /*----------------------------------------*/
 input, textarea {
 	padding: 10px;
@@ -152,7 +127,7 @@ option {
 	overflow-y:scroll;
 }	
 /*----------------------------------------*/
-/*  1.3 Background Variation Set
+/*  1.4 Background Variation Set
 /*----------------------------------------*/
 .bg-1, .bg-2, .bg-3 {
 	background-image: url(images/slider/marvin-meyer-SYTO3xs06fU-unsplash.jpg);
@@ -169,7 +144,7 @@ option {
 	background-image: url(images/slider/cezar-sampaio-IJthre6PHHQ-unsplash.jpg);
 }
 /*----------------------------------------*/
-/*  1.4 Navigation
+/*  1.5 Navigation
 /*----------------------------------------*/
 .slider-banner-area .owl-prev {
     width: 15px;
@@ -226,7 +201,7 @@ option {
     border:0px solid black;
 }
 /*----------------------------------------*/
-/*  1.5 Tooltip
+/*  1.6 Tooltip
 /*----------------------------------------*/
 .my-tooltip {
 	display:inline-block;
@@ -281,7 +256,7 @@ option {
 	padding: 0px 15px;
 }
 /*----------------------------------------*/
-/*  1.6 Button
+/*  1.7 Button
 /*----------------------------------------*/
 .my-button {
 	color: #fff;
@@ -311,7 +286,7 @@ option {
     outline: none;
 }
 /*----------------------------------------*/
-/*  1.7 Ratings
+/*  1.8 Ratings
 /*----------------------------------------*/
 .empty {
 	color: transparent;
@@ -386,6 +361,7 @@ option {
 .header-bottom {
 	padding: 10px;
 	border-bottom: 2px solid #e1e1e1;
+	font-weight: 700;
 }
 .hb-menu > ul > li {
 	display: inline-block;
@@ -996,6 +972,10 @@ text-align: center;
 /*----------------------------------------*/
 /* 	3.5 Contact Page
 /*----------------------------------------*/
+iframe {
+	width: 100%;
+	height: 300px;
+}
 .map iframe {
 	border: 0px;
 }

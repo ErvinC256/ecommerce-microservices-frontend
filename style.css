@@ -331,7 +331,8 @@ option {
 /*  2.1 Header
 /*----------------------------------------*/
 .header {
-	background-color: #f5f6f7;
+	color: #fff;
+	background-color: #0071dc;
 }
 /*Header Top*/
 .header-top {

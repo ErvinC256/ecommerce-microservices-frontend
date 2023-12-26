@@ -65,7 +65,10 @@ img {
 /*  1.2 Basic
 /*----------------------------------------*/
 body {
-	font-family: 'Trebuchet MS', 'Verdana', 'Arial', sans-serif;
+	font-family: 'Tahoma', sans-serif;
+}
+p {
+	font-family: 'Trebuchet MS', sans-serif;
 }
 a {	
 	color: inherit;
@@ -361,7 +364,7 @@ option {
 .header-bottom {
 	padding: 10px;
 	border-bottom: 2px solid #e1e1e1;
-	font-weight: 700;
+	font-weight: bold;
 }
 .hb-menu > ul > li {
 	display: inline-block;
@@ -874,7 +877,6 @@ text-align: center;
 .login-area h2,
 .register-area h2 {
 	font-size: 28px;
-	font-weight: normal;
 }
 .login-area img,
 .register-area img {
@@ -907,7 +909,6 @@ text-align: center;
 /*----------------------------------------*/
 .cart-contents-area h2 {
 	font-size: 28px;
-	font-weight: normal;
 }
 .cart-table tr {
 	border-bottom: 1px solid #e1e1e1;
@@ -1004,9 +1005,6 @@ iframe {
 	justify-content: space-between; 
 	align-items: center;
 }
-.sidebar-title h2 {
-	font-weight: normal;
-}
 .filter-sub-area {
 	margin-bottom: 20px;
 }
@@ -1019,7 +1017,6 @@ iframe {
 }
 .filter-sub-area h5 {
 	font-size: 16px; 
-	font-weight: bold; 
 	margin-bottom: 10px;
 }
 .filter-sub-area a:hover {
@@ -1066,7 +1063,6 @@ iframe {
 }
 .product-details-right h2 {
 	font-size: 28px; 
-	font-weight: normal;
 }
 .product-details-right span {
 	padding: 0px 5px;

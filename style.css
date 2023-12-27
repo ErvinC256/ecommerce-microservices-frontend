@@ -402,11 +402,12 @@ option {
     top: 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, .1);
 	transition: all 0.1s ease-in-out;
+	font-weight: normal;
 }
 .megamenu > li {
 	padding: 0 15px;
 	padding-top: 5px;
-	min-width: 200px;
+	min-width: 250px;
 	border-right: 1px solid #e1e1e1;
 }
 .megamenu > li:first-child {
@@ -421,6 +422,10 @@ option {
 }
 .megamenu > li > a:hover {
 	text-decoration: none;
+}
+.megamenu > li > hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .megamenu-holder .megamenu li ul li a {
 	padding: 7px 0;

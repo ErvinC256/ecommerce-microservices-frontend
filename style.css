@@ -401,13 +401,12 @@ option {
 	font-weight: normal;
 }
 .megamenu > li {
-	padding: 0 15px;
-	padding-top: 5px;
-	min-width: 250px;
+	padding: 0 10px;
+	width: 250px;
 	border-right: 1px solid #e1e1e1;
 }
 .megamenu > li:first-child {
-	padding-left: 5px;
+	padding-left: 0px;
 }
 .megamenu > li:last-child {
 	border-right: none;
@@ -421,7 +420,7 @@ option {
 	margin-bottom: 10px;
 }
 .megamenu-holder .megamenu li ul li a {
-	padding: 7px 0;
+	padding: 5px 0;
 	display: block;
 }
 .megamenu-holder .megamenu.is-visible {

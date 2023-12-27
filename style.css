@@ -364,7 +364,6 @@ option {
 	color: #000;
 	padding: 10px;
 	border-bottom: 2px solid #e1e1e1;
-	font-weight: bold;
 	background-color: #fbf703;
 }
 .hb-menu > ul > li {
@@ -381,9 +380,6 @@ option {
 .hb-menu > ul > li i {
 	font-size: 12px;
 	transition: all 0.1s ease-in-out;
-}
-.hb-menu > ul > li > a:hover {
-	text-decoration: none;
 }
 .hb-menu > ul > li > a:hover i {
     transform: rotate(180deg); /* Rotate the icon 180 degrees on hover */
@@ -420,9 +416,6 @@ option {
 	display: block;
 	transition: all 0.1s ease-in-out;
 }
-.megamenu > li > a:hover {
-	text-decoration: none;
-}
 .megamenu > li > hr {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -430,9 +423,6 @@ option {
 .megamenu-holder .megamenu li ul li a {
 	padding: 7px 0;
 	display: block;
-}
-.megamenu-holder .megamenu li ul li a:hover {
-	text-decoration: none;
 }
 .megamenu-holder .megamenu.is-visible {
     transform: scaleY(1);

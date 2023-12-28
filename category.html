@@ -281,6 +281,7 @@
                     apiURL = `http://localhost:8080/products/category-subcategory?categoryId=${categoryId}`;
                 }
 
+                // fetch category or subcategory products
                 fetch(apiURL) 
                 .then(response => {
                     return response.json();

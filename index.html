@@ -472,9 +472,7 @@
                 getCartNumber();
 
                 //load laptop & tablets data
-                let apiURL = 'http://localhost:8080/products/latest?limit=10';
-
-                fetch(apiURL) 
+                fetch('http://localhost:8080/products/latest?limit=10') 
                 .then(response => {
                     return response.json();
                 })
@@ -554,9 +552,7 @@
                 });
 
                 //load laptop & tablets data
-                apiURL = 'http://localhost:8080/products/category-subcategory?categoryId=1';
-
-                fetch(apiURL) 
+                fetch('http://localhost:8080/products/category-subcategory?categoryId=1') 
                 .then(response => {
                     return response.json();
                 })
@@ -637,9 +633,7 @@
                 });
 
                 //load electronics & accessories data
-                apiURL = 'http://localhost:8080/products/category-subcategory?categoryId=2';
-
-                fetch(apiURL) 
+                fetch('http://localhost:8080/products/category-subcategory?categoryId=2') 
                 .then(response => {
                     return response.json();
                 })
@@ -720,9 +714,7 @@
                 });
 
                 //load printers data
-                apiURL = 'http://localhost:8080/products/category-subcategory?categoryId=3';
-
-                fetch(apiURL) 
+                fetch('http://localhost:8080/products/category-subcategory?categoryId=3') 
                 .then(response => {
                     return response.json();
                 })

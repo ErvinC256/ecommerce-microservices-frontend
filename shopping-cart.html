@@ -242,6 +242,7 @@
 
                 const userId = sessionStorage.getItem('userId');
 
+                // fetch cart items
                 fetch(`http://localhost:8080/carts/${userId}`) 
                 .then(response => {
                     return response.json();

@@ -566,11 +566,9 @@ function getCartNumber() {
 		return;
 	}
 
-	let userId = sessionStorage.getItem('userId');
-	
-	let apiURL = `http://localhost:8080/carts/${userId}/cart-items/count`;
+	const userId = sessionStorage.getItem('userId');
 
-	fetch(apiURL) 
+	fetch(`http://localhost:8080/carts/${userId}/cart-items/count`) 
 	.then(response => {
 		return response.json();
 	})

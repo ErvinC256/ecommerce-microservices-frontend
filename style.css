@@ -19,10 +19,11 @@
 			1.8 Ratings
 		02. Home Page
 			2.1 Header
-			2.2 Slider Contents
-			2.3 Product-Area with Tabs
-			2.4 Product-Area with Titles
-			2.5 Footer
+			2.2 Breadcrumb
+			2.3 Slider Contents
+			2.4 Product-Area with Tabs
+			2.5 Product-Area with Titles
+			2.6 Footer
 		03. Other Pages
 			3.1 FAQ Page
 			3.2 Checkout Page
@@ -316,6 +317,10 @@ option {
 	padding: 5px;
 	border-bottom: 1px solid #e1e1e1;
 }
+.ht-menu {
+	display: flex;
+	justify-content: space-between;
+}
 .ht-menu > ul {
     display: flex;
     justify-content: flex-end;
@@ -356,8 +361,8 @@ option {
 	min-width: 638px;
 	border: 1 solid #b6b6b6;
 }
-#welcome-message {
-	font-size: 16px;
+.hm-searchbox select {
+	padding: 0px 5px;
 }
 .cart-container {
 	position: relative;
@@ -372,39 +377,87 @@ option {
 	padding: 5px;
 	border-radius: 5px;
 }
-/*Header Bottom*/
+/*Header Bottom Menu*/
 .header-bottom {
-	color: #000;
-	padding: 10px;
-	border-bottom: 2px solid #e1e1e1;
-	background-color: #fbf703;
+	padding: 5px;
+	background: #fbf703;
 }
-.hb-menu {
+.hb-menu > nav > ul {
+	position: relative;
+}
+.hb-menu nav > ul > li {
+	display: inline-block;
+	position: relative;
+	padding-right: 50px;
+}
+.hb-menu nav > ul > li > a {
 	display: flex;
-	justify-content: space-between;
+	color: #000;
+	text-transform: uppercase;
 }
-.menu-group ul {
-    display: flex;
+.hb-menu nav > ul > li > a::after {
+	content: "\f107";
+	position: absolute;
+	right: 25px;
+	font-family: fontawesome;
+	transition: all 0.3s ease-in-out;
 }
-.menu-group:first-child ul li {
-    margin-right: 20px;
+.hb-menu nav > ul > li:nth-child(n+4) > a::after {
+	content: none;
 }
-.menu-group:first-child ul li img {
-    margin-right: 10px;
+.hb-menu nav > ul > li:hover  a::after {
+	transform: rotate(180deg);
 }
-.menu-group:last-child ul li {
-    margin-left: 20px;
+.hb-right {
+	float: right; 
+	display: flex; 
+	color: #000;
+}
+.hb-right li {
+	margin-left: 20px;
 }
 /*Sticky*/
 .header-sticky.sticky {
-	background-color: #fbf703;
+	background: #fbf703;
 	left: 0;
 	position: fixed;
 	right: 0;
 	top: 0;
 	z-index: 1049;
 }
-/*Breadcrumb*/
+/*Header Bottom Dropdown Menu*/
+.hb-menu nav > ul > li > ul.hb-dropdown {
+	background: #fff;
+	opacity: 0;
+	padding: 10px 0;
+	position: absolute;
+	top: 100%;
+	transform: scaleY(0);
+	transform-origin: 0 0 0;
+	visibility: hidden;
+	transition: all 0.3s ease-in-out 0s;
+	box-shadow: 0 1px 2px 2px rgba(0,0,0,0.2);
+	width: 200px;
+	z-index: 99;
+	border-radius: 2px;
+}
+.hb-menu nav ul > li:hover > ul.hb-dropdown {
+	opacity: 1;
+	transform: scaleY(1);
+	visibility: visible;
+	top: 100%;
+}
+.hb-menu nav ul > li > ul.hb-dropdown > li {
+	position: relative;
+}
+.hb-menu nav ul > li > ul.hb-dropdown > li > a {
+	color: #000;
+	display: block;
+	padding: 5px 20px;
+}
+/*----------------------------------------*/
+/*  2.2 Breadcrumb
+/*----------------------------------------*/
 .breadcrumb-area {
 	padding: 10px;
 	background-color: #f5f6f7;
@@ -429,10 +482,10 @@ option {
 	display: none;
 }
 /*----------------------------------------*/
-/*  2.2 Slider Contents
+/*  2.3 Slider Contents
 /*----------------------------------------*/
 /*----------------------------------------*/
-/*  2.3 Product-Area with Tabs
+/*  2.4 Product-Area with Tabs
 /*----------------------------------------*/
 .product-tab > ul {
 	position: relative;
@@ -531,7 +584,7 @@ option {
   position: relative;
 }
 /*----------------------------------------*/
-/*  2.4 Product-Area with Titles
+/*  2.5 Product-Area with Titles
 /*----------------------------------------*/
 .section-title {
 	border-bottom: 1px solid #e1e1e1;
@@ -555,7 +608,7 @@ option {
 	margin: 0 20px 0;
 }
 /*----------------------------------------*/
-/*  2.5 Footer
+/*  2.6 Footer
 /*----------------------------------------*/
 .footer {
 	background-color: #f7f7f7;

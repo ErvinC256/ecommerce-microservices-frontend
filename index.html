@@ -20,6 +20,7 @@
                 <div class="header-top">
                     <div class="container">
                         <div class="ht-menu">
+                            <span>Telephone Enquiry:(+123) 123 321 345</span>
                             <ul>
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="account.html">My Account</a></li>
@@ -54,34 +55,53 @@
                                         <input type="text" placeholder="Enter your search key ...">
                                     </form>
                                 </div>
-                                <p id="welcome-message"></p>
+                                <p>Hello, <span id="greet-user">guest</span></p>
                                 <div class="cart-container">
                                     <img src="images/icon/cart.png" alt="" width="50px">
-                                    <span class="cart-number">5</span>
+                                    <span id="cart-number" class="cart-number">50</span>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Header Middle Area End Here -->
                 <!-- Begin Header Bottom Area -->
-                <div class="header-bottom header-sticky stick">
+                <div class="header-bottom header-sticky">
                     <div class="container">
-                        <div class="hb-menu">
-                            <div class="menu-group">
-                                <ul>
-                                    <li><a href="category.html?category=1&subcategory="><img src="images/icon/category-icon/1.png" alt="" width="25px">Laptops & Tablets</a></li>
-                                    <li><a href="category.html?category=2&subcategory="><img src="images/icon/category-icon/2.png" alt="" width="25px">Electronics & Accessories</a></li>
-                                    <li><a href="category.html?category=3&subcategory="><img src="images/icon/category-icon/3.png" alt="" width="25px">Printers</a></li>
-                                </ul>
-                            </div>
-                            <div class="menu-group">
-                                <ul>
-                                    <li><a href="category.html?category=3&subcategory=">Featured</a></li>
-                                    <li><a href="category.html?category=3&subcategory=">New Arrivals</a></li>
-                                    <li><a href="category.html?category=3&subcategory=">Best Sellers</a></li>
-                                </ul>
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Begin Header Bottom Menu Area -->
+                                <div class="hb-menu">
+                                    <nav>
+                                        <ul>
+                                            <li class="dropdown-holder"><a href="category.html?categoryId=1">Laptops & Tablets</a>
+                                                <ul class="hb-dropdown">
+                                                    <li><a href="category.html?categoryId=1&subcategoryId=1">Laptops</a></li>
+                                                    <li><a href="category.html?categoryId=1&subcategoryId=2">Tablets</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-holder"><a href="category.html?categoryId=2">Electronics & Accessories</a>
+                                                <ul class="hb-dropdown">
+                                                    <li><a href="category.html?categoryId=2&subcategoryId=3">Keyboards & Mice</a></li>
+                                                    <li><a href="category.html?categoryId=2&subcategoryId=4">Audio</a></li>
+                                                    <li><a href="category.html?categoryId=2&subcategoryId=5">Hard Drives, SSDs & Storage</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-holder"><a href="category.html?categoryId=3">Printers</a>
+                                                <ul class="hb-dropdown">
+                                                    <li><a href="category.html?categoryId=3&subcategoryId=6">Inkjet Printers</a></li>
+                                                    <li><a href="category.html?categoryId=3&subcategoryId=7">Laser Printers</a></li>
+                                                </ul>
+                                            </li>
+                                            <div class="hb-right">
+                                                <li><a href="#">Featured</a></li>
+                                                <li><a href="#">New Arrivals</a></li>
+                                                <li><a href="#">Best Sellers</a></li>
+                                            </div>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Header Bottom Menu Area End Here -->
                             </div>
                         </div>
                     </div>

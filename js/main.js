@@ -557,7 +557,7 @@ function checkSignInStatus() {
 
     // Update the HTML with the dynamically fetched username
     if (username) {
-        document.querySelector('#welcome-message').innerText = `Welcome, ${username}`;
+        document.querySelector('#greet-user').innerText = `${username}`;
     }
 }
 /*----------------------------------------------------------------------------------------------------*/

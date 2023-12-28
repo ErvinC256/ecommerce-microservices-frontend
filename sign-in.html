@@ -20,12 +20,13 @@
                 <div class="header-top">
                     <div class="container">
                         <div class="ht-menu">
+                            <span>Telephone Enquiry:(+123) 123 321 345</span>
                             <ul>
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="account.html">My Account</a></li>
                                 <li><a href="shopping-cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
-                                <li><a id="sign-in-link" href="sign-in.html">Sign In</a></li>          
+                                <li><a id="sign-in-link" href="sign-in.html">Sign In</a></li>    
                             </ul>
                         </div>
                     </div>
@@ -54,59 +55,54 @@
                                         <input type="text" placeholder="Enter your search key ...">
                                     </form>
                                 </div>
-                                <p id="welcome-message"></p>
+                                <p>Hello, <span id="greet-user">guest</span></p>
+                                <div class="cart-container">
+                                    <img src="images/icon/cart.png" alt="" width="50px">
+                                    <span id="cart-number" class="cart-number">50</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Header Middle Area End Here -->
                 <!-- Begin Header Bottom Area -->
-                <div class="header-bottom header-sticky stick">
+                <div class="header-bottom header-sticky">
                     <div class="container">
-                        <div class="hb-menu">
-                            <ul>
-                                <li class="megamenu-holder"><a>Browse</a><i class="fa fa-angle-down"></i>
-                                    <ul class="megamenu">
-                                        <li><a href="category.html?category=1&subcategory=">Laptops & Tablets</a>
-                                            <br>
-                                            <ul>
-                                                <li><a href="category.html?category=1&subcategory=1">Laptops</a></li>
-                                                <li><a href="category.html?category=1&subcategory=2">Tablets</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="category.html?category=2&subcategory=">Electronics & Accessories</a>
-                                            <br>
-                                            <ul>
-                                                <li><a href="category.html?category=2&subcategory=3">Keyboards & Mice</a></li>
-                                                <li><a href="category.html?category=2&subcategory=4">Audio</a></li>
-                                                <li><a href="category.html?category=2&subcategory=5">Hard Drives, SSDs & Storage</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="category.html?category=3&subcategory=">Printers</a>
-                                            <br>
-                                            <ul>
-                                                <li><a href="category.html?category=3&subcategory=6">Inkjet Printers</a></li>
-                                                <li><a href="category.html?category=3&subcategory=7">Laser Printers</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="category.html?category=1&subcategory=">Laptops & Tablets</a></li>
-                                <li><a href="category.html?category=2&subcategory=">Electronics & Accessories</a></li>
-                                <li><a href="category.html?category=3&subcategory=">Printers</a></li>
-                                <li class="megamenu-holder"><a>Pages</a><i class="fa fa-angle-down"></i>
-                                    <ul class="megamenu">
-                                        <li>
-                                            <ul>
-                                                <li><a href="account.html">My Account</a></li>
-                                                <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Begin Header Bottom Menu Area -->
+                                <div class="hb-menu">
+                                    <nav>
+                                        <ul>
+                                            <li class="dropdown-holder"><a href="category.html?categoryId=1">Laptops & Tablets</a>
+                                                <ul class="hb-dropdown">
+                                                    <li><a href="category.html?categoryId=1&subcategoryId=1">Laptops</a></li>
+                                                    <li><a href="category.html?categoryId=1&subcategoryId=2">Tablets</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-holder"><a href="category.html?categoryId=2">Electronics & Accessories</a>
+                                                <ul class="hb-dropdown">
+                                                    <li><a href="category.html?categoryId=2&subcategoryId=3">Keyboards & Mice</a></li>
+                                                    <li><a href="category.html?categoryId=2&subcategoryId=4">Audio</a></li>
+                                                    <li><a href="category.html?categoryId=2&subcategoryId=5">Hard Drives, SSDs & Storage</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-holder"><a href="category.html?categoryId=3">Printers</a>
+                                                <ul class="hb-dropdown">
+                                                    <li><a href="category.html?categoryId=3&subcategoryId=6">Inkjet Printers</a></li>
+                                                    <li><a href="category.html?categoryId=3&subcategoryId=7">Laser Printers</a></li>
+                                                </ul>
+                                            </li>
+                                            <div class="hb-right">
+                                                <li><a href="#">Featured</a></li>
+                                                <li><a href="#">New Arrivals</a></li>
+                                                <li><a href="#">Best Sellers</a></li>
+                                            </div>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Header Bottom Menu Area End Here -->
+                            </div>
                         </div>
                     </div>
                 </div>

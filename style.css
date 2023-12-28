@@ -252,7 +252,7 @@ option {
 }
 .my-tooltip .tooltip-top {
 	padding: 5px 15px;
-	background-color: #f5f6f7;
+	background-color: #e7f1fd;
 	border-bottom: 1px solid #e1e1e1;
 	font-weight: bold;
 }
@@ -271,12 +271,13 @@ option {
 	border-radius: 5px;
 }
 .my-button:hover {
-    background-color: #3498db; /* Lighter background color on hover */
+	background-color: #e7f1fd;
 	cursor: pointer;
+	color: #000;
 }
 .my-button-inverse {
 	color: #0673ca;
-	background-color: none;
+	background-color: #e7f1fd;
 	padding: 5px 10px;
 	font-size: 14px;
 	border: 1px solid #0673ca;
@@ -466,7 +467,7 @@ option {
 /*----------------------------------------*/
 .breadcrumb-area {
 	padding: 10px;
-	background-color: #f5f6f7;
+	background-color: #e7f1fd;
 	margin-bottom: 20px;
 }
 .breadcrumb-content li {
@@ -835,30 +836,23 @@ text-align: center;
 /*----------------------------------------*/
 /*  3.1 FAQ Page
 /*----------------------------------------*/
-.frequently-desc {
-	margin-bottom: 25px;
-}
-.frequently-desc h3 {
-	color: #242424;
-	font-size: 14px;
-	text-transform: capitalize;
-}
-.frequently-desc p {
-	margin: 0;
-	font-size: 13px;
-}
 .frequently-accordion .card.actives {
-	border: 1px solid #fed700;
+	border: 1px solid #e1e1e1;
 }
 .frequently-accordion .card {
-	border-radius: 0;
+	border-radius: 2px;
 	margin-bottom: 15px;
+	color: #000;
 }
 .frequently-accordion .card-header {
-	padding: 0;
-	margin-bottom: 0;
-	background-color: #f5f5f5;
-	border: 0;
+	background-color: #e7f1fd;
+	padding: 10px;
+}
+.frequently-accordion .card-body {
+	padding: 10px;
+}
+.frequently-accordion .card-header h5 {
+	font-size: 16px;
 }
 .frequently-accordion .card-header a.collapsed:before,
 .frequently-accordion .card-header a:after {
@@ -866,18 +860,14 @@ text-align: center;
 	font-family: fontawesome;
 	position: absolute;
 	right: 15px;
-	top: 15px;
-	color: #b9b9b9;
+	top: 10px;
 }
 .frequently-accordion .card-header a:after {
 	content: "\f068 ";
 }
 .frequently-accordion .card-header a {
 	display: block;
-	padding: 15px 10px 15px 25px;
 	cursor: pointer;
-	font-size: 14px;
-	text-transform: capitalize;
 }
 /*----------------------------------------*/
 /*  3.2 Checkout Page
@@ -1111,6 +1101,7 @@ iframe {
 	border: 1px solid #e1e1e1;
 	border-radius: 5px;
 	padding: 5px;
+	background-color: #f5f6f7;
 }
 .product-details-table th, td {
 	padding: 2px;

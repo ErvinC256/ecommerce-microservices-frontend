@@ -268,7 +268,7 @@ option {
 	padding: 5px 10px;
 	font-size: 14px;
 	border: 1px solid #0673ca;
-	border-radius: 5px;
+	border-radius: 2px;
 }
 .my-button:hover {
 	background-color: #e7f1fd;
@@ -281,7 +281,7 @@ option {
 	padding: 5px 10px;
 	font-size: 14px;
 	border: 1px solid #0673ca;
-	border-radius: 5px;
+	border-radius: 2px;
 }
 .my-button-inverse:hover {
 	background-color: #fff;
@@ -372,7 +372,7 @@ option {
 }
 .cart-container:hover {
 	box-shadow: 0 0 0 1px #fff; 
-    border-radius: 5px; 
+    border-radius: 2px; 
 	cursor: pointer;
 }
 .cart-number {
@@ -382,7 +382,7 @@ option {
 	background-color: #fbf703; 
 	color: #000;
 	padding: 5px;
-	border-radius: 5px;
+	border-radius: 2px;
 }
 /*Header Bottom Menu*/
 .header-bottom {
@@ -533,7 +533,7 @@ option {
 .single-product-wrap::before {
 	background: #fff none repeat scroll 0 0;
 	box-shadow: 0 0 10px 0 rgba(0,0,0,.15);
-	border-radius: 5px;
+	border-radius: 2px;
 	bottom: -5px;
 	content: "";
 	left: -5px;
@@ -900,7 +900,7 @@ text-align: center;
 }
 .error-message div {
 	border: 1.5px dashed red;
-	border-radius: 5px;
+	border-radius: 2px;
 	padding: 10px;
 	display: flex;
 	align-items: center;
@@ -1075,7 +1075,7 @@ iframe {
 	padding: 2px; 
 	background-color: #f5f6f7; 
 	border: 1px solid #e1e1e1;
-	border-radius: 5px;
+	border-radius: 2px;
 }
 .price-div span::before {
 	content: "\2022";
@@ -1091,7 +1091,7 @@ iframe {
 }
 .cart-message div {
 	border: 1.5px dashed black;
-	border-radius: 5px;
+	border-radius: 2px;
 	padding: 10px;
 	display: flex;
 	align-items: center;
@@ -1099,7 +1099,7 @@ iframe {
 .product-details-table-div {
 	font-size: 12px;
 	border: 1px solid #e1e1e1;
-	border-radius: 5px;
+	border-radius: 2px;
 	padding: 5px;
 	background-color: #f5f6f7;
 }

@@ -256,14 +256,14 @@
 
                     dateElement.textContent = formattedDate;
 
-                    if (data.cartItemDetails.length === 0) {
+                    if (data.cartItemDtos.length === 0) {
                         const messageRow = document.createElement('tr');
                         messageRow.innerHTML = '<p style="font-size: 18px; text-align: center;">Your cart is empty</p>';
                         cartTable.appendChild(messageRow);
                         return;
                     }
 
-                    data.cartItemDetails.forEach(cartItem => {
+                    data.cartItemDtos.forEach(cartItem => {
                         const cartItemElement = document.createElement('tr');
                         let selectOptions = '';
                         for(let i = 1; i <= cartItem.quantityInStock; i++) {
@@ -331,7 +331,7 @@
                     const itemCountElement = document.getElementById('item-count');
                     const subtotalElement = document.getElementById('subtotal');
 
-                    itemCountElement.textContent = data.cartItemDetails.length;
+                    itemCountElement.textContent = data.cartItemDtos.length;
                     subtotalElement.textContent = data.subtotal.toFixed(2);
                 })
                 .catch(error => {

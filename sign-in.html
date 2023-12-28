@@ -59,7 +59,7 @@
                                 <div class="cart-container">
                                     <a href="shopping-cart.html">
                                         <img src="images/icon/cart.png" alt="" width="50px">
-                                        <span id="cart-number" class="cart-number">50</span>
+                                        <span id="cart-number" class="cart-number">0</span>
                                     </a>
                                 </div>
                             </div>
@@ -165,6 +165,10 @@
         <script src="js/main.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
+
+                checkSignInStatus();
+                getCartNumber();
+                
                 // Get the elements
                 const signInButton = document.querySelector("#sign-in-button");
                 const usernameInput = document.querySelector(".sign-in-form input[name='username']");

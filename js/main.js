@@ -560,6 +560,23 @@ function checkSignInStatus() {
         document.querySelector('#greet-user').innerText = `${username}`;
     }
 }
+function getCartNumber() {
+	let userId = sessionStorage.getItem('userId');
+
+	if(!userId) {
+		return;
+	}
+	
+	let apiURL = `http://localhost:8080/carts/${userId}/cart-items/count`;
+
+	fetch(apiURL) 
+	.then(response => {
+		return response.json();
+	})
+	.then(response => {
+		document.querySelector('#cart-number').innerText = response.count;
+	});
+}
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

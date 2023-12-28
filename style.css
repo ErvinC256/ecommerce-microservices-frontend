@@ -368,6 +368,11 @@ option {
 	position: relative;
 	display: inline-block;
 }
+.cart-container:hover {
+	box-shadow: 0 0 0 1px #fff; 
+    border-radius: 5px; 
+	cursor: pointer;
+}
 .cart-number {
 	position: absolute;
 	top: 0;

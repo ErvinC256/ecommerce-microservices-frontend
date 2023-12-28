@@ -561,11 +561,12 @@ function checkSignInStatus() {
     }
 }
 function getCartNumber() {
-	let userId = sessionStorage.getItem('userId');
 
-	if(!userId) {
+	if(!sessionStorage.getItem('loggedIn')) {
 		return;
 	}
+
+	let userId = sessionStorage.getItem('userId');
 	
 	let apiURL = `http://localhost:8080/carts/${userId}/cart-items/count`;
 

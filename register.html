@@ -243,8 +243,6 @@
                         sessionStorage.setItem('userId', data.userId);
 
                         window.location.href = 'sign-in.html';
-
-                        console.log('Success');
                     })
                     .catch(error => {
                         document.querySelector('.error-message').style.display = 'block';

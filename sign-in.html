@@ -209,7 +209,6 @@
                         return response.json();
                     })
                     .then(data => {
-                        sessionStorage.setItem('loggedIn', true);
                         sessionStorage.setItem('userId', data.userId);
                         sessionStorage.setItem('username', username);
 
@@ -220,8 +219,6 @@
                             sessionStorage.removeItem('redirectToPage');
                             window.location.href = redirectToPage;
                         }
-
-                        console.log('Success');
                     })
                     .catch(error => {
                         document.querySelector('.error-message').style.display = 'block';

@@ -537,7 +537,6 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /* 27. Sign Out
 /*----------------------------------------*/
 function signOut() {
-	sessionStorage.removeItem('loggedIn');
 	sessionStorage.removeItem('userId');
 	sessionStorage.removeItem('username');
 	window.location.href = 'sign-in.html';
@@ -547,7 +546,8 @@ function signOut() {
 /*----------------------------------------*/
 function checkSignInStatus() {
     let signInLink = document.querySelector('#sign-in-link');
-    if (sessionStorage.getItem('loggedIn')) {
+	
+    if (sessionStorage.getItem('userId')) {
         signInLink.innerHTML = '<a id="sign-out" href="#">Sign Out</a>';
         document.querySelector('#sign-out').addEventListener('click', signOut);
     }
@@ -562,7 +562,7 @@ function checkSignInStatus() {
 }
 function getCartNumber() {
 
-	if(!sessionStorage.getItem('loggedIn')) {
+	if(!sessionStorage.getItem('userId')) {
 		return;
 	}
 

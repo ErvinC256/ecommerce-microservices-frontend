@@ -618,8 +618,9 @@ option {
 /*  2.6 Footer
 /*----------------------------------------*/
 .footer {
-	background-color: #f7f7f7;
+	background-color: #0673ca;
 	border-top: 1px solid #e1e1e1;
+	color: #fff;
 }
 .footer-static-top-3 {
 	background-color: #fff;

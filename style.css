@@ -27,7 +27,7 @@
 		03. Other Pages
 			3.1 FAQ Page
 			3.2 Checkout Page
-			3.3 Login Register Page
+			3.3 Sign In Register Page
 			3.4 Shopping Cart Page
 			3.5 Contact Page
 			3.6 Category Page
@@ -883,22 +883,22 @@ text-align: center;
 /*  3.2 Checkout Page
 /*----------------------------------------*/
 /*----------------------------------------*/
-/*  3.3 Login Register Page
+/*  3.3 Sign In Register Page
 /*----------------------------------------*/
-.login-area h2,
+.sign-in-area h2,
 .register-area h2 {
-	font-size: 28px;
+	font-size: 20px;
 }
-.login-area img,
+.sign-in-area img,
 .register-area img {
 	width: 100%;
 	height: 100%;
 }
-.login-form a,
+.sign-in-form a,
 .register-form a {
 	color: #0673ca;
 }
-.login-form div:not(:last-child) {
+.sign-in-form div:not(:last-child) {
     padding-bottom: 20px;
 }
 .register-form div:not(:last-child) {
@@ -919,7 +919,7 @@ text-align: center;
 /* 	3.4 Shopping Cart Page
 /*----------------------------------------*/
 .cart-contents-area h2 {
-	font-size: 28px;
+	font-size: 20px;
 }
 .cart-table tr {
 	border-bottom: 1px solid #e1e1e1;

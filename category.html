@@ -123,58 +123,33 @@
             <!-- Begin Content Wrapper Area -->
             <div class="content-wrapper mb-50">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-3">
-                            <div class="sidebar-categores-box">
-                                <div class="sidebar-title">
-                                    <h2>Filters</h2>
-                                    <i class="fas fa-filter" style="font-size: 16px; color: #e1e1e1;"></i>
-                                </div><hr>
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area">
-                                    <h5>Brands</h5>
-                                    <ul>
-                                        <!-- list of brans will be inserted here -->
-                                        <!-- <li><input type="checkbox" name="product-categori"><a href="#">Dell</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Toshiba</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">SAMSUNG</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Seagate</a></li>
-                                        <li><input type="checkbox" name="product-categori"><a href="#">Western Digital</a></li> -->
-                                    </ul>
-                                 </div>
-                                <!-- filter-sub-area end -->
+                    <div class="shop-top-bar">
+                        <div class="quantity-select">
+                            <label>Sort by</label>
+                            <select>
+                                <option>Relevance</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Newest Arrivals</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="shop-products-wrapper">
+                        <div class="shop-product-area">
+                            <div class="row">
+                                <!-- products will be inserted here -->
                             </div>
                         </div>
-                        <div class="col-9">
-                            <div class="shop-top-bar">
-                                <div class="quantity-select">
-                                    <label>Sort by</label>
-                                    <select>
-                                        <option>Relevance</option>
-                                        <option>Price: Low to High</option>
-                                        <option>Price: High to Low</option>
-                                        <option>Newest Arrivals</option>
-                                    </select>
-                                </div>
+                    </div>
+                    <div class="paginatoin-area">
+                        <div class="row">
+                            <div class="col-6">
+                                <p id="showing-info"></p>
                             </div>
-                            <div class="shop-products-wrapper">
-                                <div class="shop-product-area">
-                                    <div class="row">
-                                        <!-- products will be inserted here -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="paginatoin-area">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p id="showing-info"></p>
-                                    </div>
-                                    <div class="col-6">
-                                        <ul class="pagination-box">
-                                            <!-- pagination navigation will be inserted here -->
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="col-6">
+                                <ul class="pagination-box">
+                                    <!-- pagination navigation will be inserted here -->
+                                </ul>
                             </div>
                         </div>
                     </div>

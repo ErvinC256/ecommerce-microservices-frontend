@@ -1,0 +1,12 @@
+const brands = [...new Set(data.map(product => product.manufacturer))];
+                    const brandList = document.querySelector('.filter-sub-area ul');
+
+                    brands.forEach(brand => {
+                        const listItem = `
+                            <li>
+                                <input type="checkbox" name="product-categori">
+                                <a href="#">${brand}</a>
+                            </li>
+                        `;
+                        brandList.innerHTML += listItem;
+                    });

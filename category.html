@@ -167,18 +167,11 @@
                             <div class="paginatoin-area">
                                 <div class="row">
                                     <div class="col-6">
-                                        <p>Showing 1-12 of 13 item(s)</p>
+                                        <p id="showing-info"></p>
                                     </div>
                                     <div class="col-6">
                                         <ul class="pagination-box">
-                                            <li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a>
-                                            </li>
-                                            <li class="active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li>
-                                              <a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a>
-                                            </li>
+                                            <!-- pagination navigation will be inserted here -->
                                         </ul>
                                     </div>
                                 </div>
@@ -264,124 +257,116 @@
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>
-
             let currentPage = 0;
+            let totalPages;
 
             document.addEventListener('DOMContentLoaded', function () {
-
                 checkSignInStatus();
                 getCartNumber();
                 fetchAndRenderProducts(currentPage);
-
-                const paginationBox = document.querySelector('.pagination-box');
-
-                paginationBox.addEventListener('click', function (event) {
-                    event.preventDefault();
-
-                    if (event.target.tagName === 'A') {
-                        const pageNumber = parseInt(event.target.textContent);
-
-                        if (!isNaN(pageNumber)) {
-                            fetchAndRenderProducts(pageNumber - 1); // Adjust for zero-based indexing
-                        } else if (event.target.classList.contains('Previous')) {
-                            
-                            if (currentPage > 0) {
-
-                                fetchAndRenderProducts(currentPage - 1);
-                            }
-                        } else if (event.target.classList.contains('Next')) {
-                            
-                            // Implement logic to determine when there are more pages
-                            // For simplicity, assume there are always more pages
-                            fetchAndRenderProducts(currentPage + 1);
-                        }
-                    }
-                });
-
             });
-
+        
             function fetchAndRenderProducts(page) {
-
                 const params = new URLSearchParams(window.location.search);
-
                 const categoryId = params.get('categoryId');
                 const subcategoryId = params.get('subcategoryId');
-
+        
                 let apiURL;
                 if (subcategoryId !== null) {
                     apiURL = `http://localhost:8080/products/category-subcategory?categoryId=${categoryId}&subcategoryId=${subcategoryId}&page=${page}&size=9`;
                 } else {
                     apiURL = `http://localhost:8080/products/category-subcategory?categoryId=${categoryId}&page=${page}&size=9`;
                 }
-
-                // fetch category or subcategory products
-                fetch(apiURL) 
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const productsContainer = document.querySelector('.shop-product-area .row');
-                    productsContainer.innerHTML = '';
-                    data.forEach(product => {
-                        const productElement = document.createElement('div');
-                        productElement.className = 'col-4';
-
-                        // Generate star rating
-                        let starRating = '';
-                        for (let i = 1; i <= 5; i++) {
-                            let star = document.createElement('span');
-                            star.className = 'star';
-                            star.textContent = '★';
-                            if (i > Math.ceil(2.5)) {
-                                star.classList.add('empty'); // Use classList.add for adding classes
-                            } else if (i > 2.5) {
-                                star.classList.add('half');
+        
+                fetch(apiURL)
+                    .then(response => response.json())
+                    .then(data => {
+                        const productsContainer = document.querySelector('.shop-product-area .row');
+                        productsContainer.innerHTML = '';
+        
+                        data.content.forEach(product => {
+                            const productElement = document.createElement('div');
+                            productElement.className = 'col-4';
+                    
+                            let starRating = '';
+                            for (let i = 1; i <= 5; i++) {
+                                const star = document.createElement('span');
+                                star.className = 'star';
+                                star.textContent = '★';
+                                if (i > Math.ceil(2.5)) {
+                                    star.classList.add('empty');
+                                } else if (i > 2.5) {
+                                    star.classList.add('half');
+                                }
+                                starRating += star.outerHTML;
                             }
-                            starRating += star.outerHTML;
-                        }
-
-                        productElement.innerHTML = `
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="product-details.html?product=${product.id}">
-                                        <img src="images/product/large-size/${product.name}.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-desc">
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <span class="product-manufacturer">${product.manufacturer}</span>
-                                        <span class="star-rating">${starRating}</span>
+                    
+                            productElement.innerHTML = `
+                                <div class="single-product-wrap">
+                                    <div class="product-image">
+                                        <a href="product-details.html?product=${product.id}">
+                                            <img src="images/product/large-size/${product.name}.jpg">
+                                        </a>
                                     </div>
-                                    <hr>
-                                    <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
-                                    <hr>
-                                    <span class="product-price">$ ${product.price.toFixed(2)}</span>
+                                    <div class="product-desc">
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span class="product-manufacturer">${product.manufacturer}</span>
+                                            <span class="star-rating">${starRating}</span>
+                                        </div>
+                                        <hr>
+                                        <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
+                                        <hr>
+                                        <span class="product-price">$ ${product.price.toFixed(2)}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        `;
-                        productsContainer.appendChild(productElement);
+                            `;
+                            productsContainer.appendChild(productElement);
+                        });
+                        
+                        // Update the "Showing" info
+                        const showingInfo = document.getElementById('showing-info');
+                        const startItem = page * 9 + 1;
+                        const endItem = Math.min((page + 1) * 9, data.totalElements);
+                        showingInfo.textContent = `Showing ${startItem}-${endItem} of ${data.totalElements} item(s)`;
+                        
+                        const paginationBox = document.querySelector('.pagination-box');
+                        totalPages = data.totalPages;
+        
+                        paginationBox.innerHTML = `<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a></li>`;
+                        
+                        for (let i = 1; i <= totalPages; i++) {
+                            paginationBox.innerHTML += `<li><a href="#">${i}</a></li>`;
+                        }
+        
+                        paginationBox.innerHTML += `<li><a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a></li>`;
+        
+                        paginationBox.addEventListener('click', handlePaginationClick);
+
+                        currentPage = page;
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-                    const brands = [...new Set(data.map(product => product.manufacturer))];
-                    const brandList = document.querySelector('.filter-sub-area ul');
-
-                    brands.forEach(brand => {
-                        const listItem = `
-                            <li>
-                                <input type="checkbox" name="product-categori">
-                                <a href="#">${brand}</a>
-                            </li>
-                        `;
-                        brandList.innerHTML += listItem;
-                    });
-
-                    // Update the current page
-                    currentPage = page;
-
-                    console.log(currentPage);
-                })
-                .catch(error => {
-
-                });
+            }
+        
+            function handlePaginationClick(event) {
+                event.preventDefault();
+        
+                if (event.target.tagName === 'A') {
+                    const pageNumber = parseInt(event.target.textContent);
+        
+                    if (!isNaN(pageNumber)) {
+                        fetchAndRenderProducts(pageNumber - 1);
+                    } else if (event.target.classList.contains('Previous')) {
+                        if (currentPage > 0) {
+                            fetchAndRenderProducts(currentPage - 1);
+                        }
+                    } else if (event.target.classList.contains('Next')) {
+                        if (currentPage < totalPages - 1) {
+                            fetchAndRenderProducts(currentPage + 1);
+                        }
+                    }
+                }
             }
         </script>
     </body>

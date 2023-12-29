@@ -264,10 +264,43 @@
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>
+
+            let currentPage = 0;
+
             document.addEventListener('DOMContentLoaded', function () {
 
                 checkSignInStatus();
                 getCartNumber();
+                fetchAndRenderProducts(currentPage);
+
+                const paginationBox = document.querySelector('.pagination-box');
+
+                paginationBox.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    if (event.target.tagName === 'A') {
+                        const pageNumber = parseInt(event.target.textContent);
+
+                        if (!isNaN(pageNumber)) {
+                            fetchAndRenderProducts(pageNumber - 1); // Adjust for zero-based indexing
+                        } else if (event.target.classList.contains('Previous')) {
+                            
+                            if (currentPage > 0) {
+
+                                fetchAndRenderProducts(currentPage - 1);
+                            }
+                        } else if (event.target.classList.contains('Next')) {
+                            
+                            // Implement logic to determine when there are more pages
+                            // For simplicity, assume there are always more pages
+                            fetchAndRenderProducts(currentPage + 1);
+                        }
+                    }
+                });
+
+            });
+
+            function fetchAndRenderProducts(page) {
 
                 const params = new URLSearchParams(window.location.search);
 
@@ -276,9 +309,9 @@
 
                 let apiURL;
                 if (subcategoryId !== null) {
-                    apiURL = `http://localhost:8080/products/category-subcategory?categoryId=${categoryId}&subcategoryId=${subcategoryId}`;
+                    apiURL = `http://localhost:8080/products/category-subcategory?categoryId=${categoryId}&subcategoryId=${subcategoryId}&page=${page}&size=9`;
                 } else {
-                    apiURL = `http://localhost:8080/products/category-subcategory?categoryId=${categoryId}`;
+                    apiURL = `http://localhost:8080/products/category-subcategory?categoryId=${categoryId}&page=${page}&size=9`;
                 }
 
                 // fetch category or subcategory products
@@ -288,6 +321,7 @@
                 })
                 .then(data => {
                     const productsContainer = document.querySelector('.shop-product-area .row');
+                    productsContainer.innerHTML = '';
                     data.forEach(product => {
                         const productElement = document.createElement('div');
                         productElement.className = 'col-4';
@@ -340,12 +374,15 @@
                         brandList.innerHTML += listItem;
                     });
 
+                    // Update the current page
+                    currentPage = page;
+
+                    console.log(currentPage);
                 })
                 .catch(error => {
 
                 });
-
-            });
+            }
         </script>
     </body>
 </html>

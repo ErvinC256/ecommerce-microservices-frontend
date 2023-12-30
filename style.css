@@ -150,59 +150,23 @@ option {
 /*----------------------------------------*/
 /*  1.5 Navigation
 /*----------------------------------------*/
-.slider-banner-area .owl-prev {
+.owl-prev,
+.owl-next {
     width: 15px;
     height: 50px;
     position: absolute;
-    top: 40%;
-    margin-left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
     display: block !important;
-    border:0px solid black;
+    border: 0 solid black;
 }
-.slider-banner-area .owl-next {
-    width: 15px;
-    height: 50px;
-    position: absolute;
-    top: 40%;
+
+.owl-prev {
+    left: -20px;
+}
+
+.owl-next {
     right: -20px;
-    display: block !important;
-    border:0px solid black;
-}
-.product-tab-area .owl-prev {
-    width: 15px;
-    height: 50px;
-    position: absolute;
-    top: 40%;
-    margin-left: -20px;
-    display: block !important;
-    border:0px solid black;
-}
-.product-tab-area .owl-next {
-    width: 15px;
-    height: 50px;
-    position: absolute;
-    top: 40%;
-    right: -20px;
-    display: block !important;
-    border:0px solid black;
-}
-.product-area .owl-prev {
-    width: 15px;
-    height: 50px;
-    position: absolute;
-    top: 40%;
-    margin-left: -5px;
-    display: block !important;
-    border:0px solid black;
-}
-.product-area .owl-next {
-    width: 15px;
-    height: 50px;
-    position: absolute;
-    top: 40%;
-    right: -5px;
-    display: block !important;
-    border:0px solid black;
 }
 /*----------------------------------------*/
 /*  1.6 Tooltip
@@ -1018,12 +982,16 @@ iframe {
 }
 .shop-top-bar {
 	padding: 10px;
+	padding-top: 15px;
+	text-align: right;
+	border-top: 1px solid #e1e1e1; 
+	border-bottom: 1px solid #e1e1e1;
 }
 .shop-top-bar label {
 	font-size: 14px;
 }
-.product-image > a img {
-  	width: 100%;
+.shop-products-wrapper {
+	border-top: 1px solid #e1e1e1;
 }
 /*----- paginatoin-area  css -----*/
 .paginatoin-area {

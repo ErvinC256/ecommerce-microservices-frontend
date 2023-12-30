@@ -472,14 +472,14 @@
                 getCartNumber();
 
                 //load laptop & tablets data
-                fetch('http://localhost:8080/products/latest?limit=10') 
+                fetch('http://localhost:8080/products/latest?page=0&size=10') 
                 .then(response => {
                     return response.json();
                 })
                 .then(data => {
                     const productsContainer = document.querySelector('.product-tab-area #new-product .owl-carousel');
                     productsContainer.innerHTML = '';
-                    data.forEach(product => {
+                    data.content.forEach(product => {
                         const productElement = document.createElement('div');
 
                         // Generate star rating
@@ -559,7 +559,7 @@
                 .then(data => {
                     const productsContainer = document.querySelector('.laptop-area .owl-carousel');
                     productsContainer.innerHTML = '';
-                    data.forEach(product => {
+                    data.content.forEach(product => {
                         const productElement = document.createElement('div');
                         productElement.className = 'col-12';
 
@@ -640,7 +640,7 @@
                 .then(data => {
                     const productsContainer = document.querySelector('.electronics-area .owl-carousel');
                     productsContainer.innerHTML = '';
-                    data.forEach(product => {
+                    data.content.forEach(product => {
                         const productElement = document.createElement('div');
                         productElement.className = 'col-12';
 
@@ -721,7 +721,7 @@
                 .then(data => {
                     const productsContainer = document.querySelector('.printer-area .owl-carousel');
                     productsContainer.innerHTML = '';
-                    data.forEach(product => {
+                    data.content.forEach(product => {
                         const productElement = document.createElement('div');
                         productElement.className = 'col-12';
 

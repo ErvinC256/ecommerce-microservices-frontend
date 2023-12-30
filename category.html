@@ -14,8 +14,6 @@
                 font-size: 80%;
             }
 
-
-
             .btn-light {
                 background-color: #fff;
                 border-color: #e4e4e4;
@@ -280,6 +278,20 @@
                             </div> <!-- card.// -->
                         </div>
                         <div class="col-9">
+                            <!-- Begin Brand Area -->
+                            <div class="product-area mb-50 brand-area">
+                                <div class="container">
+                                    <div class="section-title">
+                                        <h2 style="text-align: right;">Brands</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="brands-active owl-carousel">
+                                            <!-- //brands will be inserted here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Brand Area End here -->
                             <div class="shop-top-bar">
                                 <div class="quantity-select">
                                     <label>Sort by</label>
@@ -427,6 +439,7 @@
                 const categoryId = params.get('categoryId');
                 const subcategoryId = params.get('subcategoryId');
 
+                // get manufacturers
                 fetch(`http://localhost:8080/products/categories/${categoryId}/manufacturers`)
                 .then(response => response.json())
                 .then(data => {
@@ -460,7 +473,7 @@
 
                     fetchAndRenderProducts(currentPage);
 
-                    })
+                })
 
                 .catch(error => console.error('Error:', error));
 
@@ -587,6 +600,62 @@
                         }
                     }
                 }
+            }
+        </script>
+        <script>
+            //load laptop & tablets data
+            fetch('http://localhost:8080/products/category-subcategory?categoryId=1') 
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    const brandsContainer = document.querySelector('.brand-area .owl-carousel');
+                    brandsContainer.innerHTML = '';
+                    data.content.forEach(brand => {
+                        // const brandElement = generateSingleProduct(product);
+                        const brandElement = document.createElement('div');
+                        brandElement.innerHTML = `
+                            <img src="images/product/large-size/${brand.name}.jpg">
+                        `;
+
+                        brandsContainer.appendChild(brandElement);
+
+                    });
+                    initializeOwlCarousel(brandsContainer);
+                })
+                .catch(error => {
+
+                });
+            function initializeOwlCarousel(productsContainer) {
+                $(productsContainer).trigger('destroy.owl.carousel');
+
+                // $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
+                $(productsContainer).owlCarousel({
+                    loop: true,
+                    nav: true,
+                    dots: false,
+                    autoplay: false,
+                    autoplayTimeout: 5000,
+                    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+                    item: 5,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        480: {
+                            items: 2
+                        },
+                        768: {
+                            items: 3
+                        },
+                        992: {
+                            items: 4
+                        },
+                        1200: {
+                            items: 5
+                        }
+                    }
+                });
             }
         </script>
     </body>

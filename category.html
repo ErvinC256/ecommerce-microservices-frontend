@@ -282,7 +282,7 @@
                             <div class="product-area mb-50 brand-area">
                                 <div class="container">
                                     <div class="section-title">
-                                        <h2 style="text-align: right;">Brands</h2>
+                                        <h2 style="text-align: right; float: none;">Available Brands</h2>
                                     </div>
                                     <div class="row">
                                         <div class="brands-active owl-carousel">
@@ -443,6 +443,24 @@
                 fetch(`http://localhost:8080/products/categories/${categoryId}/manufacturers`)
                 .then(response => response.json())
                 .then(data => {
+                    
+                    // display available manufacturers
+                    const brandsContainer = document.querySelector('.brand-area .owl-carousel');
+                    brandsContainer.innerHTML = '';
+
+                    for (let manufacturer in data) {
+                        const brandElement = document.createElement('div');
+                        brandElement.innerHTML = `
+                            <div style="padding: 50px;">
+                                <img src="images/logo/manufacturer's logo/${manufacturer}.jpg" title="${manufacturer}">
+                            </div>
+                        `;
+
+                        brandsContainer.appendChild(brandElement);
+                    }
+                    initializeOwlCarousel(brandsContainer);
+                    
+                    // display manufacturers optiosn in filter
                     let filterGroup = document.querySelector('#collapse_manufacturers .card-body');
 
                     // Clear the existing content
@@ -603,29 +621,6 @@
             }
         </script>
         <script>
-            //load laptop & tablets data
-            fetch('http://localhost:8080/products/category-subcategory?categoryId=1') 
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const brandsContainer = document.querySelector('.brand-area .owl-carousel');
-                    brandsContainer.innerHTML = '';
-                    data.content.forEach(brand => {
-                        // const brandElement = generateSingleProduct(product);
-                        const brandElement = document.createElement('div');
-                        brandElement.innerHTML = `
-                            <img src="images/product/large-size/${brand.name}.jpg">
-                        `;
-
-                        brandsContainer.appendChild(brandElement);
-
-                    });
-                    initializeOwlCarousel(brandsContainer);
-                })
-                .catch(error => {
-
-                });
             function initializeOwlCarousel(productsContainer) {
                 $(productsContainer).trigger('destroy.owl.carousel');
 

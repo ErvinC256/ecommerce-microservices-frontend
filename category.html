@@ -167,8 +167,6 @@
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li id="category-name"></li>
-                            <li id="subcategory-name"></li>
                         </ul>
                     </div>
                 </div>
@@ -406,18 +404,24 @@
                 const categoryName = params.get('categoryName');
                 const subcategoryName = params.get('subcategoryName');
 
-                // Get the breadcrumb elements
-                let categoryElement = document.querySelector('#category-name');
-                let subcategoryElement = document.querySelector('#subcategory-name');
+                // Get the breadcrumb list
+                let breadcrumbList = document.querySelector('.breadcrumb-content ul');
 
                 // Set the breadcrumb content
                 if (subcategoryName) {
-                    categoryElement.innerHTML = `<a href="category.html?categoryId=${params.get('categoryId')}&categoryName=${categoryName}">${categoryName}</a>`;
-                    subcategoryElement.textContent = subcategoryName;
-                    subcategoryElement.style.color = '#808080';
+                    let categoryLi = document.createElement('li');
+                    categoryLi.innerHTML = `<a href="category.html?categoryId=${params.get('categoryId')}&categoryName=${encodeURIComponent(categoryName)}">${categoryName}</a>`;
+                    breadcrumbList.appendChild(categoryLi);
+
+                    let subcategoryLi = document.createElement('li');
+                    subcategoryLi.textContent = subcategoryName;
+                    subcategoryLi.style.color = '#808080';
+                    breadcrumbList.appendChild(subcategoryLi);
                 } else if (categoryName) {
-                    categoryElement.textContent = categoryName;
-                    categoryElement.style.color = '#808080';
+                    let categoryLi = document.createElement('li');
+                    categoryLi.textContent = categoryName;
+                    categoryLi.style.color = '#808080';
+                    breadcrumbList.appendChild(categoryLi);
                 }
                 
                 const categoryId = params.get('categoryId');

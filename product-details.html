@@ -113,7 +113,6 @@
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li class="active">Product Details</li>
                         </ul>
                     </div>
                 </div>
@@ -287,20 +286,37 @@
                     return response.json();
                 })
                 .then(product => {
+
+                    // Get the breadcrumb list
+                    let breadcrumbList = document.querySelector('.breadcrumb-content ul');
+
+                    // Set the breadcrumb content
+                    let categoryLi = document.createElement('li');
+                    categoryLi.innerHTML = `<a href="category.html?categoryId=${product.categoryId}&categoryName=${encodeURIComponent(product.categoryName)}">${product.categoryName}</a>`;
+                    breadcrumbList.appendChild(categoryLi);
+
+                    let subcategoryLi = document.createElement('li');
+                    subcategoryLi.innerHTML = `<a href="category.html?categoryId=${product.categoryId}&categoryName=${encodeURIComponent(product.categoryName)}&subcategoryId=${product.subcategoryId}&subcategoryName=${encodeURIComponent(product.subcategoryName)}">${product.subcategoryName}</a>`;
+                    breadcrumbList.appendChild(subcategoryLi);
+
+                    let emptyLi = document.createElement('li');
+                    emptyLi.innerHTML = '';
+                    breadcrumbList.appendChild(emptyLi);
+
                     const productsContainer = document.querySelector('.product-details-area .container');
                     const productElement = document.createElement('div');
                     productElement.className = 'row';
                     productElement.innerHTML = `
                         <div class="col-4">
                             <div class="product-details-left">
-                                <img src="images/product/large-size/${product.name}.jpg" alt="product image">
+                                <img src="images/product/large-size/${product.productName}.jpg" alt="product image">
                                 <p>Images for illustrative purposes only - actual items may differ from images or based on configurations selected.</p>
                             </div>       
                         </div>
                         <div class="col-8">
                             <div class="product-details-right">
                                 <div>
-                                    <h2>${product.name}</h2>
+                                    <h2>${product.productName}</h2>
                                 </div>
                                 <div style="border-bottom: 1px solid #e1e1e1;">
                                     <p>${product.description}</p>

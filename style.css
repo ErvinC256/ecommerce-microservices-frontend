@@ -470,21 +470,15 @@ option {
 }
 .breadcrumb-content li {
 	display: inline-block;
-	margin-right: 28px;
+	padding-right: 10px;
 	position: relative;
 }
-.breadcrumb-content li::before {
-	background-color: #e1e1e1;
-	content: "";
-	height: 1px;
-	position: absolute;
-	right: -22px;
-	top: 10px;
-	transform: rotate(-67deg);
-	width: 15px;
-}
-.breadcrumb-content li:last-child::before {
-	display: none;
+.breadcrumb-content ul li:not(:first-child)::before {
+    content: "\f105"; 
+    font-family: fontawesome;
+    padding-right: 10px;
+	font-size: 10px;
+	vertical-align: middle;
 }
 /*----------------------------------------*/
 /*  2.3 Slider Contents

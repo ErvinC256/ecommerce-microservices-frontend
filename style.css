@@ -1033,9 +1033,9 @@ iframe {
 }
 /*----- paginatoin-area  css -----*/
 .paginatoin-area {
-	background: #fff none repeat scroll 0 0;
 	margin: 50px 0 0;
 	padding: 10px;
+	font-size: 16px;
 }
 .pagination-box {
   	text-align: right;

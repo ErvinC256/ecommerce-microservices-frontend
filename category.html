@@ -232,13 +232,22 @@
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>
-            let currentPage = 0;
+            let currentPage;
             let totalPages;
 
             document.addEventListener('DOMContentLoaded', function () {
+
+                if (!sessionStorage.getItem('currentPage')) {
+                    sessionStorage.setItem('currentPage', 0);
+                }
+                currentPage = sessionStorage.getItem('currentPage');
+                sessionStorage.removeItem('currentPage');
+
                 checkSignInStatus();
                 getCartNumber();
                 fetchAndRenderProducts(currentPage);
+                
+                console.log(currentPage);
             });
         
             function fetchAndRenderProducts(page) {
@@ -314,10 +323,23 @@
                         }
         
                         paginationBox.innerHTML += `<li><a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a></li>`;
-        
-                        paginationBox.addEventListener('click', handlePaginationClick);
+                        
+                        let prevButton = document.querySelector('.Previous');
+                        let nextButton = document.querySelector('.Next');
 
-                        currentPage = page;
+                        // If on the first page, make the 'Previous' button red
+                        if (currentPage == 0) {
+                            prevButton.style.color = 'gray';
+                            prevButton.style.pointerEvents = 'none';
+                        }
+
+                        // If on the last page, disable the 'Next' button and make it gray
+                        if (currentPage == totalPages - 1) {
+                            nextButton.style.color = 'gray';
+                            nextButton.style.pointerEvents = 'none';
+                        }
+                        
+                        paginationBox.addEventListener('click', handlePaginationClick);
                     })
                     .catch(error => {
                         console.error(error);
@@ -331,14 +353,21 @@
                     const pageNumber = parseInt(event.target.textContent);
         
                     if (!isNaN(pageNumber)) {
-                        fetchAndRenderProducts(pageNumber - 1);
+
+                        sessionStorage.setItem('currentPage', pageNumber - 1);
+                        location.reload();
+                
                     } else if (event.target.classList.contains('Previous')) {
+
                         if (currentPage > 0) {
-                            fetchAndRenderProducts(currentPage - 1);
+                            sessionStorage.setItem('currentPage', currentPage - 1);
+                            location.reload();
                         }
                     } else if (event.target.classList.contains('Next')) {
+
                         if (currentPage < totalPages - 1) {
-                            fetchAndRenderProducts(currentPage + 1);
+                            sessionStorage.setItem('currentPage', currentPage + 1);
+                            location.reload();
                         }
                     }
                 }

@@ -471,7 +471,7 @@
                 checkSignInStatus();
                 getCartNumber();
 
-                //load laptop & tablets data
+                //load latest products data
                 fetch('http://localhost:8080/products/latest?page=0&size=10') 
                 .then(response => {
                     return response.json();
@@ -480,72 +480,11 @@
                     const productsContainer = document.querySelector('.product-tab-area #new-product .owl-carousel');
                     productsContainer.innerHTML = '';
                     data.content.forEach(product => {
-                        const productElement = document.createElement('div');
-
-                        // Generate star rating
-                        let starRating = '';
-                        for (let i = 1; i <= 5; i++) {
-                            let star = document.createElement('span');
-                            star.className = 'star';
-                            star.textContent = '★';
-                            if (i > Math.ceil(2.5)) {
-                                star.classList.add('empty'); // Use classList.add for adding classes
-                            } else if (i > 2.5) {
-                                star.classList.add('half');
-                            }
-                            starRating += star.outerHTML;
-                        }
-
-                        productElement.innerHTML = `
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="product-details.html?product=${product.id}">
-                                        <img src="images/product/large-size/${product.name}.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-desc">
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <span class="product-manufacturer">${product.manufacturer}</span>
-                                        <span class="star-rating">${starRating}</span>
-                                    </div>
-                                    <hr>
-                                    <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
-                                    <hr>
-                                    <span class="product-price">$ ${product.price.toFixed(2)}</span>
-                                </div>
-                            </div>
-                        `;
+                        const productElement = generateSingleProduct(product);
                         productsContainer.appendChild(productElement);
-                    });
-                    $(productsContainer).trigger('destroy.owl.carousel');
 
-                    // $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
-                    $(productsContainer).owlCarousel({
-                        loop: true,
-                        nav: true,
-                        dots: false,
-                        autoplay: false,
-                        autoplayTimeout: 5000,
-                        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-                        item: 5,
-                        responsive: {
-                            0: {
-                                items: 1
-                            },
-                            480: {
-                                items: 2
-                            },
-                            768: {
-                                items: 3
-                            },
-                            992: {
-                                items: 4
-                            },
-                            1200: {
-                                items: 5
-                            }
-                        }
                     });
+                    initializeOwlCarousel(productsContainer);
                 })
                 .catch(error => {
 
@@ -560,73 +499,11 @@
                     const productsContainer = document.querySelector('.laptop-area .owl-carousel');
                     productsContainer.innerHTML = '';
                     data.content.forEach(product => {
-                        const productElement = document.createElement('div');
-                        productElement.className = 'col-12';
-
-                        // Generate star rating
-                        let starRating = '';
-                        for (let i = 1; i <= 5; i++) {
-                            let star = document.createElement('span');
-                            star.className = 'star';
-                            star.textContent = '★';
-                            if (i > Math.ceil(2.5)) {
-                                star.classList.add('empty'); // Use classList.add for adding classes
-                            } else if (i > 2.5) {
-                                star.classList.add('half');
-                            }
-                            starRating += star.outerHTML;
-                        }
-
-                        productElement.innerHTML = `
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="product-details.html?product=${product.id}">
-                                        <img src="images/product/large-size/${product.name}.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-desc">
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <span class="product-manufacturer">${product.manufacturer}</span>
-                                        <span class="star-rating">${starRating}</span>
-                                    </div>
-                                    <hr>
-                                    <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
-                                    <hr>
-                                    <span class="product-price">$ ${product.price.toFixed(2)}</span>
-                                </div>
-                            </div>
-                        `;
+                        const productElement = generateSingleProduct(product);
                         productsContainer.appendChild(productElement);
-                    });
-                    $(productsContainer).trigger('destroy.owl.carousel');
 
-                    // $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
-                    $(productsContainer).owlCarousel({
-                        loop: true,
-                        nav: true,
-                        dots: false,
-                        autoplay: false,
-                        autoplayTimeout: 5000,
-                        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-                        item: 5,
-                        responsive: {
-                            0: {
-                                items: 1
-                            },
-                            480: {
-                                items: 2
-                            },
-                            768: {
-                                items: 3
-                            },
-                            992: {
-                                items: 4
-                            },
-                            1200: {
-                                items: 5
-                            }
-                        }
                     });
+                    initializeOwlCarousel(productsContainer);
                 })
                 .catch(error => {
 
@@ -641,73 +518,11 @@
                     const productsContainer = document.querySelector('.electronics-area .owl-carousel');
                     productsContainer.innerHTML = '';
                     data.content.forEach(product => {
-                        const productElement = document.createElement('div');
-                        productElement.className = 'col-12';
-
-                        // Generate star rating
-                        let starRating = '';
-                        for (let i = 1; i <= 5; i++) {
-                            let star = document.createElement('span');
-                            star.className = 'star';
-                            star.textContent = '★';
-                            if (i > Math.ceil(2.5)) {
-                                star.classList.add('empty'); // Use classList.add for adding classes
-                            } else if (i > 2.5) {
-                                star.classList.add('half');
-                            }
-                            starRating += star.outerHTML;
-                        }
-
-                        productElement.innerHTML = `
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="product-details.html?product=${product.id}">
-                                        <img src="images/product/large-size/${product.name}.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-desc">
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <span class="product-manufacturer">${product.manufacturer}</span>
-                                        <span class="star-rating">${starRating}</span>
-                                    </div>
-                                    <hr>
-                                    <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
-                                    <hr>
-                                    <span class="product-price">$ ${product.price.toFixed(2)}</span>
-                                </div>
-                            </div>
-                        `;
+                        const productElement = generateSingleProduct(product);
                         productsContainer.appendChild(productElement);
-                    });
-                    $(productsContainer).trigger('destroy.owl.carousel');
 
-                    // $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
-                    $(productsContainer).owlCarousel({
-                        loop: true,
-                        nav: true,
-                        dots: false,
-                        autoplay: false,
-                        autoplayTimeout: 5000,
-                        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-                        item: 5,
-                        responsive: {
-                            0: {
-                                items: 1
-                            },
-                            480: {
-                                items: 2
-                            },
-                            768: {
-                                items: 3
-                            },
-                            992: {
-                                items: 4
-                            },
-                            1200: {
-                                items: 5
-                            }
-                        }
                     });
+                    initializeOwlCarousel(productsContainer);
                 })
                 .catch(error => {
 
@@ -722,78 +537,86 @@
                     const productsContainer = document.querySelector('.printer-area .owl-carousel');
                     productsContainer.innerHTML = '';
                     data.content.forEach(product => {
-                        const productElement = document.createElement('div');
-                        productElement.className = 'col-12';
-
-                        // Generate star rating
-                        let starRating = '';
-                        for (let i = 1; i <= 5; i++) {
-                            let star = document.createElement('span');
-                            star.className = 'star';
-                            star.textContent = '★';
-                            if (i > Math.ceil(2.5)) {
-                                star.classList.add('empty'); // Use classList.add for adding classes
-                            } else if (i > 2.5) {
-                                star.classList.add('half');
-                            }
-                            starRating += star.outerHTML;
-                        }
-
-                        productElement.innerHTML = `
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="product-details.html?product=${product.id}">
-                                        <img src="images/product/large-size/${product.name}.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-desc">
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <span class="product-manufacturer">${product.manufacturer}</span>
-                                        <span class="star-rating">${starRating}</span>
-                                    </div>
-                                    <hr>
-                                    <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
-                                    <hr>
-                                    <span class="product-price">$ ${product.price.toFixed(2)}</span>
-                                </div>
-                            </div>
-                        `;
+                        const productElement = generateSingleProduct(product);
                         productsContainer.appendChild(productElement);
-                    });
-                    $(productsContainer).trigger('destroy.owl.carousel');
 
-                    // $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
-                    $(productsContainer).owlCarousel({
-                        loop: true,
-                        nav: true,
-                        dots: false,
-                        autoplay: false,
-                        autoplayTimeout: 5000,
-                        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-                        item: 5,
-                        responsive: {
-                            0: {
-                                items: 1
-                            },
-                            480: {
-                                items: 2
-                            },
-                            768: {
-                                items: 3
-                            },
-                            992: {
-                                items: 4
-                            },
-                            1200: {
-                                items: 5
-                            }
-                        }
                     });
+                    initializeOwlCarousel(productsContainer);
                 })
                 .catch(error => {
 
                 });
             });
+
+            function generateSingleProduct(product) {
+                const productElement = document.createElement('div');
+
+                // Generate star rating
+                let starRating = '';
+                for (let i = 1; i <= 5; i++) {
+                    let star = document.createElement('span');
+                    star.className = 'star';
+                    star.textContent = '★';
+                    if (i > Math.ceil(2.5)) {
+                        star.classList.add('empty'); // Use classList.add for adding classes
+                    } else if (i > 2.5) {
+                        star.classList.add('half');
+                    }
+                    starRating += star.outerHTML;
+                }
+
+                productElement.innerHTML = `
+                    <div class="single-product-wrap">
+                        <div class="product-image">
+                            <a href="product-details.html?product=${product.id}">
+                                <img src="images/product/large-size/${product.name}.jpg">
+                            </a>
+                        </div>
+                        <div class="product-desc">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span class="product-manufacturer">${product.manufacturer}</span>
+                                <span class="star-rating">${starRating}</span>
+                            </div>
+                            <hr>
+                            <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
+                            <hr>
+                            <span class="product-price">$ ${product.price.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `;
+                return productElement;
+            }
+            function initializeOwlCarousel(productsContainer) {
+                $(productsContainer).trigger('destroy.owl.carousel');
+
+                // $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
+                $(productsContainer).owlCarousel({
+                    loop: true,
+                    nav: true,
+                    dots: false,
+                    autoplay: false,
+                    autoplayTimeout: 5000,
+                    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+                    item: 5,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        480: {
+                            items: 2
+                        },
+                        768: {
+                            items: 3
+                        },
+                        992: {
+                            items: 4
+                        },
+                        1200: {
+                            items: 5
+                        }
+                    }
+                });
+            }
         </script>
     </body>
 </html>

@@ -244,100 +244,100 @@
 
                 // fetch cart items
                 fetch(`http://localhost:8080/carts/${userId}`) 
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const cartTable = document.querySelector('.cart-table');
-                    const dateElement = document.querySelector('#last-updated');
-                    const lastUpdated = new Date(data.lastUpdated);
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        const cartTable = document.querySelector('.cart-table');
+                        const dateElement = document.querySelector('#last-updated');
+                        const lastUpdated = new Date(data.lastUpdated);
 
-                    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-                    const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
+                        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                        const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
 
-                    dateElement.textContent = formattedDate;
+                        dateElement.textContent = formattedDate;
 
-                    if (data.cartItemDtos.length === 0) {
-                        const messageRow = document.createElement('tr');
-                        messageRow.innerHTML = '<p style="font-size: 18px; text-align: center;">Your cart is empty</p>';
-                        cartTable.appendChild(messageRow);
-                        return;
-                    }
-
-                    data.cartItemDtos.forEach(cartItem => {
-                        const cartItemElement = document.createElement('tr');
-                        let selectOptions = '';
-                        for(let i = 1; i <= cartItem.quantityInStock; i++) {
-                            selectOptions += `<option value="${i}" ${i === cartItem.quantity ? 'selected' : ''}>Quantity: ${i}</option>`;
+                        if (data.cartItemDtos.length === 0) {
+                            const messageRow = document.createElement('tr');
+                            messageRow.innerHTML = '<p style="font-size: 18px; text-align: center;">Your cart is empty</p>';
+                            cartTable.appendChild(messageRow);
+                            return;
                         }
-                        cartItemElement.innerHTML = `
-                            <td>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="product-image">
-                                            <a href="single-product.html">
-                                                <img src="images/product/large-size/${cartItem.name}.jpg" alt="Li's Product Image">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="cart-product-details">
-                                            <div>
-                                                <p style="font-size: 18px;">${cartItem.name}</p>
+
+                        data.cartItemDtos.forEach(cartItem => {
+                            const cartItemElement = document.createElement('tr');
+                            let selectOptions = '';
+                            for(let i = 1; i <= cartItem.quantityInStock; i++) {
+                                selectOptions += `<option value="${i}" ${i === cartItem.quantity ? 'selected' : ''}>Quantity: ${i}</option>`;
+                            }
+                            cartItemElement.innerHTML = `
+                                <td>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="product-image">
+                                                <a href="single-product.html">
+                                                    <img src="images/product/large-size/${cartItem.name}.jpg" alt="Li's Product Image">
+                                                </a>
                                             </div>
-                                            <div>
-                                                <div class="quantity-select">
-                                                    <p style="font-size: 16px;">Stock Left: ${cartItem.quantityInStock}</p>
-                                                    <select>
-                                                        ${selectOptions}
-                                                    </select>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="cart-product-details">
+                                                <div>
+                                                    <p style="font-size: 18px;">${cartItem.name}</p>
+                                                </div>
+                                                <div>
+                                                    <div class="quantity-select">
+                                                        <p style="font-size: 16px;">Stock Left: ${cartItem.quantityInStock}</p>
+                                                        <select>
+                                                            ${selectOptions}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <ul class="cart-options">
+                                                        <li><a href="">Checkout</a></li>
+                                                        <li><a href="" class="remove" data-id="${cartItem.cartItemId}">Remove</a></li>
+                                                        <li><a href="product-details.html?product=${cartItem.productId}">View Details</a></li>      
+                                                    </ul>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <ul class="cart-options">
-                                                    <li><a href="">Checkout</a></li>
-                                                    <li><a href="" class="remove" data-id="${cartItem.cartItemId}">Remove</a></li>
-                                                    <li><a href="product-details.html?product=${cartItem.productId}">View Details</a></li>      
-                                                </ul>
-                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td style="text-align: right; width: 100px;">
-                                <p style="font-size: 16px; font-weight: bold;">RM ${cartItem.price.toFixed(2)}</p>
-                            </td>
-                        `;
-                        cartTable.appendChild(cartItemElement);
-                    });
+                                </td>
+                                <td style="text-align: right; width: 100px;">
+                                    <p style="font-size: 16px; font-weight: bold;">RM ${cartItem.price.toFixed(2)}</p>
+                                </td>
+                            `;
+                            cartTable.appendChild(cartItemElement);
+                        });
 
-                    document.querySelectorAll('.remove').forEach(item => {
-                        item.addEventListener('click', function(event) {
-                            event.preventDefault();
+                        document.querySelectorAll('.remove').forEach(item => {
+                            item.addEventListener('click', function(event) {
+                                event.preventDefault();
 
-                            fetch(`http://localhost:8080/carts/${userId}/cart-items/${this.dataset.id}`, {
-                                method: 'DELETE',
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                location.reload();
-                            })
-                            .catch((error) => {
-                                
+                                fetch(`http://localhost:8080/carts/${userId}/cart-items/${this.dataset.id}`, {
+                                    method: 'DELETE',
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    location.reload();
+                                })
+                                .catch((error) => {
+                                    
+                                });
                             });
                         });
+
+                        // Update basket summary
+                        const itemCountElement = document.getElementById('item-count');
+                        const subtotalElement = document.getElementById('subtotal');
+
+                        itemCountElement.textContent = data.cartItemDtos.length;
+                        subtotalElement.textContent = data.subtotal.toFixed(2);
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-
-                    // Update basket summary
-                    const itemCountElement = document.getElementById('item-count');
-                    const subtotalElement = document.getElementById('subtotal');
-
-                    itemCountElement.textContent = data.cartItemDtos.length;
-                    subtotalElement.textContent = data.subtotal.toFixed(2);
-                })
-                .catch(error => {
-
-                });
 
                 document.getElementById('clear-cart').addEventListener('click', function() {
                     event.preventDefault();

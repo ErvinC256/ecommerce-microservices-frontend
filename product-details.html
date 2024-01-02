@@ -282,245 +282,245 @@
 
                 // fetch product details
                 fetch(`http://localhost:8080/products/${productId}`) 
-                .then(response => {
-                    return response.json();
-                })
-                .then(product => {
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(product => {
 
-                    // Get the breadcrumb list
-                    let breadcrumbList = document.querySelector('.breadcrumb-content ul');
+                        // Get the breadcrumb list
+                        let breadcrumbList = document.querySelector('.breadcrumb-content ul');
 
-                    // Set the breadcrumb content
-                    let categoryLi = document.createElement('li');
-                    categoryLi.innerHTML = `<a href="category.html?categoryId=${product.categoryId}&categoryName=${encodeURIComponent(product.categoryName)}">${product.categoryName}</a>`;
-                    breadcrumbList.appendChild(categoryLi);
+                        // Set the breadcrumb content
+                        let categoryLi = document.createElement('li');
+                        categoryLi.innerHTML = `<a href="category.html?categoryId=${product.categoryId}&categoryName=${encodeURIComponent(product.categoryName)}">${product.categoryName}</a>`;
+                        breadcrumbList.appendChild(categoryLi);
 
-                    let subcategoryLi = document.createElement('li');
-                    subcategoryLi.innerHTML = `<a href="category.html?categoryId=${product.categoryId}&categoryName=${encodeURIComponent(product.categoryName)}&subcategoryId=${product.subcategoryId}&subcategoryName=${encodeURIComponent(product.subcategoryName)}">${product.subcategoryName}</a>`;
-                    breadcrumbList.appendChild(subcategoryLi);
+                        let subcategoryLi = document.createElement('li');
+                        subcategoryLi.innerHTML = `<a href="category.html?categoryId=${product.categoryId}&categoryName=${encodeURIComponent(product.categoryName)}&subcategoryId=${product.subcategoryId}&subcategoryName=${encodeURIComponent(product.subcategoryName)}">${product.subcategoryName}</a>`;
+                        breadcrumbList.appendChild(subcategoryLi);
 
-                    let emptyLi = document.createElement('li');
-                    emptyLi.innerHTML = '';
-                    breadcrumbList.appendChild(emptyLi);
+                        let emptyLi = document.createElement('li');
+                        emptyLi.innerHTML = '';
+                        breadcrumbList.appendChild(emptyLi);
 
-                    const productsContainer = document.querySelector('.product-details-area .container');
-                    const productElement = document.createElement('div');
-                    productElement.className = 'row';
-                    productElement.innerHTML = `
-                        <div class="col-4">
-                            <div class="product-details-left">
-                                <img src="images/product/large-size/${product.productName}.jpg" alt="product image">
-                                <p>Images for illustrative purposes only - actual items may differ from images or based on configurations selected.</p>
-                            </div>       
-                        </div>
-                        <div class="col-8">
-                            <div class="product-details-right">
-                                <div>
-                                    <h2>${product.productName}</h2>
-                                </div>
-                                <div style="border-bottom: 1px solid #e1e1e1;">
-                                    <p>${product.description}</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="add-to-cart-div">
-                                            <div class="price-div">
-                                                <p style="font-size: 20px; font-weight: bold;">$ ${product.price.toFixed(2)}</p>
-                                                <p>
-                                                    <div class="my-tooltip">Price above includes tax.
-                                                        <div class="tooltip-position">
-                                                            <div class="tooltip-top">
-                                                                <p>Price above includes tax.</p>
-                                                            </div>
-                                                            <div class="tooltip-bottom">
-                                                                <p>The displayed price already accounts for all applicable taxes, ensuring that there are no additional charges beyond what you see.</p>
-                                                            </div>
-                                                            <i></i>
-                                                        </div>
-                                                    </div>
-                                                    <span>Free Shipping</span>
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p style="font-size: 20px; color: #FF0000; margin-bottom: 5px;">Stock Left: ${product.quantityInStock} <span style="font-size: 12px;"> <a href="#" onclick="showMore(event)" style="color: #0673ca;">See more details <i class="fa fa-angle-down" aria-hidden="true"></i></a></span></p>
-                                                <form action="#"></form>
-                                                    <div class="quantity-select">
-                                                        <select>
-                                                            <option value="1">Quantity: 1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                        </select>
-                                                    </div>
-                                                    <input type="hidden" name="product-id" value="${product.productId}">
-                                                    <div style="margin-top: 10px;">
-                                                        <button type="submit" id="add-to-cart" class="my-button">Add to Cart</button>
-                                                        <button type="submit" id="checkout" class="my-button-inverse">Checkout This Item</button>
-                                                    </div>
-                                                    <div class="col-12 cart-message">
-                                                        <div>
-                                                            <p></p>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="block-reassurance">
-                                                <table>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="fas fa-shipping-fast"></i>
-                                                        </td>
-                                                        <td>
-                                                            <div class="my-tooltip" >Timely and Reliable Delivery
-                                                                <div class="tooltip-position">
-                                                                    <div class="tooltip-top">
-                                                                        <p>Timely and Reliable Delivery</p>
-                                                                    </div>
-                                                                    <div class="tooltip-bottom">
-                                                                        <p>You can expect your orders to arrive consistently on schedule, backed by a reliable delivery service.</p>
-                                                                    </div>
-                                                                    <i></i>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="fas fa-exchange"></i>
-                                                        </td>
-                                                        <td>
-                                                            <div class="my-tooltip">Eligible for Return, Refund or Replacement within 30 Days
-                                                                <div class="tooltip-position">
-                                                                    <div class="tooltip-top">
-                                                                        <p>Eligible for Return, Refund or Replacement within 30 Days</p>
-                                                                    </div>
-                                                                    <div class="tooltip-bottom">
-                                                                        <p>You can return this product in its original state within 30 days of receiving it for a full refund or a replacement.</p>
-                                                                    </div>
-                                                                    <i></i>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="far fa-credit-card"></i>
-                                                        </td>
-                                                        <td>
-                                                            <div class="my-tooltip">Secure Transaction
-                                                                <div class="tooltip-position">
-                                                                    <div class="tooltip-top">
-                                                                        <p>Secure Transaction</p>
-                                                                    </div>
-                                                                    <div class="tooltip-bottom">
-                                                                        <p>Our relentless commitment is to ensure the utmost protection for your security and privacy, and to safeguard your sensitive information.</p>
-                                                                    </div>
-                                                                    <i></i>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>                                
-                                            </div>    
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="product-details-table-div">
-                                            <table class="product-details-table">
-                                                <tr>
-                                                    <th>Manufacturer</td>
-                                                    <td><img src="images/logo/manufacturer's logo/${product.manufacturer}.jpg" title="${product.manufacturer}" width="100%"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Ships from</td>
-                                                    <td>E-Commerce.com</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Sold by</td>
-                                                    <td>E-Commerce.com</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Delivery</th>
-                                                    <td>
-                                                        <p>Estimated between Jan 1, 2024 and Jan 3, 2024.</p> 
-                                                        <p id="moreText" style="display: none; color: #FF0000;">Delivery time varies based on buyer proximity, chosen postage, seller history, and factors, especially during peak periods.</p>
-                                                        <a href="#" id="moreLink" onclick="showMore(event)" style="color: #0673ca;">See more details <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                                        <a href="#" id="lessLink" style="display: none;" onclick="showLess(event)" style="color: #0673ca;">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Returns</td>
-                                                    <td>Returnable until Jan 31, 2024. Buyer pays for return shipping. <a href="#" style="color: #0673ca;">Learn More</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>  
+                        const productsContainer = document.querySelector('.product-details-area .container');
+                        const productElement = document.createElement('div');
+                        productElement.className = 'row';
+                        productElement.innerHTML = `
+                            <div class="col-4">
+                                <div class="product-details-left">
+                                    <img src="images/product/large-size/${product.productName}.jpg" alt="product image">
+                                    <p>Images for illustrative purposes only - actual items may differ from images or based on configurations selected.</p>
+                                </div>       
                             </div>
-                        </div> 
-                    `;
-                    productsContainer.appendChild(productElement);
+                            <div class="col-8">
+                                <div class="product-details-right">
+                                    <div>
+                                        <h2>${product.productName}</h2>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #e1e1e1;">
+                                        <p>${product.description}</p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="add-to-cart-div">
+                                                <div class="price-div">
+                                                    <p style="font-size: 20px; font-weight: bold;">$ ${product.price.toFixed(2)}</p>
+                                                    <p>
+                                                        <div class="my-tooltip">Price above includes tax.
+                                                            <div class="tooltip-position">
+                                                                <div class="tooltip-top">
+                                                                    <p>Price above includes tax.</p>
+                                                                </div>
+                                                                <div class="tooltip-bottom">
+                                                                    <p>The displayed price already accounts for all applicable taxes, ensuring that there are no additional charges beyond what you see.</p>
+                                                                </div>
+                                                                <i></i>
+                                                            </div>
+                                                        </div>
+                                                        <span>Free Shipping</span>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p style="font-size: 20px; color: #FF0000; margin-bottom: 5px;">Stock Left: ${product.quantityInStock} <span style="font-size: 12px;"> <a href="#" onclick="showMore(event)" style="color: #0673ca;">See more details <i class="fa fa-angle-down" aria-hidden="true"></i></a></span></p>
+                                                    <form action="#"></form>
+                                                        <div class="quantity-select">
+                                                            <select>
+                                                                <option value="1">Quantity: 1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                            </select>
+                                                        </div>
+                                                        <input type="hidden" name="product-id" value="${product.productId}">
+                                                        <div style="margin-top: 10px;">
+                                                            <button type="submit" id="add-to-cart" class="my-button">Add to Cart</button>
+                                                            <button type="submit" id="checkout" class="my-button-inverse">Checkout This Item</button>
+                                                        </div>
+                                                        <div class="col-12 cart-message">
+                                                            <div>
+                                                                <p></p>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="block-reassurance">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <i class="fas fa-shipping-fast"></i>
+                                                            </td>
+                                                            <td>
+                                                                <div class="my-tooltip" >Timely and Reliable Delivery
+                                                                    <div class="tooltip-position">
+                                                                        <div class="tooltip-top">
+                                                                            <p>Timely and Reliable Delivery</p>
+                                                                        </div>
+                                                                        <div class="tooltip-bottom">
+                                                                            <p>You can expect your orders to arrive consistently on schedule, backed by a reliable delivery service.</p>
+                                                                        </div>
+                                                                        <i></i>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <i class="fas fa-exchange"></i>
+                                                            </td>
+                                                            <td>
+                                                                <div class="my-tooltip">Eligible for Return, Refund or Replacement within 30 Days
+                                                                    <div class="tooltip-position">
+                                                                        <div class="tooltip-top">
+                                                                            <p>Eligible for Return, Refund or Replacement within 30 Days</p>
+                                                                        </div>
+                                                                        <div class="tooltip-bottom">
+                                                                            <p>You can return this product in its original state within 30 days of receiving it for a full refund or a replacement.</p>
+                                                                        </div>
+                                                                        <i></i>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <i class="far fa-credit-card"></i>
+                                                            </td>
+                                                            <td>
+                                                                <div class="my-tooltip">Secure Transaction
+                                                                    <div class="tooltip-position">
+                                                                        <div class="tooltip-top">
+                                                                            <p>Secure Transaction</p>
+                                                                        </div>
+                                                                        <div class="tooltip-bottom">
+                                                                            <p>Our relentless commitment is to ensure the utmost protection for your security and privacy, and to safeguard your sensitive information.</p>
+                                                                        </div>
+                                                                        <i></i>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>                                
+                                                </div>    
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="product-details-table-div">
+                                                <table class="product-details-table">
+                                                    <tr>
+                                                        <th>Manufacturer</td>
+                                                        <td><img src="images/logo/manufacturer's logo/${product.manufacturer}.jpg" title="${product.manufacturer}" width="100%"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Ships from</td>
+                                                        <td>E-Commerce.com</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Sold by</td>
+                                                        <td>E-Commerce.com</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Delivery</th>
+                                                        <td>
+                                                            <p>Estimated between Jan 1, 2024 and Jan 3, 2024.</p> 
+                                                            <p id="moreText" style="display: none; color: #FF0000;">Delivery time varies based on buyer proximity, chosen postage, seller history, and factors, especially during peak periods.</p>
+                                                            <a href="#" id="moreLink" onclick="showMore(event)" style="color: #0673ca;">See more details <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                                            <a href="#" id="lessLink" style="display: none;" onclick="showLess(event)" style="color: #0673ca;">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Returns</td>
+                                                        <td>Returnable until Jan 31, 2024. Buyer pays for return shipping. <a href="#" style="color: #0673ca;">Learn More</a></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div> 
+                        `;
+                        productsContainer.appendChild(productElement);
 
-                    // populate info table
-                    let table = document.querySelector("#product-info table");
-                    product.productSpecs.map(spec => {
-                        let row = document.createElement("tr");
-                        let nameCell = document.createElement("td");
-                        let valueCell = document.createElement("td");
+                        // populate info table
+                        let table = document.querySelector("#product-info table");
+                        product.productSpecs.map(spec => {
+                            let row = document.createElement("tr");
+                            let nameCell = document.createElement("td");
+                            let valueCell = document.createElement("td");
 
-                        nameCell.textContent = spec.specName;
-                        valueCell.textContent = spec.specValue;
+                            nameCell.textContent = spec.specName;
+                            valueCell.textContent = spec.specValue;
 
-                        row.appendChild(nameCell);
-                        row.appendChild(valueCell);
+                            row.appendChild(nameCell);
+                            row.appendChild(valueCell);
 
-                        table.appendChild(row);
-                    });
-
-                    document.querySelector('#add-to-cart').addEventListener('click', function(e) {
-                        e.preventDefault();
-
-                        // Get user id from session
-                        const userId = sessionStorage.getItem('userId');
-
-                        // Get product id from hidden input field
-                        const productId = document.querySelector('input[name="product-id"]').value;
-
-                        // Get selected quantity
-                        const quantity = document.querySelector('.quantity-select select').value;
-
-                        fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ 
-                                productId: productId, 
-                                quantity: quantity 
-                            }),
-                        })
-                        .then(response => {
-                            return response.json();
-                        })
-                        .then(data => {
-                            document.querySelector('.cart-message').style.display = 'block';
-                            document.querySelector('.cart-message p').innerText = 'Added to cart';
-
-                        })
-                        .catch(error => {
-
+                            table.appendChild(row);
                         });
-                    });
-                })
-                .catch(error => {
 
-                });
+                        document.querySelector('#add-to-cart').addEventListener('click', function(e) {
+                            e.preventDefault();
+
+                            // Get user id from session
+                            const userId = sessionStorage.getItem('userId');
+
+                            // Get product id from hidden input field
+                            const productId = document.querySelector('input[name="product-id"]').value;
+
+                            // Get selected quantity
+                            const quantity = document.querySelector('.quantity-select select').value;
+
+                            fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ 
+                                    productId: productId, 
+                                    quantity: quantity 
+                                }),
+                            })
+                                .then(response => {
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    document.querySelector('.cart-message').style.display = 'block';
+                                    document.querySelector('.cart-message p').innerText = 'Added to cart';
+
+                                })
+                                .catch(error => {
+                                    console.error(error);
+                                });
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
             });
         </script>
         <script>

@@ -473,79 +473,79 @@
 
                 //load latest products data
                 fetch('http://localhost:8080/products/latest?page=0&size=10') 
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const productsContainer = document.querySelector('.product-tab-area #new-product .owl-carousel');
-                    productsContainer.innerHTML = '';
-                    data.content.forEach(product => {
-                        const productElement = generateSingleProduct(product);
-                        productsContainer.appendChild(productElement);
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        const productsContainer = document.querySelector('.product-tab-area #new-product .owl-carousel');
+                        productsContainer.innerHTML = '';
+                        data.content.forEach(product => {
+                            const productElement = generateSingleProduct(product);
+                            productsContainer.appendChild(productElement);
 
+                        });
+                        initializeOwlCarousel(productsContainer);
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-                    initializeOwlCarousel(productsContainer);
-                })
-                .catch(error => {
-
-                });
 
                 //load laptop & tablets data
                 fetch('http://localhost:8080/products/category-subcategory?categoryId=1') 
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const productsContainer = document.querySelector('.laptop-area .owl-carousel');
-                    productsContainer.innerHTML = '';
-                    data.content.forEach(product => {
-                        const productElement = generateSingleProduct(product);
-                        productsContainer.appendChild(productElement);
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        const productsContainer = document.querySelector('.laptop-area .owl-carousel');
+                        productsContainer.innerHTML = '';
+                        data.content.forEach(product => {
+                            const productElement = generateSingleProduct(product);
+                            productsContainer.appendChild(productElement);
 
+                        });
+                        initializeOwlCarousel(productsContainer);
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-                    initializeOwlCarousel(productsContainer);
-                })
-                .catch(error => {
-
-                });
 
                 //load electronics & accessories data
                 fetch('http://localhost:8080/products/category-subcategory?categoryId=2') 
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const productsContainer = document.querySelector('.electronics-area .owl-carousel');
-                    productsContainer.innerHTML = '';
-                    data.content.forEach(product => {
-                        const productElement = generateSingleProduct(product);
-                        productsContainer.appendChild(productElement);
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        const productsContainer = document.querySelector('.electronics-area .owl-carousel');
+                        productsContainer.innerHTML = '';
+                        data.content.forEach(product => {
+                            const productElement = generateSingleProduct(product);
+                            productsContainer.appendChild(productElement);
 
+                        });
+                        initializeOwlCarousel(productsContainer);
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-                    initializeOwlCarousel(productsContainer);
-                })
-                .catch(error => {
-
-                });
 
                 //load printers data
                 fetch('http://localhost:8080/products/category-subcategory?categoryId=3') 
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const productsContainer = document.querySelector('.printer-area .owl-carousel');
-                    productsContainer.innerHTML = '';
-                    data.content.forEach(product => {
-                        const productElement = generateSingleProduct(product);
-                        productsContainer.appendChild(productElement);
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        const productsContainer = document.querySelector('.printer-area .owl-carousel');
+                        productsContainer.innerHTML = '';
+                        data.content.forEach(product => {
+                            const productElement = generateSingleProduct(product);
+                            productsContainer.appendChild(productElement);
 
+                        });
+                        initializeOwlCarousel(productsContainer);
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-                    initializeOwlCarousel(productsContainer);
-                })
-                .catch(error => {
-
-                });
             });
 
             function generateSingleProduct(product) {

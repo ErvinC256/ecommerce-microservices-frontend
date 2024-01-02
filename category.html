@@ -415,6 +415,8 @@
                 getCartNumber();
                 
                 const params = new URLSearchParams(window.location.search);
+                const categoryId = params.get('categoryId');
+                const subcategoryId = params.get('subcategoryId');
                 const categoryName = params.get('categoryName');
                 const subcategoryName = params.get('subcategoryName');
 
@@ -438,63 +440,61 @@
                     breadcrumbList.appendChild(categoryLi);
                 }
                 
-                const categoryId = params.get('categoryId');
-                const subcategoryId = params.get('subcategoryId');
+                // fetch and render products
+                if (!sessionStorage.getItem('currentPage')) {
+                    sessionStorage.setItem('currentPage', 0);
+                }
+                currentPage = sessionStorage.getItem('currentPage');
+                sessionStorage.removeItem('currentPage');
 
-                // get manufacturers
+                fetchAndRenderProducts(currentPage);
+
+                // get available brands
                 fetch(`http://localhost:8080/products/categories/${categoryId}/manufacturers`)
-                .then(response => response.json())
-                .then(data => {
-                    
-                    // display available manufacturers
-                    const brandsContainer = document.querySelector('.brand-area .owl-carousel');
-                    brandsContainer.innerHTML = '';
+                    .then(response => response.json())
+                    .then(data => {
+                        
+                        // display available manufacturers
+                        const brandsContainer = document.querySelector('.brand-area .owl-carousel');
+                        brandsContainer.innerHTML = '';
 
-                    for (let manufacturer in data) {
-                        const brandElement = document.createElement('div');
-                        brandElement.innerHTML = `
-                            <img src="images/logo/manufacturer's logo/${manufacturer}.jpg" title="${manufacturer}" style="width: 50%;">
-                        `;
+                        for (let manufacturer in data) {
+                            const brandElement = document.createElement('div');
+                            brandElement.innerHTML = `
+                                <img src="images/logo/manufacturer's logo/${manufacturer}.jpg" title="${manufacturer}" style="width: 50%;">
+                            `;
 
-                        brandsContainer.appendChild(brandElement);
-                    }
-                    initializeOwlCarousel(brandsContainer);
-                    
-                    // display manufacturers optiosn in filter
-                    let filterGroup = document.querySelector('#collapse_manufacturers .card-body');
+                            brandsContainer.appendChild(brandElement);
+                        }
+                        initializeOwlCarousel(brandsContainer);
+                        
+                        // display manufacturers optiosn in filter
+                        let filterGroup = document.querySelector('#collapse_manufacturers .card-body');
 
-                    // Clear the existing content
-                    filterGroup.innerHTML = '';
+                        // Clear the existing content
+                        filterGroup.innerHTML = '';
 
-                    let html = '';
+                        let html = '';
 
-                    for (let manufacturer in data) {
-                        let count = data[manufacturer];
+                        for (let manufacturer in data) {
+                            let count = data[manufacturer];
 
-                        html += `
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    ${manufacturer} <b class="badge badge-pill badge-light float-right">${count}</b>
-                                </div>
-                            </label>
-                        `;
-                    }
+                            html += `
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">
+                                        ${manufacturer} <b class="badge badge-pill badge-light float-right">${count}</b>
+                                    </div>
+                                </label>
+                            `;
+                        }
 
-                    filterGroup.innerHTML = html;
+                        filterGroup.innerHTML = html;
 
-                    if (!sessionStorage.getItem('currentPage')) {
-                        sessionStorage.setItem('currentPage', 0);
-                    }
-                    currentPage = sessionStorage.getItem('currentPage');
-                    sessionStorage.removeItem('currentPage');
-
-                    fetchAndRenderProducts(currentPage);
-
-                })
-
-                .catch(error => console.error('Error:', error));
-
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
             });
         
             function fetchAndRenderProducts(page) {

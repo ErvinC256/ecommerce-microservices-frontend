@@ -422,7 +422,9 @@
         <script src="js/main.js"></script>
         <script>
             let currentPage;
+            let currentSelectedManufacturers;
             let totalPages;
+            
             const params = new URLSearchParams(window.location.search);
             const categoryId = params.get('categoryId');
             const subcategoryId = params.get('subcategoryId');
@@ -460,7 +462,11 @@
                 }
                 currentPage = sessionStorage.getItem('currentPage');
                 sessionStorage.removeItem('currentPage');
-                fetchAndRenderProducts(currentPage);
+
+                currentSelectedManufacturers = JSON.parse(sessionStorage.getItem('currentSelectedManufacturers'));
+                sessionStorage.removeItem('currentSelectedManufacturers');
+
+                fetchAndRenderProducts(currentPage, currentSelectedManufacturers);
 
                 // get available brands
                 fetch(`http://localhost:8080/products/categories/${categoryId}/manufacturers`)
@@ -501,13 +507,16 @@
                         let html = '';
 
                         data.forEach(manufacturer => {
+                            // Check if the manufacturer is in currentSelectedManufacturers
+                            const isChecked = currentSelectedManufacturers && currentSelectedManufacturers.includes(manufacturer);
+
                             html += `
-                            <label class="custom-control custom-checkbox filter-label">
-                                <input type="checkbox" class="custom-control-input" data-manufacturer="${manufacturer}">
-                                <div class="custom-control-label">
-                                    ${manufacturer}
-                                </div>
-                            </label>
+                                <label class="custom-control custom-checkbox filter-label">
+                                    <input type="checkbox" class="custom-control-input" data-manufacturer="${manufacturer}" ${isChecked ? 'checked' : ''}>
+                                    <div class="custom-control-label">
+                                        ${manufacturer}
+                                    </div>
+                                </label>
                             `;
                         });
 
@@ -517,7 +526,12 @@
                         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
                         checkboxes.forEach(checkbox => {
                             checkbox.addEventListener('change', () => {
-                                fetchAndRenderProducts(0); // Assuming 'page' is always 1, adjust if needed
+                                const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                                    .map(checkbox => checkbox.getAttribute('data-manufacturer'));
+
+                                sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(selectedManufacturers));
+                                sessionStorage.setItem('currentPage', 0);
+                                location.reload();
                             });
                         });
                     })
@@ -526,7 +540,7 @@
                     });
             });
         
-            function fetchAndRenderProducts(page) {
+            function fetchAndRenderProducts(page, selectedManufacturers) {
                 const params = new URLSearchParams(window.location.search);
                 const categoryId = params.get('categoryId');
                 const subcategoryId = params.get('subcategoryId');
@@ -540,12 +554,9 @@
                 }
 
                 // Check if manufacturers are selected and append to the URL
-                const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
-                if (selectedManufacturers.length > 0) {
+                if (selectedManufacturers !== null) {
                     apiURL += `&manufacturers=${selectedManufacturers.join(',')}`;
                 }
-
-                console.log(selectedManufacturers);
 
                 fetch(apiURL)
                     .then(response => response.json())
@@ -656,18 +667,30 @@
                     if (!isNaN(pageNumber)) {
 
                         sessionStorage.setItem('currentPage', pageNumber - 1);
+                        const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                                    .map(checkbox => checkbox.getAttribute('data-manufacturer'));
+
+                        sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(selectedManufacturers));
                         location.reload();
                 
                     } else if (event.target.classList.contains('Previous')) {
 
                         if (currentPage > 0) {
                             sessionStorage.setItem('currentPage', Number(currentPage) - 1);
+                            const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                                    .map(checkbox => checkbox.getAttribute('data-manufacturer'));
+
+                            sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(selectedManufacturers));
                             location.reload();
                         }
                     } else if (event.target.classList.contains('Next')) {
 
                         if (currentPage < totalPages - 1) {
                             sessionStorage.setItem('currentPage', Number(currentPage) + 1);
+                            const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                                    .map(checkbox => checkbox.getAttribute('data-manufacturer'));
+
+                            sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(selectedManufacturers));
                             location.reload();
                         }
                     }

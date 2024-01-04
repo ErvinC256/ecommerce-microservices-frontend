@@ -451,7 +451,7 @@
                 // Check if manufacturers are selected and append to the URL
                 const trueSelectedManufacturers = Object.keys(selectedManufacturers).filter(manufacturer => selectedManufacturers[manufacturer]);
                 apiURL += `&manufacturers=${trueSelectedManufacturers.join(',')}`;
-                
+
                 fetch(apiURL)
                     .then(response => response.json())
                     .then(data => {
@@ -599,43 +599,69 @@
 
             function handlePaginationClick(event) {
                 event.preventDefault();
-        
+
                 if (event.target.tagName === 'A') {
                     const pageNumber = parseInt(event.target.textContent);
-        
+
                     if (!isNaN(pageNumber)) {
+                        const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
+                        const selectedManufacturers = allManufacturers.filter(manufacturer =>
+                            document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
+                        );
 
+                        // Create an object to store the true/false values for all manufacturers
+                        const manufacturerStatus = {};
+                        allManufacturers.forEach(manufacturer => {
+                            manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
+                        });
+
+                        sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
                         sessionStorage.setItem('currentPage', pageNumber - 1);
-                        const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
-                                    .map(checkbox => checkbox.getAttribute('data-manufacturer'));
 
-                        sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(selectedManufacturers));
-                        
                         location.reload();
                 
                     } else if (event.target.classList.contains('Previous')) {
 
-                        if (currentPage > 0) {
-                            sessionStorage.setItem('currentPage', Number(currentPage) - 1);
-                            const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
-                                    .map(checkbox => checkbox.getAttribute('data-manufacturer'));
+                        if (currentPage > 0) { 
+                            const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
+                            const selectedManufacturers = allManufacturers.filter(manufacturer =>
+                                document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
+                            );
 
-                            sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(selectedManufacturers));
+                            // Create an object to store the true/false values for all manufacturers
+                            const manufacturerStatus = {};
+                            allManufacturers.forEach(manufacturer => {
+                                manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
+                            });
+
+                            sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
+                            sessionStorage.setItem('currentPage', Number(currentPage) - 1);
+
                             location.reload();
                         }
                     } else if (event.target.classList.contains('Next')) {
 
                         if (currentPage < totalPages - 1) {
-                            sessionStorage.setItem('currentPage', Number(currentPage) + 1);
-                            const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
-                                    .map(checkbox => checkbox.getAttribute('data-manufacturer'));
+                            const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
+                            const selectedManufacturers = allManufacturers.filter(manufacturer =>
+                                document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
+                            );
 
-                            sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(selectedManufacturers));
+                            // Create an object to store the true/false values for all manufacturers
+                            const manufacturerStatus = {};
+                            allManufacturers.forEach(manufacturer => {
+                                manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
+                            });
+
+                            sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
+                            sessionStorage.setItem('currentPage', Number(currentPage) + 1);
+                            
                             location.reload();
                         }
                     }
                 }
             }
+
         </script>
         <script>
             function initializeOwlCarousel(productsContainer) {

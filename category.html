@@ -7,69 +7,6 @@
         <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/helper.css">
         <link rel="stylesheet" href="style.css"> 
-        <style>
-            .icon-control {
-                margin-top: 5px;
-                float: right;
-                font-size: 80%;
-            }
-
-            .btn-light {
-                background-color: #fff;
-                border-color: #e4e4e4;
-            }
-
-            .list-menu {
-                list-style: none;
-                margin: 0;
-                padding-left: 0;
-            }
-            .list-menu a {
-                color: #343a40;
-            }
-
-            .card-product-grid .info-wrap {
-                overflow: hidden;
-                padding: 18px 20px;
-            }
-
-            [class*='card-product'] a.title {
-                color: #212529;
-                display: block;
-            }
-
-            .card-product-grid:hover .btn-overlay {
-                opacity: 1;
-            }
-            .card-product-grid .btn-overlay {
-                -webkit-transition: .5s;
-                transition: .5s;
-                opacity: 0;
-                left: 0;
-                bottom: 0;
-                color: #fff;
-                width: 100%;
-                padding: 5px 0;
-                text-align: center;
-                position: absolute;
-                background: rgba(0, 0, 0, 0.5);
-            }
-            .img-wrap {
-                overflow: hidden;
-                position: relative;
-            }
-        </style>
-        <style>
-            .my-class-img img {
-                width: 10%;
-            }
-        </style>
-        <style>
-            .filter-label:hover {
-                cursor: pointer;
-                text-decoration: underline;
-            }
-        </style>
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -200,6 +137,92 @@
                                         </div> <!-- card-body.// -->
                                     </div>
                                 </article>
+                                <article class="filter-group">
+                                    <header class="card-header">
+                                        <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                                            <i class="icon-control fa fa-chevron-down"></i>
+                                            <h6 class="title">Price range </h6>
+                                        </a>
+                                    </header>
+                                    <div class="filter-content collapse show" id="collapse_3" style="">
+                                        <div class="card-body">
+                                            <input type="range" class="custom-range" min="0" max="100" name="">
+                                            <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                              <label>Min</label>
+                                              <input class="form-control" placeholder="$0" type="number">
+                                            </div>
+                                            <div class="form-group text-right col-md-6">
+                                              <label>Max</label>
+                                              <input class="form-control" placeholder="$1,0000" type="number">
+                                            </div>
+                                            </div> <!-- form-row.// -->
+                                            <button class="btn btn-block btn-primary">Apply</button>
+                                        </div><!-- card-body.// -->
+                                    </div>
+                                </article> <!-- filter-group .// -->
+                                <article class="filter-group">
+                                    <header class="card-header">
+                                        <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+                                            <i class="icon-control fa fa-chevron-down"></i>
+                                            <h6 class="title">Sizes </h6>
+                                        </a>
+                                    </header>
+                                    <div class="filter-content collapse show" id="collapse_4" style="">
+                                        <div class="card-body">
+                                          <label class="checkbox-btn">
+                                            <input type="checkbox">
+                                            <span class="btn btn-light"> XS </span>
+                                          </label>
+                                
+                                          <label class="checkbox-btn">
+                                            <input type="checkbox">
+                                            <span class="btn btn-light"> SM </span>
+                                          </label>
+                                
+                                          <label class="checkbox-btn">
+                                            <input type="checkbox">
+                                            <span class="btn btn-light"> LG </span>
+                                          </label>
+                                
+                                          <label class="checkbox-btn">
+                                            <input type="checkbox">
+                                            <span class="btn btn-light"> XXL </span>
+                                          </label>
+                                    </div><!-- card-body.// -->
+                                    </div>
+                                </article> <!-- filter-group .// -->
+                                <article class="filter-group">
+                                    <header class="card-header">
+                                        <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="">
+                                            <i class="icon-control fa fa-chevron-down"></i>
+                                            <h6 class="title">More filter </h6>
+                                        </a>
+                                    </header>
+                                    <div class="filter-content collapse in" id="collapse_5" style="">
+                                        <div class="card-body">
+                                            <label class="custom-control custom-radio">
+                                              <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
+                                              <div class="custom-control-label">Any condition</div>
+                                            </label>
+                                
+                                            <label class="custom-control custom-radio">
+                                              <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                              <div class="custom-control-label">Brand new </div>
+                                            </label>
+                                
+                                            <label class="custom-control custom-radio">
+                                              <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                              <div class="custom-control-label">Used items</div>
+                                            </label>
+                                
+                                            <label class="custom-control custom-radio">
+                                              <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                              <div class="custom-control-label">Very old</div>
+                                            </label>
+                                        </div><!-- card-body.// -->
+                                    </div>
+                                </article> <!-- filter-group .// -->
                             </div> <!-- card.// -->
                         </div>
                         <div class="col-9">
@@ -233,7 +256,6 @@
                             <div class="paginatoin-area">
                                 <div class="row">
                                     <div class="col-6">
-                                        <p id="showing-info"></p>
                                     </div>
                                     <div class="col-6">
                                         <ul class="pagination-box">
@@ -347,8 +369,6 @@
 
             document.addEventListener('DOMContentLoaded', function () {
 
-                // console.log(sessionStorage.getItem('currentPage'));
-                // console.log(sessionStorage.getItem('currentSelectedManufacturers'));
                 checkSignInStatus();
                 getCartNumber();
 
@@ -446,8 +466,6 @@
                     apiURL += `&subcategoryId=${subcategoryId}`;
                 }
 
-                console.log(apiURL);
-
                 // Check if manufacturers are selected and append to the URL
                 const trueSelectedManufacturers = Object.keys(selectedManufacturers).filter(manufacturer => selectedManufacturers[manufacturer]);
                 apiURL += `&manufacturers=${trueSelectedManufacturers.join(',')}`;
@@ -513,19 +531,18 @@
                             productsContainer.appendChild(productElement);
                         });
                         
-                        // Update the "Showing" info
-                        const showingInfo = document.getElementById('showing-info');
-                        const startItem = page * 9 + 1;
-                        const endItem = Math.min((page + 1) * 9, data.totalElements);
-                        showingInfo.textContent = `Showing ${startItem}-${endItem} of ${data.totalElements} item(s)`;
-                        
                         const paginationBox = document.querySelector('.pagination-box');
                         totalPages = data.totalPages;
         
                         paginationBox.innerHTML = `<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a></li>`;
-                        
+                    
                         for (let i = 1; i <= totalPages; i++) {
-                            paginationBox.innerHTML += `<li><a href="#">${i}</a></li>`;
+                            if (i === parseInt(currentPage) + 1) {
+                                // Add a border to the current page number
+                                paginationBox.innerHTML += `<li class="current-page"><a href="#">${i}</a></li>`;
+                            } else {
+                                paginationBox.innerHTML += `<li><a href="#">${i}</a></li>`;
+                            }
                         }
         
                         paginationBox.innerHTML += `<li><a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a></li>`;
@@ -535,13 +552,13 @@
 
                         // If on the first page, make the 'Previous' button red
                         if (currentPage == 0) {
-                            prevButton.style.color = 'gray';
+                            prevButton.style.color = '#c8c8c8';
                             prevButton.style.pointerEvents = 'none';
                         }
 
                         // If on the last page, disable the 'Next' button and make it gray
                         if (currentPage == totalPages - 1) {
-                            nextButton.style.color = 'gray';
+                            nextButton.style.color = '#c8c8c8';
                             nextButton.style.pointerEvents = 'none';
                         }
                         

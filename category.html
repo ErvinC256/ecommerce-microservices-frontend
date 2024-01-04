@@ -7,6 +7,28 @@
         <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/helper.css">
         <link rel="stylesheet" href="style.css"> 
+        <style>
+            input[type='checkbox']{
+  width: 14px !important;
+  height: 14px !important;
+  margin: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  outline: 1px solid gray;
+  box-shadow: none;
+  font-size: 0.8em;
+  text-align: center;
+  line-height: 1em;
+  background: red;
+}
+
+input[type='checkbox']:checked:after {
+  content: '✔';
+  color: white;
+}
+        </style>
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -126,45 +148,12 @@
                             <div class="card">
                                 <article class="filter-group">
                                     <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#collapse_manufacturers" aria-expanded="true" class="">
-                                            <i class="icon-control fa fa-chevron-down"></i>
-                                            <h6 class="title">Manufacturers</h6>
-                                        </a>
+                                        <h6 class="title">Manufacturers</h6>
                                     </header>
-                                    <div class="filter-content collapse show" id="collapse_manufacturers">
+                                    <div class="filter-content" id="collapse_manufacturers">
                                         <div class="card-body">
                                             <!-- manufacturer options will be inserted here -->
                                         </div> <!-- card-body.// -->
-                                    </div>
-                                </article>
-                                <article class="filter-group">
-                                    <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#collapse_prices" aria-expanded="true" class="">
-                                            <i class="icon-control fa fa-chevron-down"></i>
-                                            <h6 class="title">Prices</h6>
-                                        </a>
-                                    </header>
-                                    <div class="filter-content collapse show" id="collapse_prices">
-                                        <div class="card-body">
-                                            <label class="custom-control custom-checkbox filter-label">
-                                                <input type="checkbox" class="custom-control-input" data-price="500"}>
-                                                <div class="custom-control-label">
-                                                    Below $500
-                                                </div>
-                                            </label>
-                                            <label class="custom-control custom-checkbox filter-label">
-                                                <input type="checkbox" class="custom-control-input" data-price="1000"}>
-                                                <div class="custom-control-label">
-                                                    Below $1000
-                                                </div>
-                                            </label>
-                                            <label class="custom-control custom-checkbox filter-label">
-                                                <input type="checkbox" class="custom-control-input" data-price="2000"}>
-                                                <div class="custom-control-label">
-                                                    Below $2000
-                                                </div>
-                                            </label>
-                                        </div> 
                                     </div>
                                 </article>
                             </div> <!-- card.// -->
@@ -348,9 +337,9 @@
                 } else {
                     let apiURL;
                     if (subcategoryId !== null) {
-                        apiURL = `http://localhost:8080/products/categories/${categoryId}/manufacturers?subcategoryId=${subcategoryId}`;
+                        apiURL = `http://localhost:8080/products/manufacturers?categoryId=${categoryId}&subcategoryId=${subcategoryId}`;
                     } else {
-                        apiURL = `http://localhost:8080/products/categories/${categoryId}/manufacturers`;
+                        apiURL = `http://localhost:8080/products/manufacturers?categoryId=${categoryId}`;
                     }
                     fetch(apiURL)
                         .then(response => response.json())
@@ -369,7 +358,7 @@
                 }
 
                 // get available brands
-                fetch(`http://localhost:8080/products/categories/${categoryId}/manufacturers`)
+                fetch(`http://localhost:8080/products/manufacturers?categoryId=${categoryId}`)
                     .then(response => response.json())
                     .then(data => {
                         const brandsContainer = document.querySelector('.brand-area .owl-carousel');
@@ -398,7 +387,7 @@
                 const categoryId = params.get('categoryId');
                 const subcategoryId = params.get('subcategoryId');
         
-                let apiURL = `http://localhost:8080/products/categories/${categoryId}?page=${page}&size=9`;
+                let apiURL = `http://localhost:8080/products?categoryId=${categoryId}&page=${page}&size=9`;
 
                 // Check if subcategoryId is present and append to the URL
                 if (subcategoryId !== null) {

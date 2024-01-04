@@ -549,15 +549,25 @@
 
                 // Generate star rating
                 let starRating = '';
-                for (let i = 1; i <= 5; i++) {
+                const numberOfStars = 5;
+                const filledStars = Math.floor(product.ratings);
+                const hasHalfStar = product.ratings % 1 !== 0;
+
+                for (let i = 1; i <= numberOfStars; i++) {
                     let star = document.createElement('span');
                     star.className = 'star';
                     star.textContent = '★';
-                    if (i > Math.ceil(2.5)) {
-                        star.classList.add('empty'); // Use classList.add for adding classes
-                    } else if (i > 2.5) {
+
+                    if (i <= filledStars) {
+                        // Full star
+                    } else if (i === filledStars + 1 && hasHalfStar) {
+                        // Half star
                         star.classList.add('half');
+                    } else {
+                        // Empty star
+                        star.classList.add('empty');
                     }
+
                     starRating += star.outerHTML;
                 }
 
@@ -571,7 +581,7 @@
                         <div class="product-desc">
                             <div style="display: flex; justify-content: space-between;">
                                 <span class="product-manufacturer">${product.manufacturer}</span>
-                                <span class="star-rating">${starRating}</span>
+                                <span class="star-rating">${starRating}<span class="rating-number" style="margin-left: 5px;">${product.ratings}</span></span>
                             </div>
                             <hr>
                             <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>

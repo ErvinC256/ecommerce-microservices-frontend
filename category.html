@@ -199,93 +199,7 @@
                                             <!-- manufacturer options will be inserted here -->
                                         </div> <!-- card-body.// -->
                                     </div>
-                                </article> <!-- filter-group .// -->
-                                <article class="filter-group">
-                                    <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
-                                            <i class="icon-control fa fa-chevron-down"></i>
-                                            <h6 class="title">Price range </h6>
-                                        </a>
-                                    </header>
-                                    <div class="filter-content collapse show" id="collapse_3" style="">
-                                        <div class="card-body">
-                                            <input type="range" class="custom-range" min="0" max="100" name="">
-                                            <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                              <label>Min</label>
-                                              <input class="form-control" placeholder="$0" type="number">
-                                            </div>
-                                            <div class="form-group text-right col-md-6">
-                                              <label>Max</label>
-                                              <input class="form-control" placeholder="$1,0000" type="number">
-                                            </div>
-                                            </div> <!-- form-row.// -->
-                                            <button class="btn btn-block btn-primary">Apply</button>
-                                        </div><!-- card-body.// -->
-                                    </div>
-                                </article> <!-- filter-group .// -->
-                                <article class="filter-group">
-                                    <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-                                            <i class="icon-control fa fa-chevron-down"></i>
-                                            <h6 class="title">Sizes </h6>
-                                        </a>
-                                    </header>
-                                    <div class="filter-content collapse show" id="collapse_4" style="">
-                                        <div class="card-body">
-                                          <label class="checkbox-btn">
-                                            <input type="checkbox">
-                                            <span class="btn btn-light"> XS </span>
-                                          </label>
-                            
-                                          <label class="checkbox-btn">
-                                            <input type="checkbox">
-                                            <span class="btn btn-light"> SM </span>
-                                          </label>
-                            
-                                          <label class="checkbox-btn">
-                                            <input type="checkbox">
-                                            <span class="btn btn-light"> LG </span>
-                                          </label>
-                            
-                                          <label class="checkbox-btn">
-                                            <input type="checkbox">
-                                            <span class="btn btn-light"> XXL </span>
-                                          </label>
-                                    </div><!-- card-body.// -->
-                                    </div>
-                                </article> <!-- filter-group .// -->
-                                <article class="filter-group">
-                                    <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="">
-                                            <i class="icon-control fa fa-chevron-down"></i>
-                                            <h6 class="title">More filter </h6>
-                                        </a>
-                                    </header>
-                                    <div class="filter-content collapse in" id="collapse_5" style="">
-                                        <div class="card-body">
-                                            <label class="custom-control custom-radio">
-                                              <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
-                                              <div class="custom-control-label">Any condition</div>
-                                            </label>
-                            
-                                            <label class="custom-control custom-radio">
-                                              <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                              <div class="custom-control-label">Brand new </div>
-                                            </label>
-                            
-                                            <label class="custom-control custom-radio">
-                                              <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                              <div class="custom-control-label">Used items</div>
-                                            </label>
-                            
-                                            <label class="custom-control custom-radio">
-                                              <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                              <div class="custom-control-label">Very old</div>
-                                            </label>
-                                        </div><!-- card-body.// -->
-                                    </div>
-                                </article> <!-- filter-group .// -->
+                                </article>
                             </div> <!-- card.// -->
                         </div>
                         <div class="col-9">
@@ -433,6 +347,8 @@
 
             document.addEventListener('DOMContentLoaded', function () {
 
+                // console.log(sessionStorage.getItem('currentPage'));
+                // console.log(sessionStorage.getItem('currentSelectedManufacturers'));
                 checkSignInStatus();
                 getCartNumber();
 
@@ -464,10 +380,11 @@
                 }
 
                 if (sessionStorage.getItem('currentSelectedManufacturers')) {
-                    currentSelectedManufacturers = sessionStorage.getItem('currentSelectedManufacturers');
+                    currentSelectedManufacturers = JSON.parse(sessionStorage.getItem('currentSelectedManufacturers'));
+
+                    fetchAndRenderProducts(currentPage, currentSelectedManufacturers);
                     setFilterGroup(currentSelectedManufacturers);
                 } else {
-                    
                     // populate brand filter group
                     let apiURL;
                     if (subcategoryId !== null) {
@@ -478,11 +395,13 @@
                     fetch(apiURL)
                         .then(response => response.json())
                         .then(data => {
-                            currentSelectedManufacturers = data;
-
+                            currentSelectedManufacturers = data.reduce((acc, manufacturer) => {
+                                acc[manufacturer] = true;
+                                return acc;
+                            }, {});
+            
                             fetchAndRenderProducts(currentPage, currentSelectedManufacturers);
-                            setFilterGroup(currentSelectedManufacturers);
-                            
+                            setFilterGroup(currentSelectedManufacturers);  
                         })
                         .catch(error => {
                             console.error(error);
@@ -527,11 +446,12 @@
                     apiURL += `&subcategoryId=${subcategoryId}`;
                 }
 
-                // Check if manufacturers are selected and append to the URL
-                if (selectedManufacturers !== null) {
-                    apiURL += `&manufacturers=${selectedManufacturers.join(',')}`;
-                }
+                console.log(apiURL);
 
+                // Check if manufacturers are selected and append to the URL
+                const trueSelectedManufacturers = Object.keys(selectedManufacturers).filter(manufacturer => selectedManufacturers[manufacturer]);
+                apiURL += `&manufacturers=${trueSelectedManufacturers.join(',')}`;
+                
                 fetch(apiURL)
                     .then(response => response.json())
                     .then(data => {
@@ -640,9 +560,8 @@
 
                 let html = '';
 
-                data.forEach(manufacturer => {
-                    // Check if the manufacturer is in currentSelectedManufacturers
-                    const isChecked = currentSelectedManufacturers && currentSelectedManufacturers.includes(manufacturer);
+                Object.keys(data).forEach(manufacturer => {
+                    const isChecked = data[manufacturer]; // Use the true/false value from currentSelectedManufacturers
                     html += `
                         <label class="custom-control custom-checkbox filter-label">
                             <input type="checkbox" class="custom-control-input" data-manufacturer="${manufacturer}" ${isChecked ? 'checked' : ''}>
@@ -659,11 +578,20 @@
                 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
                 checkboxes.forEach(checkbox => {
                     checkbox.addEventListener('change', () => {
-                        const selectedManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
-                            .map(checkbox => checkbox.getAttribute('data-manufacturer'));
+                        const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"]')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
+                        const selectedManufacturers = allManufacturers.filter(manufacturer =>
+                            document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
+                        );
 
-                        sessionStorage.setItem('currentSelectedManufacturers', selectedManufacturers.length > 0 ? JSON.stringify(selectedManufacturers) : null);
+                        // Create an object to store the true/false values for all manufacturers
+                        const manufacturerStatus = {};
+                        allManufacturers.forEach(manufacturer => {
+                            manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
+                        });
+
+                        sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
                         sessionStorage.setItem('currentPage', 0);
+
                         location.reload();
                     });
                 });
@@ -682,6 +610,7 @@
                                     .map(checkbox => checkbox.getAttribute('data-manufacturer'));
 
                         sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(selectedManufacturers));
+                        
                         location.reload();
                 
                     } else if (event.target.classList.contains('Previous')) {

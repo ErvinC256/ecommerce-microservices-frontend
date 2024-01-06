@@ -965,6 +965,15 @@ iframe {
 	border-top: 1px solid #e1e1e1;
 }
 /*----- filter-area  css -----*/
+.filter-label {
+	display: flex;
+	justify-items: center;
+	margin-bottom: 10px;
+}
+.filter-label input {
+	margin-right: 10px;
+	width: auto;
+}
 .filter-label:hover {
 	cursor: pointer;
 	text-decoration: underline;

@@ -487,11 +487,9 @@
                 Object.keys(data).forEach(manufacturer => {
                     const isChecked = data[manufacturer]; // Use the true/false value from currentSelectedManufacturers
                     html += `
-                        <label class="custom-control custom-checkbox filter-label">
-                            <input type="checkbox" class="custom-control-input input-manufacturer" data-manufacturer="${manufacturer}" ${isChecked ? 'checked' : ''}>
-                            <div class="custom-control-label">
-                                ${manufacturer}
-                            </div>
+                        <label class="filter-label">
+                            <input type="checkbox" class="input-manufacturer" data-manufacturer="${manufacturer}" ${isChecked ? 'checked' : ''}>
+                            <span>${manufacturer}</span>
                         </label>
                     `;
                 });
@@ -538,11 +536,9 @@
                     const isChecked = rating === checkedRating;
 
                     html += `
-                        <label class="custom-control custom-radio filter-label">
-                            <input type="radio" class="custom-control-input input-ratings" name="ratingOptions" data-rating="${rating}" ${isChecked ? 'checked' : ''}>
-                            <div class="custom-control-label">
-                                <span>${generateStarRatings(rating)} & up</span>
-                            </div>
+                        <label class="filter-label">
+                            <input type="radio" class="input-ratings" data-rating="${rating}" ${isChecked ? 'checked' : ''}>
+                            <span style="position: relative; bottom: 5px;">${generateStarRatings(rating)} & up</span>
                         </label>
                     `;
                 });

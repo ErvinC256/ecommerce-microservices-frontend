@@ -286,6 +286,7 @@
 
             let currentPage;
             let currentSelectedManufacturers;
+            let currentSelectedRatings;
             let totalPages;
 
             document.addEventListener('DOMContentLoaded', function () {
@@ -317,12 +318,17 @@
                 } else {
                     currentPage = 0;
                 }
+                if (sessionStorage.getItem('currentSelectedRatings')) {
+                    currentSelectedRatings = parseInt(sessionStorage.getItem('currentSelectedRatings')); 
+                } else {
+                    currentSelectedRatings = 1;
+                }
                 if (sessionStorage.getItem('currentSelectedManufacturers')) {
                     currentSelectedManufacturers = JSON.parse(sessionStorage.getItem('currentSelectedManufacturers'));
 
-                    fetchAndRenderProducts(currentPage, currentSelectedManufacturers);
+                    fetchAndRenderProducts(currentPage, currentSelectedManufacturers, currentSelectedRatings);
                     setFilterGroupManufacturer(currentSelectedManufacturers);
-                    setFilterGroupRatings();
+                    setFilterGroupRatings(currentSelectedRatings);
                 } else {
                     let apiURL;
                     if (subcategoryId !== null) {
@@ -337,10 +343,10 @@
                                 acc[manufacturer] = true;
                                 return acc;
                             }, {});
-            
-                            fetchAndRenderProducts(currentPage, currentSelectedManufacturers);
+                            
+                            fetchAndRenderProducts(currentPage, currentSelectedManufacturers, currentSelectedRatings);
                             setFilterGroupManufacturer(currentSelectedManufacturers);
-                            setFilterGroupRatings();  
+                            setFilterGroupRatings(currentSelectedRatings);  
                         })
                         .catch(error => {
                             console.error(error);
@@ -370,9 +376,10 @@
                 
                 sessionStorage.removeItem('currentPage');
                 sessionStorage.removeItem('currentSelectedManufacturers');
+                sessionStorage.removeItem('currentSelectedRatings');
             });
         
-            function fetchAndRenderProducts(page, selectedManufacturers) {
+            function fetchAndRenderProducts(page, selectedManufacturers, selectedRatings) {
                 const params = new URLSearchParams(window.location.search);
                 const categoryId = params.get('categoryId');
                 const subcategoryId = params.get('subcategoryId');
@@ -387,6 +394,8 @@
                 // Check if manufacturers are selected and append to the URL
                 const trueSelectedManufacturers = Object.keys(selectedManufacturers).filter(manufacturer => selectedManufacturers[manufacturer]);
                 apiURL += `&manufacturers=${trueSelectedManufacturers.join(',')}`;
+
+                apiURL += `&ratings=${selectedRatings}`;
 
                 fetch(apiURL)
                     .then(response => response.json())
@@ -476,7 +485,7 @@
                     });
             }
 
-            function setFilterGroupManufacturer(data) {
+            function setFilterGroupManufacturer(selectedManufacturers) {
                 let filterGroup = document.querySelector('#filter-manufacturer .card-body');
 
                 // Clear the existing content
@@ -484,8 +493,8 @@
 
                 let html = '';
 
-                Object.keys(data).forEach(manufacturer => {
-                    const isChecked = data[manufacturer]; // Use the true/false value from currentSelectedManufacturers
+                Object.keys(selectedManufacturers).forEach(manufacturer => {
+                    const isChecked = selectedManufacturers[manufacturer]; // Use the true/false value from currentSelectedManufacturers
                     html += `
                         <label class="filter-label">
                             <input type="checkbox" class="input-manufacturer" data-manufacturer="${manufacturer}" ${isChecked ? 'checked' : ''}>
@@ -497,29 +506,18 @@
                 filterGroup.innerHTML = html;
 
                 // Add event listener to checkboxes
-                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                const checkboxes = document.querySelectorAll('input[type="checkbox"].input-manufacturer');
                 checkboxes.forEach(checkbox => {
                     checkbox.addEventListener('change', () => {
-                        const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"].input-manufacturer')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
-                        const selectedManufacturers = allManufacturers.filter(manufacturer =>
-                            document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
-                        );
-
-                        // Create an object to store the true/false values for all manufacturers
-                        const manufacturerStatus = {};
-                        allManufacturers.forEach(manufacturer => {
-                            manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
-                        });
-
-                        sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
-                        sessionStorage.setItem('currentPage', 0);
-
+                        
+                        const pageNumber = 0;
+                        setSessionStatus(pageNumber);
                         location.reload();
                     });
                 });
             }
 
-            function setFilterGroupRatings() {
+            function setFilterGroupRatings(selectedRatings) {
                 
                 let filterGroup = document.querySelector('#filter-ratings .card-body');
 
@@ -530,20 +528,31 @@
 
                 // Data for star ratings
                 const ratingsOptions = [5, 4, 3, 2, 1];
-                const checkedRating = 1; // Replace with your actual variable for the checked rating
+                const checkedRating = selectedRatings; // Replace with your actual variable for the checked rating
 
                 ratingsOptions.forEach((rating) => {
                     const isChecked = rating === checkedRating;
 
                     html += `
                         <label class="filter-label">
-                            <input type="radio" class="input-ratings" data-rating="${rating}" ${isChecked ? 'checked' : ''}>
-                            <span style="position: relative; bottom: 5px;">${generateStarRatings(rating)} & up</span>
+                            <input type="radio" name="ratings" class="input-ratings" data-ratings="${rating}" ${isChecked ? 'checked' : ''}>
+                            <span style="position: relative; bottom: 5px;">${generateStarRatings(rating)} ${rating < 5 ? '& up' : ''}</span>
                         </label>
                     `;
                 });
 
                 filterGroup.innerHTML = html;
+
+                // Add event listener to radio buttons
+                const radioButtons = document.querySelectorAll('input[type="radio"].input-ratings');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        
+                        const pageNumber = 0;
+                        setSessionStatus(pageNumber);
+                        location.reload();
+                    });
+                });
             }
 
             function generateStarRatings(ratings) {
@@ -581,64 +590,48 @@
                     const pageNumber = parseInt(event.target.textContent);
 
                     if (!isNaN(pageNumber)) {
-                        const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"].input-manufacturer')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
-                        const selectedManufacturers = allManufacturers.filter(manufacturer =>
-                            document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
-                        );
-
-                        // Create an object to store the true/false values for all manufacturers
-                        const manufacturerStatus = {};
-                        allManufacturers.forEach(manufacturer => {
-                            manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
-                        });
-
-                        sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
-                        sessionStorage.setItem('currentPage', pageNumber - 1);
-
+                        
+                        setSessionStatus(pageNumber - 1);
                         location.reload();
                 
                     } else if (event.target.classList.contains('Previous')) {
 
                         if (currentPage > 0) { 
-                            const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"].input-manufacturer')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
-                            const selectedManufacturers = allManufacturers.filter(manufacturer =>
-                                document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
-                            );
-
-                            // Create an object to store the true/false values for all manufacturers
-                            const manufacturerStatus = {};
-                            allManufacturers.forEach(manufacturer => {
-                                manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
-                            });
-
-                            sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
-                            sessionStorage.setItem('currentPage', Number(currentPage) - 1);
-
+                            
+                            setSessionStatus(Number(currentPage) - 1);
                             location.reload();
                         }
                     } else if (event.target.classList.contains('Next')) {
 
                         if (currentPage < totalPages - 1) {
-                            const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"].input-manufacturer')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
-                            const selectedManufacturers = allManufacturers.filter(manufacturer =>
-                                document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
-                            );
-
-                            // Create an object to store the true/false values for all manufacturers
-                            const manufacturerStatus = {};
-                            allManufacturers.forEach(manufacturer => {
-                                manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
-                            });
-
-                            sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
-                            sessionStorage.setItem('currentPage', Number(currentPage) + 1);
                             
+                            setSessionStatus(Number(currentPage) + 1);
                             location.reload();
                         }
                     }
                 }
             }
-        </script>
+
+            function setSessionStatus(pageNumber) {
+                const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"].input-manufacturer')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
+                const selectedManufacturers = allManufacturers.filter(manufacturer =>
+                    document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
+                );
+
+                // Create an object to store the true/false values for all manufacturers
+                const manufacturerStatus = {};
+                allManufacturers.forEach(manufacturer => {
+                    manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
+                });
+
+                // Get the selected rating
+                const selectedRatings = Array.from(document.querySelectorAll('input[type="radio"].input-ratings')).find(radio => radio.checked)?.getAttribute('data-ratings');
+
+                sessionStorage.setItem('currentPage', pageNumber);
+                sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
+                sessionStorage.setItem('currentSelectedRatings', selectedRatings);
+            }
+         </script>
         <script>
             function initializeOwlCarousel(productsContainer) {
                 $(productsContainer).trigger('destroy.owl.carousel');

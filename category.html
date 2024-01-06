@@ -284,9 +284,9 @@
             const categoryName = params.get('categoryName');
             const subcategoryName = params.get('subcategoryName');
 
-            let currentPage;
-            let currentSelectedManufacturers;
-            let currentSelectedRatings;
+            let selectedPage;
+            let selectedManufacturers;
+            let selectedRatings;
             let totalPages;
 
             document.addEventListener('DOMContentLoaded', function () {
@@ -313,22 +313,22 @@
                 }
 
                 // fetch and render products
-                if (sessionStorage.getItem('currentPage')) {
-                    currentPage = sessionStorage.getItem('currentPage');
+                if (sessionStorage.getItem('selectedPage')) {
+                    selectedPage = sessionStorage.getItem('selectedPage');
                 } else {
-                    currentPage = 0;
+                    selectedPage = 0;
                 }
-                if (sessionStorage.getItem('currentSelectedRatings')) {
-                    currentSelectedRatings = parseInt(sessionStorage.getItem('currentSelectedRatings')); 
+                if (sessionStorage.getItem('selectedRatings')) {
+                    selectedRatings = parseInt(sessionStorage.getItem('selectedRatings')); 
                 } else {
-                    currentSelectedRatings = 1;
+                    selectedRatings = 1;
                 }
-                if (sessionStorage.getItem('currentSelectedManufacturers')) {
-                    currentSelectedManufacturers = JSON.parse(sessionStorage.getItem('currentSelectedManufacturers'));
+                if (sessionStorage.getItem('selectedManufacturers')) {
+                    selectedManufacturers = JSON.parse(sessionStorage.getItem('selectedManufacturers'));
 
-                    fetchAndRenderProducts(currentPage, currentSelectedManufacturers, currentSelectedRatings);
-                    setFilterGroupManufacturer(currentSelectedManufacturers);
-                    setFilterGroupRatings(currentSelectedRatings);
+                    fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedRatings);
+                    setFilterGroupManufacturer(selectedManufacturers);
+                    setFilterGroupRatings(selectedRatings);
                 } else {
                     let apiURL;
                     if (subcategoryId !== null) {
@@ -339,14 +339,14 @@
                     fetch(apiURL)
                         .then(response => response.json())
                         .then(data => {
-                            currentSelectedManufacturers = data.reduce((acc, manufacturer) => {
+                            selectedManufacturers = data.reduce((acc, manufacturer) => {
                                 acc[manufacturer] = true;
                                 return acc;
                             }, {});
                             
-                            fetchAndRenderProducts(currentPage, currentSelectedManufacturers, currentSelectedRatings);
-                            setFilterGroupManufacturer(currentSelectedManufacturers);
-                            setFilterGroupRatings(currentSelectedRatings);  
+                            fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedRatings);
+                            setFilterGroupManufacturer(selectedManufacturers);
+                            setFilterGroupRatings(selectedRatings);  
                         })
                         .catch(error => {
                             console.error(error);
@@ -374,17 +374,17 @@
                         console.error(error);
                     });
                 
-                sessionStorage.removeItem('currentPage');
-                sessionStorage.removeItem('currentSelectedManufacturers');
-                sessionStorage.removeItem('currentSelectedRatings');
+                sessionStorage.removeItem('selectedPage');
+                sessionStorage.removeItem('selectedManufacturers');
+                sessionStorage.removeItem('selectedRatings');
             });
         
-            function fetchAndRenderProducts(page, selectedManufacturers, selectedRatings) {
+            function fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedRatings) {
                 const params = new URLSearchParams(window.location.search);
                 const categoryId = params.get('categoryId');
                 const subcategoryId = params.get('subcategoryId');
         
-                let apiURL = `http://localhost:8080/products?categoryId=${categoryId}&page=${page}&size=9`;
+                let apiURL = `http://localhost:8080/products?categoryId=${categoryId}&page=${selectedPage}&size=9`;
 
                 // Check if subcategoryId is present and append to the URL
                 if (subcategoryId !== null) {
@@ -453,7 +453,7 @@
                         paginationBox.innerHTML = `<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a></li>`;
                     
                         for (let i = 1; i <= totalPages; i++) {
-                            if (i === parseInt(currentPage) + 1) {
+                            if (i === parseInt(selectedPage) + 1) {
                                 // Add a border to the current page number
                                 paginationBox.innerHTML += `<li class="current-page"><a href="#">${i}</a></li>`;
                             } else {
@@ -467,13 +467,13 @@
                         let nextButton = document.querySelector('.Next');
 
                         // If on the first page, make the 'Previous' button red
-                        if (currentPage == 0) {
+                        if (selectedPage == 0) {
                             prevButton.style.color = '#c8c8c8';
                             prevButton.style.pointerEvents = 'none';
                         }
 
                         // If on the last page, disable the 'Next' button and make it gray
-                        if (currentPage == totalPages - 1) {
+                        if (selectedPage == totalPages - 1) {
                             nextButton.style.color = '#c8c8c8';
                             nextButton.style.pointerEvents = 'none';
                         }
@@ -494,7 +494,7 @@
                 let html = '';
 
                 Object.keys(selectedManufacturers).forEach(manufacturer => {
-                    const isChecked = selectedManufacturers[manufacturer]; // Use the true/false value from currentSelectedManufacturers
+                    const isChecked = selectedManufacturers[manufacturer]; 
                     html += `
                         <label class="filter-label">
                             <input type="checkbox" class="input-manufacturer" data-manufacturer="${manufacturer}" ${isChecked ? 'checked' : ''}>
@@ -596,16 +596,16 @@
                 
                     } else if (event.target.classList.contains('Previous')) {
 
-                        if (currentPage > 0) { 
+                        if (selectedPage > 0) { 
                             
-                            setSessionStatus(Number(currentPage) - 1);
+                            setSessionStatus(Number(selectedPage) - 1);
                             location.reload();
                         }
                     } else if (event.target.classList.contains('Next')) {
 
-                        if (currentPage < totalPages - 1) {
+                        if (selectedPage < totalPages - 1) {
                             
-                            setSessionStatus(Number(currentPage) + 1);
+                            setSessionStatus(Number(selectedPage) + 1);
                             location.reload();
                         }
                     }
@@ -627,9 +627,9 @@
                 // Get the selected rating
                 const selectedRatings = Array.from(document.querySelectorAll('input[type="radio"].input-ratings')).find(radio => radio.checked)?.getAttribute('data-ratings');
 
-                sessionStorage.setItem('currentPage', pageNumber);
-                sessionStorage.setItem('currentSelectedManufacturers', JSON.stringify(manufacturerStatus));
-                sessionStorage.setItem('currentSelectedRatings', selectedRatings);
+                sessionStorage.setItem('selectedPage', pageNumber);
+                sessionStorage.setItem('selectedManufacturers', JSON.stringify(manufacturerStatus));
+                sessionStorage.setItem('selectedRatings', selectedRatings);
             }
          </script>
         <script>

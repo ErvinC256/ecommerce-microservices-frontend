@@ -346,7 +346,7 @@
                 if (sessionStorage.getItem('selectedManufacturers')) {
                     selectedManufacturers = JSON.parse(sessionStorage.getItem('selectedManufacturers'));
 
-                    fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedRatings);
+                    fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedPriceRange, selectedRatings);
                     setFilterGroupManufacturer(selectedManufacturers);
                     setFilterGroupPriceRange(selectedPriceRange);
                     setFilterGroupRatings(selectedRatings);
@@ -366,7 +366,7 @@
                                 return acc;
                             }, {});
                             
-                            fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedRatings);
+                            fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedPriceRange, selectedRatings);
                             setFilterGroupManufacturer(selectedManufacturers);
                             setFilterGroupPriceRange(selectedPriceRange);
                             setFilterGroupRatings(selectedRatings);  
@@ -404,7 +404,7 @@
                 sessionStorage.removeItem('selectedRatings');
             });
         
-            function fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedRatings) {
+            function fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedPriceRange, selectedRatings) {
                 const params = new URLSearchParams(window.location.search);
                 const categoryId = params.get('categoryId');
                 const subcategoryId = params.get('subcategoryId');
@@ -415,6 +415,9 @@
                 if (subcategoryId !== null) {
                     apiURL += `&subcategoryId=${subcategoryId}`;
                 }
+
+                // append price range
+                apiURL += `&minPrice=${selectedPriceRange.minValue}&maxPrice=${selectedPriceRange.maxValue}`;
 
                 // Check if manufacturers are selected and append to the URL
                 const trueSelectedManufacturers = Object.keys(selectedManufacturers).filter(manufacturer => selectedManufacturers[manufacturer]);

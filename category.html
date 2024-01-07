@@ -136,6 +136,16 @@
                                 </article>
                                 <article class="filter-group">
                                     <header class="card-header">
+                                        <h6 class="title">Price Range</h6>
+                                    </header>
+                                    <div class="filter-content" id="filter-price-range">
+                                        <div class="card-body">
+                                            <!-- pricee range options will be inserted here -->
+                                        </div> <!-- card-body.// -->
+                                    </div>
+                                </article>
+                                <article class="filter-group">
+                                    <header class="card-header">
                                         <h6 class="title">Ratings</h6>
                                     </header>
                                     <div class="filter-content" id="filter-ratings">
@@ -286,6 +296,7 @@
 
             let selectedPage;
             let selectedManufacturers;
+            let selectedPriceRange;
             let selectedRatings;
             let totalPages;
 
@@ -318,6 +329,15 @@
                 } else {
                     selectedPage = 0;
                 }
+                if (sessionStorage.getItem('selectedPriceRange')) {
+                    selectedPriceRange = JSON.parse(sessionStorage.getItem('selectedPriceRange'));
+                } else {
+                    selectedPriceRange = {
+                        label: 'All',
+                        minValue: 0,
+                        maxValue: Number.MAX_SAFE_INTEGER
+                    };
+                }
                 if (sessionStorage.getItem('selectedRatings')) {
                     selectedRatings = parseInt(sessionStorage.getItem('selectedRatings')); 
                 } else {
@@ -328,7 +348,9 @@
 
                     fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedRatings);
                     setFilterGroupManufacturer(selectedManufacturers);
+                    setFilterGroupPriceRange(selectedPriceRange);
                     setFilterGroupRatings(selectedRatings);
+
                 } else {
                     let apiURL;
                     if (subcategoryId !== null) {
@@ -346,7 +368,9 @@
                             
                             fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedRatings);
                             setFilterGroupManufacturer(selectedManufacturers);
+                            setFilterGroupPriceRange(selectedPriceRange);
                             setFilterGroupRatings(selectedRatings);  
+
                         })
                         .catch(error => {
                             console.error(error);
@@ -376,6 +400,7 @@
                 
                 sessionStorage.removeItem('selectedPage');
                 sessionStorage.removeItem('selectedManufacturers');
+                sessionStorage.removeItem('selectedPriceRange');
                 sessionStorage.removeItem('selectedRatings');
             });
         
@@ -517,6 +542,49 @@
                 });
             }
 
+            function setFilterGroupPriceRange(selectedPriceRange) {
+                
+                let filterGroup = document.querySelector('#filter-price-range .card-body');
+
+                // Clear the existing content
+                filterGroup.innerHTML = '';
+
+                let html = '';
+
+                // Data for price ranges
+                const priceRanges = [
+                    { id: 'all', label: 'All', minValue: 0, maxValue: Number.MAX_SAFE_INTEGER },
+                    { id: 'less-than-25', label: 'Less than $25', minValue: 0, maxValue: 25 },
+                    { id: '25-to-50', label: '$25 - $50', minValue: 25, maxValue: 50 },
+                    { id: '50-to-100', label: '$50 - $100', minValue: 50, maxValue: 100 },
+                    { id: '100-to-200', label: '$100 - $200', minValue: 100, maxValue: 200 },
+                    { id: 'more-than-200', label: 'More than $200', minValue: 200, maxValue: Number.MAX_SAFE_INTEGER }
+                ];
+                priceRanges.forEach((priceRange) => {
+                    const isChecked = priceRange.label === selectedPriceRange.label;
+
+                    html += `
+                        <label class="filter-label">
+                            <input type="radio" name="priceRange" id="${priceRange.id}" class="input-price-range" data-price-range="${priceRange.label}" data-min-value="${priceRange.minValue}" data-max-value="${priceRange.maxValue}" ${isChecked ? 'checked' : ''}>
+                            <span style="position: relative; bottom: 4px;">${priceRange.label}</span>
+                        </label>
+                    `;
+                });
+
+                filterGroup.innerHTML = html;
+
+                // Add event listener to radio buttons
+                const radioButtons = document.querySelectorAll('input[type="radio"].input-price-range');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        
+                        const pageNumber = 0;
+                        setSessionStatus(pageNumber);
+                        location.reload();
+                    });
+                });
+            }
+
             function setFilterGroupRatings(selectedRatings) {
                 
                 let filterGroup = document.querySelector('#filter-ratings .card-body');
@@ -613,22 +681,30 @@
             }
 
             function setSessionStatus(pageNumber) {
+                
+                // get the selected manufacturers
                 const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"].input-manufacturer')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
                 const selectedManufacturers = allManufacturers.filter(manufacturer =>
                     document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
                 );
-
-                // Create an object to store the true/false values for all manufacturers
                 const manufacturerStatus = {};
                 allManufacturers.forEach(manufacturer => {
                     manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
                 });
 
-                // Get the selected rating
+                // get the selected price range
+                let selectedPriceRange = {
+                    label: Array.from(document.querySelectorAll('input[type="radio"].input-price-range')).find(radio => radio.checked)?.getAttribute('data-price-range'),
+                    minValue: Array.from(document.querySelectorAll('input[type="radio"].input-price-range')).find(radio => radio.checked)?.getAttribute('data-min-value'),
+                    maxValue: Array.from(document.querySelectorAll('input[type="radio"].input-price-range')).find(radio => radio.checked)?.getAttribute('data-max-value')
+                };
+
+                // Get the selected ratings
                 const selectedRatings = Array.from(document.querySelectorAll('input[type="radio"].input-ratings')).find(radio => radio.checked)?.getAttribute('data-ratings');
 
                 sessionStorage.setItem('selectedPage', pageNumber);
                 sessionStorage.setItem('selectedManufacturers', JSON.stringify(manufacturerStatus));
+                sessionStorage.setItem('selectedPriceRange', JSON.stringify(selectedPriceRange));
                 sessionStorage.setItem('selectedRatings', selectedRatings);
             }
          </script>

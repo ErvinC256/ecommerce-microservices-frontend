@@ -428,6 +428,12 @@
                 fetch(apiURL)
                     .then(response => response.json())
                     .then(data => {
+
+                        // Set all manufacturers to false initially
+                        Object.keys(selectedManufacturers).forEach(manufacturer => {
+                            selectedManufacturers[manufacturer] = false;
+                        });
+
                         // set fetched products summary
                         let categoryNameElement = document.querySelector('#category-name');
                         let itemCountElement = document.querySelector('#item-count');
@@ -444,6 +450,7 @@
                             inTextElement.textContent = '';
                         }
 
+                        // populate product grid
                         const productsContainer = document.querySelector('.shop-product-area .row');
                         productsContainer.innerHTML = '';
         
@@ -473,8 +480,17 @@
                                 </div>
                             `;
                             productsContainer.appendChild(productElement);
+                            
+                            // update selectedManufacturers based on returned products
+                            if (product.manufacturer in selectedManufacturers) {
+                                selectedManufacturers[product.manufacturer] = true;
+                                console.log('brand found');
+                            } else {
+                                selectedManufacturers[product.manufacturer] = false;
+                            }
                         });
                         
+                        // pagination
                         const paginationBox = document.querySelector('.pagination-box');
                         totalPages = data.totalPages;
         
@@ -494,19 +510,17 @@
                         let prevButton = document.querySelector('.Previous');
                         let nextButton = document.querySelector('.Next');
 
-                        // If on the first page, make the 'Previous' button red
                         if (selectedPage == 0) {
                             prevButton.style.color = '#c8c8c8';
                             prevButton.style.pointerEvents = 'none';
                         }
-
-                        // If on the last page, disable the 'Next' button and make it gray
                         if (selectedPage == totalPages - 1) {
                             nextButton.style.color = '#c8c8c8';
                             nextButton.style.pointerEvents = 'none';
                         }
-                        
                         paginationBox.addEventListener('click', handlePaginationClick);
+
+                        console.log(selectedManufacturers);
                     })
                     .catch(error => {
                         console.error(error);

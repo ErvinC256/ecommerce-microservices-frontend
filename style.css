@@ -508,6 +508,26 @@ option {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   visibility: visible;
 }
+.product-tag-container {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.product-tag {
+	display: inline-block;
+	padding: 5px 10px;
+	font-size: 10px;
+	border-radius: 2px;
+	color: #fff;
+}
+.product-tag.new-arrival {
+	background-color: #e77b00;
+}
+
+.product-tag.best-seller {
+	background-color: #CD5C5C;
+}
 .product-desc {
   position: relative;
 }

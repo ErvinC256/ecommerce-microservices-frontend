@@ -534,6 +534,8 @@ option {
 
 .product-tag.best-seller {
 	background-color: #CD5C5C;
+	position: relative;
+	right: 2px;
 }
 .product-desc {
   position: relative;

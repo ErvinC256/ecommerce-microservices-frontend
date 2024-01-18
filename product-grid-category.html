@@ -126,8 +126,10 @@
                             <div class="card">
                                 <article class="filter-group">
                                     <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#filter-manufacturer" aria-expanded="true" class="">
-                                            <i class="icon-control fa fa-chevron-down"></i>
+                                        <a href="#" data-toggle="collapse" data-target="#filter-manufacturer" aria-expanded="true">
+                                            <div style="width: 20px;">
+                                                <i class="icon-control fa fa-caret-down"></i>
+                                            </div>
                                             <h6 class="title">Manufacturer</h6>
                                         </a>
                                     </header>
@@ -139,8 +141,10 @@
                                 </article>
                                 <article class="filter-group">
                                     <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#filter-price-range" aria-expanded="true" class="">
-                                            <i class="icon-control fa fa-chevron-down"></i>
+                                        <a href="#" data-toggle="collapse" data-target="#filter-price-range" aria-expanded="true">
+                                            <div style="width: 20px;">
+                                                <i class="icon-control fa fa-caret-down"></i>
+                                            </div>
                                             <h6 class="title">Price Range</h6>
                                         </a>
                                     </header>
@@ -152,8 +156,10 @@
                                 </article>
                                 <article class="filter-group">
                                     <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#filter-ratings" aria-expanded="true" class="">
-                                            <i class="icon-control fa fa-chevron-down"></i>
+                                        <a href="#" data-toggle="collapse" data-target="#filter-ratings" aria-expanded="true">
+                                            <div style="width: 20px;">
+                                                <i class="icon-control fa fa-caret-down"></i>
+                                            </div>
                                             <h6 class="title">Ratings</h6>
                                         </a>
                                     </header>
@@ -771,6 +777,27 @@
                     }
                 });
             }
+        </script>
+        <script>
+            // Select all the filter groups
+            let filterGroups = document.querySelectorAll('.filter-group');
+
+            // Add event listener to each filter group
+            filterGroups.forEach((group) => {
+                let header = group.querySelector('.card-header a');
+                let icon = header.querySelector('.icon-control');
+
+                // Toggle the arrow direction on click
+                header.addEventListener('click', () => {
+                    if (icon.classList.contains('fa-caret-down')) {
+                        icon.classList.remove('fa-caret-down');
+                        icon.classList.add('fa-caret-right');
+                    } else {
+                        icon.classList.remove('fa-caret-right');
+                        icon.classList.add('fa-caret-down');
+                    }
+                });
+            });
         </script>
     </body>
 </html>

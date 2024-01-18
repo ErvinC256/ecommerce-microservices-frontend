@@ -596,217 +596,22 @@ option {
 /*----------------------------------------*/
 .footer {
 	background-color: #0673ca;
-	border-top: 1px solid #e1e1e1;
 	color: #fff;
 }
-.footer-static-top-3 {
-	background-color: #fff;
-	border-bottom: 1px solid #e1e1e1;
-}
-.footer-shipping {
-	border-bottom: 1px dashed #e1e1e1;
-}
-.footer-static-top-3 .footer-shipping {
-	border-bottom: none;
-}
-/*Li's Sipping Inner Box*/
-.li-shipping-inner-box {
+.footer-wrap {
 	text-align: center;
-	z-index: 99;
 }
-.footer-static-top-3 .li-shipping-inner-box {
-	border-right: 1px solid #e1e1e1;
-	padding: 50px 10px 45px;
+.footer-wrap > div {
+	padding: 10px 10px;
 }
-.footer-static-top-3 .li-shipping-inner-box.last-child {
-	border-right: none;
-}
-.shipping-icon {
-	display: inline-block;
-	width: 67px;
-	height: 57px;
-}
-.shipping-text {
-	padding-top: 15px;
-}
-.shipping-text h2 {
-	font-size: 16px;
-	font-weight: 500;
-	color: #242424;
-	padding-bottom: 10px;
-}
-.shipping-text p {
-	margin: 0;
-	color: #888;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 18px;
-}
-/*Footer Middle*/
-.footer-logo-wrap {
-	border-bottom: 1px dashed #e1e1e1;
-}
-.footer-static-middle .footer-logo p.info {
-	margin: 20px 0 25px;
-	font-size: 14px;
-	line-height: 24px;
-	color: #888;
-}
-.footer-static-middle .des > li {
-	color: #888;
-	font-size: 14px;
-	margin: 0;
-	font-weight: 400;
-	line-height: 24px;
-	margin-bottom: 15px;
-}
-.footer-static-middle ul.des > li span {
-	text-transform: uppercase;
-	font-weight: 500;
-	font-size: 12px;
-}
-/*Footer Block*/
-.footer-block > h3 {
-	font-size: 20px;
-	line-height: 24px;
-	font-weight: 500;
-	color: #242424;
-	margin: 0 0 15px 0;
-	cursor: pointer;
-	padding-top: 20px;
-	text-transform: capitalize;
-}
-.footer-block > ul > li {
-	display: block;
-	margin: 0;
-	line-height: 32px;
-	border: 0;
+.footer-wrap ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	padding: 0;
 }
-.footer-block > ul > li > a {
-	font-size: 14px;
-	color: #888;
-	line-height: 36px;
-	display: block;
-	position: relative;
-	transition: all 0.3s ease-in-out;
-}
-.footer-block > ul > li > a:hover {
-	color: #242424;
-	text-decoration: underline;
-	transition: all 0.3s ease-in-out;
-}
-/*Social Link*/
-.social-link {
-	line-height: 30px;
-	margin-bottom: 40px;
-	margin-top: 25px;
-}
-.social-link > li {
-	display: inline-block !important;
-	transition: all 0.3s ease-in-out;
-	float: left;
-	margin-right: 12px !important;
-}
-.social-link > li > a {
-	width: 40px;
-	height: 40px;
-	line-height: 40px !important;
-	text-align: center;
-}
-.social-link > li > a > i {
-	font-size: 18px;
-	color: #fff;
-}
-.social-link > li:hover > a {
-	background-color: #fed700;
-}
-/*Social Link Color Variations*/
-.twitter {
-	background-color: #40c1df;
-}
-.rss {
-	background-color: #eb8314;
-}
-.google-plus {
-	background-color: #ed3c32;
-}
-.facebook {
-	background-color: #3c5b9b;
-}
-.youtube {
-	background-color: #c72982;
-}
-.instagram {
-	background-color: #c619b8;
-}
-/*Footer Newsletter*/
-.footer-newsletter {
-	float: left;
-	width: 100%;
-}
-.footer-newsletter > h4 {
-	font-size: 20px;
-	line-height: 24px;
-	font-weight: 500;
-	color: #242424;
-	margin: 25px 0 25px 0;
-	cursor: pointer;
-	text-transform: capitalize;
-}
-.footer-newsletter .form-group {
-	position: relative;
-	float: left;
-	width: 100%;
-}
-.footer-newsletter .form-group input {
-	background-color: transparent;
-	border: 1px solid #e1e1e1;
-	padding: 0 135px 0 10px;
-}
-.footer-newsletter .form-group .btn {
-	position: absolute;
-	right: 0;
-	background-color: #fed700;
-	border: none;
-	color: #242424;
-	height: 45px;
-	text-transform: uppercase;
-	font-size: 12px;
-	font-weight: 500;
-	padding: 0 28px;
-	display: block;
-	line-height: 29px;
-	top: 0;
-	transition: all 0.5s ease-in-out;
-}
-.footer-newsletter .form-group .btn:hover {
-	background-color: #333333;
-	color: #ffffff;
-}
-/*Footer Static Bottom*/
-.footer-links {
-	padding: 0 40px 20px;
-}
-.footer-links > ul {
-text-align: center;
-}
-.footer-links > ul > li {
-	display: inline-block;
-	position: relative;
-}
-.footer-links > ul > li > a {
-	color: #888;
-	line-height: 24px;
-	letter-spacing: 0.3px;
-}
-.footer-links > ul > li::after {
-	content: "/";
-	color: #888;
-}
-.footer-links > ul > li > a:hover {
-	color: #242424;
-	text-decoration: underline;
+.footer-wrap ul li {
+	padding: 0px 15px;
 }
 /*----------------------------------------*/
 /*  03. Other Pages

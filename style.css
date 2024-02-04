@@ -105,18 +105,25 @@ table th {
 /*----------------------------------------*/
 input, textarea {
 	padding: 5px;
-	font-size: 14px;
 	width: 100%;
-	height: 100%;
+	height: auto;
 }
 input[type=checkbox] {
 	width: auto;
 	height: auto;
 }
+label {
+	font-size: 12px;
+	font-weight: bold;
+}
 select {
-	font-size: 14px;
+	padding: 5px;
 	overflow-y:auto;
 	width: auto;
+	height: auto;
+	background-color: #f5f6f7; 
+	border: 1px solid #e1e1e1;
+	border-radius: 2px;
 }
 option {
 	overflow-y:scroll;
@@ -318,9 +325,6 @@ option {
 	display: flex;
 	min-width: 638px;
 	border: 1 solid #b6b6b6;
-}
-.hm-searchbox select {
-	padding: 0px 5px;
 }
 .cart-container {
 	position: relative;
@@ -655,7 +659,7 @@ option {
 /*----------------------------------------*/
 /*  3.2 Checkout Page
 /*----------------------------------------*/
-.billing-info-form div:not(:last-child) {
+.billing-info-form div {
     padding-bottom: 20px;
 }
 /*----------------------------------------*/
@@ -674,10 +678,10 @@ option {
 .register-form a {
 	color: #0673ca;
 }
-.sign-in-form div:not(:last-child) {
+.sign-in-form div {
     padding-bottom: 20px;
 }
-.register-form div:not(:last-child) {
+.register-form div {
     padding-bottom: 20px;
 }
 .error-message {
@@ -764,8 +768,8 @@ iframe {
 .map iframe {
 	border: 0px;
 }
-.contact-form div:not(:last-child),
-.contact-page div:not(:last-child) {
+.contact-form div,
+.contact-page div {
     padding-bottom: 20px;
 }
 .contact-page {
@@ -862,12 +866,6 @@ iframe {
 .add-to-cart-div > div {
 	margin-bottom: 10px;
 }
-.quantity-select select {
-	padding: 2px; 
-	background-color: #f5f6f7; 
-	border: 1px solid #e1e1e1;
-	border-radius: 2px;
-}
 .price-div span::before {
 	content: "\2022";
 	padding-right: 15px;
@@ -916,12 +914,9 @@ iframe {
 /*----------------------------------------*/
 /*  3.8 Account Page
 /*----------------------------------------*/
-.basic-info-form div:not(:last-child),
-.shipping-info-form div:not(:last-child) {
+.basic-info-form div,
+.shipping-info-form div {
     padding-bottom: 20px;
-}
-.shipping-info-form select {
-	height: 100%;
 }
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

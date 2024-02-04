@@ -114,7 +114,6 @@ input[type=checkbox] {
 }
 label {
 	font-size: 12px;
-	font-weight: bold;
 }
 select {
 	padding: 5px;
@@ -662,6 +661,9 @@ option {
 .billing-info-form div {
     padding-bottom: 20px;
 }
+.billing-info-form label {
+    font-weight: bold;
+}
 /*----------------------------------------*/
 /*  3.3 Sign In Register Page
 /*----------------------------------------*/
@@ -678,11 +680,13 @@ option {
 .register-form a {
 	color: #0673ca;
 }
-.sign-in-form div {
-    padding-bottom: 20px;
-}
+.sign-in-form div,
 .register-form div {
     padding-bottom: 20px;
+}
+.sign-in-form div,
+.register-form label {
+    font-weight: bold;
 }
 .error-message {
 	display: none;
@@ -772,6 +776,10 @@ iframe {
 .contact-page div {
     padding-bottom: 20px;
 }
+.contact-form label,
+.contact-page label {
+    font-weight: bold;
+}
 .contact-page {
 	padding-left: 5px;
 	background-color: #f5f6f7;
@@ -814,8 +822,8 @@ iframe {
 }
 .filter-label {
 	display: flex;
-	justify-items: center;
-	margin-bottom: 10px;
+	align-items: center;
+	font-size: 14px;
 }
 .filter-label input {
 	margin-right: 10px;
@@ -917,6 +925,10 @@ iframe {
 .basic-info-form div,
 .shipping-info-form div {
     padding-bottom: 20px;
+}
+.basic-info-form div,
+.shipping-info-form label {
+    font-weight: bold;
 }
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

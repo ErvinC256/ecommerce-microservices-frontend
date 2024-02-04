@@ -572,7 +572,7 @@
                     html += `
                         <label class="filter-label">
                             <input type="radio" name="priceRange" id="${priceRange.id}" class="input-price-range" data-price-range="${priceRange.label}" data-min-value="${priceRange.minValue}" data-max-value="${priceRange.maxValue}" ${isChecked ? 'checked' : ''}>
-                            <span style="position: relative; bottom: 4px;">${priceRange.label}</span>
+                            <span>${priceRange.label}</span>
                         </label>
                     `;
                 });
@@ -610,7 +610,7 @@
                     html += `
                         <label class="filter-label">
                             <input type="radio" name="ratings" class="input-ratings" data-ratings="${rating}" ${isChecked ? 'checked' : ''}>
-                            <span style="position: relative; bottom: 5px;">${generateStarRatings(rating)} ${rating < 5 ? '& up' : ''}</span>
+                            <span>${generateStarRatings(rating)} ${rating < 5 ? '& up' : ''}</span>
                         </label>
                     `;
                 });

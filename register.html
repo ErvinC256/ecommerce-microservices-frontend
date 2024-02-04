@@ -127,28 +127,36 @@
                             </div><br><br>
                             <form action="#" class="register-form">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <input type="text" name="username" placeholder="Enter username"> 
+                                    <div class="col-6">
+                                        <label for="">First Name</label>
+                                        <input type="text" name="firstName" placeholder="Enter first name"> 
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="">Last Name</label>
+                                        <input type="text" name="lastName" placeholder="Enter last name"> 
                                     </div>
                                     <div class="col-12">
+                                        <label for="">Email Address</label>
                                         <input type="email" name="email" placeholder="Enter email address"> 
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6" style="padding-bottom: 5px;">
+                                        <label for="">Password</label>
                                         <input type="password" name="password" placeholder="Enter password"> 
                                     </div>
-                                    <div class="col-6">
-                                        <input type="password" name="confirmPassword" placeholder="Confirm password"> 
+                                    <div class="col-6" style="padding-bottom: 5px;">
+                                        <label for="">Confirm Password</label>
+                                        <input type="password" name="confirmPassword" placeholder="Enter confirm password"> 
                                     </div>                                    
-                                    <div class="col-12" style="display: flex; align-items: center; position: relative; bottom: 10px;">
+                                    <div class="col-12" style="display: flex; align-items: center;">
                                         <i class="fa fa-info-circle" style="color: #0673ca; margin-right: 5px;"></i>
                                         <p style="font-size: 12px;">Passwords must be at least 6 characters.</p>
                                     </div>
                                     <div class="col-12">
                                         <p style="font-size: 12px;">We take your privacy and security seriously. We are committed to safeguarding your personal information. When you log in to your account, we collect and use your data for authentication purposes only. We do not share your information with third parties without your consent. If you have any questions or concerns about your privacy or data security, please don't hesitate to contact our support team. </p>
                                     </div>
-                                    <div class="col-12" style="display: flex; justify-content: flex-start; align-items: flex-start; padding-bottom: 10px;">
+                                    <div class="col-12" style="display: flex; align-items: center;">
                                         <input type="checkbox" id="agree" name="agreement" value="agreed" style="margin-right: 10px;">
-                                        <label for="agree" style="position: relative; bottom: 3px; font-weight: normal;">I agree to the terms and conditions.</label>    
+                                        <label for="agree" style="font-weight: normal; position: relative; top: 3px;">I agree to the terms and conditions.</label>    
                                     </div>
                                     <div class="col-12">
                                         <button class="my-button" id="register-button">Create Account</button>

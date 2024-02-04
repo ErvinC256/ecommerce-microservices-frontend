@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="col-6">
                                         <label for="">Last Name</label>
-                                        <input type="text" name="lastName" placeholder="Enter last name"> 
+                                        <input type="text" name="lastName" placeholder="Enter last name (optional)"> 
                                     </div>
                                     <div class="col-12">
                                         <label for="">Email Address</label>
@@ -233,7 +233,8 @@
 
                 // Get the elements
                 const registerButton = document.querySelector("#register-button");
-                const usernameInput = document.querySelector(".register-form input[name='username']");
+                const firstNameInput = document.querySelector(".register-form input[name='firstName']");
+                const lastNameInput = document.querySelector(".register-form input[name='lastName']");
                 const emailInput = document.querySelector(".register-form input[name='email']");
                 const passwordInput = document.querySelector(".register-form input[name='password']");
                 const confirmPasswordInput = document.querySelector(".register-form input[name='confirmPassword']");
@@ -244,13 +245,14 @@
                     event.preventDefault();
 
                     // Get the username and password values
-                    const username = usernameInput.value;
+                    const firstName = firstNameInput.value;
+                    const lastName = lastNameInput.value;
                     const email = emailInput.value;
                     const password = passwordInput.value;
                     const confirmPassword = confirmPasswordInput.value;
 
                     // Check if the username or password is empty
-                    if (!username || !email || !password || !confirmPassword) {
+                    if (!firstName || !email || !password || !confirmPassword) {
                         document.querySelector('.error-message').style.display = 'block';
                         document.querySelector('.error-message p').innerText = 'Please fill in your credentials';
                         return;
@@ -264,13 +266,14 @@
                         return;
                     }
 
-                    fetch('http://localhost:8080/users', {
+                    fetch('http://localhost:8080/users/register', {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            username: username,
+                            firstName: firstName,
+                            lastName: lastName,
                             email: email,
                             password: password,
                             confirmPassword: confirmPassword
@@ -285,8 +288,6 @@
                             return response.json();
                         })
                         .then(data => {
-                            sessionStorage.setItem('userId', data.userId);
-
                             window.location.href = 'sign-in.html';
                         })
                         .catch(error => {

@@ -538,7 +538,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 function signOut() {
 	sessionStorage.removeItem('userId');
-	sessionStorage.removeItem('username');
+	sessionStorage.removeItem('lastName');
 	window.location.href = 'sign-in.html';
 }
 /*----------------------------------------*/
@@ -553,11 +553,11 @@ function checkSignInStatus() {
     }
 
     // Assume you have stored the username in sessionStorage
-    const username = sessionStorage.getItem('username');
+    const lastName = sessionStorage.getItem('lastName');
 
-    // Update the HTML with the dynamically fetched username
-    if (username) {
-        document.querySelector('#greet-user').innerText = `${username}`;
+    // Update the HTML with the dynamically fetched lastname
+    if (lastName) {
+        document.querySelector('#greet-user').innerText = `${lastName}`;
     }
 }
 function getCartNumber() {

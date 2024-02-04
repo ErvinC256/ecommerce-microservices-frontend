@@ -111,21 +111,21 @@
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li style="color: #808080;">Register</li>
+                            <li style="color: #808080;">Sign Up</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- Breadcrumb Area End Here -->
-            <!-- Begin Register Area -->
-            <div class="register-area mb-50">
+            <!-- Begin Sign Up Area -->
+            <div class="sign-up-area mb-50">
                 <div class="container">
                     <div class="row">
                         <div class="col-6">
                             <div class="section-title">
                                 <h2>Create Your Account</h2>
                             </div><br><br>
-                            <form action="#" class="register-form">
+                            <form action="#" class="sign-up-form">
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="">First Name</label>
@@ -159,7 +159,7 @@
                                         <label for="agree" style="font-weight: normal; position: relative; top: 3px;">I agree to the terms and conditions.</label>    
                                     </div>
                                     <div class="col-12">
-                                        <button class="my-button" id="register-button">Create Account</button>
+                                        <button class="my-button" id="sign-up-button">Create Account</button>
                                     </div>
                                     <div class="col-12">
                                         <p>Already have an account? <a href="">Sign in</a> here.</p>
@@ -173,7 +173,7 @@
                             </form>
                         </div>
                         <div class="col-6">
-                            <img src="images/sign-in-register/screen-post-PinrXPzW7cU-unsplash.jpg" alt="">
+                            <img src="images/sign-in-sign-up/screen-post-PinrXPzW7cU-unsplash.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -232,15 +232,15 @@
                 getCartNumber();
 
                 // Get the elements
-                const registerButton = document.querySelector("#register-button");
-                const firstNameInput = document.querySelector(".register-form input[name='firstName']");
-                const lastNameInput = document.querySelector(".register-form input[name='lastName']");
-                const emailInput = document.querySelector(".register-form input[name='email']");
-                const passwordInput = document.querySelector(".register-form input[name='password']");
-                const confirmPasswordInput = document.querySelector(".register-form input[name='confirmPassword']");
+                const signUpButton = document.querySelector("#sign-up-button");
+                const firstNameInput = document.querySelector(".sign-up-form input[name='firstName']");
+                const lastNameInput = document.querySelector(".sign-up-form input[name='lastName']");
+                const emailInput = document.querySelector(".sign-up-form input[name='email']");
+                const passwordInput = document.querySelector(".sign-up-form input[name='password']");
+                const confirmPasswordInput = document.querySelector(".sign-up-form input[name='confirmPassword']");
 
                 // Add click event to the Sign In button
-                registerButton.addEventListener("click", function (event) {
+                signUpButton.addEventListener("click", function (event) {
                     // Prevent the default form submission
                     event.preventDefault();
 

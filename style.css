@@ -668,24 +668,24 @@ option {
 /*  3.3 Sign In Register Page
 /*----------------------------------------*/
 .sign-in-area h2,
-.register-area h2 {
+.sign-up-area h2 {
 	font-size: 20px;
 }
 .sign-in-area img,
-.register-area img {
+.sign-up-area img {
 	width: 100%;
 	height: 100%;
 }
 .sign-in-form a,
-.register-form a {
+.sign-up-form a {
 	color: #0673ca;
 }
 .sign-in-form div,
-.register-form div {
+.sign-up-form div {
     padding-bottom: 20px;
 }
 .sign-in-form div,
-.register-form label {
+.sign-up-form label {
     font-weight: bold;
 }
 .error-message {

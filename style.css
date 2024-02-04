@@ -694,9 +694,6 @@ option {
 /*----------------------------------------*/
 /* 	3.4 Shopping Cart Page
 /*----------------------------------------*/
-.cart-contents-area h2 {
-	font-size: 20px;
-}
 .cart-table tr {
 	border-bottom: 1px solid #e1e1e1;
 }
@@ -743,7 +740,7 @@ option {
 	color: #0673ca;
 }
 .basket-summary-container {
-	padding: 30px;
+	padding: 20px;
 	background-color: #f5f6f7;
 	font-size: 16px;
 }

@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="style.css">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
         <style type="text/css">
+            .activity-checkout {
+                padding-left: 15px;
+            }
             .activity-checkout .checkout-icon {
                 position: absolute;
                 top: -4px;
@@ -49,26 +52,6 @@
                 -ms-flex-pack: center;
                 justify-content: center;
                 width: 100%
-            }
-            .avatar-group {
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -ms-flex-wrap: wrap;
-                flex-wrap: wrap;
-                padding-left: 8px
-            }
-            .avatar-group .avatar-group-item {
-                margin-left: -8px;
-                border: 2px solid #fff;
-                border-radius: 50%;
-                -webkit-transition: all .2s;
-                transition: all .2s
-            }
-            .avatar-group .avatar-group-item:hover {
-                position: relative;
-                -webkit-transform: translateY(-2px);
-                transform: translateY(-2px)
             }
         </style>
     </head>
@@ -113,7 +96,7 @@
                                             <option value="10">Electronics & Accessories</option>    
                                             <option value="10">Printers</option>
                                         </select>
-                                        <input type="text" placeholder="Enter your search key ...">
+                                        <input type="text" placeholder="Enter search key ...">
                                     </form>
                                 </div>
                                 <p>Hello, <span id="greet-user">guest</span></p>
@@ -207,19 +190,19 @@
                                                     <input type="email" id="billing-email-address" placeholder="Enter email">
                                                 </div>
                                                 <div class="col-4">
-                                                    <input type="text" id="billing-phone" placeholder="Enter Phone no.">
+                                                    <input type="text" id="billing-phone" placeholder="Enter phone number">
                                                 </div>
                                                 <div class="col-12">
                                                     <textarea id="billing-address" rows="3" placeholder="Enter full address"></textarea>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" id="billing-city" placeholder="Enter City">
+                                                    <input type="text" id="billing-city" placeholder="Enter city">
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" id="billing-city" placeholder="Enter City">
+                                                    <input type="text" id="billing-city" placeholder="Enter city">
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" id="zip-code" placeholder="Enter Postal code">
+                                                    <input type="text" id="zip-code" placeholder="Enter postal code">
                                                 </div>
                                             </div>
                                         </form>
@@ -241,6 +224,7 @@
                         </div>
                         <div class="col-4">
                             <div class="basket-summary-container">
+                                <h3 style="font-weight: bold;">Order Summary</h3>
                                 <div class="basket-row">
                                     <!-- <div>Subtotal <span>(2 items)</span></div> -->
                                     <div>Subtotal <span>(<span id="item-count">0</span> items)</span></div>

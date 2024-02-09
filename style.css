@@ -338,8 +338,8 @@ option {
 	right: 0;
 	background-color: #fbf703; 
 	color: #000;
-	padding: 5px 10px;
-	border-radius: 2px;
+	padding: 2px 8px;
+	border-radius: 5px;
 }
 /*Header Bottom Menu*/
 .header-bottom {
@@ -658,6 +658,49 @@ option {
 /*----------------------------------------*/
 /*  3.2 Checkout Page
 /*----------------------------------------*/
+.activity-checkout {
+	padding-left: 15px;
+}
+.activity-checkout .checkout-icon {
+	position: absolute;
+	top: -4px;
+	left: -22px
+}
+.activity-checkout .checkout-item {
+	position: relative;
+	padding-bottom: 24px;
+	padding-left: 35px;
+	border-left: 2px solid #f5f6f8
+}
+.activity-checkout .checkout-item:first-child {
+	border-color: #3b76e1
+}
+.activity-checkout .checkout-item:first-child:after {
+	background-color: #3b76e1
+}
+.activity-checkout .checkout-item:last-child {
+	border-color: transparent
+}
+.avatar {
+	height: 3rem;
+	width: 3rem
+}
+.avatar-title {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background-color: #3b76e1;
+	color: #fff;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	font-weight: 500;
+	height: 100%;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	width: 100%
+}
 .billing-info-form div {
     padding-bottom: 20px;
 }

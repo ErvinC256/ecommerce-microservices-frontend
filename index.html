@@ -175,7 +175,7 @@
             </div>
             <!-- Dynamic Banner Area End Here -->
             <!-- Begin Highlight Products Area -->
-            <div class="highlight-products-area product-tab-area mb-50">
+            <div class="highlight-products-area mb-50">
                 <div class="container">
                     <div class="product-tab">
                         <div class="section-title">
@@ -232,7 +232,7 @@
             </div>
             <!-- Static Banner Area End Here -->
             <!-- Begin Laptop Area -->
-            <div class="laptop-area product-area mb-50">
+            <div class="laptop-area mb-50">
                 <div class="container">
                     <div class="section-title">
                         <h2>Laptops & Tablets</h2>
@@ -250,7 +250,7 @@
             </div>
             <!-- Laptop Area End here -->
             <!-- Begin Electronics Area -->
-            <div class="electronics-area product-area mb-50">
+            <div class="electronics-area mb-50">
                 <div class="container">
                     <div class="section-title">
                         <h2>Electronics & Accessories</h2>
@@ -269,7 +269,7 @@
             </div>
             <!-- Electronics Area End here -->
             <!-- Begin Printer Area -->
-            <div class="printer-area product-area mb-50">
+            <div class="printer-area mb-50">
                 <div class="container">
                     <div class="section-title">
                         <h2>Printers</h2>
@@ -344,7 +344,7 @@
                         return response.json();
                     })
                     .then(data => {
-                        const productsContainer = document.querySelector('.product-tab-area #new-product .owl-carousel');
+                        const productsContainer = document.querySelector('#new-product .owl-carousel');
                         productsContainer.innerHTML = '';
                         data.content.forEach(product => {
                             const productElement = generateSingleProduct(product);
@@ -363,7 +363,7 @@
                         return response.json();
                     })
                     .then(data => {
-                        const productsContainer = document.querySelector('.product-tab-area #bestseller-product .owl-carousel');
+                        const productsContainer = document.querySelector('#bestseller-product .owl-carousel');
                         productsContainer.innerHTML = '';
                         data.content.forEach(product => {
                             const productElement = generateSingleProduct(product);

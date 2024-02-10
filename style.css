@@ -92,7 +92,6 @@ h3 {
 .container {
 	width: auto;
 	max-width: 1200px;
-	/* outline: 0.5px solid black; */
 }
 table {
 	width: 100%;
@@ -120,8 +119,6 @@ select {
 	overflow-y:auto;
 	width: auto;
 	height: auto;
-	background-color: #f5f6f7; 
-	border: 1px solid #e1e1e1;
 	border-radius: 2px;
 }
 option {
@@ -172,7 +169,6 @@ option {
 .my-tooltip {
 	display:inline-block;
 	position:relative;
-	border-bottom:1px dashed #808080;
 	cursor: pointer;
 	font-size: 12px;
 }
@@ -186,8 +182,7 @@ option {
 	position:absolute;
 	z-index:99999999;
 	box-sizing:border-box;
-	border:1px solid #e1e1e1;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	border:2px solid #e1e1e1;
 	display:none;
 	text-align: left;
 }
@@ -216,11 +211,12 @@ option {
 .my-tooltip .tooltip-top {
 	padding: 5px 15px;
 	background-color: #e7f1fd;
-	border-bottom: 1px solid #e1e1e1;
+}
+.my-tooltip .tooltip-top p {
 	font-weight: bold;
 }
 .my-tooltip .tooltip-bottom {
-	padding: 0px 15px;
+	padding: 5px 15px;
 }
 /*----------------------------------------*/
 /*  1.7 Button
@@ -275,7 +271,7 @@ option {
 /*----------------------------------------*/
 .header {
 	color: #fff;
-	background-color: #0673ca;
+	background-color: #333333;
 }
 /*Header Top*/
 .header-top {
@@ -303,7 +299,6 @@ option {
 .ht-menu li::after {
 	content: "";
 	position: absolute;
-	background-color: #e1e1e1;
 	height: 12px;
 	width: 1.5px;
 	right: 0;
@@ -324,7 +319,6 @@ option {
 .hm-searchbox form {
 	display: flex;
 	min-width: 638px;
-	border: 1 solid #b6b6b6;
 }
 .cart-container {
 	position: relative;
@@ -424,7 +418,7 @@ option {
 /*  2.2 Breadcrumb
 /*----------------------------------------*/
 .breadcrumb-area {
-	padding: 10px;
+	padding: 5px;
 	background-color: #e7f1fd;
 	margin-bottom: 20px;
 }
@@ -590,7 +584,7 @@ option {
 /*  2.6 Footer
 /*----------------------------------------*/
 .footer {
-	background-color: #0673ca;
+	background-color: #333333;
 	color: #fff;
 }
 .footer-wrap {
@@ -662,13 +656,13 @@ option {
 	position: relative;
 	padding-bottom: 24px;
 	padding-left: 35px;
-	border-left: 2px solid #f5f6f8
+	border-left: 2px solid #0673ca
 }
 .activity-checkout .checkout-item:first-child {
-	border-color: #3b76e1
+	border-color: #0673ca
 }
 .activity-checkout .checkout-item:first-child:after {
-	background-color: #3b76e1
+	background-color: #0673ca
 }
 .activity-checkout .checkout-item:last-child {
 	border-color: transparent
@@ -681,7 +675,7 @@ option {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	background-color: #3b76e1;
+	background-color: #0673ca;
 	color: #fff;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -771,7 +765,6 @@ option {
 .cart-options > li::after {
 	content: "";
 	position: absolute;
-	background-color: #e1e1e1;
 	height: 12px;
 	width: 1.5px;
 	right: 0;
@@ -784,7 +777,7 @@ option {
 }
 .basket-summary-container {
 	padding: 20px;
-	background-color: #f5f6f7;
+	background-color: #e7f1fd;
 	font-size: 16px;
 }
 .basket-summary-container .basket-row {
@@ -817,7 +810,7 @@ iframe {
 }
 .contact-page {
 	padding-left: 5px;
-	background-color: #f5f6f7;
+	background-color: #e7f1fd;
 }
 /*----------------------------------------*/
 /*  3.6 Category Page
@@ -843,7 +836,6 @@ iframe {
 }
 .filter-group .card-header {
 	background-color: #fff;
-	color: #545a65;
 }
 .filter-group .card-header h6 {
 	font-weight: bold;
@@ -950,10 +942,6 @@ iframe {
 	border: 1px solid #e1e1e1;
 	padding: 8px;
 }
-.product-info td:first-child {
-    background-color: #f5f6f7;
-}
-
 /*----------------------------------------*/
 /*  3.8 Account Page
 /*----------------------------------------*/

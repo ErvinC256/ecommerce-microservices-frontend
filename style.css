@@ -290,6 +290,7 @@ option {
 .header-top {
 	padding: 5px;
 	background-color: #000;
+	font-size: 12px;
 }
 .ht-menu {
 	display: flex;

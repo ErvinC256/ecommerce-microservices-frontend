@@ -167,11 +167,14 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 10. Scroll Up
 /*----------------------------------------*/
-	// $.scrollUp({
-	// 	scrollText: '<i class="fa fa-angle-double-up"></i>',
-	// 	easingType: 'linear',
-	// 	scrollSpeed: 900
-	// });
+// Add a click event listener to the div
+document.getElementById('scrollToTop').addEventListener('click', function() {
+	// Scroll to the top of the page
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth' // Smooth scrolling effect
+	});
+});
 /*----------------------------------------*/
 /* 11. Category Menu
 /*----------------------------------------*/

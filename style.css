@@ -17,6 +17,7 @@
 			1.6 Tooltip
 			1.7 Button
 			1.8 Ratings
+			1.9 Scroll Top
 		02. Home Page
 			2.1 Header
 			2.2 Breadcrumb
@@ -264,6 +265,18 @@ option {
 	color: #fff;
 }
 /*----------------------------------------*/
+/*  1.9 Ratings
+/*----------------------------------------*/
+#scrollToTop {
+	cursor: pointer; 
+	background-color: #fbf703; 
+	padding: 5px; 
+	text-align: center;
+}
+#scrollToTop a:hover {
+	text-decoration: underline;
+}
+/*----------------------------------------*/
 /*  02. Home Page
 /*----------------------------------------*/
 /*----------------------------------------*/
@@ -276,7 +289,7 @@ option {
 /*Header Top*/
 .header-top {
 	padding: 5px;
-	border-bottom: 1px solid #e1e1e1;
+	background-color: #000;
 }
 .ht-menu {
 	display: flex;

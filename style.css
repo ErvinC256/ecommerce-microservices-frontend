@@ -586,6 +586,7 @@ option {
 .footer {
 	background-color: #333333;
 	color: #fff;
+	font-size: 12px;
 }
 .footer-wrap {
 	text-align: center;

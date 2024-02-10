@@ -66,10 +66,10 @@ img {
 /*  1.2 Basic
 /*----------------------------------------*/
 body {
-	font-family: 'Tahoma', sans-serif;
+	font-family: 'Verdana', 'Tahoma', sans-serif;
 }
 p {
-	font-family: 'Trebuchet MS', sans-serif;
+	font-family: 'Verdana', 'Trebuchet MS', sans-serif;
 }
 a {	
 	color: inherit;

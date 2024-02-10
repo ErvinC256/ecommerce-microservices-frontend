@@ -18,7 +18,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		07. Li's Product Activision
 		08. Countdown
 		09. Tooltip Active
-		10. Scroll Up
+		10. Scroll Top
 		11. Category Menu
 		12. Li's Product Activision
 		13. FAQ Accordion
@@ -165,7 +165,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		container: 'body'
 	});
 /*----------------------------------------*/
-/* 10. Scroll Up
+/* 10. Scroll Top
 /*----------------------------------------*/
 // Add a click event listener to the div
 document.getElementById('scrollToTop').addEventListener('click', function() {

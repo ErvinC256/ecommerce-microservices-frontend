@@ -150,12 +150,24 @@
                                 <input type="password" name="confirmPassword" placeholder="Enter confirm password"> 
                             </div>                                    
                             <div class="col-12" style="display: flex; align-items: center;">
-                                <i class="fa fa-info-circle" style="color: #0673ca; margin-right: 5px;"></i>
                                 <p style="font-size: 12px;">Passwords must be at least 6 characters.</p>
                             </div>
                             <div class="col-12" style="display: flex; align-items: center;">
                                 <input type="checkbox" id="agree" name="agreement" value="agreed" style="margin-right: 10px;">
-                                <label for="agree" style="font-weight: normal; position: relative; top: 3px;">I agree to the terms and conditions.</label>    
+                                <label for="agree" style="font-weight: normal; position: relative; top: 13px;">
+                                    <div class="my-tooltip">
+                                        I agree to the terms and conditions.
+                                        <i class="fa fa-info-circle" style="color: #0673ca; margin-left: 5px;"></i>
+                                        <div class="tooltip-position" style="padding: 0px;">
+                                            <div class="tooltip-top">
+                                                <p>Terms and Conditions</p>
+                                            </div>
+                                            <div class="tooltip-bottom">
+                                                <p>By checking the box, you agree to abide by our terms and conditions, ensuring the secure handling of your information and compliance with applicable laws.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>    
                             </div>
                             <div class="col-12">
                                 <button class="my-button" id="sign-up-button">Create Account</button>

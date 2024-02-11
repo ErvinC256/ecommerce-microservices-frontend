@@ -38,15 +38,12 @@
 -----------------------------------------------------------------------------------*/
 @font-face {
 	font-family: "Poppins-Regular";
-	src: url("fonts/poppins/Poppins-Regular.ttf"); }
-  @font-face {
+	src: url("fonts/poppins/Poppins-Regular.ttf"); 
+}
+@font-face {
 	font-family: "Poppins-SemiBold";
-	src: url("fonts/poppins/Poppins-SemiBold.ttf"); }
-  * {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box; }
-
+	src: url("fonts/poppins/Poppins-SemiBold.ttf"); 
+}
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
 /*----------------------------------------*/
 /*  01. Default Style
@@ -287,9 +284,6 @@ option {
 	background-color: #fbf703; 
 	padding: 5px; 
 	text-align: center;
-}
-#scrollToTop a:hover {
-	text-decoration: underline;
 }
 /*----------------------------------------*/
 /*  02. Home Page

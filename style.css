@@ -113,7 +113,6 @@ table th {
 input, textarea, select, button {
 	font-family: "Poppins-Regular";
 	color: #333;
-	font-size: 13px;
 }
 input, textarea {
 	padding: 5px;
@@ -831,7 +830,6 @@ option {
 .basket-summary-container {
 	padding: 20px;
 	background-color: #e7f1fd;
-	font-size: 16px;
 }
 .basket-summary-container .basket-row {
 	display: flex; 
@@ -877,9 +875,6 @@ iframe {
 	border-top: 1px solid #e1e1e1; 
 	border-bottom: 1px solid #e1e1e1;
 }
-.shop-top-bar label {
-	font-size: 14px;
-}
 .shop-products-wrapper {
 	border-top: 1px solid #e1e1e1;
 }
@@ -903,7 +898,7 @@ iframe {
 .filter-label {
 	display: flex;
 	align-items: center;
-	font-size: 14px;
+	font-size: 12px;
 }
 .filter-label input {
 	margin-right: 10px;
@@ -916,7 +911,6 @@ iframe {
 .paginatoin-area {
 	margin: 50px 0 0;
 	padding: 10px;
-	font-size: 16px;
 }
 .pagination-box {
   	text-align: right;
@@ -937,7 +931,7 @@ iframe {
 /*  3.7 Product Details Page
 /*----------------------------------------*/
 .product-details-left p {
-	font-size: 12px;
+	font-size: 10px;
 }
 .product-details-left img {
 	width: 100%;

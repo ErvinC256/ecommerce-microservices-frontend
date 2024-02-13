@@ -382,7 +382,7 @@
                     });
 
                 //load laptop & tablets data
-                fetch('http://localhost:8080/products?categoryId=1&page=0&size=10') 
+                fetch('http://localhost:8080/products/criteria?categoryId=1&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -401,7 +401,7 @@
                     });
 
                 //load electronics & accessories data
-                fetch('http://localhost:8080/products?categoryId=2&page=0&size=10') 
+                fetch('http://localhost:8080/products/criteria?categoryId=2&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -419,7 +419,7 @@
                     });
 
                 //load printers data
-                fetch('http://localhost:8080/products?categoryId=3&page=0&size=10') 
+                fetch('http://localhost:8080/products/criteria?categoryId=3&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })

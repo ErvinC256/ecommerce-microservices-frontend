@@ -398,7 +398,9 @@
         
             function fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage) {
         
-                let apiURL = `http://localhost:8080/products?categoryId=${categoryId}`;
+                let apiURL = `http://localhost:8080/products?`;
+
+                apiURL += `&categoryId=${categoryId}`;
 
                 if (subcategoryId !== null) {
                     apiURL += `&subcategoryId=${subcategoryId}`;

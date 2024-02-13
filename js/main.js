@@ -37,6 +37,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		26. WOW
 		27. Sign Out
 		28. Check Sign In Status
+		29. Searh Bar
 
 -----------------------------------------------------------------------------------*/
 (function ($) {
@@ -579,6 +580,39 @@ function getCartNumber() {
 		document.querySelector('#cart-number').innerText = response.count;
 	});
 }
+/*----------------------------------------*/
+/* 29. Search Bar
+/*----------------------------------------*/
+document.getElementById('searchForm').addEventListener('keydown', function(event) {
+	// Check if the 'Enter' key was pressed
+	if (event.key === 'Enter') {
+		// Prevent the form from being submitted normally
+		event.preventDefault();
+
+		// Get the selected category ID and search term
+		const categoryId = document.getElementById('categorySelect').value;
+		const searchTerm = document.getElementById('searchInput').value;
+
+		// Build the redirect URL
+		let url = 'product-grid-general.html';
+		if (categoryId !== '0') {
+			url += '?categoryId=' + encodeURIComponent(categoryId);
+		}
+
+		// Append search term if it exists
+		if (searchTerm) {
+			// Check if there are existing query parameters
+			if (url.includes('?')) {
+				url += '&searchTerm=' + encodeURIComponent(searchTerm);
+			} else {
+				url += '?searchTerm=' + encodeURIComponent(searchTerm);
+			}
+		}
+
+		// Redirect the user to the product grid page with the search parameters in the URL
+		window.location.href = url;
+	}
+});
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

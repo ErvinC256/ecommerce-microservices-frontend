@@ -47,15 +47,15 @@
                             <div class="col-9">
                                 <div class="hm-searchbox-area">
                                     <div class="hm-searchbox">
-                                        <form action="#">
-                                            <select>
+                                        <form id="searchForm">
+                                            <select id="categorySelect">
                                                 <option value="0">All</option>                         
-                                                <option value="10">Laptops & Tablets</option>                     
-                                                <option value="10">Electronics & Accessories</option>    
-                                                <option value="10">Printers</option>
+                                                <option value="1">Laptops & Tablets</option>                     
+                                                <option value="2">Electronics & Accessories</option>    
+                                                <option value="3">Printers</option>
                                             </select>
-                                            <input type="text" placeholder="Enter search key ...">
-                                        </form>
+                                            <input id="searchInput" type="text" placeholder="Enter search key ...">
+                                        </form>                                                                           
                                     </div>
                                     <p><a href="account.html">Hello, <span id="greet-user">guest</span></a></p>
                                     <div class="cart-container">
@@ -129,6 +129,7 @@
                                 <div>
                                     <h2>
                                         Search Results
+                                        (<span id="item-count"></span> items)
                                     </h2>
                                 </div>
                                 <div class="quantity-select">
@@ -246,38 +247,25 @@
         
                 let apiURL = `http://localhost:8080/products/search?`;
 
-                if (categoryId !== '0') {
+                if (categoryId !== null) {
                     apiURL += `&categoryId=${categoryId}`;
                 }
 
                 apiURL += `&searchTerm=${searchTerm}`;
-                
+
                 apiURL += `&page=${selectedPage}&size=9`;
+
+                console.log(categoryId);
+                console.log(searchTerm);
+                console.log(selectedPage);
 
                 fetch(apiURL)
                     .then(response => response.json())
                     .then(data => {
 
-                        // Set all manufacturers to false initially
-                        Object.keys(selectedManufacturers).forEach(manufacturer => {
-                            selectedManufacturers[manufacturer] = false;
-                        });
-
                         // set fetched products summary
-                        let categoryNameElement = document.querySelector('#category-name');
                         let itemCountElement = document.querySelector('#item-count');
-                        let inTextElement = document.querySelector('#in-text');
-
-                        categoryNameElement.textContent = categoryName;
                         itemCountElement.textContent = data.totalElements;
-
-                        if (subcategoryId) {
-                            let subcategoryNameElement = document.querySelector('#subcategory-name');
-                            subcategoryNameElement.textContent = subcategoryName;
-                            inTextElement.textContent = ' in ';
-                        } else {
-                            inTextElement.textContent = '';
-                        }
 
                         // populate product grid
                         const productsContainer = document.querySelector('.shop-product-area .row');
@@ -352,119 +340,6 @@
                     });
             }
 
-            function setFilterGroupManufacturer(selectedManufacturers) {
-                let filterGroup = document.querySelector('#filter-manufacturer .card-body');
-
-                // Clear the existing content
-                filterGroup.innerHTML = '';
-
-                let html = '';
-
-                Object.keys(selectedManufacturers).forEach(manufacturer => {
-                    const isChecked = selectedManufacturers[manufacturer]; 
-                    html += `
-                        <label class="filter-label">
-                            <input type="checkbox" class="input-manufacturer" data-manufacturer="${manufacturer}" ${isChecked ? 'checked' : ''}>
-                            <span>${manufacturer}</span>
-                        </label>
-                    `;
-                });
-
-                filterGroup.innerHTML = html;
-
-                // Add event listener to checkboxes
-                const checkboxes = document.querySelectorAll('input[type="checkbox"].input-manufacturer');
-                checkboxes.forEach(checkbox => {
-                    checkbox.addEventListener('change', () => {
-                        
-                        const pageNumber = 0;
-                        setSessionStatus(pageNumber);
-                        location.reload();
-                    });
-                });
-            }
-
-            function setFilterGroupPriceRange(selectedPriceRange) {
-                
-                let filterGroup = document.querySelector('#filter-price-range .card-body');
-
-                // Clear the existing content
-                filterGroup.innerHTML = '';
-
-                let html = '';
-
-                // Data for price ranges
-                const priceRanges = [
-                    { id: 'all', label: 'All', minValue: 0, maxValue: Number.MAX_SAFE_INTEGER },
-                    { id: 'less-than-25', label: 'Less than $25', minValue: 0, maxValue: 25 },
-                    { id: '25-to-50', label: '$25 - $50', minValue: 25, maxValue: 50 },
-                    { id: '50-to-100', label: '$50 - $100', minValue: 50, maxValue: 100 },
-                    { id: '100-to-200', label: '$100 - $200', minValue: 100, maxValue: 200 },
-                    { id: 'more-than-200', label: 'More than $200', minValue: 200, maxValue: Number.MAX_SAFE_INTEGER }
-                ];
-                priceRanges.forEach((priceRange) => {
-                    const isChecked = priceRange.label === selectedPriceRange.label;
-
-                    html += `
-                        <label class="filter-label">
-                            <input type="radio" name="priceRange" id="${priceRange.id}" class="input-price-range" data-price-range="${priceRange.label}" data-min-value="${priceRange.minValue}" data-max-value="${priceRange.maxValue}" ${isChecked ? 'checked' : ''}>
-                            <span>${priceRange.label}</span>
-                        </label>
-                    `;
-                });
-
-                filterGroup.innerHTML = html;
-
-                // Add event listener to radio buttons
-                const radioButtons = document.querySelectorAll('input[type="radio"].input-price-range');
-                radioButtons.forEach(radio => {
-                    radio.addEventListener('change', () => {
-                        
-                        const pageNumber = 0;
-                        setSessionStatus(pageNumber);
-                        location.reload();
-                    });
-                });
-            }
-
-            function setFilterGroupRatings(selectedRatings) {
-                
-                let filterGroup = document.querySelector('#filter-ratings .card-body');
-
-                // Clear the existing content
-                filterGroup.innerHTML = '';
-
-                let html = '';
-
-                // Data for star ratings
-                const ratingsOptions = [5, 4, 3, 2, 1];
-                const checkedRating = selectedRatings; // Replace with your actual variable for the checked rating
-
-                ratingsOptions.forEach((rating) => {
-                    const isChecked = rating === checkedRating;
-
-                    html += `
-                        <label class="filter-label">
-                            <input type="radio" name="ratings" class="input-ratings" data-ratings="${rating}" ${isChecked ? 'checked' : ''}>
-                            <span>${generateStarRatings(rating)} ${rating < 5 ? '& up' : ''}</span>
-                        </label>
-                    `;
-                });
-
-                filterGroup.innerHTML = html;
-
-                // Add event listener to radio buttons
-                const radioButtons = document.querySelectorAll('input[type="radio"].input-ratings');
-                radioButtons.forEach(radio => {
-                    radio.addEventListener('change', () => {
-                        
-                        const pageNumber = 0;
-                        setSessionStatus(pageNumber);
-                        location.reload();
-                    });
-                });
-            }
-
             function generateStarRatings(ratings) {
                 // Generate star rating
                 let starRating = '';
@@ -523,86 +398,9 @@
             }
 
             function setSessionStatus(pageNumber) {
-                
-                // get the selected manufacturers
-                const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"].input-manufacturer')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
-                const selectedManufacturers = allManufacturers.filter(manufacturer =>
-                    document.querySelector(`input[data-manufacturer="${manufacturer}"]:checked`)
-                );
-                const manufacturerStatus = {};
-                allManufacturers.forEach(manufacturer => {
-                    manufacturerStatus[manufacturer] = selectedManufacturers.includes(manufacturer);
-                });
-
-                // get the selected price range
-                let selectedPriceRange = {
-                    label: Array.from(document.querySelectorAll('input[type="radio"].input-price-range')).find(radio => radio.checked)?.getAttribute('data-price-range'),
-                    minValue: Array.from(document.querySelectorAll('input[type="radio"].input-price-range')).find(radio => radio.checked)?.getAttribute('data-min-value'),
-                    maxValue: Array.from(document.querySelectorAll('input[type="radio"].input-price-range')).find(radio => radio.checked)?.getAttribute('data-max-value')
-                };
-
-                // Get the selected ratings
-                const selectedRatings = Array.from(document.querySelectorAll('input[type="radio"].input-ratings')).find(radio => radio.checked)?.getAttribute('data-ratings');
 
                 sessionStorage.setItem('selectedPage', pageNumber);
-                sessionStorage.setItem('selectedManufacturers', JSON.stringify(manufacturerStatus));
-                sessionStorage.setItem('selectedPriceRange', JSON.stringify(selectedPriceRange));
-                sessionStorage.setItem('selectedRatings', selectedRatings);
             }
-         </script>
-        <script>
-            function initializeOwlCarousel(productsContainer) {
-                $(productsContainer).trigger('destroy.owl.carousel');
-
-                // $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
-                $(productsContainer).owlCarousel({
-                    loop: true,
-                    nav: true,
-                    dots: false,
-                    autoplay: false,
-                    autoplayTimeout: 5000,
-                    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-                    item: 5,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        480: {
-                            items: 2
-                        },
-                        768: {
-                            items: 3
-                        },
-                        992: {
-                            items: 4
-                        },
-                        1200: {
-                            items: 5
-                        }
-                    }
-                });
-            }
-        </script>
-        <script>
-            // Select all the filter groups
-            let filterGroups = document.querySelectorAll('.filter-group');
-
-            // Add event listener to each filter group
-            filterGroups.forEach((group) => {
-                let header = group.querySelector('.card-header a');
-                let icon = header.querySelector('.icon-control');
-
-                // Toggle the arrow direction on click
-                header.addEventListener('click', () => {
-                    if (icon.classList.contains('fa-caret-down')) {
-                        icon.classList.remove('fa-caret-down');
-                        icon.classList.add('fa-caret-right');
-                    } else {
-                        icon.classList.remove('fa-caret-right');
-                        icon.classList.add('fa-caret-down');
-                    }
-                });
-            });
         </script>
     </body>
 </html>

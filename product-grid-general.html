@@ -128,7 +128,8 @@
                             <div class="shop-top-bar">
                                 <div>
                                     <h2>
-                                        Search Results
+                                        Search Results in
+                                        <span style="font-weight: bold;" id="search-type"></span> 
                                         (<span id="item-count"></span> items)
                                     </h2>
                                 </div>
@@ -223,6 +224,9 @@
             const params = new URLSearchParams(window.location.search);
             const categoryId = params.get('categoryId');
             const searchTerm = params.get('searchTerm');
+            const searchType = params.get('searchType');
+
+            console.log(searchType);
 
             let selectedPage;
             let totalPages;
@@ -255,16 +259,15 @@
 
                 apiURL += `&page=${selectedPage}&size=9`;
 
-                console.log(categoryId);
-                console.log(searchTerm);
-                console.log(selectedPage);
-
                 fetch(apiURL)
                     .then(response => response.json())
                     .then(data => {
 
                         // set fetched products summary
+                        let searchTypeElement = document.querySelector('#search-type');
                         let itemCountElement = document.querySelector('#item-count');
+
+                        searchTypeElement.textContent = searchType;
                         itemCountElement.textContent = data.totalElements;
 
                         // populate product grid

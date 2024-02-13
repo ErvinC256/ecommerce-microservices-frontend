@@ -609,6 +609,8 @@ document.getElementById('searchForm').addEventListener('keydown', function(event
 			}
 		}
 
+		url += '&searchType=Search';
+
 		// Redirect the user to the product grid page with the search parameters in the URL
 		window.location.href = url;
 	}

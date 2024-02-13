@@ -286,10 +286,10 @@
             const categoryName = params.get('categoryName');
             const subcategoryName = params.get('subcategoryName');
 
-            let selectedPage;
             let selectedManufacturers;
             let selectedPriceRange;
             let selectedRatings;
+            let selectedPage;
             let totalPages;
 
             document.addEventListener('DOMContentLoaded', function () {
@@ -338,7 +338,7 @@
                 if (sessionStorage.getItem('selectedManufacturers')) {
                     selectedManufacturers = JSON.parse(sessionStorage.getItem('selectedManufacturers'));
 
-                    fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedPriceRange, selectedRatings);
+                    fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage);
                     setFilterGroupManufacturer(selectedManufacturers);
                     setFilterGroupPriceRange(selectedPriceRange);
                     setFilterGroupRatings(selectedRatings);
@@ -358,7 +358,7 @@
                                 return acc;
                             }, {});
                             
-                            fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedPriceRange, selectedRatings);
+                            fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage);
                             setFilterGroupManufacturer(selectedManufacturers);
                             setFilterGroupPriceRange(selectedPriceRange);
                             setFilterGroupRatings(selectedRatings);  
@@ -370,52 +370,48 @@
                 }
 
                 // get available brands
-                fetch(`http://localhost:8080/products/manufacturers?categoryId=${categoryId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const brandsContainer = document.querySelector('.brand-area .owl-carousel');
-                        brandsContainer.innerHTML = '';
+                // fetch(`http://localhost:8080/products/manufacturers?categoryId=${categoryId}`)
+                //     .then(response => response.json())
+                //     .then(data => {
+                //         const brandsContainer = document.querySelector('.brand-area .owl-carousel');
+                //         brandsContainer.innerHTML = '';
 
-                        data.forEach(manufacturer => {
-                            const brandElement = document.createElement('div');
-                            brandElement.innerHTML = `
-                                <img src="images/logo/manufacturer's logo/${manufacturer}.jpg" title="${manufacturer}" style="width: 50%;">
-                            `;
+                //         data.forEach(manufacturer => {
+                //             const brandElement = document.createElement('div');
+                //             brandElement.innerHTML = `
+                //                 <img src="images/logo/manufacturer's logo/${manufacturer}.jpg" title="${manufacturer}" style="width: 50%;">
+                //             `;
 
-                            brandsContainer.appendChild(brandElement);
-                        });
-                        initializeOwlCarousel(brandsContainer);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
+                //             brandsContainer.appendChild(brandElement);
+                //         });
+                //         initializeOwlCarousel(brandsContainer);
+                //     })
+                //     .catch(error => {
+                //         console.error(error);
+                //     });
                 
-                sessionStorage.removeItem('selectedPage');
                 sessionStorage.removeItem('selectedManufacturers');
                 sessionStorage.removeItem('selectedPriceRange');
                 sessionStorage.removeItem('selectedRatings');
+                sessionStorage.removeItem('selectedPage');
             });
         
-            function fetchAndRenderProducts(selectedPage, selectedManufacturers, selectedPriceRange, selectedRatings) {
-                const params = new URLSearchParams(window.location.search);
-                const categoryId = params.get('categoryId');
-                const subcategoryId = params.get('subcategoryId');
+            function fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage) {
         
-                let apiURL = `http://localhost:8080/products?categoryId=${categoryId}&page=${selectedPage}&size=9`;
+                let apiURL = `http://localhost:8080/products?categoryId=${categoryId}`;
 
-                // Check if subcategoryId is present and append to the URL
                 if (subcategoryId !== null) {
                     apiURL += `&subcategoryId=${subcategoryId}`;
                 }
 
-                // append price range
                 apiURL += `&minPrice=${selectedPriceRange.minValue}&maxPrice=${selectedPriceRange.maxValue}`;
 
-                // Check if manufacturers are selected and append to the URL
                 const trueSelectedManufacturers = Object.keys(selectedManufacturers).filter(manufacturer => selectedManufacturers[manufacturer]);
                 apiURL += `&manufacturers=${trueSelectedManufacturers.join(',')}`;
 
                 apiURL += `&ratings=${selectedRatings}`;
+
+                apiURL += `&page=${selectedPage}&size=9`;
 
                 fetch(apiURL)
                     .then(response => response.json())
@@ -477,14 +473,6 @@
                             `;
 
                             productsContainer.appendChild(productElement);
-                            
-                            // update selectedManufacturers based on returned products
-                            if (product.manufacturer in selectedManufacturers) {
-                                selectedManufacturers[product.manufacturer] = true;
-                                console.log('brand found');
-                            } else {
-                                selectedManufacturers[product.manufacturer] = false;
-                            }
                         });
                         
                         // pagination
@@ -517,7 +505,6 @@
                         }
                         paginationBox.addEventListener('click', handlePaginationClick);
 
-                        console.log(selectedManufacturers);
                     })
                     .catch(error => {
                         console.error(error);

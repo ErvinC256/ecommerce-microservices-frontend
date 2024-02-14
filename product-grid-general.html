@@ -162,7 +162,39 @@
                             </div>
                         </div>
                         <div class="col-3">
-
+                            <div class="card">
+                                <h2>Shop by</h2>
+                                <article class="filter-group">
+                                    <header class="card-header">
+                                        <a href="#" data-toggle="collapse" data-target="#filter-manufacturer" aria-expanded="true">
+                                            <div style="width: 20px;">
+                                                <i class="icon-control fa fa-caret-down"></i>
+                                            </div>
+                                            <h6 class="title">Manufacturer</h6>
+                                        </a>
+                                    </header>
+                                    <div class="filter-content collapse show" id="filter-manufacturer">
+                                        <div class="card-body">
+                                            <!-- manufacturer options will be inserted here -->
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="filter-group">
+                                    <header class="card-header">
+                                        <a href="#" data-toggle="collapse" data-target="#filter-tag" aria-expanded="true">
+                                            <div style="width: 20px;">
+                                                <i class="icon-control fa fa-caret-down"></i>
+                                            </div>
+                                            <h6 class="title">Tag</h6>
+                                        </a>
+                                    </header>
+                                    <div class="filter-content collapse show" id="filter-tag">
+                                        <div class="card-body">
+                                            <!-- tag options will be inserted here -->
+                                        </div>
+                                    </div>
+                                </article>
+                            </div> <!-- card.// -->
                         </div>
                     </div>
                 </div>
@@ -240,6 +272,45 @@
                     selectedPage = 0;
                 }
                 fetchAndRenderProducts(searchType, searchTerm, selectedPage);
+
+                // populate manufacturers options
+                fetch('http://localhost:8080/products/manufacturers')
+                    .then(response => response.json())
+                    .then(manufacturers => {
+                        let cardBody = document.querySelector('#filter-manufacturer .card-body');
+                        let html = '';
+
+                        // Generate links for each manufacturer
+                        manufacturers.forEach(function(manufacturer) {
+                            html += `<a href="#"
+                                        onmouseover="this.style.textDecoration='underline'" 
+                                        onmouseout="this.style.textDecoration='none'"
+                                        onclick="event.preventDefault(); 
+                                        window.location.href='product-grid-general.html?searchType=${encodeURIComponent(manufacturer)}'">
+                                        ${manufacturer}
+                                    </a>`;
+                        });
+
+                        cardBody.innerHTML = html;
+                    });
+
+                // populate tag options
+                const tags = ['New Arrivals', 'Best Sellers']
+                let cardBody = document.querySelector('#filter-tag .card-body');
+                let html = '';
+
+                // Generate links for each tag
+                tags.forEach(function(tag) {
+                    html += `<a href="#"
+                                onmouseover="this.style.textDecoration='underline'" 
+                                onmouseout="this.style.textDecoration='none'"
+                                onclick="event.preventDefault(); 
+                                window.location.href='product-grid-general.html?searchType=${encodeURIComponent(tag)}'">
+                                ${tag}
+                            </a>`;
+                });
+
+                cardBody.innerHTML = html;
                 
                 sessionStorage.removeItem('selectedPage');
             });
@@ -248,18 +319,23 @@
         
                 let apiURL = `http://localhost:8080/products`;
 
-                if (searchType === 'New Arrivals') {
-                    apiURL += '/new-arrivals?';
-                } else if (searchType === 'Best Sellers') {
-                    apiURL += '/best-sellers?';
-                }
-                if (searchType === 'Search') {
-                    apiURL += '?';
-                    if (categoryId !== null) {
-                        apiURL += `categoryId=${categoryId}&`;
-                    }
-
-                    apiURL += `searchTerm=${searchTerm}&`;
+                switch (searchType) {
+                    case 'New Arrivals':
+                        apiURL += '/new-arrivals?';
+                        break;
+                    case 'Best Sellers':
+                        apiURL += '/best-sellers?';
+                        break;
+                    case 'Search':
+                        apiURL += '?';
+                        if (categoryId !== null) {
+                            apiURL += `categoryId=${categoryId}&`;
+                        }
+                        apiURL += `searchTerm=${searchTerm}&`;
+                        break;
+                    default:
+                        apiURL += `?manufacturers=${encodeURIComponent(searchType)}&`;
+                        break;
                 }
 
                 apiURL += `page=${selectedPage}&size=9`;

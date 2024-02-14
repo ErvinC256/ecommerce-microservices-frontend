@@ -354,7 +354,16 @@
                         // populate product grid
                         const productsContainer = document.querySelector('.shop-product-area .row');
                         productsContainer.innerHTML = '';
-        
+                        
+                        if (data.content.length === 0) {
+                            const messageElement = document.createElement('div');
+                            messageElement.className = 'col-12';
+                            messageElement.style.textAlign = 'center';
+
+                            messageElement.innerHTML = '<p style="font-size: 16px; color: gray; padding: 20px;">No items found</p>';
+                        
+                            productsContainer.appendChild(messageElement);
+                        }
                         data.content.forEach(product => {
                             const productElement = document.createElement('div');
                             productElement.className = 'col-4';

@@ -226,8 +226,6 @@
             const searchTerm = params.get('searchTerm');
             const searchType = params.get('searchType');
 
-            console.log(searchType);
-
             let selectedPage;
             let totalPages;
 
@@ -249,7 +247,7 @@
         
             function fetchAndRenderProducts(searchTerm, selectedPage) {
         
-                let apiURL = `http://localhost:8080/products/search?`;
+                let apiURL = `http://localhost:8080/products?`;
 
                 if (categoryId !== null) {
                     apiURL += `&categoryId=${categoryId}`;

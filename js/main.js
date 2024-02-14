@@ -595,8 +595,11 @@ document.getElementById('searchForm').addEventListener('keydown', function(event
 
 		// Build the redirect URL
 		let url = 'product-grid-general.html';
+
+		url += '?searchType=Search';
+
 		if (categoryId !== '0') {
-			url += '?categoryId=' + encodeURIComponent(categoryId);
+			url += '&categoryId=' + encodeURIComponent(categoryId);
 		}
 
 		// Append search term if it exists
@@ -608,8 +611,6 @@ document.getElementById('searchForm').addEventListener('keydown', function(event
 				url += '?searchTerm=' + encodeURIComponent(searchTerm);
 			}
 		}
-
-		url += '&searchType=Search';
 
 		// Redirect the user to the product grid page with the search parameters in the URL
 		window.location.href = url;

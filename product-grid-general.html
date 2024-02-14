@@ -96,9 +96,8 @@
                                         </ul>
                                     </li>
                                     <div class="hb-right">
-                                        <li><a href="#">Featured</a></li>
-                                        <li><a href="#">New Arrivals</a></li>
-                                        <li><a href="#">Best Sellers</a></li>
+                                        <li><a href="product-grid-general.html?searchType=New%20Arrivals">New Arrivals</a></li>
+                                        <li><a href="product-grid-general.html?searchType=Best%20Sellers">Best Sellers</a></li>
                                     </div>
                                 </ul>
                             </nav>
@@ -130,7 +129,7 @@
                                     <h2>
                                         Search Results in
                                         <span style="font-weight: bold;" id="search-type"></span> 
-                                        (<span id="item-count"></span> items)
+                                        <span style="color: gray; padding-left: 10px;"><span id="item-count"></span> items</span> 
                                     </h2>
                                 </div>
                                 <div class="quantity-select">
@@ -240,22 +239,30 @@
                 } else {
                     selectedPage = 0;
                 }
-                fetchAndRenderProducts(searchTerm, selectedPage);
+                fetchAndRenderProducts(searchType, searchTerm, selectedPage);
                 
                 sessionStorage.removeItem('selectedPage');
             });
         
-            function fetchAndRenderProducts(searchTerm, selectedPage) {
+            function fetchAndRenderProducts(searchType, searchTerm, selectedPage) {
         
-                let apiURL = `http://localhost:8080/products?`;
+                let apiURL = `http://localhost:8080/products`;
 
-                if (categoryId !== null) {
-                    apiURL += `&categoryId=${categoryId}`;
+                if (searchType === 'New Arrivals') {
+                    apiURL += '/new-arrivals?';
+                } else if (searchType === 'Best Sellers') {
+                    apiURL += '/best-sellers?';
+                }
+                if (searchType === 'Search') {
+                    apiURL += '?';
+                    if (categoryId !== null) {
+                        apiURL += `categoryId=${categoryId}&`;
+                    }
+
+                    apiURL += `searchTerm=${searchTerm}&`;
                 }
 
-                apiURL += `&searchTerm=${searchTerm}`;
-
-                apiURL += `&page=${selectedPage}&size=9`;
+                apiURL += `page=${selectedPage}&size=9`;
 
                 fetch(apiURL)
                     .then(response => response.json())

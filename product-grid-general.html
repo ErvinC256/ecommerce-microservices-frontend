@@ -127,7 +127,8 @@
                             <div class="shop-top-bar">
                                 <div>
                                     <h2>
-                                        Search Results in
+                                        Search Results for
+                                        <span id="search-term"></span>
                                         <span style="font-weight: bold;" id="search-type"></span> 
                                         <span style="color: gray; padding-left: 10px;"><span id="item-count"></span> items</span> 
                                     </h2>
@@ -345,8 +346,13 @@
                     .then(data => {
 
                         // set fetched products summary
+                        let searchTermElement = document.querySelector('#search-term');
                         let searchTypeElement = document.querySelector('#search-type');
                         let itemCountElement = document.querySelector('#item-count');
+
+                        if (searchType === 'Search') {
+                            searchTermElement.textContent = `"${searchTerm}" in `;
+                        }
 
                         searchTypeElement.textContent = searchType;
                         itemCountElement.textContent = data.totalElements;

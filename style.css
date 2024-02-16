@@ -31,7 +31,7 @@
 			3.3 Sign In Register Page
 			3.4 Shopping Cart Page
 			3.5 Contact Page
-			3.6 Category Page
+			3.6 Product Grid Page
 			3.7 Product Details Page
 			3.8 Account Page
 
@@ -866,7 +866,7 @@ iframe {
 	background-color: #e7f1fd;
 }
 /*----------------------------------------*/
-/*  3.6 Category Page
+/*  3.6 Product Grid Page
 /*----------------------------------------*/
 .shop-top-bar {
 	display: flex;
@@ -879,6 +879,10 @@ iframe {
 }
 .shop-products-wrapper {
 	border-top: 1px solid #e1e1e1;
+}
+.shop-top-bar select {
+	padding: 0px;
+	font-size: 12px;
 }
 /*----- filter-area  css -----*/
 .card {

@@ -184,12 +184,13 @@
                                 </div>
                                 <div class="quantity-select">
                                     <label>Sort by</label>
-                                    <select>
-                                        <option>Relevance</option>
-                                        <option>Price: Low to High</option>
-                                        <option>Price: High to Low</option>
-                                        <option>Newest Arrivals</option>
-                                    </select>
+                                        <select>
+                                            <option value="relevance">Relevance</option>
+                                            <option value="price,asc">Price: Low to High</option>
+                                            <option value="price,desc">Price: High to Low</option>
+                                            <option value="name,asc">Name: A to Z</option>
+                                            <option value="name,desc">Name: Z to A</option>
+                                        </select>
                                 </div>
                             </div>
                             <div class="shop-products-wrapper">
@@ -289,6 +290,7 @@
             let selectedRatings;
             let selectedPage;
             let totalPages;
+            let selectedSortOption;
 
             document.addEventListener('DOMContentLoaded', function () {
 
@@ -314,11 +316,6 @@
                 }
 
                 // fetch and render products
-                if (sessionStorage.getItem('selectedPage')) {
-                    selectedPage = sessionStorage.getItem('selectedPage');
-                } else {
-                    selectedPage = 0;
-                }
                 if (sessionStorage.getItem('selectedPriceRange')) {
                     selectedPriceRange = JSON.parse(sessionStorage.getItem('selectedPriceRange'));
                 } else {
@@ -333,13 +330,24 @@
                 } else {
                     selectedRatings = 1;
                 }
+                if (sessionStorage.getItem('selectedPage')) {
+                    selectedPage = parseInt(sessionStorage.getItem('selectedPage'));
+                } else {
+                    selectedPage = 0;
+                }
+                if (sessionStorage.getItem('selectedSortOption')) {
+                    selectedSortOption = sessionStorage.getItem('selectedSortOption');
+                } else {
+                    selectedSortOption = 'relevance';
+                }
                 if (sessionStorage.getItem('selectedManufacturers')) {
                     selectedManufacturers = JSON.parse(sessionStorage.getItem('selectedManufacturers'));
 
-                    fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage);
+                    fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage, selectedSortOption);
                     setFilterGroupManufacturer(selectedManufacturers);
                     setFilterGroupPriceRange(selectedPriceRange);
                     setFilterGroupRatings(selectedRatings);
+                    setSortSelectOption(selectedSortOption);
 
                 } else {
                     let apiURL;
@@ -356,10 +364,11 @@
                                 return acc;
                             }, {});
                             
-                            fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage);
+                            fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage, selectedSortOption);
                             setFilterGroupManufacturer(selectedManufacturers);
                             setFilterGroupPriceRange(selectedPriceRange);
                             setFilterGroupRatings(selectedRatings);  
+                            setSortSelectOption(selectedSortOption);
 
                         })
                         .catch(error => {
@@ -392,9 +401,10 @@
                 sessionStorage.removeItem('selectedPriceRange');
                 sessionStorage.removeItem('selectedRatings');
                 sessionStorage.removeItem('selectedPage');
+                sessionStorage.removeItem('selectedSortOption');
             });
         
-            function fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage) {
+            function fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage, selectedSortOption) {
         
                 let apiURL = `http://localhost:8080/products?`;
 
@@ -412,6 +422,10 @@
                 apiURL += `&ratings=${selectedRatings}`;
 
                 apiURL += `&page=${selectedPage}&size=9`;
+
+                if (selectedSortOption !== 'relevance') {
+                    apiURL += `&sort=${selectedSortOption}`;
+                }
 
                 fetch(apiURL)
                     .then(response => response.json())
@@ -546,7 +560,8 @@
                     checkbox.addEventListener('change', () => {
                         
                         const pageNumber = 0;
-                        setSessionStatus(pageNumber);
+                        const sortOption = 'relevance';
+                        setSessionStatus(pageNumber, sortOption);
                         location.reload();
                     });
                 });
@@ -589,7 +604,8 @@
                     radio.addEventListener('change', () => {
                         
                         const pageNumber = 0;
-                        setSessionStatus(pageNumber);
+                        const sortOption = 'relevance';
+                        setSessionStatus(pageNumber, sortOption);
                         location.reload();
                     });
                 });
@@ -627,9 +643,33 @@
                     radio.addEventListener('change', () => {
                         
                         const pageNumber = 0;
-                        setSessionStatus(pageNumber);
+                        const sortOption = 'relevance';
+                        setSessionStatus(pageNumber, sortOption);
                         location.reload();
                     });
+                });
+            }
+
+            function setSortSelectOption(selectedSortOption) {
+                // Get the select element
+                const selectElement = document.querySelector('.shop-top-bar select');
+
+                // Find the option with the matching value and set it as selected
+                for (const option of selectElement.options) {
+                    if (option.value === selectedSortOption) {
+                        option.selected = true;
+                        break;
+                    }
+                }
+
+                // Add event listener to the select element
+                selectElement.addEventListener('change', () => {
+                    const selectedSortOption = selectElement.value;
+
+                    console.log(selectedSortOption);
+                    const pageNumber = 0;
+                    setSessionStatus(pageNumber, selectedSortOption);
+                    location.reload();
                 });
             }
 
@@ -669,28 +709,28 @@
 
                     if (!isNaN(pageNumber)) {
                         
-                        setSessionStatus(pageNumber - 1);
+                        setSessionStatus(pageNumber - 1, selectedSortOption);
                         location.reload();
                 
                     } else if (event.target.classList.contains('Previous')) {
 
                         if (selectedPage > 0) { 
                             
-                            setSessionStatus(Number(selectedPage) - 1);
+                            setSessionStatus(Number(selectedPage) - 1, selectedSortOption);
                             location.reload();
                         }
                     } else if (event.target.classList.contains('Next')) {
 
                         if (selectedPage < totalPages - 1) {
                             
-                            setSessionStatus(Number(selectedPage) + 1);
+                            setSessionStatus(Number(selectedPage) + 1, selectedSortOption);
                             location.reload();
                         }
                     }
                 }
             }
 
-            function setSessionStatus(pageNumber) {
+            function setSessionStatus(pageNumber, sortOption) {
                 
                 // get the selected manufacturers
                 const allManufacturers = Array.from(document.querySelectorAll('input[type="checkbox"].input-manufacturer')).map(checkbox => checkbox.getAttribute('data-manufacturer'));
@@ -711,11 +751,12 @@
 
                 // Get the selected ratings
                 const selectedRatings = Array.from(document.querySelectorAll('input[type="radio"].input-ratings')).find(radio => radio.checked)?.getAttribute('data-ratings');
-
-                sessionStorage.setItem('selectedPage', pageNumber);
+                
                 sessionStorage.setItem('selectedManufacturers', JSON.stringify(manufacturerStatus));
                 sessionStorage.setItem('selectedPriceRange', JSON.stringify(selectedPriceRange));
                 sessionStorage.setItem('selectedRatings', selectedRatings);
+                sessionStorage.setItem('selectedPage', pageNumber);
+                sessionStorage.setItem('selectedSortOption', sortOption);
             }
         </script>
         <script>

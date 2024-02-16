@@ -442,6 +442,7 @@ option {
 .breadcrumb-area {
 	padding: 5px;
 	background-color: #e7f1fd;
+	font-size: 12px;
 }
 .breadcrumb-content li {
 	display: inline-block;
@@ -451,8 +452,8 @@ option {
 .breadcrumb-content ul li:not(:first-child)::before {
     content: "\f105"; 
     font-family: fontawesome;
-    padding-right: 10px;
-	font-size: 10px;
+    padding-right: 13px;
+	font-size: 8px;
 	vertical-align: middle;
 }
 /*----------------------------------------*/
@@ -528,16 +529,17 @@ option {
 	display: inline-block;
 	padding: 5px 10px;
 	font-size: 10px;
-	color: #fff;
+	color: #0673ca;
+	font-weight: bold;
 }
 .product-tag.new-arrival {
-	background-color: #e77b00;
+	background-color: #e7f1fd;
 }
 
 .product-tag.best-seller {
-	background-color: #CD5C5C;
+	background-color: #e7f1fd;
 	position: relative;
-	right: 2px;
+	left: 5px;
 }
 .product-desc {
   position: relative;

@@ -238,9 +238,9 @@ option {
 .my-button {
 	color: #fff;
 	background-color: #0673ca;
-	padding: 5px 10px;
+	padding: 5px 30px;
 	border: 1px solid #0673ca;
-	border-radius: 2px;
+	border-radius: 20px;
 }
 .my-button:hover {
 	background-color: #e7f1fd;
@@ -250,9 +250,9 @@ option {
 .my-button-inverse {
 	color: #0673ca;
 	background-color: #e7f1fd;
-	padding: 5px 10px;
+	padding: 5px 30px;
 	border: 1px solid #0673ca;
-	border-radius: 2px;
+	border-radius: 20px;
 }
 .my-button-inverse:hover {
 	background-color: #fff;
@@ -292,13 +292,13 @@ option {
 /*----------------------------------------*/
 .header {
 	color: #fff;
-	background-color: #333333;
+	background-color: #0673ca;
 }
 /*Header Top*/
 .header-top {
 	padding: 5px;
-	background-color: #000;
 	font-size: 12px;
+	border-bottom: 0.5px solid #fff;
 }
 .ht-menu {
 	display: flex;
@@ -331,7 +331,6 @@ option {
 /*Header Middle*/
 .header-middle {
 	padding: 10px;
-	border-bottom: 1px solid #e1e1e1;
 }
 .header-middle .logo a {
 	display: flex; 
@@ -540,18 +539,9 @@ option {
 .product-tag {
 	display: inline-block;
 	padding: 5px 10px;
-	font-size: 10px;
-	color: #0673ca;
-	font-weight: bold;
-}
-.product-tag.new-arrival {
-	background-color: #e7f1fd;
-}
-
-.product-tag.best-seller {
-	background-color: #e7f1fd;
-	position: relative;
-	left: 5px;
+	font-size: 12px;
+	color: #fff;
+	background-color: #FF0000;
 }
 .product-desc {
   position: relative;
@@ -619,7 +609,7 @@ option {
 /*  2.6 Footer
 /*----------------------------------------*/
 .footer {
-	background-color: #333333;
+	background-color: #0673ca;
 	color: #fff;
 	font-size: 12px;
 }
@@ -843,7 +833,6 @@ option {
 }
 .basket-summary-container {
 	padding: 20px;
-	background-color: #e7f1fd;
 }
 .basket-summary-container .basket-row {
 	display: flex; 
@@ -989,13 +978,12 @@ iframe {
 	font-size: 12px;
 	border: 1px solid #e1e1e1;
 	border-radius: 2px;
-	padding: 5px;
-	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	padding: 10px;
 }
-.product-details-table th, td {
+.product-details-table-div table th, td {
 	padding: 2px;
 }
-.product-details-table th {
+.product-details-table-div table th {
 	width: 40%;
 	vertical-align: top;
 }

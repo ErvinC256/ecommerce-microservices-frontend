@@ -541,7 +541,13 @@ option {
 	padding: 5px 10px;
 	font-size: 12px;
 	color: #fff;
+}
+.product-tag.new-arrival {
 	background-color: #FF0000;
+}
+
+.product-tag.best-seller {
+	background-color: #800080;
 }
 .product-desc {
   position: relative;
@@ -831,16 +837,11 @@ option {
 .cart-options > li a {
 	color: #0673ca;
 }
-.basket-summary-container {
+.summary-container {
 	padding: 20px;
+	border: 1px solid #e1e1e1;
 }
-.basket-summary-container .basket-row {
-	display: flex; 
-	justify-content: space-between; 
-	align-items: center;
-	margin-bottom: 5px;
-}
-.basket-summary-container hr {
+.summary-container hr {
 	margin: 10px 0;
 }
 
@@ -887,7 +888,7 @@ iframe {
 }
 /*----- filter-area  css -----*/
 .card {
-	border: none;
+	border: 1px solid #e1e1e1;
 }
 .filter-group .card-header {
 	background-color: #fff;

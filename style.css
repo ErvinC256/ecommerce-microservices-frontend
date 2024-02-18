@@ -1009,6 +1009,8 @@ iframe {
 .shipping-info-form {
 	border: 1px solid #e1e1e1; 
 	padding: 20px;
+	background-color: #e7f1fd;
+	border-radius: 10px;
 }
 .basic-info-form div,
 .shipping-info-form div {

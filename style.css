@@ -746,10 +746,6 @@ option {
 .sign-up-form div {
     padding-bottom: 20px;
 }
-.sign-in-form div,
-.sign-up-form label {
-    font-weight: bold;
-}
 .error-message {
 	display: none;
 	padding: 10px;

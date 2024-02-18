@@ -124,7 +124,8 @@ input[type=checkbox] {
 	height: auto;
 }
 label {
-	font-size: 12px;
+	font-weight: normal;
+	color: gray;
 }
 select {
 	padding: 5px;
@@ -888,7 +889,7 @@ iframe {
 }
 /*----- filter-area  css -----*/
 .card {
-	border: 1px solid #e1e1e1;
+	border: none;
 }
 .filter-group .card-header {
 	background-color: #fff;
@@ -999,13 +1000,23 @@ iframe {
 /*----------------------------------------*/
 /*  3.8 Account Page
 /*----------------------------------------*/
+.side-tab-block {
+	margin-bottom: 20px;
+}
+.side-tab-header {
+	padding: 10px;
+}
+.side-tab {
+	padding: 10px;
+}
+.basic-info-form,
+.shipping-info-form {
+	border: 1px solid #e1e1e1; 
+	padding: 20px;
+}
 .basic-info-form div,
 .shipping-info-form div {
     padding-bottom: 20px;
-}
-.basic-info-form div,
-.shipping-info-form label {
-    font-weight: bold;
 }
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

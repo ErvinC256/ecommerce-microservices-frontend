@@ -542,7 +542,7 @@ document.getElementById('scrollToTop').addEventListener('click', function() {
 /*----------------------------------------*/
 function signOut() {
 	sessionStorage.removeItem('userId');
-	sessionStorage.removeItem('lastName');
+	sessionStorage.removeItem('username');
 	window.location.href = 'sign-in.html';
 }
 /*----------------------------------------*/
@@ -557,11 +557,11 @@ function checkSignInStatus() {
     }
 
     // Assume you have stored the username in sessionStorage
-    const lastName = sessionStorage.getItem('lastName');
+    const username = sessionStorage.getItem('username');
 
     // Update the HTML with the dynamically fetched lastname
-    if (lastName) {
-        document.querySelector('#greet-user').innerText = `${lastName}`;
+    if (username) {
+        document.querySelector('#greet-user').innerText = `${username}`;
     }
 }
 function getCartNumber() {

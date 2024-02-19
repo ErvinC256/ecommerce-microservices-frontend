@@ -121,12 +121,12 @@
             </div>
             <!-- Breadcrumb Area End Here -->
             <!-- Begin Sign-In Area -->
-            <div class="wrapper">
+            <div class="wrapper mt-50 mb-50">
                 <div class="inner">
                     <div class="image-holder">
                         <img src="images/sign-in-sign-up/login-form-1.jpg" alt="">
                     </div>
-                    <form action="" class="sign-in-form">
+                    <form action="" class="sign-in-form" style="padding: 40px;">
                         <h3>Login to Your Account</h3>
                         <div class="row">
                             <div class="col-12">
@@ -251,7 +251,7 @@
                         })
                         .then(data => {
                             sessionStorage.setItem('userId', data.userId);
-                            sessionStorage.setItem('lastName', data.lastName);
+                            sessionStorage.setItem('username', data.username);
 
                             if (sessionStorage.getItem('redirectToPage') == null) {
                                 window.location.href = 'index.html';

@@ -121,21 +121,17 @@
             </div>
             <!-- Breadcrumb Area End Here -->
             <!-- Begin Sign-Up Area -->
-            <div class="wrapper">
+            <div class="wrapper mt-50 mb-50">
                 <div class="inner">
                     <div class="image-holder">
                         <img src="images/sign-in-sign-up/registration-form-1.jpg" alt="">
                     </div>
-                    <form action="" class="sign-up-form">
+                    <form action="" class="sign-up-form" style="padding: 40px;">
                         <h3>Create Your Account</h3>
                         <div class="row">
-                            <div class="col-6">
-                                <label for="">First Name</label>
-                                <input type="text" name="firstName" placeholder="Enter first name"> 
-                            </div>
-                            <div class="col-6">
-                                <label for="">Last Name</label>
-                                <input type="text" name="lastName" placeholder="Enter last name (optional)"> 
+                            <div class="col-12">
+                                <label for="">Username</label>
+                                <input type="text" name="username" placeholder="Enter username"> 
                             </div>
                             <div class="col-12">
                                 <label for="">Email Address</label>
@@ -244,8 +240,7 @@
 
                 // Get the elements
                 const signUpButton = document.querySelector("#sign-up-button");
-                const firstNameInput = document.querySelector(".sign-up-form input[name='firstName']");
-                const lastNameInput = document.querySelector(".sign-up-form input[name='lastName']");
+                const usernameInput = document.querySelector(".sign-up-form input[name='username']");
                 const emailInput = document.querySelector(".sign-up-form input[name='email']");
                 const passwordInput = document.querySelector(".sign-up-form input[name='password']");
                 const confirmPasswordInput = document.querySelector(".sign-up-form input[name='confirmPassword']");
@@ -256,14 +251,13 @@
                     event.preventDefault();
 
                     // Get the username and password values
-                    const firstName = firstNameInput.value;
-                    const lastName = lastNameInput.value;
+                    const username = usernameInput.value;
                     const email = emailInput.value;
                     const password = passwordInput.value;
                     const confirmPassword = confirmPasswordInput.value;
 
                     // Check if the username or password is empty
-                    if (!firstName || !email || !password || !confirmPassword) {
+                    if (!username || !email || !password || !confirmPassword) {
                         document.querySelector('.error-message').style.display = 'block';
                         document.querySelector('.error-message p').innerText = 'Please fill in your credentials';
                         return;
@@ -283,8 +277,7 @@
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            firstName: firstName,
-                            lastName: lastName,
+                            username: username,
                             email: email,
                             password: password,
                             confirmPassword: confirmPassword

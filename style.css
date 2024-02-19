@@ -134,7 +134,7 @@ select {
 	overflow-y:auto;
 	width: 100%;
 	height: auto;
-	border-radius: 2px;
+	border-radius: 5px;
 }
 option {
 	overflow-y:scroll;
@@ -195,7 +195,7 @@ option {
 	left:50%;
 	transform:translate(-50%, -100%);
 	background-color: #fff;
-	border-radius:2px;
+	border-radius:5px;
 	position:absolute;
 	z-index:99999999;
 	box-sizing:border-box;
@@ -370,7 +370,7 @@ option {
 	background-color: #fbf703; 
 	color: #000;
 	padding: 2px 8px;
-	border-radius: 5px;
+	border-radius: 15px;
 }
 /*Header Bottom Menu*/
 .header-bottom {
@@ -434,7 +434,6 @@ option {
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	width: 200px;
 	z-index: 99;
-	border-radius: 2px;
 }
 .hb-menu nav ul > li:hover > ul.hb-dropdown {
 	opacity: 1;
@@ -515,7 +514,6 @@ option {
 .single-product-wrap::before {
 	background: #fff none repeat scroll 0 0;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	border-radius: 2px;
 	bottom: -5px;
 	content: "";
 	left: -5px;
@@ -647,7 +645,7 @@ option {
 	border: 1px solid #e1e1e1;
 }
 .frequently-accordion .card {
-	border-radius: 2px;
+	border-radius: 5px;
 	margin-bottom: 15px;
 	color: #000;
 }
@@ -758,7 +756,7 @@ option {
 }
 .error-message div {
 	border: 1.5px dashed red;
-	border-radius: 2px;
+	border-radius: 5px;
 	padding: 10px;
 	display: flex;
 	align-items: center;
@@ -973,7 +971,7 @@ iframe {
 }
 .cart-message div {
 	border: 1.5px dashed black;
-	border-radius: 2px;
+	border-radius: 5px;
 	padding: 10px;
 	display: flex;
 	align-items: center;
@@ -981,7 +979,7 @@ iframe {
 .product-details-table-div {
 	font-size: 12px;
 	border: 1px solid #e1e1e1;
-	border-radius: 2px;
+	border-radius: 5px;
 	padding: 10px;
 }
 .product-details-table-div table th, td {
@@ -1016,7 +1014,7 @@ iframe {
 	border: 1px solid #e1e1e1; 
 	padding: 20px;
 	background-color: #e7f1fd;
-	border-radius: 10px;
+	border-radius: 5px;
 }
 .edit-block {
 	margin-bottom: 30px; 

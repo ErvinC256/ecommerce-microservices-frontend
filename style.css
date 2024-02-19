@@ -126,14 +126,13 @@ input[type=checkbox] {
 }
 label {
 	font-weight: normal;
-	color: #000;
+	color: gray;
 	font-size: 12px;
-	font-weight: bold;
 }
 select {
 	padding: 5px;
 	overflow-y:auto;
-	width: auto;
+	width: 100%;
 	height: auto;
 	border-radius: 2px;
 }
@@ -1019,9 +1018,13 @@ iframe {
 	background-color: #e7f1fd;
 	border-radius: 10px;
 }
-.basic-info-form div,
-.shipping-info-form div {
-    padding-bottom: 20px;
+.edit-block {
+	margin-bottom: 30px; 
+	border-bottom: 1px solid #e1e1e1;
+}
+.edit-div {
+	display: flex; 
+	justify-content: space-between;
 }
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

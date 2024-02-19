@@ -163,47 +163,60 @@
                             <form action="#" class="basic-info-form">
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="">Username</label>
-                                        <input type="text" value="Samantha" placeholder="Enter username" required> 
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Username</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#usernameModal">Edit</button>
+                                            </div>
+                                            <span>SamanthaTan</span>
+                                        </div>
                                     </div>
                                     <div class="col-6">
-                                        <label for="">Gender</label>
-                                        <select style="width: 100%;">
-                                            <option value="">Please select your gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Male</option>
-                                        </select>
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Gender</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#genderModal">Edit</button>
+                                            </div>
+                                            <span>Female</span>
+                                        </div>
                                     </div>
                                     <div class="col-6">
-                                        <label for="">Email Address</label>
-                                        <input type="email" value="samantha@email.com" placeholder="Enter email address" required> 
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Email Address</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#emailModal">Edit</button>
+                                            </div>
+                                            <span>samanthatan@gmail.com</span>
+                                        </div>
                                     </div>
                                     <div class="col-6">
-                                        <label for="">Birthday</label>
-                                        <input type="date">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Birthday</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#birthdayModal">Edit</button>
+                                            </div>
+                                            <span>11/11/2011</span>
+                                        </div>
                                     </div>
                                     <div class="col-4">
-                                        <label for="">Country Code</label>
-                                        <input type="text" value="+60 (Malaysia)" style="background: #f5f6f7;" readonly required>
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Country Code</label>
+                                            </div>
+                                            <span>+60 <span style="color: gray;">Malaysia</span></span>
+                                        </div>
                                     </div>
                                     <div class="col-8">
-                                        <label for="">Phone Number</label>
-                                        <input type="text" value="123-123-123" placeholder="Enter phone number" required> 
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Contact</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#contactModal">Edit</button>
+                                            </div>
+                                            <span>12345678</span>
+                                        </div>
                                     </div>
-                                    <div class="col-6" style="padding-bottom: 5px;">
-                                        <label for="">Password</label>
-                                        <input type="password" value="password" placeholder="Enter password" required> 
-                                    </div>
-                                    <div class="col-6" style="padding-bottom: 5px;">
-                                        <label for="">Confirm Password</label>
-                                        <input type="password" placeholder="Enter confirm password" required> 
-                                    </div>
-                                    <div class="col-12" style="display: flex; align-items: center;">
-                                        <i class="fa fa-info-circle" style="color: #0673ca; margin-right: 5px;"></i>
-                                        <p style="font-size: 12px;">Passwords must be at least 6 characters.</p>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="my-button">Update</button>
+                                    <div class="col-6">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Password</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#passwordModal">Edit</button>
+                                            </div>
+                                            <span>••••••••</span>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -258,9 +271,118 @@
             <!-- Footer Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
+        <!-- Modal -->
+        <div class="modal fade" id="usernameModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Username</h5>
+                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" value="SamanthaTan" name="" id="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="genderModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Gender</h5>
+                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <select name="" id="">
+                            <option value="">Please select a gender</option>
+                            <option value="">Male</option>
+                            <option value="" selected>Female</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="emailModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Email Address</h5>
+                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" value="samanthatan@gmail.com" name="" id="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="birthdayModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Birthday</h5>
+                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="date" value="11/11/2011" name="" id="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Contact</h5>
+                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" value="12345678" name="" id="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="passwordModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Password</h5>
+                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="password" value="12345678" name="" id="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.usebootstrap.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>

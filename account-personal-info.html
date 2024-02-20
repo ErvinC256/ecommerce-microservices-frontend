@@ -126,55 +126,6 @@
                 </div>
             </div>
             <!-- Breadcrumb Area End Here -->
-            <div class="container">
-                <h2>Modal Example</h2>
-                <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Open Modal</button>
-              
-                <!-- Modal -->
-                <div class="modal fade" id="myModal1" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header1</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Some text in the modal.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <h2>Modal Example</h2>
-                <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Open Modal</button>
-              
-                <!-- Modal -->
-                <div class="modal fade" id="myModal2" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header2</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Some text in the modal.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-              
             <!-- Begin Account Area -->
             <div class="account-area mb-50">
                 <div class="container">
@@ -214,8 +165,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Username</label><button type="button" class="my-button-inverse" data-bs-toggle="modal" data-target="#usernameModal">Edit</button>
-                                                
+                                                <label for="">Username</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#usernameModal">Edit</button> 
                                             </div>
                                             <span id="username"></span>
                                         </div>
@@ -223,7 +173,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Gender</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#genderModal">Edit</button>
+                                                <label for="">Gender</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#genderModal">Edit</button>
                                             </div>
                                             <span id="gender"></span>
                                         </div>
@@ -231,7 +181,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Email Address</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#emailModal">Edit</button>
+                                                <label for="">Email Address</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#emailModal">Edit</button>
                                             </div>
                                             <span id="email"></span>
                                         </div>
@@ -239,7 +189,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Birthday</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#birthdayModal">Edit</button>
+                                                <label for="">Birthday</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#birthdayModal">Edit</button>
                                             </div>
                                             <span id="birthday"></span>
                                         </div>
@@ -255,7 +205,7 @@
                                     <div class="col-8">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Contact</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#contactModal">Edit</button>
+                                                <label for="">Contact</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#contactModal">Edit</button>
                                             </div>
                                             <span id="contact"></span>
                                         </div>
@@ -263,7 +213,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Password</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#passwordModal">Edit</button>
+                                                <label for="">Password</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#passwordModal">Edit</button>
                                             </div>
                                             <span>••••••••••</span>
                                         </div>
@@ -322,7 +272,7 @@
         </div>
         <!-- Body Wrapper End Here -->
         <!-- Modal -->
-        <div class="modal fade" id="usernameModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="usernameModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -340,7 +290,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="genderModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="genderModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -362,7 +312,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="emailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="emailModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -380,7 +330,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="birthdayModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="birthdayModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -398,7 +348,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="contactModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -416,7 +366,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="passwordModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="passwordModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -433,7 +383,6 @@
                 </div>
             </div>
         </div>
-
         <!-- JS, Popper.js, and jQuery -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

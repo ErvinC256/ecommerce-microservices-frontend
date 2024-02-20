@@ -126,6 +126,55 @@
                 </div>
             </div>
             <!-- Breadcrumb Area End Here -->
+            <div class="container">
+                <h2>Modal Example</h2>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Open Modal</button>
+              
+                <!-- Modal -->
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header1</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <h2>Modal Example</h2>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Open Modal</button>
+              
+                <!-- Modal -->
+                <div class="modal fade" id="myModal2" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header2</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              
             <!-- Begin Account Area -->
             <div class="account-area mb-50">
                 <div class="container">
@@ -165,9 +214,10 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Username</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#usernameModal">Edit</button>
+                                                <label for="">Username</label><button type="button" class="my-button-inverse" data-bs-toggle="modal" data-target="#usernameModal">Edit</button>
+                                                
                                             </div>
-                                            <span>SamanthaTan</span>
+                                            <span id="username"></span>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -175,7 +225,7 @@
                                             <div class="edit-div">
                                                 <label for="">Gender</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#genderModal">Edit</button>
                                             </div>
-                                            <span>Female</span>
+                                            <span id="gender"></span>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -183,7 +233,7 @@
                                             <div class="edit-div">
                                                 <label for="">Email Address</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#emailModal">Edit</button>
                                             </div>
-                                            <span>samanthatan@gmail.com</span>
+                                            <span id="email"></span>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -191,7 +241,7 @@
                                             <div class="edit-div">
                                                 <label for="">Birthday</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#birthdayModal">Edit</button>
                                             </div>
-                                            <span>11/11/2011</span>
+                                            <span id="birthday"></span>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -207,7 +257,7 @@
                                             <div class="edit-div">
                                                 <label for="">Contact</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#contactModal">Edit</button>
                                             </div>
-                                            <span>12345678</span>
+                                            <span id="contact"></span>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -215,7 +265,7 @@
                                             <div class="edit-div">
                                                 <label for="">Password</label><button class="my-button-inverse" data-bs-toggle="modal" data-bs-target="#passwordModal">Edit</button>
                                             </div>
-                                            <span>••••••••</span>
+                                            <span>••••••••••</span>
                                         </div>
                                     </div>
                                 </div>
@@ -280,7 +330,7 @@
                         <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" value="SamanthaTan" name="" id="">
+                        <input type="text" name="" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -299,9 +349,9 @@
                     </div>
                     <div class="modal-body">
                         <select name="" id="">
-                            <option value="">Please select a gender</option>
-                            <option value="">Male</option>
-                            <option value="" selected>Female</option>
+                            <option value="" selected>Please select a gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                         <div id="error-message"></div>
                     </div>
@@ -320,7 +370,7 @@
                         <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" value="samanthatan@gmail.com" name="" id="">
+                        <input type="text" name="" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -338,7 +388,7 @@
                         <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="date" value="11/11/2011" name="" id="">
+                        <input type="date" name="" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -356,7 +406,7 @@
                         <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" value="12345678" name="" id="">
+                        <input type="text" name="" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -374,7 +424,7 @@
                         <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="password" value="12345678" name="" id="">
+                        <input type="password" name="" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -383,12 +433,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.usebootstrap.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <!-- JS, Popper.js, and jQuery -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>
@@ -396,6 +446,57 @@
 
                 checkSignInStatus();
                 getCartNumber();
+
+                // Retrieve user data from session storage
+                let loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+
+                // set the values for the fields
+                document.getElementById('username').innerText = loggedInUser.username || 'Not Set';
+                document.getElementById('gender').innerText = loggedInUser.gender !== null ? loggedInUser.gender : 'Not Set';
+                document.getElementById('email').innerText = loggedInUser.email || 'Not Set';
+                let formattedBirthday = 'Not Set';
+                if (loggedInUser.birthday !== null) {
+                    let birthday = new Date(loggedInUser.birthday);
+                    formattedBirthday = birthday.toString() !== 'Invalid Date' ? `${birthday.getMonth() + 1}/${birthday.getDate()}/${birthday.getFullYear()}` : 'Not Set';
+                }
+                document.getElementById('birthday').innerText = formattedBirthday;
+                document.getElementById('contact').innerText = loggedInUser.contact || 'Not Set';
+
+                // Function to set values in the modal based on user data
+                function setModalValues(modalId, dataKey) {
+                    let modal = document.getElementById(modalId);
+                    let inputElement = modal.querySelector('input, select');
+                    if (inputElement) {
+                        // For the gender modal, handle the selected option differently
+                        if (inputElement.tagName === 'SELECT') {
+                            let options = inputElement.options;
+                            for (let i = 0; i < options.length; i++) {
+                                if (options[i].value === loggedInUser[dataKey]) {
+                                    options[i].selected = true;
+                                    break;
+                                }
+                            }
+                        } else if (inputElement.type === 'date') {
+                            // Check if the birthday is not null before setting the value
+                            if (loggedInUser[dataKey] !== null) {
+                                let dateValue = new Date(loggedInUser[dataKey]);
+                                let formattedDate = dateValue.toISOString().substring(0, 10);
+                                inputElement.value = formattedDate;
+                            }
+                        } else {
+                            // For other input types
+                            inputElement.value = loggedInUser[dataKey];
+                        }
+                    }
+                }
+
+                // Set values for each modal
+                setModalValues('usernameModal', 'username');
+                setModalValues('genderModal', 'gender');
+                setModalValues('emailModal', 'email');
+                setModalValues('birthdayModal', 'birthday');
+                setModalValues('contactModal', 'contact');
+
             });
         </script>
     </body>

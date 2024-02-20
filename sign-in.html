@@ -250,7 +250,18 @@
                             return response.json();
                         })
                         .then(data => {
-                            sessionStorage.setItem('userId', data.userId);
+
+                            let loggedInUser = {
+                                'id': data.id,
+                                'username': data.username,
+                                'gender': data.gender,
+                                'email': data.email,
+                                'birthday': data.birthday,
+                                'contact': data.contact,
+                                'address': data.address
+                            }
+                            sessionStorage.setItem('user', JSON.stringify(loggedInUser));
+                            sessionStorage.setItem('userId', data.id);
                             sessionStorage.setItem('username', data.username);
 
                             if (sessionStorage.getItem('redirectToPage') == null) {
@@ -260,6 +271,7 @@
                                 sessionStorage.removeItem('redirectToPage');
                                 window.location.href = redirectToPage;
                             }
+
                         })
                         .catch(error => {
                             document.querySelector('.error-message').style.display = 'block';

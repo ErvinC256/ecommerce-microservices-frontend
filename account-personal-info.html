@@ -272,11 +272,12 @@
         </div>
         <!-- Body Wrapper End Here -->
         <!-- Modal -->
-        <div class="modal" id="usernameModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="usernameModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Username</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <input type="text" name="username" id="">
@@ -289,11 +290,12 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal" id="genderModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="genderModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Gender</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <select name="gender" id="">
@@ -310,11 +312,12 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal" id="emailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="emailModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Email Address</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <input type="text" name="email" id="">
@@ -327,11 +330,12 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal" id="birthdayModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="birthdayModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Birthday</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <input type="date" name="birthday" id="">
@@ -344,11 +348,12 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal" id="contactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="contactModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Contact</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <input type="text" name="contact" id="">
@@ -361,11 +366,12 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal" id="passwordModal" tabindex="-1" aria-hidden="true">
+        <div class="modal" id="passwordModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Password</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <input type="password" name="password" id="">
@@ -438,50 +444,69 @@
                 setModalValues('birthdayModal', 'birthday');
                 setModalValues('contactModal', 'contact');
 
-            });
-        </script>
-        <script>
-            // Get all modal save buttons
-            const saveButtons = document.querySelectorAll('.save-button');
+                // close button events
+                document.getElementById('usernameModal').querySelector('.close').addEventListener('click', function () {
+                    setModalValues('usernameModal', 'username');
+                });
 
-            // Attach event listeners to save buttons
-            saveButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    // Create an object to store all values from all modals
-                    const allValues = {};
+                document.getElementById('genderModal').querySelector('.close').addEventListener('click', function () {
+                    setModalValues('genderModal', 'gender');
+                });
 
-                    // Get all modals
-                    const modals = document.querySelectorAll('.modal');
+                document.getElementById('emailModal').querySelector('.close').addEventListener('click', function () {
+                    setModalValues('emailModal', 'email');
+                });
 
-                    // Iterate over each modal
-                    modals.forEach(modal => {
-                        // Get all input and select elements within the modal
-                        const inputElements = modal.querySelectorAll('input, select');
+                document.getElementById('birthdayModal').querySelector('.close').addEventListener('click', function () {
+                    setModalValues('birthdayModal', 'birthday');
+                });
 
-                        // Create an object to store the values for this modal
-                        const modalValues = {};
+                document.getElementById('contactModal').querySelector('.close').addEventListener('click', function () {
+                    setModalValues('contactModal', 'contact');
+                });
 
-                        // Iterate over each input/select and store the values for this modal
-                        inputElements.forEach(input => {
-                            if (input.name === 'gender' && input.value === 'Please select a gender') {
-                                modalValues[input.name] = null;
-                            }
-                            else if (input.name === 'birthday' && input.value === '') {
-                                modalValues[input.name] = null;
-                            }
-                            else if (input.type === 'password' && input.value === '') {
-                                modalValues[input.name] = null;
-                            } else {
-                                modalValues[input.name] = input.value;
-                            }
+                document.getElementById('passwordModal').querySelector('.close').addEventListener('click', function () {
+                    document.getElementById('passwordModal').querySelector('input[name="password"]').value = '';
+                });
+
+                // save button events
+                const saveButtons = document.querySelectorAll('.save-button');
+
+                saveButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        
+                        const allValues = {};
+                        const modals = document.querySelectorAll('.modal');
+
+                        modals.forEach(modal => {
+                            // Get all input and select elements within the modal
+                            const inputElements = modal.querySelectorAll('input, select');
+
+                            // Create an object to store the values for this modal
+                            const modalValues = {};
+
+                            // Iterate over each input/select and store the values for this modal
+                            inputElements.forEach(input => {
+                                if (input.name === 'gender' && input.value === 'Please select a gender') {
+                                    modalValues[input.name] = null;
+                                }
+                                else if (input.name === 'birthday' && input.value === '') {
+                                    modalValues[input.name] = null;
+                                }
+                                else if (input.type === 'password' && input.value === '') {
+                                    modalValues[input.name] = null;
+                                } else {
+                                    modalValues[input.name] = input.value;
+                                }
+                            });
+
+                            // Add the values for this modal to the overall values object
+                            Object.assign(allValues, modalValues);
                         });
 
-                        // Add the values for this modal to the overall values object
-                        Object.assign(allValues, modalValues);
+                        // Log all values to the console
+                        console.log(allValues);
                     });
-
-                    // Log all values to the console
-                    console.log(allValues);
                 });
             });
         </script>

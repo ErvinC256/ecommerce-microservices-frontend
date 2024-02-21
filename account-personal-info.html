@@ -277,14 +277,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Username</h5>
-                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="" id="">
+                        <input type="text" name="username" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -295,18 +294,17 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Gender</h5>
-                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <select name="" id="">
-                            <option value="" selected>Please select a gender</option>
+                        <select name="gender" id="">
+                            <option>Please select a gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -317,14 +315,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Email Address</h5>
-                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="" id="">
+                        <input type="text" name="email" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -335,14 +332,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Birthday</h5>
-                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="date" name="" id="">
+                        <input type="date" name="birthday" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -353,14 +349,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Contact</h5>
-                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="" id="">
+                        <input type="text" name="contact" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -371,14 +366,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Your Password</h5>
-                        <button type="button" class="btn-close" style="border: none; cursor: pointer; background-color: #fff;" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <input type="password" name="" id="">
+                        <input type="password" name="password" id="">
                         <div id="error-message"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary my-button">Save changes</button>
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -411,12 +405,12 @@
                 document.getElementById('birthday').innerText = formattedBirthday;
                 document.getElementById('contact').innerText = loggedInUser.contact || 'Not Set';
 
-                // Function to set values in the modal based on user data
+                // set the values for the modal fields
                 function setModalValues(modalId, dataKey) {
                     let modal = document.getElementById(modalId);
                     let inputElement = modal.querySelector('input, select');
                     if (inputElement) {
-                        // For the gender modal, handle the selected option differently
+                    
                         if (inputElement.tagName === 'SELECT') {
                             let options = inputElement.options;
                             for (let i = 0; i < options.length; i++) {
@@ -426,7 +420,7 @@
                                 }
                             }
                         } else if (inputElement.type === 'date') {
-                            // Check if the birthday is not null before setting the value
+                            
                             if (loggedInUser[dataKey] !== null) {
                                 let dateValue = new Date(loggedInUser[dataKey]);
                                 let formattedDate = dateValue.toISOString().substring(0, 10);
@@ -438,14 +432,57 @@
                         }
                     }
                 }
-
-                // Set values for each modal
                 setModalValues('usernameModal', 'username');
                 setModalValues('genderModal', 'gender');
                 setModalValues('emailModal', 'email');
                 setModalValues('birthdayModal', 'birthday');
                 setModalValues('contactModal', 'contact');
 
+            });
+        </script>
+        <script>
+            // Get all modal save buttons
+            const saveButtons = document.querySelectorAll('.save-button');
+
+            // Attach event listeners to save buttons
+            saveButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Create an object to store all values from all modals
+                    const allValues = {};
+
+                    // Get all modals
+                    const modals = document.querySelectorAll('.modal');
+
+                    // Iterate over each modal
+                    modals.forEach(modal => {
+                        // Get all input and select elements within the modal
+                        const inputElements = modal.querySelectorAll('input, select');
+
+                        // Create an object to store the values for this modal
+                        const modalValues = {};
+
+                        // Iterate over each input/select and store the values for this modal
+                        inputElements.forEach(input => {
+                            if (input.name === 'gender' && input.value === 'Please select a gender') {
+                                modalValues[input.name] = null;
+                            }
+                            else if (input.name === 'birthday' && input.value === '') {
+                                modalValues[input.name] = null;
+                            }
+                            else if (input.type === 'password' && input.value === '') {
+                                modalValues[input.name] = null;
+                            } else {
+                                modalValues[input.name] = input.value;
+                            }
+                        });
+
+                        // Add the values for this modal to the overall values object
+                        Object.assign(allValues, modalValues);
+                    });
+
+                    // Log all values to the console
+                    console.log(allValues);
+                });
             });
         </script>
     </body>

@@ -171,11 +171,7 @@
                             <div class="col-12" style="padding-bottom: 0px;">
                                 <p>Already have an account? <a href="sign-in.html">Sign in</a> here.</p>
                             </div>
-                            <div class="col-12 error-message" style="padding-bottom: 0px;">
-                                <div>
-                                    <i class="fa fa-exclamation-triangle" style="margin-right: 5px; color: red;"></i><p></p>
-                                </div>
-                            </div>
+                            <div class="col-12 error-message" style="padding-bottom: 0px;"></div>
                         </div>
                     </form>
                 </div>
@@ -259,7 +255,7 @@
                     // Check if the username or password is empty
                     if (!username || !email || !password || !confirmPassword) {
                         document.querySelector('.error-message').style.display = 'block';
-                        document.querySelector('.error-message p').innerText = 'Please fill in your credentials';
+                        document.querySelector('.error-message').innerText = 'Please fill in your credentials';
                         return;
                     }
 
@@ -267,7 +263,7 @@
                     const agreementCheckbox = document.querySelector('#agree');
                     if (!agreementCheckbox.checked) {
                         document.querySelector('.error-message').style.display = 'block';
-                        document.querySelector('.error-message p').innerText = 'Please agree to the terms and conditions';
+                        document.querySelector('.error-message').innerText = 'Please agree to the terms and conditions';
                         return;
                     }
 
@@ -296,7 +292,7 @@
                         })
                         .catch(error => {
                             document.querySelector('.error-message').style.display = 'block';
-                            document.querySelector('.error-message p').innerText = error.message;
+                            document.querySelector('.error-message').innerText = error.message;
                         });
                 });
             });

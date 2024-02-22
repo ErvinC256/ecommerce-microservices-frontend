@@ -752,7 +752,8 @@ option {
 }
 .error-message {
 	display: none;
-	padding: 10px;
+	font-size: 12px; 
+	color: red;
 }
 .error-message div {
 	border: 1.5px dashed red;

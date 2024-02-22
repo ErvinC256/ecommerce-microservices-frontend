@@ -280,8 +280,8 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="username" id="">
-                        <div id="error-message"></div>
+                        <input type="text" name="username" placeholder="Enter username" id="">
+                        <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
@@ -303,7 +303,7 @@
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
-                        <div id="error-message"></div>
+                        <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
@@ -320,8 +320,8 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="email" id="">
-                        <div id="error-message"></div>
+                        <input type="text" name="email" placeholder="Enter email address">
+                        <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
@@ -339,7 +339,7 @@
                     </div>
                     <div class="modal-body">
                         <input type="date" name="birthday" id="">
-                        <div id="error-message"></div>
+                        <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
@@ -356,8 +356,8 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="contact" id="">
-                        <div id="error-message"></div>
+                        <input type="text" name="contact" placeholder="Enter mobile number">
+                        <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
@@ -374,8 +374,8 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="password" name="password" id="">
-                        <div id="error-message"></div>
+                        <input type="password" name="password" placeholder="Enter password" id="">
+                        <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
@@ -419,10 +419,15 @@
                     
                         if (inputElement.tagName === 'SELECT') {
                             let options = inputElement.options;
-                            for (let i = 0; i < options.length; i++) {
-                                if (options[i].value === loggedInUser[dataKey]) {
-                                    options[i].selected = true;
-                                    break;
+                            if (loggedInUser[dataKey] === null) {
+                                // Set the default option to "Please select a gender"
+                                options[0].selected = true;
+                            } else {
+                                for (let i = 1; i < options.length; i++) { // Start from index 1 to skip the default option
+                                    if (options[i].value === loggedInUser[dataKey]) {
+                                        options[i].selected = true;
+                                        break;
+                                    }
                                 }
                             }
                         } else if (inputElement.type === 'date') {
@@ -447,26 +452,32 @@
                 // close button events
                 document.getElementById('usernameModal').querySelector('.close').addEventListener('click', function () {
                     setModalValues('usernameModal', 'username');
+                    document.getElementById('usernameModal').querySelector('.error-message').innerText = '';
                 });
 
                 document.getElementById('genderModal').querySelector('.close').addEventListener('click', function () {
                     setModalValues('genderModal', 'gender');
+                    document.getElementById('genderModal').querySelector('.error-message').innerText = '';
                 });
 
                 document.getElementById('emailModal').querySelector('.close').addEventListener('click', function () {
                     setModalValues('emailModal', 'email');
+                    document.getElementById('emailModal').querySelector('.error-message').innerText = '';
                 });
 
                 document.getElementById('birthdayModal').querySelector('.close').addEventListener('click', function () {
                     setModalValues('birthdayModal', 'birthday');
+                    document.getElementById('birthdayModal').querySelector('.error-message').innerText = '';
                 });
 
                 document.getElementById('contactModal').querySelector('.close').addEventListener('click', function () {
                     setModalValues('contactModal', 'contact');
+                    document.getElementById('contactModal').querySelector('.error-message').innerText = '';
                 });
 
                 document.getElementById('passwordModal').querySelector('.close').addEventListener('click', function () {
                     document.getElementById('passwordModal').querySelector('input[name="password"]').value = '';
+                    document.getElementById('passwordModal').querySelector('.error-message').innerText = '';
                 });
 
                 // save button events
@@ -474,40 +485,86 @@
 
                 saveButtons.forEach(button => {
                     button.addEventListener('click', function () {
-                        
-                        const allValues = {};
+
+                        const userId = sessionStorage.getItem('userId');
+                        const user = {};
                         const modals = document.querySelectorAll('.modal');
 
-                        modals.forEach(modal => {
-                            // Get all input and select elements within the modal
+                        for (let i = 0; i < modals.length; i++) {
+
+                            const modal = modals[i];
                             const inputElements = modal.querySelectorAll('input, select');
-
-                            // Create an object to store the values for this modal
                             const modalValues = {};
+                            modalValues['id'] = userId;
 
-                            // Iterate over each input/select and store the values for this modal
-                            inputElements.forEach(input => {
-                                if (input.name === 'gender' && input.value === 'Please select a gender') {
+                            for (let j = 0; j < inputElements.length; j++) {
+                                const input = inputElements[j];
+
+                                if (input.name === 'username' && input.value === '') {
+                                    modal.querySelector('.error-message').style.display = 'block';
+                                    modal.querySelector('.error-message').innerText = 'Please provide an username';
+                                    return;
+                                } else if (input.name === 'gender' && input.value === 'Please select a gender') {
                                     modalValues[input.name] = null;
-                                }
-                                else if (input.name === 'birthday' && input.value === '') {
+                                } else if (input.name === 'email' && input.value === '') {
+                                    modal.querySelector('.error-message').style.display = 'block';
+                                    modal.querySelector('.error-message').innerText = 'Please provide an email';
+                                    return;
+                                } else if (input.name === 'birthday' && input.value === '') {
                                     modalValues[input.name] = null;
-                                }
-                                else if (input.type === 'password' && input.value === '') {
+                                } else if (input.name === 'contact' && input.value === '') {
+                                    modalValues[input.name] = null;
+                                } else if (input.type === 'password' && input.value === '') {
                                     modalValues[input.name] = null;
                                 } else {
                                     modalValues[input.name] = input.value;
                                 }
+                            }
+
+                            Object.assign(user, modalValues);
+                        }
+
+                        const url = `http://localhost:8080/users/${userId}`;
+                            
+                        const requestOptions = {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(user),
+                        };
+
+                        fetch(url, requestOptions)
+                            .then(response => {
+                                if (!response.ok) {
+                                    return response.json().then(errorData => {
+                                        throw new Error(errorData.message);
+                                    });
+                                }
+                                return response.json();
+                            })
+                            .then(updatedUser => {
+                                sessionStorage.setItem('user', JSON.stringify(updatedUser));
+                                sessionStorage.setItem('userId', updatedUser.id);
+                                sessionStorage.setItem('username', updatedUser.username);
+
+                                window.location.reload();
+                            })
+                            .catch(error => {
+                                if (error.message === 'Email is not in valid format') {
+                                    document.querySelector('#emailModal .error-message').style.display = 'block';
+                                    document.querySelector('#emailModal .error-message').innerText = error.message;
+                                }
+                                if (error.message === 'Password must be at least 6 characters long') {
+                                    document.querySelector('#passwordModal .error-message').style.display = 'block';
+                                    document.querySelector('#passwordModal .error-message').innerText = error.message;
+                                }
+                               
                             });
 
-                            // Add the values for this modal to the overall values object
-                            Object.assign(allValues, modalValues);
-                        });
-
-                        // Log all values to the console
-                        console.log(allValues);
                     });
                 });
+
             });
         </script>
     </body>

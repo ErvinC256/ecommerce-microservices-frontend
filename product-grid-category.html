@@ -403,8 +403,9 @@
                 sessionStorage.removeItem('selectedRatings');
                 sessionStorage.removeItem('selectedPage');
                 sessionStorage.removeItem('selectedSortOption');
-            });
-        
+            });    
+        </script>
+        <script>
             function fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage, selectedSortOption) {
         
                 let apiURL = `http://localhost:8080/products?`;
@@ -502,7 +503,7 @@
                         // pagination
                         const paginationBox = document.querySelector('.pagination-box');
                         totalPages = data.totalPages;
-        
+
                         paginationBox.innerHTML = `<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a></li>`;
                     
                         for (let i = 1; i <= totalPages; i++) {
@@ -513,7 +514,7 @@
                                 paginationBox.innerHTML += `<li><a href="#">${i}</a></li>`;
                             }
                         }
-        
+
                         paginationBox.innerHTML += `<li><a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a></li>`;
                         
                         let prevButton = document.querySelector('.Previous');
@@ -759,8 +760,6 @@
                 sessionStorage.setItem('selectedPage', pageNumber);
                 sessionStorage.setItem('selectedSortOption', sortOption);
             }
-        </script>
-        <script>
             function initializeOwlCarousel(productsContainer) {
                 $(productsContainer).trigger('destroy.owl.carousel');
 

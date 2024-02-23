@@ -306,7 +306,8 @@
                 
                 sessionStorage.removeItem('selectedPage');
             });
-        
+        </script>
+        <script>
             function fetchAndRenderProducts(searchType, searchTerm, selectedPage) {
         
                 let apiURL = `http://localhost:8080/products`;
@@ -397,7 +398,7 @@
                         // pagination
                         const paginationBox = document.querySelector('.pagination-box');
                         totalPages = data.totalPages;
-        
+
                         paginationBox.innerHTML = `<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a></li>`;
                     
                         for (let i = 1; i <= totalPages; i++) {
@@ -408,7 +409,7 @@
                                 paginationBox.innerHTML += `<li><a href="#">${i}</a></li>`;
                             }
                         }
-        
+
                         paginationBox.innerHTML += `<li><a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a></li>`;
                         
                         let prevButton = document.querySelector('.Previous');

@@ -403,6 +403,10 @@
                         return response.json();
                     })
                     .then(user => {
+                        sessionStorage.setItem('userId', user.userId);
+                        sessionStorage.setItem('username', user.username);
+                        checkSignInStatus();
+
                         loggedInUser = user;
                         
                         // set the values for the fields

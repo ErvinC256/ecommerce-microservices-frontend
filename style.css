@@ -1009,6 +1009,9 @@ iframe {
 	background-color: #e7f1fd;
 	border-radius: 5px;
 }
+.shipping-info-form div {
+	margin-bottom: 10px;
+}
 .edit-block {
 	margin-bottom: 30px; 
 	border-bottom: 1px solid #e1e1e1;

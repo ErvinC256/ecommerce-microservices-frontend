@@ -541,7 +541,6 @@ document.getElementById('scrollToTop').addEventListener('click', function() {
 /* 27. Sign Out
 /*----------------------------------------*/
 function signOut() {
-	sessionStorage.removeItem('user');
 	sessionStorage.removeItem('userId');
 	sessionStorage.removeItem('username');
 	window.location.href = 'sign-in.html';

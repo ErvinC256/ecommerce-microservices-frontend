@@ -12,10 +12,10 @@
         <link rel="stylesheet" href="css/helper.css">
         <link rel="stylesheet" href="style.css">
         <script>
-            if (!sessionStorage.getItem('userId')) {
-                sessionStorage.setItem('redirectToPage', 'account-personal-info.html')
-                window.location.href = 'sign-in.html';
-            }
+            // if (!sessionStorage.getItem('userId')) {
+            //     sessionStorage.setItem('redirectToPage', 'account-personal-info.html')
+            //     window.location.href = 'sign-in.html';
+            // }
         </script>
     </head>
     <body>
@@ -199,7 +199,7 @@
                                             <div class="edit-div">
                                                 <label for="">Country Code</label>
                                             </div>
-                                            <span>+60 <span style="color: gray;">Malaysia</span></span>
+                                            <span style="color: gray;">+60 Malaysia</span>
                                         </div>
                                     </div>
                                     <div class="col-8">
@@ -391,63 +391,43 @@
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>
+            let loggedInUser;
+
             document.addEventListener('DOMContentLoaded', function() {
 
                 checkSignInStatus();
                 getCartNumber();
 
-                // Retrieve user data from session storage
-                let loggedInUser = JSON.parse(sessionStorage.getItem('user'));
-
-                // set the values for the fields
-                document.getElementById('username').innerText = loggedInUser.username || 'Not Set';
-                document.getElementById('gender').innerText = loggedInUser.gender !== null ? loggedInUser.gender : 'Not Set';
-                document.getElementById('email').innerText = loggedInUser.email || 'Not Set';
-                let formattedBirthday = 'Not Set';
-                if (loggedInUser.birthday !== null) {
-                    let birthday = new Date(loggedInUser.birthday);
-                    formattedBirthday = birthday.toString() !== 'Invalid Date' ? `${birthday.getMonth() + 1}/${birthday.getDate()}/${birthday.getFullYear()}` : 'Not Set';
-                }
-                document.getElementById('birthday').innerText = formattedBirthday;
-                document.getElementById('contact').innerText = loggedInUser.contact || 'Not Set';
-
-                // set the values for the modal fields
-                function setModalValues(modalId, dataKey) {
-                    let modal = document.getElementById(modalId);
-                    let inputElement = modal.querySelector('input, select');
-                    if (inputElement) {
-                    
-                        if (inputElement.tagName === 'SELECT') {
-                            let options = inputElement.options;
-                            if (loggedInUser[dataKey] === null) {
-                                // Set the default option to "Please select a gender"
-                                options[0].selected = true;
-                            } else {
-                                for (let i = 1; i < options.length; i++) { // Start from index 1 to skip the default option
-                                    if (options[i].value === loggedInUser[dataKey]) {
-                                        options[i].selected = true;
-                                        break;
-                                    }
-                                }
-                            }
-                        } else if (inputElement.type === 'date') {
-                            
-                            if (loggedInUser[dataKey] !== null) {
-                                let dateValue = new Date(loggedInUser[dataKey]);
-                                let formattedDate = dateValue.toISOString().substring(0, 10);
-                                inputElement.value = formattedDate;
-                            }
-                        } else {
-                            // For other input types
-                            inputElement.value = loggedInUser[dataKey];
+                fetch(`http://localhost:8080/users/${sessionStorage.getItem('userId')}`)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(user => {
+                        loggedInUser = user;
+                        
+                        // set the values for the fields
+                        document.getElementById('username').innerText = loggedInUser.username || 'Not Set';
+                        document.getElementById('gender').innerText = loggedInUser.gender !== null ? loggedInUser.gender : 'Not Set';
+                        document.getElementById('email').innerText = loggedInUser.email || 'Not Set';
+                        let formattedBirthday = 'Not Set';
+                        if (loggedInUser.birthday !== null) {
+                            let birthday = new Date(loggedInUser.birthday);
+                            formattedBirthday = birthday.toString() !== 'Invalid Date' ? `${birthday.getMonth() + 1}/${birthday.getDate()}/${birthday.getFullYear()}` : 'Not Set';
                         }
-                    }
-                }
-                setModalValues('usernameModal', 'username');
-                setModalValues('genderModal', 'gender');
-                setModalValues('emailModal', 'email');
-                setModalValues('birthdayModal', 'birthday');
-                setModalValues('contactModal', 'contact');
+                        document.getElementById('birthday').innerText = formattedBirthday;
+                        document.getElementById('contact').innerText = loggedInUser.contact || 'Not Set';
+
+                        // set the values for the modal fields
+                        setModalValues('usernameModal', 'username');
+                        setModalValues('genderModal', 'gender');
+                        setModalValues('emailModal', 'email');
+                        setModalValues('birthdayModal', 'birthday');
+                        setModalValues('contactModal', 'contact');
+                    
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
 
                 // close button events
                 document.getElementById('usernameModal').querySelector('.close').addEventListener('click', function () {
@@ -543,10 +523,7 @@
                                 }
                                 return response.json();
                             })
-                            .then(updatedUser => {
-                                sessionStorage.setItem('user', JSON.stringify(updatedUser));
-                                sessionStorage.setItem('userId', updatedUser.id);
-                                sessionStorage.setItem('username', updatedUser.username);
+                            .then(() => {
 
                                 window.location.reload();
                             })
@@ -566,6 +543,39 @@
                 });
 
             });
+        </script>
+        <script>
+            function setModalValues(modalId, dataKey) {
+                let modal = document.getElementById(modalId);
+                let inputElement = modal.querySelector('input, select');
+                if (inputElement) {
+                
+                    if (inputElement.tagName === 'SELECT') {
+                        let options = inputElement.options;
+                        if (loggedInUser[dataKey] === null) {
+                            // Set the default option to "Please select a gender"
+                            options[0].selected = true;
+                        } else {
+                            for (let i = 1; i < options.length; i++) { // Start from index 1 to skip the default option
+                                if (options[i].value === loggedInUser[dataKey]) {
+                                    options[i].selected = true;
+                                    break;
+                                }
+                            }
+                        }
+                    } else if (inputElement.type === 'date') {
+                        
+                        if (loggedInUser[dataKey] !== null) {
+                            let dateValue = new Date(loggedInUser[dataKey]);
+                            let formattedDate = dateValue.toISOString().substring(0, 10);
+                            inputElement.value = formattedDate;
+                        }
+                    } else {
+                        // For other input types
+                        inputElement.value = loggedInUser[dataKey];
+                    }
+                }
+            }
         </script>
     </body>
 </html>

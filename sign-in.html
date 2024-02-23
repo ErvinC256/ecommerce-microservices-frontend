@@ -247,16 +247,6 @@
                         })
                         .then(data => {
 
-                            let loggedInUser = {
-                                'id': data.id,
-                                'username': data.username,
-                                'gender': data.gender,
-                                'email': data.email,
-                                'birthday': data.birthday,
-                                'contact': data.contact,
-                                'password': null
-                            }
-                            sessionStorage.setItem('user', JSON.stringify(loggedInUser));
                             sessionStorage.setItem('userId', data.id);
                             sessionStorage.setItem('username', data.username);
 

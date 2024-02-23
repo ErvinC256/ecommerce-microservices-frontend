@@ -403,7 +403,7 @@
                         return response.json();
                     })
                     .then(user => {
-                        sessionStorage.setItem('userId', user.userId);
+                        sessionStorage.setItem('userId', user.id);
                         sessionStorage.setItem('username', user.username);
                         checkSignInStatus();
 

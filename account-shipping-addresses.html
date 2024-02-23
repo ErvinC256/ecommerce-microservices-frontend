@@ -160,18 +160,7 @@
                             <div class="section-title">
                                 <h2>Shipping Addresses</h2>
                             </div><br><br>
-                            <div style="border: 1px solid #e1e1e1; margin-bottom: 20px; padding: 20px; background-color: #e7f1fd;">
-                                <div class="edit-block">
-                                    <div class="edit-div">
-                                        <label for="">Address</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#addressModal-edit">Edit</button> 
-                                    </div>
-                                    <span style="color: gray;">Address 1</span>
-                                </div>
-                                <div>Street Address</div>
-                                <div>City</div>
-                                <div>Zipcode</div>
-                                <div>Country</div>
-                            </div>
+                            <div id="addressContainer" style="margin-bottom: 20px;"></div>
                             <button type="button" class="my-button-inverse" data-toggle="modal" data-target="#addressModal-add">Add address</button>
                         </div>
                     </div>
@@ -276,6 +265,7 @@
                                 </div>           
                             </div>
                         </form>
+                        <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
@@ -293,6 +283,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="#" class="shipping-info-form">
+                            <input type="hidden" class="address-id">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="edit-block">
@@ -304,15 +295,15 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="">Street Address</label>
-                                    <input type="text" placeholder="Enter street address" required>
+                                    <input type="text" name="streetAddress" placeholder="Enter street address" required>
                                 </div>
                                 <div class="col-6">
                                     <label for="">City</label>
-                                    <input type="text" placeholder="Enter city" required>
+                                    <input type="text" name="city" placeholder="Enter city" required>
                                 </div>                                 
                                 <div class="col-6">
                                     <label for="">Zipcode</label>
-                                    <input type="text" placeholder="Enter zipcode" required>
+                                    <input type="text" name="zipcode" placeholder="Enter zipcode" required>
                                 </div>
                                 <div class="col-12">
                                     <label for="">State</label>
@@ -335,6 +326,7 @@
                                 </div>           
                             </div>
                         </form>
+                        <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
@@ -352,6 +344,106 @@
 
                 checkSignInStatus();
                 getCartNumber();
+
+                // Assuming userId is available
+                const userId = sessionStorage.getItem('userId'); // Replace with the actual userId
+                const addressContainer = document.getElementById('addressContainer');
+
+                const modalFormEdit = document.querySelector('#addressModal-edit .shipping-info-form');
+            
+                fetch(`http://localhost:8080/users/${userId}/addresses`)
+                    .then(response => response.json())
+                    .then(addresses => {
+                        addresses.forEach((address, index) => {
+                            addressContainer.innerHTML += `
+                                <div class="address-block">
+                                    <div class="edit-block">
+                                        <div class="edit-div">
+                                            <label for="">Address</label>
+                                            <div>
+                                                <button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#addressModal-edit" data-index="${index}">Edit</button> 
+                                                <button type="button" class="my-button-inverse">Remove</button> 
+                                            </div>
+                                        </div>
+                                        <span style="color: gray;">Address ${index + 1}</span>
+                                    </div>
+                                    <div>${address.streetAddress}</div>
+                                    <div>${address.city}</div>
+                                    <div>${address.zipcode}</div>
+                                    <div style="color: gray;">Malaysia</div>
+                                </div>
+                            `;
+
+                        });
+
+                        // Add event listener to handle the "Edit" button clicks
+                        const editButtons = document.querySelectorAll('.edit-button');
+                        editButtons.forEach(button => {
+                            button.addEventListener('click', function() {
+                                const index = parseInt(this.getAttribute('data-index'));
+                                const selectedAddress = addresses[index];
+
+                                // Set values in the modal form fields
+                                modalFormEdit.querySelector('.address-id').value = selectedAddress.id;
+                                modalFormEdit.querySelector('input[name="streetAddress"]').value = selectedAddress.streetAddress;
+                                modalFormEdit.querySelector('input[name="city"]').value = selectedAddress.city;
+                                modalFormEdit.querySelector('input[name="zipcode"]').value = selectedAddress.zipcode;
+                                modalFormEdit.querySelector('select').value = selectedAddress.state;
+
+                                document.querySelector('#addressModal-edit .error-message').textContent = '';
+
+                            });
+                        });
+
+                    })
+                    .catch(error => console.error('Error fetching addresses:', error));
+
+                // Add event listener to handle the "Save-changes" button for edit-modal
+                const saveButton = document.querySelector('#addressModal-edit .save-button');
+                saveButton.addEventListener('click', function() {
+
+                    const addressId = modalFormEdit.querySelector('.address-id').value;
+                    const updatedStreetAddress = modalFormEdit.querySelector('input[name="streetAddress"]').value;
+                    const updatedCity = modalFormEdit.querySelector('input[name="city"]').value;
+                    const updatedZipcode = modalFormEdit.querySelector('input[name="zipcode"]').value;
+                    const updatedState = modalFormEdit.querySelector('select').value;
+
+                    if (addressId !== '' && updatedStreetAddress !== '' && updatedCity !== '' && updatedZipcode !== '' && updatedState !== '') {
+                        let updatedAddress = {
+                            id: addressId,
+                            streetAddress: updatedStreetAddress,
+                            city: updatedCity,
+                            zipcode: updatedZipcode,
+                            state: updatedState
+                        };
+
+                        const requestOptions = {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(updatedAddress)
+                        };
+
+                        fetch(`http://localhost:8080/users/${userId}/addresses/${addressId}`, requestOptions)
+                            .then(() => {
+                                
+                            })
+                            .then(() => {
+                                window.location.reload();
+                            })
+                            .catch(error => {
+                                // Handle error
+                                console.error('Error:', error);
+                            });
+
+                    } else {
+                        // Handle the case where any field is null
+                        document.querySelector('#addressModal-edit .error-message').style.display = 'block';
+                        document.querySelector('#addressModal-edit .error-message').innerText = 'Please fill in all fields';
+                    }
+                });
+
             });
         </script>
     </body>

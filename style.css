@@ -1003,13 +1003,15 @@ iframe {
 	padding: 10px;
 }
 .basic-info-form,
-.shipping-info-form {
+.shipping-info-form,
+.address-form {
 	border: 1px solid #e1e1e1; 
 	padding: 20px;
 	background-color: #e7f1fd;
 	border-radius: 5px;
 }
-.shipping-info-form div {
+.shipping-info-form div,
+.address-form div {
 	margin-bottom: 10px;
 }
 .edit-block {

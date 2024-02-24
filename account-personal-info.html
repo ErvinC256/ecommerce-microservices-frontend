@@ -469,7 +469,7 @@
 
                 saveButtons.forEach(button => {
                     button.addEventListener('click', function () {
-
+                        
                         const userId = sessionStorage.getItem('userId');
                         const user = {};
                         const modals = document.querySelectorAll('.modal');
@@ -518,6 +518,8 @@
                             body: JSON.stringify(user),
                         };
 
+                        
+
                         fetch(url, requestOptions)
                             .then(response => {
                                 if (!response.ok) {
@@ -525,22 +527,23 @@
                                         throw new Error(errorData.message);
                                     });
                                 }
-                                return response.json();
+                                // return response.json();
                             })
-                            .then(() => {
-
+                            .then(data => {
+                                
                                 window.location.reload();
                             })
                             .catch(error => {
-                                if (error.message === 'Email is not in valid format') {
+                                
+                                if (error.message === 'Email not in valid format') {
                                     document.querySelector('#emailModal .error-message').style.display = 'block';
                                     document.querySelector('#emailModal .error-message').innerText = error.message;
                                 }
-                                if (error.message === 'Password must be at least 6 characters long') {
+                                else if (error.message === 'Password must be at least 6 characters') {
                                     document.querySelector('#passwordModal .error-message').style.display = 'block';
                                     document.querySelector('#passwordModal .error-message').innerText = error.message;
                                 }
-                               
+                                
                             });
 
                     });

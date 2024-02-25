@@ -432,8 +432,7 @@
                                         window.location.reload();
                                     })
                                     .catch(error => {
-                                        // Handle error
-                                        console.error('Error:', error);
+                                        console.error(error);
                                     });
 
                             } else {
@@ -465,15 +464,16 @@
                                         window.location.reload();
                                     })
                                     .catch(error => {
-                                        console.error('Error deleting address:', error);
-                                        // Handle errors, e.g., show an error message to the user
+                                        console.error(error);
                                     });
 
                             });
                         });
 
                     })
-                    .catch(error => console.error('Error fetching addresses:', error));
+                    .catch(error => {
+                        console.error(error);
+                    });
 
                 // "add address" button
                 const addAddressButton = document.querySelector('.add-address-button');
@@ -516,8 +516,7 @@
                                 window.location.reload();
                             })
                             .catch(error => {
-                                // Handle error
-                                console.error('Error:', error);
+                                console.error(error);
                             });
 
                     } else {

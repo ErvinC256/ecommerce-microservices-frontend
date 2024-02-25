@@ -165,7 +165,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Username</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#usernameModal">Edit</button> 
+                                                <label for="">Username</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#usernameModal">Edit</button> 
                                             </div>
                                             <span id="username"></span>
                                         </div>
@@ -173,7 +173,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Gender</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#genderModal">Edit</button>
+                                                <label for="">Gender</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#genderModal">Edit</button>
                                             </div>
                                             <span id="gender"></span>
                                         </div>
@@ -181,7 +181,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Email Address</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#emailModal">Edit</button>
+                                                <label for="">Email Address</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#emailModal">Edit</button>
                                             </div>
                                             <span id="email"></span>
                                         </div>
@@ -189,7 +189,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Birthday</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#birthdayModal">Edit</button>
+                                                <label for="">Birthday</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#birthdayModal">Edit</button>
                                             </div>
                                             <span id="birthday"></span>
                                         </div>
@@ -205,7 +205,7 @@
                                     <div class="col-8">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Contact</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#contactModal">Edit</button>
+                                                <label for="">Contact</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#contactModal">Edit</button>
                                             </div>
                                             <span id="contact"></span>
                                         </div>
@@ -213,7 +213,7 @@
                                     <div class="col-6">
                                         <div class="edit-block">
                                             <div class="edit-div">
-                                                <label for="">Password</label><button type="button" class="my-button-inverse" data-toggle="modal" data-target="#passwordModal">Edit</button>
+                                                <label for="">Password</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#passwordModal">Edit</button>
                                             </div>
                                             <span>••••••••••</span>
                                         </div>
@@ -432,36 +432,48 @@
                     .catch(error => {
                         console.error(error);
                     });
+                
 
-                // close button events
-                document.getElementById('usernameModal').querySelector('.close').addEventListener('click', function () {
-                    setModalValues('usernameModal', 'username');
-                    document.getElementById('usernameModal').querySelector('.error-message').innerText = '';
-                });
+                const editButtons = document.querySelectorAll('.edit-button');
 
-                document.getElementById('genderModal').querySelector('.close').addEventListener('click', function () {
-                    setModalValues('genderModal', 'gender');
-                    document.getElementById('genderModal').querySelector('.error-message').innerText = '';
-                });
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        
+                        const modalId = button.getAttribute('data-target').substring(1); // Removing the # from the modal ID
+                        const modal = document.getElementById(modalId);
 
-                document.getElementById('emailModal').querySelector('.close').addEventListener('click', function () {
-                    setModalValues('emailModal', 'email');
-                    document.getElementById('emailModal').querySelector('.error-message').innerText = '';
-                });
+                        if (modalId === 'passwordModal') {
+                            document.getElementById('passwordModal').querySelector('input[name="password"]').value = '';
+                            document.getElementById('passwordModal').querySelector('.error-message').innerText = '';
+                            return;
+                        }
 
-                document.getElementById('birthdayModal').querySelector('.close').addEventListener('click', function () {
-                    setModalValues('birthdayModal', 'birthday');
-                    document.getElementById('birthdayModal').querySelector('.error-message').innerText = '';
-                });
+                        switch (modalId) {
+                            case 'usernameModal':
+                                identifier = 'username';
+                                break;
+                            case 'genderModal':
+                                identifier = 'gender';
+                                break;
+                            case 'emailModal':
+                                identifier = 'email';
+                                break;
+                            case 'birthdayModal':
+                                identifier = 'birthday';
+                                break;
+                            case 'contactModal':
+                                identifier = 'contact';
+                                break;
+                            case 'passwordModal':
+                                identifier = 'password';
+                                break;
+                            default:
+                                return null;
+                        }
 
-                document.getElementById('contactModal').querySelector('.close').addEventListener('click', function () {
-                    setModalValues('contactModal', 'contact');
-                    document.getElementById('contactModal').querySelector('.error-message').innerText = '';
-                });
-
-                document.getElementById('passwordModal').querySelector('.close').addEventListener('click', function () {
-                    document.getElementById('passwordModal').querySelector('input[name="password"]').value = '';
-                    document.getElementById('passwordModal').querySelector('.error-message').innerText = '';
+                        setModalValues(modalId, identifier);
+                        modal.querySelector('.error-message').innerText = '';
+                    });
                 });
 
                 // save button events

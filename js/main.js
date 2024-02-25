@@ -551,7 +551,7 @@ function signOut() {
 function checkSignInStatus() {
     let signInLink = document.querySelector('#sign-in-link');
 	
-    if (sessionStorage.getItem('userId')) {
+    if (sessionStorage.getItem('username') !== 'guest') {
         signInLink.innerHTML = '<a id="sign-out" href="#">Sign Out</a>';
         document.querySelector('#sign-out').addEventListener('click', signOut);
     }

@@ -398,6 +398,7 @@
                 checkSignInStatus();
                 getCartNumber();
 
+                // load personal info
                 fetch(`http://localhost:8080/users/${sessionStorage.getItem('userId')}`)
                     .then(response => {
                         return response.json();
@@ -519,29 +520,23 @@
 
                             Object.assign(user, modalValues);
                         }
-
-                        const url = `http://localhost:8080/users/${userId}`;
                             
-                        const requestOptions = {
+                        // update user
+                        fetch(`http://localhost:8080/users/${userId}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify(user),
-                        };
-
-                        
-
-                        fetch(url, requestOptions)
+                        })
                             .then(response => {
                                 if (!response.ok) {
                                     return response.json().then(errorData => {
                                         throw new Error(errorData.message);
                                     });
                                 }
-                                // return response.json();
                             })
-                            .then(data => {
+                            .then(() => {
                                 
                                 window.location.reload();
                             })
@@ -551,11 +546,10 @@
                                     document.querySelector('#emailModal .error-message').style.display = 'block';
                                     document.querySelector('#emailModal .error-message').innerText = error.message;
                                 }
-                                else if (error.message === 'Password must be at least 6 characters') {
+                                else if (error === 'Password must be at least 6 characters') {
                                     document.querySelector('#passwordModal .error-message').style.display = 'block';
                                     document.querySelector('#passwordModal .error-message').innerText = error.message;
                                 }
-                                
                             });
 
                     });

@@ -457,12 +457,10 @@
                             // Get user id from session
                             const userId = sessionStorage.getItem('userId');
 
-                            // Get product id from hidden input field
                             const productId = document.querySelector('input[name="product-id"]').value;
-
-                            // Get selected quantity
                             const quantity = document.querySelector('.quantity-select select').value;
 
+                            // add item to cart
                             fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
                                 method: 'POST',
                                 headers: {
@@ -474,13 +472,18 @@
                                 }),
                             })
                                 .then(response => {
+                                    if (!response.ok) {
+                                        return response.json().then(errorData => {
+                                            throw new Error(errorData.message);
+                                        });
+                                    }
                                     return response.json();
                                 })
-                                .then(data => {
+                                .then(() => {
                                     window.location.href = `added-cart.html?productId=${productId}`;
                                 })
                                 .catch(error => {
-                                    console.error(error);
+                                    console.error(error.message);
                                 });
                         });
                     })

@@ -267,6 +267,7 @@
                         return;
                     }
 
+                    // sign up
                     fetch('http://localhost:8080/users/register', {
                         method: "POST",
                         headers: {
@@ -287,7 +288,7 @@
                             }
                             return response.json();
                         })
-                        .then(data => {
+                        .then(() => {
                             window.location.href = 'sign-in.html';
                         })
                         .catch(error => {

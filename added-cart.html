@@ -247,18 +247,21 @@
                             </td>
                         `;
                         cartTable.appendChild(productItemElement);
-
+                        
+                        // fetch cart count
                         fetch(`http://localhost:8080/carts/${userId}/cart-items/count`)
                             .then(response => {
                                 return response.json();
                             })
                             .then(count => {
-                                
                                 document.querySelector('#cart-count').textContent = count;
                             })
                             .catch(error => {
                                 console.error(error);
                             });
+                    })
+                    .catch(error => {
+                        console.error(error);
                     })
 
             });

@@ -267,7 +267,9 @@
 
                 // populate manufacturers options
                 fetch('http://localhost:8080/products/manufacturers')
-                    .then(response => response.json())
+                    .then(response => {
+                        response.json()
+                    })
                     .then(manufacturers => {
                         let cardBody = document.querySelector('#filter-manufacturer .card-body');
                         let html = '';
@@ -284,7 +286,10 @@
                         });
 
                         cardBody.innerHTML = html;
-                    });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
 
                 // populate tag options
                 const tags = ['New Arrivals', 'Best Sellers']
@@ -333,9 +338,12 @@
 
                 apiURL += `page=${selectedPage}&size=9`;
 
+                // fetch products
                 fetch(apiURL)
-                    .then(response => response.json())
-                    .then(data => {
+                    .then(response => {
+                        response.json()
+                    })
+                    .then(products => {
 
                         // set fetched products summary
                         let searchTermElement = document.querySelector('#search-term');
@@ -347,13 +355,13 @@
                         }
 
                         searchTypeElement.textContent = searchType;
-                        itemCountElement.textContent = data.totalElements;
+                        itemCountElement.textContent = products.totalElements;
 
                         // populate product grid
                         const productsContainer = document.querySelector('.shop-product-area .row');
                         productsContainer.innerHTML = '';
                         
-                        if (data.content.length === 0) {
+                        if (products.content.length === 0) {
                             const messageElement = document.createElement('div');
                             messageElement.className = 'col-12';
                             messageElement.style.textAlign = 'center';
@@ -362,7 +370,7 @@
                         
                             productsContainer.appendChild(messageElement);
                         }
-                        data.content.forEach(product => {
+                        products.content.forEach(product => {
                             const productElement = document.createElement('div');
                             productElement.className = 'col-4';
                     
@@ -397,7 +405,7 @@
                         
                         // pagination
                         const paginationBox = document.querySelector('.pagination-box');
-                        totalPages = data.totalPages;
+                        totalPages = products.totalPages;
 
                         paginationBox.innerHTML = `<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a></li>`;
                     

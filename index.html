@@ -354,10 +354,10 @@
                     .then(response => {
                         return response.json();
                     })
-                    .then(data => {
+                    .then(products => {
                         const productsContainer = document.querySelector('#new-product .owl-carousel');
                         productsContainer.innerHTML = '';
-                        data.content.forEach(product => {
+                        products.content.forEach(product => {
                             const productElement = generateSingleProduct(product);
                             productsContainer.appendChild(productElement);
 
@@ -373,10 +373,10 @@
                     .then(response => {
                         return response.json();
                     })
-                    .then(data => {
+                    .then(products => {
                         const productsContainer = document.querySelector('#bestseller-product .owl-carousel');
                         productsContainer.innerHTML = '';
-                        data.content.forEach(product => {
+                        products.content.forEach(product => {
                             const productElement = generateSingleProduct(product);
                             productsContainer.appendChild(productElement);
 
@@ -392,10 +392,10 @@
                     .then(response => {
                         return response.json();
                     })
-                    .then(data => {
+                    .then(products => {
                         const productsContainer = document.querySelector('.laptop-area .owl-carousel');
                         productsContainer.innerHTML = '';
-                        data.content.forEach(product => {
+                        products.content.forEach(product => {
                             const productElement = generateSingleProduct(product);
                             productsContainer.appendChild(productElement);
 
@@ -411,10 +411,10 @@
                     .then(response => {
                         return response.json();
                     })
-                    .then(data => {
+                    .then(products => {
                         const productsContainer = document.querySelector('.electronics-area .owl-carousel');
                         productsContainer.innerHTML = '';
-                        data.content.forEach(product => {
+                        products.content.forEach(product => {
                             const productElement = generateSingleProduct(product);
                             productsContainer.appendChild(productElement);
                         });
@@ -429,10 +429,10 @@
                     .then(response => {
                         return response.json();
                     })
-                    .then(data => {
+                    .then(products => {
                         const productsContainer = document.querySelector('.printer-area .owl-carousel');
                         productsContainer.innerHTML = '';
-                        data.content.forEach(product => {
+                        products.content.forEach(product => {
                             const productElement = generateSingleProduct(product);
                             productsContainer.appendChild(productElement);
 

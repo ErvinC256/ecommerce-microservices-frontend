@@ -357,10 +357,13 @@
                     } else {
                         apiURL = `http://localhost:8080/products/manufacturers?categoryId=${categoryId}`;
                     }
+                    // fetch manufacturers
                     fetch(apiURL)
-                        .then(response => response.json())
-                        .then(data => {
-                            selectedManufacturers = data.reduce((acc, manufacturer) => {
+                        .then(response => {
+                            response.json()
+                        })
+                        .then(manufacturers => {
+                            selectedManufacturers = manufacturers.reduce((acc, manufacturer) => {
                                 acc[manufacturer] = true;
                                 return acc;
                             }, {});
@@ -429,9 +432,10 @@
                     apiURL += `&sort=${selectedSortOption}`;
                 }
 
+                // fetch products
                 fetch(apiURL)
                     .then(response => response.json())
-                    .then(data => {
+                    .then(products => {
 
                         // Set all manufacturers to false initially
                         Object.keys(selectedManufacturers).forEach(manufacturer => {
@@ -458,7 +462,7 @@
                         const productsContainer = document.querySelector('.shop-product-area .row');
                         productsContainer.innerHTML = '';
 
-                        if (data.content.length === 0) {
+                        if (products.content.length === 0) {
                             const messageElement = document.createElement('div');
                             messageElement.className = 'col-12';
                             messageElement.style.textAlign = 'center';
@@ -467,7 +471,7 @@
                         
                             productsContainer.appendChild(messageElement);
                         }
-                        data.content.forEach(product => {
+                        products.content.forEach(product => {
                             const productElement = document.createElement('div');
                             productElement.className = 'col-4';
                     
@@ -502,7 +506,7 @@
                         
                         // pagination
                         const paginationBox = document.querySelector('.pagination-box');
-                        totalPages = data.totalPages;
+                        totalPages = products.totalPages;
 
                         paginationBox.innerHTML = `<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a></li>`;
                     

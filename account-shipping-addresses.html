@@ -351,9 +351,12 @@
 
                 const modalFormEdit = document.querySelector('#addressModal-edit .address-form');
                 const modalFormAdd = document.querySelector('#addressModal-add .address-form');
-            
+                
+                // load user addresses
                 fetch(`http://localhost:8080/users/${userId}/addresses`)
-                    .then(response => response.json())
+                    .then(response => {
+                        response.json()
+                    })
                     .then(addresses => {
                         addresses.forEach((address, index) => {
                             addressContainer.innerHTML += `
@@ -416,23 +419,26 @@
                                     state: updatedState
                                 };
 
-                                const requestOptions = {
+                                // update address
+                                fetch(`http://localhost:8080/users/${userId}/addresses/${addressId}`, {
                                     method: 'PUT',
                                     headers: {
                                         'Content-Type': 'application/json',
                                     },
                                     body: JSON.stringify(updatedAddress)
-                                };
-
-                                fetch(`http://localhost:8080/users/${userId}/addresses/${addressId}`, requestOptions)
-                                    .then(() => {
-                                        
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            return response.json().then(errorData => {
+                                                throw new Error(errorData.message);
+                                            });
+                                        }
                                     })
                                     .then(() => {
                                         window.location.reload();
                                     })
                                     .catch(error => {
-                                        console.error(error);
+                                        console.error(error.message);
                                     });
 
                             } else {
@@ -449,22 +455,26 @@
                                 const index = parseInt(this.getAttribute('data-index'));
                                 const selectedAddress = addresses[index];
 
+                                // delete an address
                                 fetch(`http://localhost:8080/users/${userId}/addresses/${selectedAddress.id}`, {
                                         method: 'DELETE',
                                         headers: {
                                             'Content-Type': 'application/json',
-                                            // Add any additional headers if needed
                                         },
                                     })
-                                    .then(() => {
-                                
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            return response.json().then(errorData => {
+                                                throw new Error(errorData.message);
+                                            });
+                                        }
                                     })
                                     .then(() => {
                                         
                                         window.location.reload();
                                     })
                                     .catch(error => {
-                                        console.error(error);
+                                        console.error(error.message);
                                     });
 
                             });
@@ -500,23 +510,27 @@
                             state: newState
                         };
 
-                        const requestOptions = {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(newAddress)
-                        };
-
-                        fetch(`http://localhost:8080/users/${userId}/addresses`, requestOptions)
+                        // add a new address
+                        fetch(`http://localhost:8080/users/${userId}/addresses`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(newAddress)
+                            })
                             .then(response => {
-                                response.json();
+                                if (!response.ok) {
+                                    return response.json().then(errorData => {
+                                        throw new Error(errorData.message);
+                                    });
+                                }
+                                return responsee.json();
                             })
                             .then(() => {
                                 window.location.reload();
                             })
                             .catch(error => {
-                                console.error(error);
+                                console.error(error.message);
                             });
 
                     } else {

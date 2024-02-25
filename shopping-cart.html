@@ -210,18 +210,18 @@
 
                 const userId = sessionStorage.getItem('userId');
 
-                // fetch cart items
+                // fetch the user cart
                 fetch(`http://localhost:8080/carts/${userId}`) 
                     .then(response => {
                         return response.json();
                     })
-                    .then(data => {
+                    .then(cart => {
                         const cartTable = document.querySelector('.cart-table');
                         const dateElement = document.querySelector('#last-updated');
-                        if (!data.lastUpdated) {
+                        if (!cart.lastUpdated) {
                             dateElement.textContent = '';
                         } else {
-                            const lastUpdated = new Date(data.lastUpdated);
+                            const lastUpdated = new Date(cart.lastUpdated);
 
                             const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
                             const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
@@ -230,14 +230,14 @@
                             console.log(dateElement);
                         }
 
-                        if (data.cartItemDtos.length === 0) {
+                        if (cart.cartItemDtos.length === 0) {
                             const messageRow = document.createElement('tr');
                             messageRow.innerHTML = '<p style="font-size: 18px; text-align: center;">Your cart is empty</p>';
                             cartTable.appendChild(messageRow);
                             return;
                         }
 
-                        data.cartItemDtos.forEach(cartItem => {
+                        cart.cartItemDtos.forEach(cartItem => {
                             const cartItemElement = document.createElement('tr');
                             let selectOptions = '';
                             for(let i = 1; i <= cartItem.quantityInStock; i++) {
@@ -291,14 +291,18 @@
                                 fetch(`http://localhost:8080/carts/${userId}/cart-items/${this.dataset.id}`, {
                                     method: 'DELETE',
                                 })
-                                .then(() => {
-                                    
+                                .then(response => {
+                                    if (!response.ok) {
+                                        return response.json().then(errorData => {
+                                            throw new Error(errorData.message);
+                                        });
+                                    }
                                 })
                                 .then(() => {
                                     location.reload();
                                 })
-                                .catch((error) => {
-                                    console.error(error);
+                                .catch(error => {
+                                    console.error(error.message);
                                 });
                             });
                         });
@@ -307,8 +311,8 @@
                         const itemCountElement = document.getElementById('item-count');
                         const subtotalElement = document.getElementById('subtotal');
 
-                        itemCountElement.textContent = data.cartItemDtos.length;
-                        subtotalElement.textContent = data.subtotal.toFixed(2);
+                        itemCountElement.textContent = cart.cartItemDtos.length;
+                        subtotalElement.textContent = cart.subtotal.toFixed(2);
                     })
                     .catch(error => {
                         console.error(error);
@@ -319,17 +323,22 @@
 
                     const userId = sessionStorage.getItem('userId');
 
+                    // clear all the items in cart
                     fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
                         method: 'DELETE'
                     })
-                    .then(() => {
-
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(errorData => {
+                                throw new Error(errorData.message);
+                            });
+                        }
                     })
                     .then(() => {
                         location.reload();
                     })
                     .catch(error => {
-                        console.error(error);
+                        console.error(error.message);
                     });
                 });
             });

@@ -227,6 +227,7 @@
                         return;
                     }
 
+                    // sign in
                     fetch("http://localhost:8080/users/authenticate", {
                         method: "POST",
                         headers: {
@@ -245,10 +246,10 @@
                             }
                             return response.json();
                         })
-                        .then(data => {
+                        .then(user => {
 
-                            sessionStorage.setItem('userId', data.id);
-                            sessionStorage.setItem('username', data.username);
+                            sessionStorage.setItem('userId', user.id);
+                            sessionStorage.setItem('username', user.username);
 
                             if (sessionStorage.getItem('redirectToPage') == null) {
                                 window.location.href = 'index.html';

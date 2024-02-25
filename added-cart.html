@@ -132,12 +132,14 @@
                         </div>
                         <div class="col-4">
                             <div class="summary-container">
-                                <h3 style="font-weight: bold;">Order Summary</h3>
-                                <hr>
                                 <div style="display: flex; justify-content: space-between;">
-                                    <div>Subtotal <span style="color: gray; padding-left: 10px;"><span id="item-count">0</span> items</span></div>
-                                    <div>RM <span id="subtotal">0.00</span></div>
-                                </div>
+                                    <span></i>Number of Items in Cart:</span><span id="cart-count" style="color: gray;"></span>
+                                </div><br>
+                                <button class="my-button" style="width: 100%;">View Cart</button>
+                                <br><br>
+                                <h2><span>or</span></h2>
+                                <br>
+                                <button class="my-button-inverse" style="width: 100%;">Checkout This Item</button>
                             </div>
                         </div>
                     </div>
@@ -195,5 +197,71 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                checkSignInStatus();
+                getCartNumber();
+
+                const userId = sessionStorage.getItem('userId');
+
+                const params = new URLSearchParams(window.location.search);
+                const productId = params.get('productId');
+
+                // fetch product details
+                fetch(`http://localhost:8080/products/${productId}`) 
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(product => {
+                        const cartTable = document.querySelector('.cart-table');
+
+                        const productItemElement = document.createElement('tr');
+                        let selectOptions = '';
+
+                        productItemElement.innerHTML = `
+                            <td>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="product-image">
+                                            <a href="single-product.html">
+                                                <img src="images/product/large-size/${product.productName}.jpg" alt="Li's Product Image" width="75%">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="cart-product-details">
+                                            <div>
+                                                <p style="font-size: 18px;"><a href="product-details.html?product=${product.productId}">${product.productName}</a></p>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div style="font-size: 18px;">Added to Cart<i class="fa-solid fa-check" style="margin-left: 10px;"></i></div>
+                                        <br>
+                                        <div>
+                                            <ul class="cart-options">
+                                                <li><a href="product-details.html?product=${product.productId}">Back to Product</a></li>      
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        `;
+                        cartTable.appendChild(productItemElement);
+
+                        fetch(`http://localhost:8080/carts/${userId}/cart-items/count`)
+                            .then(response => {
+                                return response.json();
+                            })
+                            .then(count => {
+                                
+                                document.querySelector('#cart-count').textContent = count;
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    })
+
+            });
+        </script>
     </body>
 </html>

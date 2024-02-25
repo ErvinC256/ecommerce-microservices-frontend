@@ -832,13 +832,25 @@ option {
 	color: #0673ca;
 }
 .summary-container {
+	font-size: 16px;
 	padding: 20px;
 	border: 1px solid #e1e1e1;
 }
 .summary-container hr {
 	margin: 10px 0;
 }
-
+.summary-container h2 {
+	width: 100%; 
+	text-align: center; 
+	border-bottom: 1px solid #e1e1e1; 
+	line-height: 0.1em;
+	margin: 10px 0 20px; 
+ } 
+ 
+ .summary-container h2 span { 
+	 background:#fff; 
+	 padding:0 10px; 
+ }
 /*----------------------------------------*/
 /* 	3.5 Contact Page
 /*----------------------------------------*/

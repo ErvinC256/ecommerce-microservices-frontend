@@ -577,7 +577,7 @@ function getCartNumber() {
 		return response.json();
 	})
 	.then(response => {
-		document.querySelector('#cart-number').innerText = response.count;
+		document.querySelector('#cart-number').innerText = response;
 	});
 }
 /*----------------------------------------*/

@@ -131,10 +131,6 @@
                             </div><br><br>
                             <div class="cart-contents">
                                 <table class="cart-table">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th style="text-align: right">Price</th>
-                                    </tr>
                                     <!-- cart items will be inserted here -->
                                 </table>
                                 <br>
@@ -222,12 +218,17 @@
                     .then(data => {
                         const cartTable = document.querySelector('.cart-table');
                         const dateElement = document.querySelector('#last-updated');
-                        const lastUpdated = new Date(data.lastUpdated);
+                        if (!data.lastUpdated) {
+                            dateElement.textContent = '';
+                        } else {
+                            const lastUpdated = new Date(data.lastUpdated);
 
-                        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-                        const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
+                            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                            const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
 
-                        dateElement.textContent = formattedDate;
+                            dateElement.textContent = formattedDate;
+                            console.log(dateElement);
+                        }
 
                         if (data.cartItemDtos.length === 0) {
                             const messageRow = document.createElement('tr');
@@ -290,8 +291,10 @@
                                 fetch(`http://localhost:8080/carts/${userId}/cart-items/${this.dataset.id}`, {
                                     method: 'DELETE',
                                 })
-                                .then(response => response.json())
-                                .then(data => {
+                                .then(() => {
+                                    
+                                })
+                                .then(() => {
                                     location.reload();
                                 })
                                 .catch((error) => {
@@ -319,8 +322,10 @@
                     fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
                         method: 'DELETE'
                     })
-                    .then(response => response.json())
-                    .then(data => {
+                    .then(() => {
+
+                    })
+                    .then(() => {
                         location.reload();
                     })
                     .catch(error => {

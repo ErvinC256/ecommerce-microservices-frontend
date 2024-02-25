@@ -543,7 +543,7 @@ document.getElementById('scrollToTop').addEventListener('click', function() {
 function signOut() {
 	sessionStorage.removeItem('userId');
 	sessionStorage.removeItem('username');
-	window.location.href = 'sign-in.html';
+	window.location.href = 'index.html';
 }
 /*----------------------------------------*/
 /* 28. Check Sign In Status

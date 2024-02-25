@@ -12,10 +12,10 @@
         <link rel="stylesheet" href="css/helper.css">
         <link rel="stylesheet" href="style.css">
         <script>
-            // if (!sessionStorage.getItem('userId')) {
-            //     sessionStorage.setItem('redirectToPage', 'account-shipping-addresses.html')
-            //     window.location.href = 'sign-in.html';
-            // }
+            if (sessionStorage.getItem('username') === 'guest') {
+                sessionStorage.setItem('redirectToPage', 'account-shipping-addresses.html')
+                window.location.href = 'sign-in.html';
+            }
         </script>
     </head>
     <body>

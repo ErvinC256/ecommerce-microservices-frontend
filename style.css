@@ -1014,19 +1014,17 @@ iframe {
 .side-tab {
 	padding: 10px;
 }
-.side-tab a {
-	margin-left: 10px;
-}
 .basic-info-form,
-.shipping-info-form,
-.address-form {
+.address-form,
+.security-form {
 	border: 1px solid #e1e1e1; 
 	padding: 20px;
 	background-color: #e7f1fd;
 	border-radius: 5px;
 }
-.shipping-info-form div,
-.address-form div {
+.basic-info-form div,
+.address-form div,
+.security-form div {
 	margin-bottom: 10px;
 }
 .edit-block {
@@ -1046,6 +1044,12 @@ iframe {
 	padding: 10px; 
 	background-color: #e7f1fd;
 	font-size: 16px;
+}
+.security-form .delete-button {
+	background-color: #8b0000;
+}
+.security-form .delete-button:hover {
+	color: #fff;
 }
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

@@ -24,7 +24,7 @@
                             <span>Telephone Enquiry:(+123) 123 321 345</span>
                             <ul>
                                 <li><a href="index.html">Home</a></li>
-                                <li><a href="account-personal-info.html">My Account</a></li>
+                                <li><a href="account-basic-info.html">My Account</a></li>
                                 <li><a href="shopping-cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                                 <li><a id="sign-in-link" href="sign-in.html">Sign In</a></li>    
@@ -58,7 +58,7 @@
                                             <input id="searchInput" type="text" placeholder="Search for anything at eCommerce online">
                                         </form>                                                                           
                                     </div>
-                                    <p><a href="account-personal-info.html">Hello, <span id="greet-user">guest</span></a></p>
+                                    <p><a href="account-basic-info.html">Hello, <span id="greet-user">guest</span></a></p>
                                     <div class="cart-container">
                                         <a href="shopping-cart.html">
                                             <img src="images/icon/cart.png" alt="" width="50px">
@@ -360,7 +360,7 @@
                     // fetch manufacturers
                     fetch(apiURL)
                         .then(response => {
-                            response.json()
+                            return response.json()
                         })
                         .then(manufacturers => {
                             selectedManufacturers = manufacturers.reduce((acc, manufacturer) => {
@@ -448,7 +448,7 @@
                         let inTextElement = document.querySelector('#in-text');
 
                         categoryNameElement.textContent = categoryName;
-                        itemCountElement.textContent = data.totalElements;
+                        itemCountElement.textContent = products.totalElements;
 
                         if (subcategoryId) {
                             let subcategoryNameElement = document.querySelector('#subcategory-name');

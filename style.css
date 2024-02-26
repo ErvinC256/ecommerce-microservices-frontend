@@ -1014,6 +1014,9 @@ iframe {
 .side-tab {
 	padding: 10px;
 }
+.side-tab a {
+	margin-left: 10px;
+}
 .basic-info-form,
 .shipping-info-form,
 .address-form {

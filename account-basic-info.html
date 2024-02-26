@@ -1,0 +1,594 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <title>Account - eCommerce.com</title>
+        <link rel="icon" type="image/png" href="images/logo/site-logo-only.jpg">
+        <!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/helper.css">
+        <link rel="stylesheet" href="style.css">
+        <script>
+            if (sessionStorage.getItem('username') === 'guest') {
+                sessionStorage.setItem('redirectToPage', 'account-basic-info.html')
+                window.location.href = 'sign-in.html';
+            }
+        </script>
+    </head>
+    <body>
+        <!-- Begin Body Wrapper -->
+        <div class="body-wrapper">
+            <!-- Begin Header Area -->
+            <header class="header">
+                <!-- Begin Header Top Area -->
+                <div class="header-top">
+                    <div class="container">
+                        <div class="ht-menu">
+                            <span>Telephone Enquiry:(+123) 123 321 345</span>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="account-basic-info.html">My Account</a></li>
+                                <li><a href="shopping-cart.html">Cart</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a id="sign-in-link" href="sign-in.html">Sign In</a></li>    
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Top Area End Here -->
+                <!-- Begin Header Middle Area -->
+                <div class="header-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="images/logo/site-logo-only.jpg" alt="" style="width: 18%;">
+                                        <span>eCommerce</span> 
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="hm-searchbox-area">
+                                    <div class="hm-searchbox">
+                                        <form id="searchForm">
+                                            <select id="categorySelect">
+                                                <option value="0">All</option>                         
+                                                <option value="1">Laptops & Tablets</option>                     
+                                                <option value="2">Electronics & Accessories</option>    
+                                                <option value="3">Printers</option>
+                                            </select>
+                                            <input id="searchInput" type="text" placeholder="Search for anything at eCommerce online">
+                                        </form>                                                                           
+                                    </div>
+                                    <p><a href="account-basic-info.html">Hello, <span id="greet-user">guest</span></a></p>
+                                    <div class="cart-container">
+                                        <a href="shopping-cart.html">
+                                            <img src="images/icon/cart.png" alt="" width="50px">
+                                            <span id="cart-number" class="cart-number">0</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Middle Area End Here -->
+                <!-- Begin Header Bottom Area -->
+                <div class="header-bottom header-sticky">
+                    <div class="container">
+                        <div class="hb-menu">
+                            <nav>
+                                <ul>
+                                    <li class="dropdown-holder"><a href="product-grid-category.html?categoryId=1&categoryName=Laptops%20%26%20Tablets">Laptops & Tablets</a>
+                                        <ul class="hb-dropdown">
+                                            <li><a href="product-grid-category.html?categoryId=1&categoryName=Laptops%20%26%20Tablets&subcategoryId=1&subcategoryName=Laptops">Laptops</a></li>
+                                            <li><a href="product-grid-category.html?categoryId=1&categoryName=Laptops%20%26%20Tablets&subcategoryId=2&subcategoryName=Tablets">Tablets</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-holder"><a href="product-grid-category.html?categoryId=2&categoryName=Electronics%20%26%20Accessories">Electronics & Accessories</a>
+                                        <ul class="hb-dropdown">
+                                            <li><a href="product-grid-category.html?categoryId=2&categoryName=Electronics%20%26%20Accessories&subcategoryId=3&subcategoryName=Keyboards%20%26%20Mice">Keyboards & Mice</a></li>
+                                            <li><a href="product-grid-category.html?categoryId=2&categoryName=Electronics%20%26%20Accessories&subcategoryId=4&subcategoryName=Audio">Audio</a></li>
+                                            <li><a href="product-grid-category.html?categoryId=2&categoryName=Electronics%20%26%20Accessories&subcategoryId=5&subcategoryName=Hard%20Drives,%20SSDs%20%26%20Storage">Hard Drives, SSDs & Storage</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-holder"><a href="product-grid-category.html?categoryId=3&categoryName=Printers">Printers</a>
+                                        <ul class="hb-dropdown">
+                                            <li><a href="product-grid-category.html?categoryId=3&categoryName=Printers&subcategoryId=6&subcategoryName=Inkjet%20Printers">Inkjet Printers</a></li>
+                                            <li><a href="product-grid-category.html?categoryId=3&categoryName=Printers&subcategoryId=7&subcategoryName=Laser%20Printers">Laser Printers</a></li>
+                                        </ul>
+                                    </li>
+                                    <div class="hb-right">
+                                        <li><a href="product-grid-general.html?searchType=New%20Arrivals">New Arrivals</a></li>
+                                        <li><a href="product-grid-general.html?searchType=Best%20Sellers">Best Sellers</a></li>
+                                    </div>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Bottom Area End Here -->
+            </header>
+            <!-- Header Area End Here -->
+            <!-- Begin Breadcrumb Area -->
+            <div class="breadcrumb-area mb-20">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li style="color: #808080;">Your Account</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Breadcrumb Area End Here -->
+            <!-- Begin Account Area -->
+            <div class="account-area mb-50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="side-tab-block">
+                                <div class="side-tab-header">
+                                    <h3 style="font-weight: bold;">Manage Account</h3>
+                                </div>
+                                <hr>
+                                <div class="side-tab"><i class="fa-regular fa-user"></i><a href="account-basic-info.html">Personal Info</a></div>
+                                <div class="side-tab"><i class="fa-solid fa-truck-moving"></i><a href="account-addresses.html">Your Addresses</a></div>
+                                <div class="side-tab"><i class="fas fa-unlock-alt"></i><a href="account-security.html">Security</a></div>
+                            </div>
+                            <div class="side-tab-block">
+                                <div class="side-tab-header">
+                                    <h3 style="font-weight: bold;">Other Info</h3>
+                                </div>
+                                <hr>
+                                <div class="side-tab"><a href="">Purchase History</a></div>
+                            </div>
+                            <div class="side-tab-block">
+                                <div class="side-tab-header">
+                                    <h3 style="font-weight: bold;">Customer Service</h3>
+                                </div>
+                                <hr>
+                                <div class="side-tab"><a href="">Help</a></div>
+                                <div class="side-tab"><a href="">Terms of Use</a></div>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="section-title">
+                                <h2>Personal Info</h2>
+                            </div><br><br>
+                            <form action="#" class="basic-info-form">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Username</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#usernameModal">Edit</button> 
+                                            </div>
+                                            <span id="username"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Gender</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#genderModal">Edit</button>
+                                            </div>
+                                            <span id="gender"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Email Address</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#emailModal">Edit</button>
+                                            </div>
+                                            <span id="email"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Birthday</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#birthdayModal">Edit</button>
+                                            </div>
+                                            <span id="birthday"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Country Code</label>
+                                            </div>
+                                            <span style="color: gray;">+60 Malaysia</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Contact</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#contactModal">Edit</button>
+                                            </div>
+                                            <span id="contact"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="edit-block">
+                                            <div class="edit-div">
+                                                <label for="">Password</label><button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#passwordModal">Edit</button>
+                                            </div>
+                                            <span>••••••••••</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Account Area End Here -->
+            <!-- Begin Scroll Top  -->
+            <div id="scrollToTop" class="mt-100">
+                back to top
+            </div>
+            <!-- Scroll Top End Here -->
+            <!-- Begin Footer Area -->
+            <div class="footer pt-20 pb-20">
+                <div class="container">
+                    <div class="footer-wrap">
+                        <div>
+                            <ul>
+                                <li><a href="help-center.html">Terms & Conditions</a></li>
+                                <li><a href="#">New products</a></li>
+                                <li><a href="#">Best sales</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="#">Delivery</a></li>
+                                <li><a href="#">Legal Notice</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="#">Prices drop</a></li>
+                                <li><a href="#">New products</a></li>
+                                <li><a href="#">Best sales</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="#">Delivery</a></li>
+                                <li><a href="#">Legal Notice</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="#">Prices drop</a></li>
+                                <li><a href="#">New products</a></li>
+                                <li><a href="#">Best sales</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="#">Delivery</a></li>
+                                <li><a href="#">Legal Notice</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                            </ul>
+                        </div>   
+                        <div>
+                            <span style="font-size: 12px;">&copy 2024 eCommerce.com. All Rights Reserved.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Area End Here -->
+        </div>
+        <!-- Body Wrapper End Here -->
+        <!-- Modal -->
+        <div class="modal" id="usernameModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Username</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="username" placeholder="Enter username" id="">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal" id="genderModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Gender</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <select name="gender" id="">
+                            <option>Please select a gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal" id="emailModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Email Address</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="email" placeholder="Enter email address">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal" id="birthdayModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Birthday</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="date" name="birthday" id="">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal" id="contactModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Contact</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="contact" placeholder="Enter mobile number">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal" id="passwordModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Your Password</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="password" name="password" placeholder="Enter password" id="">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button save-button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.usebootstrap.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="js/jquery.meanmenu.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            let loggedInUser;
+
+            document.addEventListener('DOMContentLoaded', function() {
+
+                checkSignInStatus();
+                getCartNumber();
+
+                // load personal info
+                fetch(`http://localhost:8080/users/${sessionStorage.getItem('userId')}`)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(user => {
+                        sessionStorage.setItem('userId', user.id);
+                        sessionStorage.setItem('username', user.username);
+                        checkSignInStatus();
+
+                        loggedInUser = user;
+                        
+                        // set the values for the fields
+                        document.getElementById('username').innerText = loggedInUser.username || 'Not Set';
+                        document.getElementById('gender').innerText = loggedInUser.gender !== null ? loggedInUser.gender : 'Not Set';
+                        document.getElementById('email').innerText = loggedInUser.email || 'Not Set';
+                        let formattedBirthday = 'Not Set';
+                        if (loggedInUser.birthday !== null) {
+                            let birthday = new Date(loggedInUser.birthday);
+                            formattedBirthday = birthday.toString() !== 'Invalid Date' ? `${birthday.getMonth() + 1}/${birthday.getDate()}/${birthday.getFullYear()}` : 'Not Set';
+                        }
+                        document.getElementById('birthday').innerText = formattedBirthday;
+                        document.getElementById('contact').innerText = loggedInUser.contact || 'Not Set';
+
+                        // set the values for the modal fields
+                        setModalValues('usernameModal', 'username');
+                        setModalValues('genderModal', 'gender');
+                        setModalValues('emailModal', 'email');
+                        setModalValues('birthdayModal', 'birthday');
+                        setModalValues('contactModal', 'contact');
+                    
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                
+
+                const editButtons = document.querySelectorAll('.edit-button');
+
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        
+                        const modalId = button.getAttribute('data-target').substring(1); // Removing the # from the modal ID
+                        const modal = document.getElementById(modalId);
+
+                        if (modalId === 'passwordModal') {
+                            document.getElementById('passwordModal').querySelector('input[name="password"]').value = '';
+                            document.getElementById('passwordModal').querySelector('.error-message').innerText = '';
+                            return;
+                        }
+
+                        switch (modalId) {
+                            case 'usernameModal':
+                                identifier = 'username';
+                                break;
+                            case 'genderModal':
+                                identifier = 'gender';
+                                break;
+                            case 'emailModal':
+                                identifier = 'email';
+                                break;
+                            case 'birthdayModal':
+                                identifier = 'birthday';
+                                break;
+                            case 'contactModal':
+                                identifier = 'contact';
+                                break;
+                            case 'passwordModal':
+                                identifier = 'password';
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        setModalValues(modalId, identifier);
+                        modal.querySelector('.error-message').innerText = '';
+                    });
+                });
+
+                // save button events
+                const saveButtons = document.querySelectorAll('.save-button');
+
+                saveButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        
+                        const userId = sessionStorage.getItem('userId');
+                        const user = {};
+                        const modals = document.querySelectorAll('.modal');
+
+                        for (let i = 0; i < modals.length; i++) {
+
+                            const modal = modals[i];
+                            const inputElements = modal.querySelectorAll('input, select');
+                            const modalValues = {};
+                            modalValues['id'] = userId;
+
+                            for (let j = 0; j < inputElements.length; j++) {
+                                const input = inputElements[j];
+
+                                if (input.name === 'username' && input.value === '') {
+                                    modal.querySelector('.error-message').style.display = 'block';
+                                    modal.querySelector('.error-message').innerText = 'Please provide an username';
+                                    return;
+                                } else if (input.name === 'gender' && input.value === 'Please select a gender') {
+                                    modalValues[input.name] = null;
+                                } else if (input.name === 'email' && input.value === '') {
+                                    modal.querySelector('.error-message').style.display = 'block';
+                                    modal.querySelector('.error-message').innerText = 'Please provide an email';
+                                    return;
+                                } else if (input.name === 'birthday' && input.value === '') {
+                                    modalValues[input.name] = null;
+                                } else if (input.name === 'contact' && input.value === '') {
+                                    modalValues[input.name] = null;
+                                } else if (input.type === 'password' && input.value === '') {
+                                    modalValues[input.name] = null;
+                                } else {
+                                    modalValues[input.name] = input.value;
+                                }
+                            }
+
+                            Object.assign(user, modalValues);
+                        }
+                            
+                        // update user
+                        fetch(`http://localhost:8080/users/${userId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(user),
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    return response.json().then(errorData => {
+                                        throw new Error(errorData.message);
+                                    });
+                                }
+                            })
+                            .then(() => {
+                                
+                                window.location.reload();
+                            })
+                            .catch(error => {
+                                
+                                if (error.message === 'Email not in valid format') {
+                                    document.querySelector('#emailModal .error-message').style.display = 'block';
+                                    document.querySelector('#emailModal .error-message').innerText = error.message;
+                                }
+                                else if (error === 'Password must be at least 6 characters') {
+                                    document.querySelector('#passwordModal .error-message').style.display = 'block';
+                                    document.querySelector('#passwordModal .error-message').innerText = error.message;
+                                }
+                            });
+
+                    });
+                });
+
+            });
+        </script>
+        <script>
+            function setModalValues(modalId, dataKey) {
+                let modal = document.getElementById(modalId);
+                let inputElement = modal.querySelector('input, select');
+                if (inputElement) {
+                
+                    if (inputElement.tagName === 'SELECT') {
+                        let options = inputElement.options;
+                        if (loggedInUser[dataKey] === null) {
+                            // Set the default option to "Please select a gender"
+                            options[0].selected = true;
+                        } else {
+                            for (let i = 1; i < options.length; i++) { // Start from index 1 to skip the default option
+                                if (options[i].value === loggedInUser[dataKey]) {
+                                    options[i].selected = true;
+                                    break;
+                                }
+                            }
+                        }
+                    } else if (inputElement.type === 'date') {
+                        
+                        if (loggedInUser[dataKey] !== null) {
+                            let dateValue = new Date(loggedInUser[dataKey]);
+                            let formattedDate = dateValue.toISOString().substring(0, 10);
+                            inputElement.value = formattedDate;
+                        }
+                    } else {
+                        // For other input types
+                        inputElement.value = loggedInUser[dataKey];
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

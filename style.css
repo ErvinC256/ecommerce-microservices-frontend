@@ -1045,10 +1045,12 @@ iframe {
 	background-color: #e7f1fd;
 	font-size: 16px;
 }
-.security-form .delete-button {
+.security-form .delete-button,
+.security-form .confirm-button {
 	background-color: #8b0000;
 }
-.security-form .delete-button:hover {
+.security-form .delete-button:hover,
+.security-form .confirm-button:hover {
 	color: #fff;
 }
 /*----------------------------------------------------------------------------------------------------*/

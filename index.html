@@ -17,6 +17,26 @@
                 sessionStorage.setItem('username', 'guest');
             }
         </script>
+        <style>
+            .banner-button {
+                font-size: 16px;
+                background-color: #fbf703;
+                padding: 5px 30px;
+                border-radius: 20px;
+                border: none;
+            }
+            .banner-button:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+            .owl-prev {
+                left: 10px;
+            }
+
+            .owl-next {
+                right: 10px;
+            }
+        </style>
     </head>
     <body>
         <div class="body-wrapper">
@@ -114,7 +134,7 @@
             </header>
             <!-- Header Area End Here -->
             <!-- Begin Breadcrumb Area -->
-            <div class="breadcrumb-area mb-20">
+            <div class="breadcrumb-area">
                 <div class="container">
                     <div class="breadcrumb-content">
                         <ul>
@@ -126,57 +146,40 @@
             <!-- Breadcrumb Area End Here -->
             <!-- Begin Dynamic Banner Area -->
             <div class="dynamic-banner-area mb-50">
-                <div class="container">
-                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); row-gap: 10px; column-gap: 10px;">
-                        <div style="grid-row: span 3; grid-column: span 2;">
-                            <img src="images/banner/Screenshot 2023-12-28 133234.png" alt="" width="100%">
-                        </div>
-                        <!-- Begin Slider Area -->
-                        <div class="slider-area" style="grid-column: span 2;">
-                            <div class="slider-active owl-carousel">
-                                <!-- Begin Single Slide Area -->
-                                <div class="single-slide align-center-left">
-                                    <div class="slider-progress"></div>
-                                    <div class="slider-content">
-                                        <img src="images/banner/pexels-pixabay-221011.jpg" alt="">
-                                    </div>
+                <div>
+                    <!-- Begin Slider Area -->
+                    <div class="slider-area">
+                        <div class="slider-active owl-carousel">
+                            <!-- Begin Single Slide Area -->
+                            <div class="single-slide align-center-left">
+                                <div class="slider-progress"></div>
+                                <div class="slider-content" style="position: relative;">
+                                    <img src="images/banner/laptops & tablets.png" alt="">
+                                    <button class="banner-button" style="position: absolute; top: 70%; left: 48%; transform: translate(-50%, -50%);">Shop laptops & tablets</button>
                                 </div>
-                                <!-- Single Slide Area End Here -->
-                                <!-- Begin Single Slide Area -->
-                                <div class="single-slide align-center-left">
-                                    <div class="slider-progress"></div>
-                                    <div class="slider-content">
-                                        <img src="images/banner/pexels-pixabay-221011.jpg" alt="">
-                                    </div>
-                                </div>
-                                <!-- Single Slide Area End Here -->
-                                <!-- Begin Single Slide Area -->
-                                <div class="single-slide align-center-left">
-                                    <div class="slider-progress"></div>
-                                    <div class="slider-content">
-                                        <img src="images/banner/pexels-pixabay-221011.jpg" alt="">
-                                    </div>
-                                </div>
-                                <!-- Single Slide Area End Here -->
                             </div>
-                        </div>
-                        <!-- Slider Area End Here -->
-                        <div style="padding: 10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius: 5px;">
-                            <img src="images/banner/Screenshot 2023-12-28 133234.png" alt="" width="100%">
-                        </div>  
-                        <div style="grid-row: span 2; padding: 10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius: 5px;"">
-                            <img src="images/banner/Screenshot 2023-12-28 133234.png" alt="" width="100%">
-                        </div>
-                        <div style="grid-row: span 2; padding: 10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius: 5px;"">
-                            <img src="images/banner/Screenshot 2023-12-28 133234.png" alt="" width="100%">
-                        </div>
-                        <div style="padding: 10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius: 5px;">
-                            <img src="images/banner/pexels-pixabay-221011.jpg" alt="" width="100%">
-                        </div>
-                        <div style="padding: 10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius: 5px;">
-                            <img src="images/banner/pexels-pixabay-221011.jpg" alt="" width="100%">
+                            <!-- Single Slide Area End Here -->
+                            <!-- Begin Single Slide Area -->
+                            <div class="single-slide align-center-left">
+                                <div class="slider-progress"></div>
+                                <div class="slider-content">
+                                    <img src="images/banner/beats.png" alt="">
+                                    <button class="banner-button" style="position: absolute; top: 70%; left: 45%; transform: translate(-50%, -50%);">Shop Beats by Dre</button>
+                                </div>
+                            </div>
+                            <!-- Single Slide Area End Here -->
+                            <!-- Begin Single Slide Area -->
+                            <div class="single-slide align-center-left">
+                                <div class="slider-progress"></div>
+                                <div class="slider-content">
+                                    <img src="images/banner/disk.png" alt="">
+                                    <button class="banner-button" style="position: absolute; top: 70%; left: 24%; transform: translate(-50%, -50%);">Shop hard drives, SSDs & storage</button>
+                                </div>
+                            </div>
+                            <!-- Single Slide Area End Here -->
                         </div>
                     </div>
+                    <!-- Slider Area End Here -->
                 </div>
             </div>
             <!-- Dynamic Banner Area End Here -->

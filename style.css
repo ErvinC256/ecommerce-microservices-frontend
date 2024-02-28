@@ -353,6 +353,9 @@ option {
 	align-items: center; 
 	justify-content: space-between;
 }
+.hm-searchbox-area select {
+	width: 50%;
+}
 .hm-searchbox form {
 	display: flex;
 	min-width: 638px;
@@ -371,7 +374,7 @@ option {
 	background-color: #fbf703; 
 	color: #000;
 	padding: 2px 8px;
-	border-radius: 15px;
+	border-radius: 20px;
 }
 /*Header Bottom Menu*/
 .header-bottom {

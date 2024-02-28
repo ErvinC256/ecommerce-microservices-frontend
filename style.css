@@ -472,6 +472,24 @@ option {
 /*----------------------------------------*/
 /*  2.3 Slider Contents
 /*----------------------------------------*/
+.banner-button {
+	font-size: 16px;
+	background-color: #fbf703;
+	padding: 5px 30px;
+	border-radius: 20px;
+	border: none;
+}
+.banner-button:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+.dynamic-banner-area .owl-prev {
+	left: 10px;
+}
+
+.dynamic-banner-area .owl-next {
+	right: 10px;
+}
 /*----------------------------------------*/
 /*  2.4 Product-Area with Tabs
 /*----------------------------------------*/

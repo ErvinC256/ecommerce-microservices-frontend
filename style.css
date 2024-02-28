@@ -240,9 +240,9 @@ option {
 /*----------------------------------------*/
 .my-button {
 	color: #fff;
-	background-color: #0673ca;
+	background-color: #8d54ff;
 	padding: 5px 30px;
-	border: 1px solid #0673ca;
+	border: 1px solid #8d54ff;
 	border-radius: 20px;
 }
 .my-button:hover {
@@ -251,10 +251,10 @@ option {
 	color: #000;
 }
 .my-button-inverse {
-	color: #0673ca;
+	color: #8d54ff;
 	background-color: #e7f1fd;
 	padding: 5px 30px;
-	border: 1px solid #0673ca;
+	border: 1px solid #8d54ff;
 	border-radius: 20px;
 }
 .my-button-inverse:hover {
@@ -295,7 +295,8 @@ option {
 /*----------------------------------------*/
 .header {
 	color: #fff;
-	background-color: #0673ca;
+	/* background-color: #8d54ff; */
+	background-color: #8d54ff;
 }
 /*Header Top*/
 .header-top {
@@ -482,6 +483,7 @@ option {
 .banner-button:hover {
 	cursor: pointer;
 	text-decoration: underline;
+
 }
 .dynamic-banner-area .owl-prev {
 	left: 10px;
@@ -576,7 +578,7 @@ option {
 	font-size: 12px;
 }
 .product-desc .product-name {
-	color: #0673ca;
+	color: #8d54ff;
 	font-size: 14px;
 }
 .product-desc .product-price {
@@ -634,7 +636,7 @@ option {
 /*  2.6 Footer
 /*----------------------------------------*/
 .footer {
-	background-color: #0673ca;
+	background-color: #8d54ff;
 	color: #fff;
 	font-size: 12px;
 }
@@ -707,13 +709,13 @@ option {
 	position: relative;
 	padding-bottom: 24px;
 	padding-left: 35px;
-	border-left: 2px solid #0673ca
+	border-left: 2px solid #8d54ff
 }
 .activity-checkout .checkout-item:first-child {
-	border-color: #0673ca
+	border-color: #8d54ff
 }
 .activity-checkout .checkout-item:first-child:after {
-	background-color: #0673ca
+	background-color: #8d54ff
 }
 .activity-checkout .checkout-item:last-child {
 	border-color: transparent
@@ -726,7 +728,7 @@ option {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	background-color: #0673ca;
+	background-color: #8d54ff;
 	color: #fff;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -762,7 +764,7 @@ option {
 }
 .sign-in-form a,
 .sign-up-form a {
-	color: #0673ca;
+	color: #8d54ff;
 }
 .sign-in-form div,
 .sign-up-form div {
@@ -847,7 +849,7 @@ option {
 	content: unset;
 }
 .cart-options > li a {
-	color: #0673ca;
+	color: #8d54ff;
 }
 .summary-container {
 	font-size: 16px;
@@ -957,7 +959,7 @@ iframe {
 	text-decoration: none;
 }
 .current-page {
-	border: 1px solid #0673ca;
+	border: 1px solid #8d54ff;
 }
 /*----------------------------------------*/
 /*  3.7 Product Details Page

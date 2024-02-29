@@ -124,45 +124,39 @@
                 </div>
             </div>
             <!-- Breadcrumb Area End Here -->
-            <!-- Begin Dynamic Banner Area -->
-            <div class="dynamic-banner-area mb-50">
-                <div>
-                    <!-- Begin Slider Area -->
-                    <div class="slider-area">
-                        <div class="slider-active owl-carousel">
-                            <!-- Begin Single Slide Area -->
-                            <div class="single-slide align-center-left">
-                                <div class="slider-progress"></div>
-                                <div class="slider-content" style="position: relative;">
-                                    <img src="images/banner/laptops & tablets.png" alt="">
-                                    <button class="banner-button" style="position: absolute; top: 70%; left: 53%; transform: translate(-50%, -50%);"><a href="product-grid-category.html?categoryId=1&categoryName=Laptops%20%26%20Tablets">Shop laptops & tablets</a></button>
-                                </div>
-                            </div>
-                            <!-- Single Slide Area End Here -->
-                            <!-- Begin Single Slide Area -->
-                            <div class="single-slide align-center-left">
-                                <div class="slider-progress"></div>
-                                <div class="slider-content">
-                                    <img src="images/banner/beats.png" alt="">
-                                    <button class="banner-button" style="position: absolute; top: 70%; left: 15%; transform: translate(-50%, -50%);"><a href="product-grid-category.html?categoryId=2&categoryName=Electronics%20%26%20Accessories&subcategoryId=4&subcategoryName=Audio">Shop Beats by Dre</a></button>
-                                </div>
-                            </div>
-                            <!-- Single Slide Area End Here -->
-                            <!-- Begin Single Slide Area -->
-                            <div class="single-slide align-center-left">
-                                <div class="slider-progress"></div>
-                                <div class="slider-content">
-                                    <img src="images/banner/disk.png" alt="">
-                                    <button class="banner-button" style="position: absolute; top: 70%; left: 23.5%; transform: translate(-50%, -50%);"><a href="product-grid-category.html?categoryId=2&categoryName=Electronics%20%26%20Accessories&subcategoryId=5&subcategoryName=Hard%20Drives,%20SSDs%20%26%20Storage">Shop hard drives, SSDs & storage</a></button>
-                                </div>
-                            </div>
-                            <!-- Single Slide Area End Here -->
+            <!-- Begin Slider Area -->
+            <div class="slider-area mb-50">
+                <div class="slider-active owl-carousel">
+                    <!-- Begin Single Slide Area -->
+                    <div class="single-slide align-center-left">
+                        <div class="slider-progress"></div>
+                        <div class="slider-content" style="position: relative;">
+                            <img src="images/banner/laptops & tablets.png" alt="">
+                            <button class="banner-button" style="position: absolute; top: 70%; left: 53%; transform: translate(-50%, -50%);"><a href="product-grid-category.html?categoryId=1&categoryName=Laptops%20%26%20Tablets">Shop laptops & tablets</a></button>
                         </div>
                     </div>
-                    <!-- Slider Area End Here -->
+                    <!-- Single Slide Area End Here -->
+                    <!-- Begin Single Slide Area -->
+                    <div class="single-slide align-center-left">
+                        <div class="slider-progress"></div>
+                        <div class="slider-content">
+                            <img src="images/banner/beats.png" alt="">
+                            <button class="banner-button" style="position: absolute; top: 70%; left: 15%; transform: translate(-50%, -50%);"><a href="product-grid-category.html?categoryId=2&categoryName=Electronics%20%26%20Accessories&subcategoryId=4&subcategoryName=Audio">Shop Beats by Dre</a></button>
+                        </div>
+                    </div>
+                    <!-- Single Slide Area End Here -->
+                    <!-- Begin Single Slide Area -->
+                    <div class="single-slide align-center-left">
+                        <div class="slider-progress"></div>
+                        <div class="slider-content">
+                            <img src="images/banner/disk.png" alt="">
+                            <button class="banner-button" style="position: absolute; top: 70%; left: 23.5%; transform: translate(-50%, -50%);"><a href="product-grid-category.html?categoryId=2&categoryName=Electronics%20%26%20Accessories&subcategoryId=5&subcategoryName=Hard%20Drives,%20SSDs%20%26%20Storage">Shop hard drives, SSDs & storage</a></button>
+                        </div>
+                    </div>
+                    <!-- Single Slide Area End Here -->
                 </div>
             </div>
-            <!-- Dynamic Banner Area End Here -->
+            <!-- Slider Area End Here -->
             <!-- Begin Highlight Products Area -->
             <div class="highlight-products-area mb-50">
                 <div class="container">
@@ -191,6 +185,31 @@
                 </div>
             </div>
             <!-- Highlight Products Area End Here -->
+            <!-- Begin Deals Area -->
+            <div class="deals-area mb-50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="section-title">
+                                <h2>Deals under RM 50</h2>
+                            </div>
+                            <div class="row">
+                                <div class="product-active owl-carousel">
+                                    <!-- //products will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div style="padding: 20px; background-color: #042955; height: 100%;">
+                                <p style="font-size: 30px; color: white;">Your favourite deals</p>
+                                <p style="color: white;">all in one place.</p>
+                                <button class="banner-button" style="margin-top: 30px; position: relative; left: 275px; top: 35px;"><a href="">Shop Deals</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Deals Area End here -->
             <!-- Begin Laptop Area -->
             <div class="laptop-area mb-50">
                 <div class="container">
@@ -341,6 +360,25 @@
                         console.error(error);
                     });
 
+                //load deals data
+                fetch('http://localhost:8080/products?maxPrice=50&page=0&size=10') 
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(products => {
+                        const productsContainer = document.querySelector('.deals-area .owl-carousel');
+                        productsContainer.innerHTML = '';
+                        products.content.forEach(product => {
+                            const productElement = generateSingleProduct2(product);
+                            productsContainer.appendChild(productElement);
+
+                        });
+                        initializeOwlCarousel(productsContainer);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
                 //load laptop & tablets data
                 fetch('http://localhost:8080/products?categoryId=1&page=0&size=10') 
                     .then(response => {
@@ -451,6 +489,29 @@
                 `;
                 return productElement;
             }
+
+            function generateSingleProduct2(product) {
+                const productElement = document.createElement('div');
+
+                productElement.innerHTML = `
+                    <div class="single-product-wrap">
+                        <div class="product-image">
+                            <a href="product-details.html?product=${product.id}">
+                                <img src="images/product/large-size/${product.name}.jpg">
+                            </a>
+                        </div>
+                        <div class="product-desc">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span class="product-manufacturer">${product.manufacturer}</span>
+                            </div>
+                            <hr>
+                            <span class="product-price">$ ${product.price.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `;
+                return productElement;
+            }
+
             function initializeOwlCarousel(productsContainer) {
                 $(productsContainer).trigger('destroy.owl.carousel');
 

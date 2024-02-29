@@ -488,11 +488,11 @@ option {
 	text-decoration: underline;
 
 }
-.dynamic-banner-area .owl-prev {
+.slider-area .owl-prev {
 	left: 10px;
 }
 
-.dynamic-banner-area .owl-next {
+.slider-area .owl-next {
 	right: 10px;
 }
 /*----------------------------------------*/
@@ -634,6 +634,14 @@ option {
 }
 .sub-category-list > li {
 	margin: 0 20px 0;
+}
+
+.deals-area .owl-prev {
+	left: -10px;
+}
+
+.deals-area .owl-next {
+	right: -10px;
 }
 /*----------------------------------------*/
 /*  2.6 Footer

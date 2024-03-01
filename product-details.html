@@ -200,23 +200,10 @@
                                             </div>
                                         </div>
                                     </div>  
-                                    <div class="card">
-                                        <div class="card-header" id="headingTwo">
-                                            <h5>
-                                                <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    Report This Product
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <i class="fa-solid fa-newspaper" style="margin-right: 10px;"></i><a href="" id="report-link" class="link-inverse" data-toggle="modal" data-target="#reportModal">Report an issue with this product</a>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <!--Frequently Accordin End Here -->
+                            <i class="fa-solid fa-newspaper" style="margin-right: 10px;"></i><a href="" id="report-link" class="link-inverse" data-toggle="modal" data-target="#reportModal">Report an issue with this product</a>
                         </div>
                     </div>
                 </div>
@@ -582,7 +569,7 @@
                         console.error(error);
                     });
 
-                const reportLink = document.querySelector('.frequently-accordion #report-link');
+                const reportLink = document.querySelector('#report-link');
                 reportLink.addEventListener('click', function() {
 
                     document.querySelector('#reportModal form').reset();

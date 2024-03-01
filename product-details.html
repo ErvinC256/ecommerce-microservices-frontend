@@ -268,6 +268,7 @@
             <!-- Footer Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
+        <div id="popup"></div>
         <!-- Modal -->
         <div class="modal" id="warrantyModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -325,7 +326,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary my-button" data-dismiss="modal">Submit</button>
+                        <button id="submit-button" type="button" class="btn btn-primary my-button">Submit</button>
                     </div>
                 </div>
             </div>
@@ -585,6 +586,24 @@
                 reportLink.addEventListener('click', function() {
 
                     document.querySelector('#reportModal form').reset();
+                });
+
+                const submitBtn = document.getElementById('submit-button');
+                const closeBtn = document.querySelector('#reportModal .close');
+                const popup = document.getElementById('popup');
+        
+                submitBtn.addEventListener('click', function () {
+                    // Your form submission logic here
+                    closeBtn.click();
+                    // Show the popup
+                    popup.textContent = 'Report submitted successfully'
+                    popup.style.display = 'block';
+        
+                    // Hide the popup after 3 seconds
+                    setTimeout(function () {
+                        popup.style.display = 'none';
+
+                    }, 3000);
                 });
 
             });

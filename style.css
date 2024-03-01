@@ -19,6 +19,7 @@
 			1.8 Ratings
 			1.9 Scroll Top
 			1.10 Modal
+			1.11 Corner popup
 		02. Home Page
 			2.1 Header
 			2.2 Breadcrumb
@@ -293,6 +294,20 @@ option {
 /*----------------------------------------*/
 .modal-header {
 	background-color: #e7f1fd;
+}
+/*----------------------------------------*/
+/*  1.11 Corner popup
+/*----------------------------------------*/
+#popup {
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	padding: 10px;
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.7);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	transition: opacity 0.5s ease-in-out;
 }
 /*----------------------------------------*/
 /*  02. Home Page

@@ -18,6 +18,7 @@
 			1.7 Button
 			1.8 Ratings
 			1.9 Scroll Top
+			1.10 Modal
 		02. Home Page
 			2.1 Header
 			2.2 Breadcrumb
@@ -288,6 +289,12 @@ option {
 	text-align: center;
 }
 /*----------------------------------------*/
+/*  1.10 Modal
+/*----------------------------------------*/
+.modal-header {
+	background-color: #e7f1fd;
+}
+/*----------------------------------------*/
 /*  02. Home Page
 /*----------------------------------------*/
 /*----------------------------------------*/
@@ -295,7 +302,6 @@ option {
 /*----------------------------------------*/
 .header {
 	color: #fff;
-	/* background-color: #8d54ff; */
 	background-color: #8d54ff;
 }
 /*Header Top*/
@@ -688,7 +694,8 @@ option {
 	padding: 10px;
 }
 .frequently-accordion .card-header h5 {
-	font-size: 16px;
+	font-size: 14px;
+	font-weight: bold;
 }
 .frequently-accordion .card-header a.collapsed:before,
 .frequently-accordion .card-header a:after {
@@ -1025,13 +1032,17 @@ iframe {
 	width: 40%;
 	vertical-align: top;
 }
-.product-info {
+.specifications {
 	width: 100%;
 	border-collapse: collapse;
 }
-.product-info td {
+.specifications td {
 	border: 1px solid #e1e1e1;
 	padding: 8px;
+}
+.warranty div {
+	padding: 10px;
+	border-bottom: 1px solid #e1e1e1;
 }
 /*----------------------------------------*/
 /*  3.8 Account Page

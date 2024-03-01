@@ -15,7 +15,7 @@
 			1.4 Background Variation Set
 			1.5 Navigation
 			1.6 Tooltip
-			1.7 Button
+			1.7 Button & Links
 			1.8 Ratings
 			1.9 Scroll Top
 			1.10 Modal
@@ -238,7 +238,7 @@ option {
 	padding: 5px 15px;
 }
 /*----------------------------------------*/
-/*  1.7 Button
+/*  1.7 Button & Links
 /*----------------------------------------*/
 .my-button {
 	color: #fff;
@@ -265,6 +265,12 @@ option {
 }
 .my-button:active, .my-button:focus, .my-button-inverse:active, .my-button-inverse:focus {
     outline: none;
+}
+.link-inverse {
+	text-decoration: underline;
+}
+.link-inverse:hover {
+	text-decoration: none;
 }
 /*----------------------------------------*/
 /*  1.8 Ratings
@@ -303,7 +309,7 @@ option {
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
-	padding: 10px;
+	padding: 10px 20px;
 	color: #fff;
 	background-color: rgba(0, 0, 0, 0.7);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -602,7 +608,7 @@ option {
 	font-size: 12px;
 }
 .product-desc .product-name {
-	color: #8d54ff;
+	color: blue;
 	font-size: 14px;
 }
 .product-desc .product-price {
@@ -795,10 +801,6 @@ option {
 .sign-up-form {
 	border: 1px solid #e1e1e1;
 }
-.sign-in-form a,
-.sign-up-form a {
-	color: #8d54ff;
-}
 .sign-in-form div,
 .sign-up-form div {
     padding-bottom: 20px;
@@ -880,9 +882,6 @@ option {
 }
 .cart-options > li:last-child::after {
 	content: unset;
-}
-.cart-options > li a {
-	color: #8d54ff;
 }
 .summary-container {
 	font-size: 16px;
@@ -970,9 +969,6 @@ iframe {
 .filter-label input {
 	margin-right: 10px;
 	width: auto;
-}
-.filter-group a:hover {
-	text-decoration: none;
 }
 /*----- paginatoin-area  css -----*/
 .paginatoin-area {

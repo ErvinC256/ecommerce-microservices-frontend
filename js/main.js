@@ -641,7 +641,7 @@ function generateSingleProduct(product) {
 				<hr>
 				<p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
 				<hr>
-				<span class="product-price">$ ${product.price.toFixed(2)}</span>
+				<span class="product-price">RM ${product.price.toFixed(2)}</span>
 			</div>
 		</div>
 	`;
@@ -663,7 +663,7 @@ function generateSingleProductSmall(product) {
 					<span class="product-manufacturer">${product.manufacturer}</span>
 				</div>
 				<hr>
-				<span class="product-price">$ ${product.price.toFixed(2)}</span>
+				<span class="product-price">RM ${product.price.toFixed(2)}</span>
 			</div>
 		</div>
 	`;
@@ -692,7 +692,7 @@ function generateSingleProductGrid(product) {
 				<hr>
 				<p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
 				<hr>
-				<span class="product-price">$ ${product.price.toFixed(2)}</span>
+				<span class="product-price">RM ${product.price.toFixed(2)}</span>
 			</div>
 		</div>
 	`;

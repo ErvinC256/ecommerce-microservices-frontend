@@ -193,7 +193,7 @@
             <div class="similar-area mb-50">
                 <div class="container">
                     <div class="section-title">
-                        <h2>Other products you may also like</h2>
+                        <h2>You may also like</h2>
                     </div>
                     <div class="row">
                         <div class="product-active owl-carousel">
@@ -394,7 +394,7 @@
                                                 <div>
                                                     <form action="#"></form>
                                                         <div class="quantity-select">
-                                                            <select>
+                                                            <select style="width: 50%;">
                                                                 <option value="1">Quantity: 1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
@@ -406,6 +406,7 @@
                                                                 <option value="9">9</option>
                                                                 <option value="10">10</option>
                                                             </select>
+                                                            <span style="color: #CD5C5C;">${product.quantityInStock} units available</span>
                                                         </div>
                                                         <input type="hidden" name="product-id" value="${product.productId}">
                                                         <div style="margin-top: 10px;">
@@ -496,7 +497,7 @@
                                                         <th>Delivery</th>
                                                         <td>
                                                             <p>Estimated between Jan 1, 2024 and Jan 3, 2024.</p> 
-                                                            <p id="moreText" style="display: none; color: #FF0000;">Delivery time varies based on buyer proximity, chosen postage, seller history, and factors, especially during peak periods.</p>
+                                                            <p id="moreText" style="display: none; color: #CD5C5C;">Delivery time varies based on buyer proximity, chosen postage, seller history, and factors, especially during peak periods.</p>
                                                             <a href="#" id="moreLink" onclick="showMore(event)" class="link-inverse">See more details <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                                             <a href="#" id="lessLink" style="display: none;" onclick="showLess(event)" class="link-inverse">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
                                                         </td>

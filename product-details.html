@@ -183,32 +183,26 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <!-- Begin Frequently Accordin -->
-                            <div class="frequently-accordion">
-                                <div id="accordion">
-                                    <div class="card actives">
-                                        <div class="card-header" id="headingOne">
-                                            <h5>
-                                                <a class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    Product Specifications Disclaimer
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body" style="font-size: 12px;">
-                                                Product specifications are provided by our manufacturers and suppliers and may be subject to change without notice. Actual product may vary slightly in terms of size, weight, color, or other listed features from what is mentioned on the website. We recommend customers to verify the product specifications with the manufacturer’s website or contact our customer service for any clarifications before making a purchase.
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-                            <!--Frequently Accordin End Here -->
                             <i class="fa-solid fa-newspaper" style="margin-right: 10px;"></i><a href="" id="report-link" class="link-inverse" data-toggle="modal" data-target="#reportModal">Report an issue with this product</a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Product Info Area End Here -->
+            <!-- Begin Similar Items Area -->
+            <div class="similar-area mb-50">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Other products you may also like</h2>
+                    </div>
+                    <div class="row">
+                        <div class="product-active owl-carousel">
+                            <!-- //products will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Similar Items Area End here -->
             <!-- Begin Scroll Top  -->
             <div id="scrollToTop" class="mt-100">
                 back to top
@@ -329,8 +323,10 @@
                 checkSignInStatus();
                 getCartNumber();
 
-                const params = new URLSearchParams(window.location.search);
+                let categoryId;
+                let subcategoryId;
 
+                const params = new URLSearchParams(window.location.search);
                 const productId = params.get('product');
 
                 // fetch product details
@@ -339,6 +335,8 @@
                         return response.json();
                     })
                     .then(product => {
+                        categoryId = product.categoryId;
+                        subcategoryId = product.subcategoryId;
 
                         // Get the breadcrumb list
                         let breadcrumbList = document.querySelector('.breadcrumb-content ul');
@@ -389,17 +387,8 @@
                                                 </div>
                                                 <div class="price-div">
                                                     <p style="font-size: 20px; font-weight: bold;">$ ${product.price.toFixed(2)}</p>
-                                                    <p>
-                                                        <div class="my-tooltip">Price above includes tax.<i class="fa fa-info-circle" style="color: blue; margin-left: 5px;"></i>
-                                                            <div class="tooltip-position">
-                                                                <div class="tooltip-top">
-                                                                    <p>Price above includes tax.</p>
-                                                                </div>
-                                                                <div class="tooltip-bottom">
-                                                                    <p>The displayed price already accounts for all applicable taxes, ensuring that there are no additional charges beyond what you see.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <p style="font-size: 12px;">
+                                                        Price above includes tax.
                                                     </p>
                                                 </div>
                                                 <div>
@@ -576,11 +565,31 @@
                                     console.error(error.message);
                                 });
                         });
+
+                        //load similar items data
+                        fetch(`http://localhost:8080/products?categoryId=${categoryId}&subcategoryId=${subcategoryId}&page=0&size=10`) 
+                            .then(response => {
+                                return response.json();
+                            })
+                            .then(products => {
+                                const productsContainer = document.querySelector('.similar-area .owl-carousel');
+                                productsContainer.innerHTML = '';
+                                products.content.forEach(product => {
+                                    const productElement = generateSingleProduct(product);
+                                    productsContainer.appendChild(productElement);
+
+                                });
+                                initializeOwlCarousel(productsContainer);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
                     })
                     .catch(error => {
                         console.error(error);
                     });
-
+                
+                // report link
                 const reportLink = document.querySelector('#report-link');
                 reportLink.addEventListener('click', function() {
 
@@ -592,7 +601,7 @@
                 const popup = document.getElementById('popup');
         
                 submitBtn.addEventListener('click', function () {
-                    // Your form submission logic here
+                    
                     closeBtn.click();
                     // Show the popup
                     popup.textContent = 'Report submitted successfully'

@@ -37,7 +37,8 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		26. WOW
 		27. Sign Out
 		28. Check Sign In Status
-		29. Searh Bar
+		29. Search Bar
+		30. Generate Products
 
 -----------------------------------------------------------------------------------*/
 (function ($) {
@@ -616,6 +617,119 @@ document.getElementById('searchForm').addEventListener('keydown', function(event
 		window.location.href = url;
 	}
 });
+/*----------------------------------------*/
+/* 30. Generate Products
+/*----------------------------------------*/
+function generateSingleProduct(product) {
+	const productElement = document.createElement('div');
+
+	productElement.innerHTML = `
+		<div class="single-product-wrap">
+			<div class="product-image">
+				<a href="product-details.html?product=${product.id}">
+					<img src="images/product/large-size/${product.name}.jpg">
+					<div class="product-tag-container">
+						${product.productTag.newArrival ? '<div class="product-tag new-arrival">New Arrival</div>' : ''}
+						${product.productTag.bestSeller ? '<div class="product-tag best-seller">Best Seller</div>' : ''}
+					</div>
+				</a>
+			</div>
+			<div class="product-desc">
+				<div style="display: flex; justify-content: space-between;">
+					<span class="product-manufacturer">${product.manufacturer}</span>
+				</div>
+				<hr>
+				<p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
+				<hr>
+				<span class="product-price">$ ${product.price.toFixed(2)}</span>
+			</div>
+		</div>
+	`;
+	return productElement;
+}
+
+function generateSingleProductSmall(product) {
+	const productElement = document.createElement('div');
+
+	productElement.innerHTML = `
+		<div class="single-product-wrap">
+			<div class="product-image">
+				<a href="product-details.html?product=${product.id}">
+					<img src="images/product/large-size/${product.name}.jpg">
+				</a>
+			</div>
+			<div class="product-desc">
+				<div style="display: flex; justify-content: space-between;">
+					<span class="product-manufacturer">${product.manufacturer}</span>
+				</div>
+				<hr>
+				<span class="product-price">$ ${product.price.toFixed(2)}</span>
+			</div>
+		</div>
+	`;
+	return productElement;
+}
+
+function generateSingleProductGrid(product) {
+	const productElement = document.createElement('div');
+	productElement.className = 'col-4'
+
+	productElement.innerHTML = `
+		<div class="single-product-wrap">
+			<div class="product-image">
+				<a href="product-details.html?product=${product.id}">
+					<img src="images/product/large-size/${product.name}.jpg">
+					<div class="product-tag-container">
+						${product.productTag.newArrival ? '<div class="product-tag new-arrival">New Arrival</div>' : ''}
+						${product.productTag.bestSeller ? '<div class="product-tag best-seller">Best Seller</div>' : ''}
+					</div>
+				</a>
+			</div>
+			<div class="product-desc">
+				<div style="display: flex; justify-content: space-between;">
+					<span class="product-manufacturer">${product.manufacturer}</span>
+				</div>
+				<hr>
+				<p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
+				<hr>
+				<span class="product-price">$ ${product.price.toFixed(2)}</span>
+			</div>
+		</div>
+	`;
+	return productElement;
+}
+
+function initializeOwlCarousel(productsContainer) {
+	$(productsContainer).trigger('destroy.owl.carousel');
+
+	// $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
+	$(productsContainer).owlCarousel({
+		loop: true,
+		nav: true,
+		dots: false,
+		autoplay: false,
+		autoplayTimeout: 5000,
+		navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+		item: 5,
+		responsive: {
+			0: {
+				items: 1
+			},
+			480: {
+				items: 2
+			},
+			768: {
+				items: 3
+			},
+			992: {
+				items: 4
+			},
+			1200: {
+				items: 5
+			}
+		}
+	});
+}
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

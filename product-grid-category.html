@@ -155,21 +155,6 @@
                                         </div>
                                     </div>
                                 </article>
-                                <article class="filter-group">
-                                    <header class="card-header">
-                                        <a href="#" data-toggle="collapse" data-target="#filter-ratings" aria-expanded="true">
-                                            <div style="width: 20px;">
-                                                <i class="icon-control fa fa-caret-down"></i>
-                                            </div>
-                                            <h6 class="title">Ratings</h6>
-                                        </a>
-                                    </header>
-                                    <div class="filter-content collapse show" id="filter-ratings">
-                                        <div class="card-body">
-                                            <!-- ratings options will be inserted here -->
-                                        </div>
-                                    </div>
-                                </article>
                             </div> <!-- card.// -->
                         </div>
                         <div class="col-9">
@@ -288,7 +273,6 @@
 
             let selectedManufacturers;
             let selectedPriceRange;
-            let selectedRatings;
             let selectedPage;
             let totalPages;
             let selectedSortOption;
@@ -326,11 +310,6 @@
                         maxValue: Number.MAX_SAFE_INTEGER
                     };
                 }
-                if (sessionStorage.getItem('selectedRatings')) {
-                    selectedRatings = parseInt(sessionStorage.getItem('selectedRatings')); 
-                } else {
-                    selectedRatings = 1;
-                }
                 if (sessionStorage.getItem('selectedPage')) {
                     selectedPage = parseInt(sessionStorage.getItem('selectedPage'));
                 } else {
@@ -344,10 +323,9 @@
                 if (sessionStorage.getItem('selectedManufacturers')) {
                     selectedManufacturers = JSON.parse(sessionStorage.getItem('selectedManufacturers'));
 
-                    fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage, selectedSortOption);
+                    fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedPage, selectedSortOption);
                     setFilterGroupManufacturer(selectedManufacturers);
                     setFilterGroupPriceRange(selectedPriceRange);
-                    setFilterGroupRatings(selectedRatings);
                     setSortSelectOption(selectedSortOption);
 
                 } else {
@@ -368,10 +346,9 @@
                                 return acc;
                             }, {});
                             
-                            fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage, selectedSortOption);
+                            fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedPage, selectedSortOption);
                             setFilterGroupManufacturer(selectedManufacturers);
-                            setFilterGroupPriceRange(selectedPriceRange);
-                            setFilterGroupRatings(selectedRatings);  
+                            setFilterGroupPriceRange(selectedPriceRange); 
                             setSortSelectOption(selectedSortOption);
 
                         })
@@ -379,37 +356,33 @@
                             console.error(error);
                         });
                 }
-
-                // get available brands
-                // fetch(`http://localhost:8080/products/manufacturers?categoryId=${categoryId}`)
-                //     .then(response => response.json())
-                //     .then(data => {
-                //         const brandsContainer = document.querySelector('.brand-area .owl-carousel');
-                //         brandsContainer.innerHTML = '';
-
-                //         data.forEach(manufacturer => {
-                //             const brandElement = document.createElement('div');
-                //             brandElement.innerHTML = `
-                //                 <img src="images/logo/manufacturer's logo/${manufacturer}.jpg" title="${manufacturer}" style="width: 50%;">
-                //             `;
-
-                //             brandsContainer.appendChild(brandElement);
-                //         });
-                //         initializeOwlCarousel(brandsContainer);
-                //     })
-                //     .catch(error => {
-                //         console.error(error);
-                //     });
                 
+                // modify filter group arrows
+                let filterGroups = document.querySelectorAll('.filter-group');
+
+                filterGroups.forEach((group) => {
+                    let header = group.querySelector('.card-header a');
+                    let icon = header.querySelector('.icon-control');
+
+                    header.addEventListener('click', () => {
+                        if (icon.classList.contains('fa-caret-down')) {
+                            icon.classList.remove('fa-caret-down');
+                            icon.classList.add('fa-caret-right');
+                        } else {
+                            icon.classList.remove('fa-caret-right');
+                            icon.classList.add('fa-caret-down');
+                        }
+                    });
+                });
+
                 sessionStorage.removeItem('selectedManufacturers');
                 sessionStorage.removeItem('selectedPriceRange');
-                sessionStorage.removeItem('selectedRatings');
                 sessionStorage.removeItem('selectedPage');
                 sessionStorage.removeItem('selectedSortOption');
             });    
         </script>
         <script>
-            function fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedRatings, selectedPage, selectedSortOption) {
+            function fetchAndRenderProducts(selectedManufacturers, selectedPriceRange, selectedPage, selectedSortOption) {
         
                 let apiURL = `http://localhost:8080/products?`;
 
@@ -423,8 +396,6 @@
 
                 const trueSelectedManufacturers = Object.keys(selectedManufacturers).filter(manufacturer => selectedManufacturers[manufacturer]);
                 apiURL += `&manufacturers=${trueSelectedManufacturers.join(',')}`;
-
-                apiURL += `&ratings=${selectedRatings}`;
 
                 apiURL += `&page=${selectedPage}&size=9`;
 
@@ -472,35 +443,7 @@
                             productsContainer.appendChild(messageElement);
                         }
                         products.content.forEach(product => {
-                            const productElement = document.createElement('div');
-                            productElement.className = 'col-4';
-                    
-                            let starRating = generateStarRatings(product.ratings);
-                    
-                            productElement.innerHTML = `
-                                <div class="single-product-wrap">
-                                    <div class="product-image">
-                                        <a href="product-details.html?product=${product.id}">
-                                            <img src="images/product/large-size/${product.name}.jpg">
-                                            <div class="product-tag-container">
-                                                ${product.productTag.newArrival ? '<div class="product-tag new-arrival">New Arrival</div>' : ''}
-                                                ${product.productTag.bestSeller ? '<div class="product-tag best-seller">Best Seller</div>' : ''}
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="product-desc">
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <span class="product-manufacturer">${product.manufacturer}</span>
-                                            <span class="star-rating">${starRating}<span class="rating-number" style="margin-left: 5px; font-size: 12px;">${product.ratings}</span></span>
-                                        </div>
-                                        <hr>
-                                        <p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
-                                        <hr>
-                                        <span class="product-price">$ ${product.price.toFixed(2)}</span>
-                                    </div>
-                                </div>
-                            `;
-
+                            const productElement = generateSingleProductGrid(product);
                             productsContainer.appendChild(productElement);
                         });
                         
@@ -617,45 +560,6 @@
                 });
             }
 
-            function setFilterGroupRatings(selectedRatings) {
-                
-                let filterGroup = document.querySelector('#filter-ratings .card-body');
-
-                // Clear the existing content
-                filterGroup.innerHTML = '';
-
-                let html = '';
-
-                // Data for star ratings
-                const ratingsOptions = [5, 4, 3, 2, 1];
-                const checkedRating = selectedRatings; // Replace with your actual variable for the checked rating
-
-                ratingsOptions.forEach((rating) => {
-                    const isChecked = rating === checkedRating;
-
-                    html += `
-                        <label class="filter-label">
-                            <input type="radio" name="ratings" class="input-ratings" data-ratings="${rating}" ${isChecked ? 'checked' : ''}>
-                            <span>${generateStarRatings(rating)} ${rating < 5 ? '& up' : ''}</span>
-                        </label>
-                    `;
-                });
-
-                filterGroup.innerHTML = html;
-
-                // Add event listener to radio buttons
-                const radioButtons = document.querySelectorAll('input[type="radio"].input-ratings');
-                radioButtons.forEach(radio => {
-                    radio.addEventListener('change', () => {
-                        
-                        const pageNumber = 0;
-                        const sortOption = 'relevance';
-                        setSessionStatus(pageNumber, sortOption);
-                        location.reload();
-                    });
-                });
-            }
-
             function setSortSelectOption(selectedSortOption) {
                 // Get the select element
                 const selectElement = document.querySelector('.shop-top-bar select');
@@ -676,34 +580,6 @@
                     setSessionStatus(pageNumber, selectedSortOption);
                     location.reload();
                 });
-            }
-
-            function generateStarRatings(ratings) {
-                // Generate star rating
-                let starRating = '';
-                const numberOfStars = 5;
-                const filledStars = Math.floor(ratings);
-                const hasHalfStar = ratings % 1 !== 0;
-
-                for (let i = 1; i <= numberOfStars; i++) {
-                    let star = document.createElement('span');
-                    star.className = 'star';
-                    star.textContent = '★';
-
-                    if (i <= filledStars) {
-                        // Full star
-                    } else if (i === filledStars + 1 && hasHalfStar) {
-                        // Half star
-                        star.classList.add('half');
-                    } else {
-                        // Empty star
-                        star.classList.add('empty');
-                    }
-
-                    starRating += star.outerHTML;
-                }
-
-                return starRating;
             }
 
             function handlePaginationClick(event) {
@@ -753,68 +629,12 @@
                     minValue: Array.from(document.querySelectorAll('input[type="radio"].input-price-range')).find(radio => radio.checked)?.getAttribute('data-min-value'),
                     maxValue: Array.from(document.querySelectorAll('input[type="radio"].input-price-range')).find(radio => radio.checked)?.getAttribute('data-max-value')
                 };
-
-                // Get the selected ratings
-                const selectedRatings = Array.from(document.querySelectorAll('input[type="radio"].input-ratings')).find(radio => radio.checked)?.getAttribute('data-ratings');
                 
                 sessionStorage.setItem('selectedManufacturers', JSON.stringify(manufacturerStatus));
                 sessionStorage.setItem('selectedPriceRange', JSON.stringify(selectedPriceRange));
-                sessionStorage.setItem('selectedRatings', selectedRatings);
                 sessionStorage.setItem('selectedPage', pageNumber);
                 sessionStorage.setItem('selectedSortOption', sortOption);
             }
-            function initializeOwlCarousel(productsContainer) {
-                $(productsContainer).trigger('destroy.owl.carousel');
-
-                // $(productsContainer).owlCarousel().trigger('add.owl.carousel').trigger('refresh.owl.carousel');
-                $(productsContainer).owlCarousel({
-                    loop: true,
-                    nav: true,
-                    dots: false,
-                    autoplay: false,
-                    autoplayTimeout: 5000,
-                    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-                    item: 5,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        480: {
-                            items: 2
-                        },
-                        768: {
-                            items: 3
-                        },
-                        992: {
-                            items: 4
-                        },
-                        1200: {
-                            items: 5
-                        }
-                    }
-                });
-            }
-        </script>
-        <script>
-            // Select all the filter groups
-            let filterGroups = document.querySelectorAll('.filter-group');
-
-            // Add event listener to each filter group
-            filterGroups.forEach((group) => {
-                let header = group.querySelector('.card-header a');
-                let icon = header.querySelector('.icon-control');
-
-                // Toggle the arrow direction on click
-                header.addEventListener('click', () => {
-                    if (icon.classList.contains('fa-caret-down')) {
-                        icon.classList.remove('fa-caret-down');
-                        icon.classList.add('fa-caret-right');
-                    } else {
-                        icon.classList.remove('fa-caret-right');
-                        icon.classList.add('fa-caret-down');
-                    }
-                });
-            });
         </script>
     </body>
 </html>

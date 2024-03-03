@@ -175,7 +175,7 @@
                                             <p style="font-size: 12px;">Our liability is limited to repairing or replacing the defective product.</p>
                                         </div>
                                         <div style="text-align: right; border: none;">
-                                            <a href="" class="link-inverse" data-toggle="modal" data-target="#warrantyModal">Learn More</a>
+                                            <a href="" class="link-inverse" data-toggle="modal" data-target="#warrantyModal">Learn more</a>
                                         </div>
                                     </div>
                                 </div>
@@ -359,13 +359,13 @@
                         productElement.className = 'row';
                         productElement.innerHTML = `
                             <div class="col-4">
-                                <div class="product-details-left">
+                                <div class="product-image">
                                     <img src="images/product/large-size/${product.productName}.jpg" alt="product image">
                                     <p>Images for illustrative purposes only - actual items may differ from images or based on configurations selected.</p>
                                 </div>       
                             </div>
                             <div class="col-8">
-                                <div class="product-details-right">
+                                <div class="product-basic-details">
                                     <div style="border-bottom: 1px solid #e1e1e1;">
                                         <h2>${product.productName}</h2>
                                         <p>by
@@ -379,7 +379,7 @@
                                         <p style="margin-top: 15px;">${product.description}</p>
                                     </div>
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-7">
                                             <div class="add-to-cart-div">
                                                 <div class="product-tag-container2">
                                                     ${product.productTag.newArrival ? '<div class="product-tag new-arrival"> New Arrival</div>' : ''}
@@ -410,8 +410,8 @@
                                                         </div>
                                                         <input type="hidden" name="product-id" value="${product.productId}">
                                                         <div style="margin-top: 10px;">
-                                                            <button type="submit" id="add-to-cart" class="my-button" style="margin-right: 10px;">Add to Cart</button>
-                                                            <button type="submit" id="checkout" class="my-button-inverse">Checkout This Item</button>
+                                                            <button type="submit" id="add-to-cart" class="my-button" style="margin-right: 10px;">Add to cart</button>
+                                                            <button type="submit" id="checkout" class="my-button-inverse">Checkout this item</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -472,8 +472,8 @@
                                                 </div>    
                                             </div>
                                         </div>
-                                        <div class="col-4">
-                                            <div class="product-details-table-div">
+                                        <div class="col-5">
+                                            <div class="product-basic-details-container">
                                                 <div style="margin-bottom: 25px;">
                                                     <a style="font-size: 12px; color: blue; font-weight: bold;" href="product-grid-category.html?categoryId=${product.categoryId}&categoryName=${encodeURIComponent(product.categoryName)}">
                                                         ${capitalize(product.categoryName)}
@@ -504,7 +504,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Returns</td>
-                                                        <td>Returnable until Jan 31, 2024. Buyer pays for return shipping. <a href="#" class="link-inverse">Learn More</a></td>
+                                                        <td>Returnable until Jan 31, 2024. Buyer pays for return shipping.</td>
                                                     </tr>
                                                 </table>
                                             </div>

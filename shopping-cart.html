@@ -131,6 +131,10 @@
                             </div><br><br>
                             <div class="cart-contents">
                                 <table class="cart-table">
+                                    <tr>
+                                        <th><a href="" class="link-inverse">Select all items</a></th>
+                                        <th style="text-align: right;">Unit price</th>
+                                    </tr>
                                     <!-- cart items will be inserted here -->
                                 </table>
                                 <br>
@@ -249,7 +253,7 @@
 
                         if (cart.cartItemDtos.length === 0) {
                             const messageRow = document.createElement('tr');
-                            messageRow.innerHTML = '<p style="font-size: 18px; text-align: center;">Your cart is empty</p>';
+                            messageRow.innerHTML = '<p style="text-align: center;">Your cart is empty</p>';
                             cartTable.appendChild(messageRow);
                             return;
                         }
@@ -257,15 +261,17 @@
                         cart.cartItemDtos.forEach(cartItem => {
                             const cartItemElement = document.createElement('tr');
                             let selectOptions = '';
-                            for(let i = 1; i <= cartItem.quantityInStock; i++) {
-                                selectOptions += `<option value="${i}" ${i === cartItem.quantity ? 'selected' : ''}>Quantity: ${i}</option>`;
+                            for (let i = 1; i <= 10; i++) {
+                                const optionText = i === 1 ? 'Quantity: 1' : i;
+                                selectOptions += `<option value="${i}" ${i === cartItem.quantity ? 'selected' : ''}>${optionText}</option>`;
                             }
                             cartItemElement.innerHTML = `
                                 <td>
                                     <div class="row">
                                         <div class="col-4">
+                                            <input type="checkbox" class="cart-checkbox">
                                             <div class="product-image">
-                                                <a href="single-product.html">
+                                                <a href="product-details.html?product=${cartItem.productId}">
                                                     <img src="images/product/large-size/${cartItem.name}.jpg" alt="Li's Product Image">
                                                 </a>
                                             </div>
@@ -273,11 +279,11 @@
                                         <div class="col-8">
                                             <div class="cart-product-details">
                                                 <div>
-                                                    <p style="font-size: 18px;"><a href="product-details.html?product=${cartItem.productId}">${cartItem.name}</a></p>
+                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${cartItem.productId}">${cartItem.name}</a></p>
                                                 </div>
                                                 <div>
                                                     <div class="quantity-select">
-                                                        <p style="font-size: 16px;">Stock Left: ${cartItem.quantityInStock}</p>
+                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: ${cartItem.quantityInStock}</p>
                                                         <select>
                                                             ${selectOptions}
                                                         </select>
@@ -295,7 +301,7 @@
                                     </div>
                                 </td>
                                 <td style="text-align: right; width: 100px;">
-                                    <p style="font-size: 16px; font-weight: bold;">RM ${cartItem.price.toFixed(2)}</p>
+                                    <p style="font-weight: bold; font-size: 16px;">RM ${cartItem.price.toFixed(2)}</p>
                                 </td>
                             `;
                             cartTable.appendChild(cartItemElement);

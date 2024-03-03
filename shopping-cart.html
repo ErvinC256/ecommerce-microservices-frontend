@@ -224,6 +224,8 @@
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>
+            let selectedCartItems;
+
             document.addEventListener('DOMContentLoaded', function () {
 
                 checkSignInStatus();
@@ -239,6 +241,7 @@
                     .then(cart => {
                         const cartTable = document.querySelector('.cart-table');
                         const dateElement = document.querySelector('#last-updated');
+
                         if (!cart.lastUpdated) {
                             dateElement.textContent = '';
                         } else {
@@ -269,7 +272,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-4">
-                                            <input type="checkbox" class="cart-checkbox">
+                                            <input type="checkbox" class="cart-checkbox" checked>
                                             <div class="product-image">
                                                 <a href="product-details.html?product=${cartItem.productId}">
                                                     <img src="images/product/large-size/${cartItem.name}.jpg" alt="Li's Product Image">

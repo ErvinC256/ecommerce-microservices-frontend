@@ -132,7 +132,7 @@
                             <div class="cart-contents">
                                 <table class="cart-table">
                                     <tr>
-                                        <th><a href="" class="link-inverse">Select all items</a></th>
+                                        <th><a href="" class="link-inverse" onclick="setSessionStatusToTrue()">Select all items</a></th>
                                         <th style="text-align: right;">Unit price</th>
                                     </tr>
                                     <!-- cart items will be inserted here -->
@@ -224,8 +224,6 @@
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
         <script>
-            let selectedCartItems;
-
             document.addEventListener('DOMContentLoaded', function () {
 
                 checkSignInStatus();
@@ -251,7 +249,6 @@
                             const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
 
                             dateElement.textContent = formattedDate;
-                            console.log(dateElement);
                         }
 
                         if (cart.cartItemDtos.length === 0) {
@@ -272,7 +269,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-4">
-                                            <input type="checkbox" class="cart-checkbox" checked>
+                                            <input type="checkbox" class="cart-checkbox" data-cart-item-id="${cartItem.cartItemId}">
                                             <div class="product-image">
                                                 <a href="product-details.html?product=${cartItem.productId}">
                                                     <img src="images/product/large-size/${cartItem.name}.jpg" alt="Li's Product Image">
@@ -310,6 +307,29 @@
                             cartTable.appendChild(cartItemElement);
                         });
 
+                        // Parse URL parameters and assign to the global variable
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const selectedCartItems = {};
+
+                        urlParams.getAll('selectedCartItems[]').forEach(cartItemId => {
+                            selectedCartItems[cartItemId] = true;
+                        });
+
+                        // Set the checkboxes based on selectedCartItems
+                        const checkboxes = document.querySelectorAll('.cart-checkbox');
+                        checkboxes.forEach(checkbox => {
+                            checkbox.checked = selectedCartItems[checkbox.getAttribute('data-cart-item-id')];
+                        });
+
+                        // Add event listener to checkboxes
+                        checkboxes.forEach(checkbox => {
+                            checkbox.addEventListener('change', () => {
+                                event.preventDefault();
+                                
+                                setSessionStatus();
+                            });
+                        });
+
                         document.querySelectorAll('.remove').forEach(item => {
                             item.addEventListener('click', function(event) {
                                 event.preventDefault();
@@ -337,8 +357,18 @@
                         const itemCountElement = document.getElementById('item-count');
                         const subtotalElement = document.getElementById('subtotal');
 
-                        itemCountElement.textContent = cart.cartItemDtos.length;
-                        subtotalElement.textContent = cart.subtotal.toFixed(2);
+                        // Calculate summary based on selectedCartItems
+                        const selectedItemCount = Object.values(selectedCartItems).filter(item => item).length;
+                        const selectedSubtotal = cart.cartItemDtos.reduce((total, cartItem) => {
+                            if (selectedCartItems[cartItem.cartItemId]) {
+                                const selectedQuantity = cartItem.quantity; // Adjust this line based on your structure
+                                total += selectedQuantity * cartItem.price; // Calculate subtotal based on quantity and unit price
+                            }
+                            return total;
+                        }, 0);
+
+                        itemCountElement.textContent = selectedItemCount;
+                        subtotalElement.textContent = selectedSubtotal.toFixed(2);
                     })
                     .catch(error => {
                         console.error(error);
@@ -369,5 +399,52 @@
                 });
             });
         </script>
+        <script>
+            function setUrlParams(selectedCartItems) {
+                const params = new URLSearchParams();
+        
+                for (const cartItemId in selectedCartItems) {
+                    if (selectedCartItems.hasOwnProperty(cartItemId) && selectedCartItems[cartItemId]) {
+                        params.append('selectedCartItems[]', cartItemId);
+                    }
+                }
+        
+                const currentUrl = new URL(window.location.href);
+                currentUrl.search = params.toString();
+        
+                // Replace the current URL with the updated one
+                window.history.replaceState({}, document.title, currentUrl.href);
+        
+                // Redirect to the updated URL
+                window.location.href = currentUrl.href;
+            }
+        
+            function setSessionStatus() {
+                const selectedCartItems = {};
+        
+                // Iterate through each cart item checkbox
+                const cartCheckboxes = document.querySelectorAll('.cart-checkbox');
+                cartCheckboxes.forEach(checkbox => {
+                    const cartItemId = checkbox.getAttribute('data-cart-item-id');
+                    const isChecked = checkbox.checked;
+                    selectedCartItems[cartItemId] = isChecked;
+                });
+        
+                setUrlParams(selectedCartItems);
+            }
+
+            function setSessionStatusToTrue() {
+                const selectedCartItems = {};
+        
+                // Iterate through each cart item checkbox
+                const cartCheckboxes = document.querySelectorAll('.cart-checkbox');
+                cartCheckboxes.forEach(checkbox => {
+                    const cartItemId = checkbox.getAttribute('data-cart-item-id');
+                    selectedCartItems[cartItemId] = true;
+                });
+        
+                setUrlParams(selectedCartItems);
+            }
+        </script>        
     </body>
 </html>

@@ -159,24 +159,21 @@
                         </div>
                         <div class="col-9">
                             <div class="shop-top-bar">
-                                <div>
-                                    <h2>
-                                        Showing 
-                                        <span style="font-weight: bold;" id="subcategory-name"></span>
-                                        <span id="in-text"></span>
-                                        <span style="font-weight: bold;" id="category-name"></span> 
-                                        <span style="color: gray; padding-left: 10px;"><span id="item-count"></span> items</span> 
-                                    </h2>
-                                </div>
-                                <div class="quantity-select">
-                                    <label>Sort by</label>
-                                        <select>
-                                            <option value="relevance">Relevance</option>
-                                            <option value="price,asc">Price: Low to High</option>
-                                            <option value="price,desc">Price: High to Low</option>
-                                            <option value="name,asc">Name: A to Z</option>
-                                            <option value="name,desc">Name: Z to A</option>
-                                        </select>
+                                <h2>
+                                    Showing 
+                                    <span style="font-weight: bold;" id="subcategory-name"></span>
+                                    <span id="in-text"></span>
+                                    <span style="font-weight: bold;" id="category-name"></span> 
+                                    <span style="color: #808080; padding-left: 10px;"><span id="item-count"></span> items</span> 
+                                </h2>
+                                <div class="quantity-select" style="display: flex;">
+                                    <select style="width: auto;">
+                                        <option value="relevance">Sort by: Relevance</option>
+                                        <option value="price,asc">Price: Low to High</option>
+                                        <option value="price,desc">Price: High to Low</option>
+                                        <option value="name,asc">Name: A to Z</option>
+                                        <option value="name,desc">Name: Z to A</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="shop-products-wrapper">
@@ -438,7 +435,7 @@
                             messageElement.className = 'col-12';
                             messageElement.style.textAlign = 'center';
 
-                            messageElement.innerHTML = '<p style="font-size: 16px; color: gray; padding: 20px;">No items found</p>';
+                            messageElement.innerHTML = '<p style="font-size: 16px; color: #808080; padding: 20px;">No items found</p>';
                         
                             productsContainer.appendChild(messageElement);
                         }

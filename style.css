@@ -128,7 +128,7 @@ input[type=checkbox] {
 }
 label {
 	font-weight: normal;
-	color: gray;
+	color: #808080;
 	font-size: 12px;
 }
 select {
@@ -610,7 +610,7 @@ option {
 	font-size: 12px;
 }
 .product-desc .product-name {
-	color: blue;
+	color: #0000FF;
 	font-size: 14px;
 }
 .product-desc .product-price {
@@ -910,7 +910,7 @@ option {
 .summary-container h3 span { 
 	 background:#fff; 
 	 padding:0 10px; 
-	 color: gray;
+	 color: #808080;
 }
 /*----------------------------------------*/
 /* 	3.5 Contact Page
@@ -942,7 +942,6 @@ iframe {
 	justify-content: space-between;
 	padding: 10px;
 	padding-top: 15px;
-	text-align: right;
 	border-top: 1px solid #e1e1e1; 
 	border-bottom: 1px solid #e1e1e1;
 }
@@ -950,7 +949,7 @@ iframe {
 	border-top: 1px solid #e1e1e1;
 }
 .shop-top-bar select {
-	padding: 0px;
+	padding: 5px;
 	font-size: 12px;
 }
 /*----- filter-area  css -----*/
@@ -973,7 +972,12 @@ iframe {
 .filter-label {
 	display: flex;
 	align-items: center;
-	font-size: 12px;
+	color: inherit; 
+	font-size: 14px;
+}
+.filter-label:hover {
+	cursor: pointer;
+	text-decoration: underline;
 }
 .filter-label input {
 	margin-right: 10px;
@@ -1093,6 +1097,7 @@ iframe {
 	padding: 10px; 
 	background-color: #e7f1fd;
 	font-size: 16px;
+	border-radius: 10px;
 }
 .security-form .delete-button,
 #deleteAccountModal .confirm-button {

@@ -146,7 +146,7 @@
                         <div class="col-4">
                             <div class="summary-container">
                                 <div class="summary-item">
-                                    <div style="font-weight: bold;">Subtotal <span style="color: gray; padding-left: 10px; font-weight: normal;"><span id="item-count">0</span> items</span></div>
+                                    <div style="font-weight: bold;">Subtotal <span style="color: #808080; padding-left: 10px; font-weight: normal;"><span id="item-count">0</span> items</span></div>
                                     <div style="font-weight: bold;">RM <span id="subtotal">0.00</span></div>
                                 </div>
                                 <div class="summary-item">
@@ -253,7 +253,7 @@
 
                         if (cart.cartItemDtos.length === 0) {
                             const messageRow = document.createElement('tr');
-                            messageRow.innerHTML = '<p style="text-align: center;">Your cart is empty</p>';
+                            messageRow.innerHTML = '<p style="text-align: center; font-size: 16px; color: #808080; position: relative; left: 100px;">Your cart is empty</p>';
                             cartTable.appendChild(messageRow);
                             return;
                         }
@@ -307,7 +307,7 @@
                             cartTable.appendChild(cartItemElement);
                         });
 
-                        // Parse URL parameters and assign to the global variable
+                        // Set the checkboxes based on selectedCartItems
                         const urlParams = new URLSearchParams(window.location.search);
                         const selectedCartItems = {};
 
@@ -315,7 +315,6 @@
                             selectedCartItems[cartItemId] = true;
                         });
 
-                        // Set the checkboxes based on selectedCartItems
                         const checkboxes = document.querySelectorAll('.cart-checkbox');
                         checkboxes.forEach(checkbox => {
                             checkbox.checked = selectedCartItems[checkbox.getAttribute('data-cart-item-id')];

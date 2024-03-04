@@ -122,7 +122,8 @@ input, textarea {
 	width: 100%;
 	height: auto;
 }
-input[type=checkbox] {
+input[type=checkbox],
+input[type=radio] {
 	width: auto;
 	height: auto;
 }
@@ -783,6 +784,11 @@ option {
 	-ms-flex-pack: center;
 	justify-content: center;
 	width: 100%
+}
+.feed-item-list h3 {
+	font-weight: bold; 
+	margin-bottom: 5px;
+	font-size: 18px; 
 }
 .billing-basic-form,
 .billing-address-form {

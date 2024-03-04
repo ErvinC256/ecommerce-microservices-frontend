@@ -125,9 +125,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-7">
-                            <div class="section-title">
-                                <h2>Order Checkout</h2>
-                            </div><br><br>
                             <ol class="activity-checkout">
                                 <li class="checkout-item">
                                     <div class="avatar checkout-icon p-1">
@@ -136,7 +133,7 @@
                                         </div>
                                     </div>
                                     <div class="feed-item-list">
-                                        <h3 style="font-weight: bold; margin-bottom: 5px;">Billing Information</h3>
+                                        <h3>Billing Information</h3>
                                         <p style="margin-bottom: 20px;">Provide accurate billing information.</p>
                                         <form action="" class="billing-basic-form">
                                             <div class="row">
@@ -167,10 +164,12 @@
                                         </div>
                                     </div>
                                     <div class="feed-item-list">
-                                        <h3 style="font-weight: bold; margin-bottom: 5px;">Shipping Information</h3>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <h3>Shipping Information</h3><button class="my-button-inverse">Edit your addresses</button>
+                                        </div>
                                         <p style="margin-bottom: 20px;">Provide accurate shipping details for correct delivery.</p>
                                         <div id="addressContainer" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;"></div>
-                                        <form action="" class="billing-address-form">
+                                        <form id="moreText" style="display: none;" action="" class="billing-address-form">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label for="">Street Address</label>
@@ -205,11 +204,29 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        <div style="background-color: #f0f2f2; padding: 10px;">
+                                            <a href="#" id="moreLink" onclick="showMore(event)" class="link-inverse">Fill up shipping information <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                            <a href="#" id="lessLink" style="display: none;" onclick="showLess(event)" class="link-inverse">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="checkout-item">
+                                    <div class="avatar checkout-icon p-1">
+                                        <div class="avatar-title rounded-circle bg-primary">
+                                            <i class="bx bxs-note"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feed-item-list">
+                                        <label style="font-size: 14px; color: #000;">
+                                            <input type="checkbox" style="margin-right: 10px; position: relative; top: 2px;">
+                                            <span>By checking this box, you confirm that the billing information entered is accurate and complete.</span> 
+                                        </label>
                                     </div>
                                 </li>
                             </ol>
                         </div>
-                        <div class="col-5">
+                        <div class="col-1"></div>
+                        <div class="col-4">
                             <div class="summary-container">
                                 <h3 style="font-weight: bold;">Order Summary</h3>
                                 <hr>
@@ -308,9 +325,10 @@
                                         <div style="font-size: 14px;">${address.state}</div>
                                         <div style="color: #808080;">Malaysia</div>
                                     </div>
-                                    <div>
-                                        Hello world
-                                    </div>
+                                    <label for="billingAddress${index}" style="cursor: pointer; font-size: 14px; color: #000;">
+                                        <input type="radio" id="billingAddress${index}" name="billingAddress" style="margin-right: 10px; position: relative; top: 2px;">
+                                        <span class="link-inverse" style="font-weight: bold;">Select this address for billing</span> 
+                                    </label>
                                 </div>
                             `;
                         });
@@ -320,6 +338,21 @@
                     });
                 
             });
+        </script>
+        <script>
+            function showMore(e) {
+                e.preventDefault();
+                document.getElementById('moreText').style.display = 'inline';
+                document.getElementById('moreLink').style.display = 'none';
+                document.getElementById('lessLink').style.display = 'inline';
+            }
+        
+            function showLess(e) {
+                e.preventDefault();
+                document.getElementById('moreText').style.display = 'none';
+                document.getElementById('moreLink').style.display = 'inline';
+                document.getElementById('lessLink').style.display = 'none';
+            }
         </script>
     </body>
 </html>

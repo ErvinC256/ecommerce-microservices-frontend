@@ -225,7 +225,7 @@ option {
 	left:50%;
 	transform:translate(-50%,-50%) rotate(45deg);
 	background-color:#fff;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 .my-tooltip .tooltip-top {
 	padding: 5px 15px;
@@ -302,6 +302,10 @@ option {
 /*----------------------------------------*/
 .modal-header {
 	background-color: #e7f1fd;
+	padding: 10px 15px;
+}
+.modal form {
+	padding: 10px;
 }
 /*----------------------------------------*/
 /*  1.11 Corner popup
@@ -314,7 +318,7 @@ option {
 	padding: 10px 20px;
 	color: #fff;
 	background-color: rgba(0, 0, 0, 0.7);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	transition: opacity 0.5s ease-in-out;
 }
 /*----------------------------------------*/
@@ -464,7 +468,7 @@ option {
 	transform-origin: 0 0 0;
 	visibility: hidden;
 	transition: all 0.3s ease-in-out 0s;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	width: 200px;
 	z-index: 99;
 }
@@ -565,7 +569,6 @@ option {
 }
 .single-product-wrap::before {
 	background: #fff none repeat scroll 0 0;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	bottom: -5px;
 	content: "";
 	left: -5px;
@@ -793,6 +796,25 @@ option {
 .billing-basic-form label,
 .billing-address-form {
     font-weight: bold;
+}
+.address-block2 {
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+	border: 1px solid #e1e1e1; 
+	margin-bottom: 20px; 
+	padding: 20px; 
+	border-radius: 5px;
+}
+.edit-block2 {
+	margin-bottom: 20px; 
+	border-bottom: 1px solid #e1e1e1;
+}
+.edit-div2 {
+	display: flex; 
+	justify-content: space-between;
+}
+.details-block2 {
+	margin-bottom: 20px; 
+	border-bottom: 1px solid #e1e1e1;
 }
 /*----------------------------------------*/
 /*  3.3 Sign In Register Page

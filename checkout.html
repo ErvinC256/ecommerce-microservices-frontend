@@ -169,6 +169,7 @@
                                     <div class="feed-item-list">
                                         <h3 style="font-weight: bold; margin-bottom: 5px;">Shipping Information</h3>
                                         <p style="margin-bottom: 20px;">Provide accurate shipping details for correct delivery.</p>
+                                        <div id="addressContainer" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;"></div>
                                         <form action="" class="billing-address-form">
                                             <div class="row">
                                                 <div class="col-12">
@@ -273,5 +274,52 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                checkSignInStatus();
+                getCartNumber();
+
+                const userId = sessionStorage.getItem('userId'); // Replace with the actual userId
+                const username = sessionStorage.getItem('username');
+                const addressContainer = document.querySelector('#addressContainer');
+
+                // load user addresses
+                fetch(`http://localhost:8080/users/${userId}/addresses`)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(addresses => {
+                        addresses.forEach((address, index) => {
+                            addressContainer.innerHTML += `
+                                <div class="address-block2">
+                                    <div class="edit-block2">
+                                        <div class="edit-div2">
+                                            <label for="">Address</label>
+                                            <img src="images/logo/site-logo-only.jpg" alt="" style="width: 15%; position: relative; left: 5px; bottom: 5px;">
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span style="color: #808080;">Address ${index + 1}
+                                        </div>
+                                    </div>
+                                    <div class="details-block2">
+                                        <div style="font-size: 14px;">${address.streetAddress}</div>
+                                        <div style="font-size: 14px;">${address.city}</div>
+                                        <div style="font-size: 14px;">${address.zipcode}</div>
+                                        <div style="font-size: 14px;">${address.state}</div>
+                                        <div style="color: #808080;">Malaysia</div>
+                                    </div>
+                                    <div>
+                                        Hello world
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                
+            });
+        </script>
     </body>
 </html>

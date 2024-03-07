@@ -160,7 +160,7 @@
                                 </div>
                                 <hr>
                                 <div class="summary-item">
-                                    <button class="my-button" style="width: 100%;">Proceed to checkout</button>
+                                    <button class="my-button checkout-button" style="width: 100%;">Proceed to checkout</button>
                                 </div>
                                 <h3><span>or</span></h3>
                                 <div class="summary-item">
@@ -372,7 +372,8 @@
                     .catch(error => {
                         console.error(error);
                     });
-
+                
+                // clear cart event
                 document.getElementById('clear-cart').addEventListener('click', function() {
                     event.preventDefault();
 
@@ -395,6 +396,13 @@
                     .catch(error => {
                         console.error(error.message);
                     });
+                });
+
+                // checkout event
+                document.querySelector('.checkout-button').addEventListener('click', function() {
+                    event.preventDefault();
+
+                    window.location.href = 'checkout.html?cartItemIds=2&cartItemIds=5&subtotal=50';
                 });
             });
         </script>

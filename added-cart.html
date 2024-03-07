@@ -136,7 +136,7 @@
                                 </div><br>
                                 <button class="my-button" style="width: 100%;"><a href="shopping-cart.html">View cart</a></button>
                                 <h3><span>or</span></h3>
-                                <button class="my-button-inverse" style="width: 100%;">Checkout this item</button>
+                                <button class="my-button-inverse checkout-button" style="width: 100%;">Checkout this item</button>
                             </div>
                         </div>
                     </div>
@@ -260,6 +260,18 @@
                     .catch(error => {
                         console.error(error);
                     })
+
+                // checkout event
+                document.querySelector('.checkout-button').addEventListener('click', function() {
+                    event.preventDefault();
+
+                    const params = new URLSearchParams(window.location.search);
+                    const cartItemId = params.get('cartItemId');
+
+                    let redirectURL = `checkout.html?cartItemIds=${cartItemId}`;
+                    window.location.href = redirectURL;
+                    
+                });
 
             });
         </script>

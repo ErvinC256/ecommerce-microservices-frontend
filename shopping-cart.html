@@ -310,7 +310,7 @@
                         const urlParams = new URLSearchParams(window.location.search);
                         const selectedCartItems = {};
 
-                        urlParams.getAll('selectedCartItems[]').forEach(cartItemId => {
+                        urlParams.getAll('selectedCartItems').forEach(cartItemId => {
                             selectedCartItems[cartItemId] = true;
                         });
 
@@ -398,11 +398,31 @@
                 });
 
                 // checkout event
-                document.querySelector('.checkout-button').addEventListener('click', function() {
+                document.querySelector('.checkout-button').addEventListener('click', function(event) {
                     event.preventDefault();
 
-                    window.location.href = 'checkout.html?cartItemIds=2&cartItemIds=5&subtotal=50';
+                    const params = new URLSearchParams(window.location.search);
+                    let redirectURL = 'checkout.html?';
+
+                    if (params.has('selectedCartItems')) {
+                        const cartItemIds = params.getAll('selectedCartItems');
+
+                        for (let i = 0; i < cartItemIds.length; i++) {
+                            redirectURL += `cartItemIds=${cartItemIds[i]}`;
+
+                            // Add ampersand if it's not the last parameter
+                            if (i < cartItemIds.length - 1) {
+                                redirectURL += '&';
+                            }
+                        }
+
+                        window.location.href = redirectURL;
+
+                    } else {
+                        console.log('No cart item');
+                    }
                 });
+
             });
         </script>
         <script>
@@ -411,7 +431,7 @@
         
                 for (const cartItemId in selectedCartItems) {
                     if (selectedCartItems.hasOwnProperty(cartItemId) && selectedCartItems[cartItemId]) {
-                        params.append('selectedCartItems[]', cartItemId);
+                        params.append('selectedCartItems', cartItemId);
                     }
                 }
         

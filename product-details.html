@@ -410,7 +410,6 @@
                                                         <input type="hidden" name="product-id" value="${product.productId}">
                                                         <div style="margin-top: 10px;">
                                                             <button type="submit" id="add-to-cart" class="my-button" style="margin-right: 10px;">Add to cart</button>
-                                                            <button type="submit" id="checkout" class="my-button-inverse">Checkout this item</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -558,8 +557,8 @@
                                     }
                                     return response.json();
                                 })
-                                .then(() => {
-                                    window.location.href = `added-cart.html?productId=${productId}`;
+                                .then((cartItem) => {
+                                    window.location.href = `added-cart.html?productId=${productId}&cartItemId=${cartItem.id}`;
                                 })
                                 .catch(error => {
                                     console.error(error.message);

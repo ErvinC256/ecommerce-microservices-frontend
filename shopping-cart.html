@@ -332,7 +332,7 @@
                             item.addEventListener('click', function(event) {
                                 event.preventDefault();
 
-                                fetch(`http://localhost:8080/carts/${userId}/cart-items/${this.dataset.id}`, {
+                                fetch(`http://localhost:8080/carts/${userId}/cart-items/by-ids?cartItemIds=${this.dataset.id}`, {
                                     method: 'DELETE',
                                 })
                                 .then(response => {
@@ -379,7 +379,7 @@
                     const userId = sessionStorage.getItem('userId');
 
                     // clear all the items in cart
-                    fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
+                    fetch(`http://localhost:8080/carts/${userId}/cart-items/all`, {
                         method: 'DELETE'
                     })
                     .then(response => {

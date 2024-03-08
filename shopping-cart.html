@@ -144,6 +144,8 @@
                         </div>
                         <div class="col-4">
                             <div class="summary-container">
+                                <h2 style="font-weight: bold; font-size: 18px;">Cart Summary</h2>
+                                <hr>
                                 <div class="summary-item">
                                     <div style="font-weight: bold;">Subtotal <span style="color: #808080; padding-left: 10px; font-weight: normal;"><span id="item-count">0</span> items</span></div>
                                     <div style="font-weight: bold;">RM <span id="subtotal">0.00</span></div>
@@ -284,7 +286,7 @@
                                                 <div>
                                                     <div class="quantity-select">
                                                         <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: ${cartItem.quantityInStock}</p>
-                                                        <select>
+                                                        <select data-cart-item-id="${cartItem.cartItemId}">
                                                             ${selectOptions}
                                                         </select>
                                                     </div>
@@ -305,6 +307,27 @@
                                 </td>
                             `;
                             cartTable.appendChild(cartItemElement);
+
+                            // After appending cartItemElement to the DOM
+                            const selectElement = cartItemElement.querySelector('select');
+                            selectElement.addEventListener('change', function(event) {
+                                const newQuantity = parseInt(event.target.value);
+                                const cartItemId = parseInt(selectElement.dataset.cartItemId);
+
+                                fetch(`http://localhost:8080/carts/${userId}/cart-items/${cartItemId}?newQuantity=${newQuantity}`, {
+                                    method: 'PUT',
+                                })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Failed to update cart item');
+                                    }
+                                    window.location.reload();
+                                })
+                                .catch(error => {
+                                    console.error(error);
+                                    // Handle error if needed
+                                });
+                            });
                         });
 
                         // Set the checkboxes based on selectedCartItems
@@ -368,6 +391,7 @@
 
                         itemCountElement.textContent = selectedItemCount;
                         subtotalElement.textContent = selectedSubtotal.toFixed(2);
+                        
                     })
                     .catch(error => {
                         console.error(error);
@@ -403,13 +427,15 @@
                     event.preventDefault();
 
                     const params = new URLSearchParams(window.location.search);
-                    let redirectURL = 'checkout.html?';
+                    const subtotal = document.getElementById('subtotal').textContent;
+
+                    let redirectURL = `checkout.html?subtotal=${subtotal}`;
 
                     if (params.has('selectedCartItems')) {
                         const cartItemIds = params.getAll('selectedCartItems');
 
                         for (let i = 0; i < cartItemIds.length; i++) {
-                            redirectURL += `cartItemIds=${cartItemIds[i]}`;
+                            redirectURL += `&cartItemIds=${cartItemIds[i]}`;
 
                             // Add ampersand if it's not the last parameter
                             if (i < cartItemIds.length - 1) {
@@ -418,7 +444,6 @@
                         }
 
                         window.location.href = redirectURL;
-
                     } else {
                         document.querySelector('.error-message').textContent = 'Please select at least an item';
                     }

@@ -227,13 +227,18 @@
                         <div class="col-1"></div>
                         <div class="col-4">
                             <div class="summary-container">
-                                <h3 style="font-weight: bold;">Order Summary</h3>
+                                <h2 style="font-weight: bold; font-size: 18px;">Order Summary</h2>
                                 <hr>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <div>Subtotal <span style="color: #808080; padding-left: 10px;"><span id="item-count">0</span> items</span></div>
-                                    <div>RM <span id="subtotal">0.00</span></div>
+                                <div class="summary-item">
+                                    <div style="font-weight: bold;">Subtotal <span style="color: #808080; padding-left: 10px; font-weight: normal;"><span id="item-count">0</span> items</span></div>
+                                    <div style="font-weight: bold;">RM <span id="subtotal">0.00</span></div>
                                 </div>
+                                <hr>
                                 <div class="paypal-buttons">
+                                    <div>Pay with</div>
+                                    <div style="padding-top: 20px; padding-bottom: 20px; display: flex; align-items: center;">
+                                        <input type="radio" name="" id="" style="margin-right: 10px;" checked><img src="images/icon/Screenshot 2024-03-08 231705.png" alt="" width="15%">
+                                    </div>
                                     <div id="paypal-button-container"></div>
                                     <p id="result-message"></p>
                                 </div>
@@ -302,6 +307,23 @@
             document.addEventListener('DOMContentLoaded', function() {
                 checkSignInStatus();
                 getCartNumber();
+
+                // Get URL parameters
+                const params = new URLSearchParams(window.location.search);
+                const subtotal = params.get('subtotal');
+                const cartItemIds = params.getAll('cartItemIds');
+
+                // Update Subtotal
+                const subtotalElement = document.getElementById('subtotal');
+                if (subtotalElement) {
+                    subtotalElement.textContent = subtotal || '0.00';
+                }
+
+                // Update No of Items
+                const itemCountElement = document.getElementById('item-count');
+                if (itemCountElement && cartItemIds) {
+                    itemCountElement.textContent = cartItemIds.length.toString() || '0';
+                }
 
                 const userId = sessionStorage.getItem('userId'); // Replace with the actual userId
                 const username = sessionStorage.getItem('username');

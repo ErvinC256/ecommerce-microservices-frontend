@@ -253,7 +253,6 @@
 
                     // Check if the username or password is empty
                     if (!username || !email || !password || !confirmPassword) {
-                        document.querySelector('.error-message').style.display = 'block';
                         document.querySelector('.error-message').innerText = 'Please fill in your credentials';
                         return;
                     }
@@ -261,7 +260,6 @@
                     // Check if the agreement checkbox is not checked
                     const agreementCheckbox = document.querySelector('#agree');
                     if (!agreementCheckbox.checked) {
-                        document.querySelector('.error-message').style.display = 'block';
                         document.querySelector('.error-message').innerText = 'Please agree to the terms and conditions';
                         return;
                     }
@@ -291,7 +289,6 @@
                             window.location.href = 'sign-in.html';
                         })
                         .catch(error => {
-                            document.querySelector('.error-message').style.display = 'block';
                             document.querySelector('.error-message').innerText = error.message;
                         });
                 });

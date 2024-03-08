@@ -495,13 +495,11 @@
                                 const input = inputElements[j];
 
                                 if (input.name === 'username' && input.value === '') {
-                                    modal.querySelector('.error-message').style.display = 'block';
                                     modal.querySelector('.error-message').innerText = 'Please provide an username';
                                     return;
                                 } else if (input.name === 'gender' && input.value === 'Please select a gender') {
                                     modalValues[input.name] = null;
                                 } else if (input.name === 'email' && input.value === '') {
-                                    modal.querySelector('.error-message').style.display = 'block';
                                     modal.querySelector('.error-message').innerText = 'Please provide an email';
                                     return;
                                 } else if (input.name === 'birthday' && input.value === '') {
@@ -540,11 +538,9 @@
                             .catch(error => {
                                 
                                 if (error.message === 'Email not in valid format') {
-                                    document.querySelector('#emailModal .error-message').style.display = 'block';
                                     document.querySelector('#emailModal .error-message').innerText = error.message;
                                 }
                                 else if (error === 'Password must be at least 6 characters') {
-                                    document.querySelector('#passwordModal .error-message').style.display = 'block';
                                     document.querySelector('#passwordModal .error-message').innerText = error.message;
                                 }
                             });

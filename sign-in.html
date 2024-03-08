@@ -221,7 +221,6 @@
 
                     // Check if the email or password is empty
                     if (!email || !password) {
-                        document.querySelector('.error-message').style.display = 'block';
                         document.querySelector('.error-message').innerText = 'Please fill in your credentials';
                         return;
                     }
@@ -260,7 +259,6 @@
 
                         })
                         .catch(error => {
-                            document.querySelector('.error-message').style.display = 'block';
                             document.querySelector('.error-message').innerText = error.message;
                         });
                 });

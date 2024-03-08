@@ -161,6 +161,7 @@
                                 <div class="summary-item">
                                     <button class="my-button checkout-button" style="width: 100%;">Proceed to checkout</button>
                                 </div>
+                                <div class="error-message"></div>
                                 <h3><span>or</span></h3>
                                 <div class="summary-item">
                                     <button class="my-button-inverse" style="width: 100%;"><a href="index.html">Back to shopping</a></button>
@@ -419,7 +420,7 @@
                         window.location.href = redirectURL;
 
                     } else {
-                        console.log('No cart item');
+                        document.querySelector('.error-message').textContent = 'Please select at least an item';
                     }
                 });
 

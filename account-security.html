@@ -268,7 +268,6 @@
                     const deleteText = document.querySelector('#deleteAccountModal').querySelector('input[name="confirmDelete"]').value;
 
                     if (deleteText !== 'DELETE') {
-                        document.querySelector('#deleteAccountModal .error-message').style.display = 'block';
                         document.querySelector('#deleteAccountModal .error-message').innerText = 'Please enter DELETE';
                         return;
                     }

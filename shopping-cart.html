@@ -151,10 +151,9 @@
                                     <div style="font-weight: bold;">RM <span id="subtotal">0.00</span></div>
                                 </div>
                                 <div class="summary-item">
-                                    <div style="font-size: 12px;">Shipping</div>
-                                    <div style="font-size: 12px;">Free</div>
+                                    <div style="font-size: 12px;">Shipping Fee</div>
+                                    <div style="font-size: 12px;">---</div>
                                 </div>
-                                <hr>
                                 <div class="summary-item">
                                     <div style="font-weight: bold;">Estimated total</div>
                                     <div style="font-style: italic;">Calculated at checkout</div>
@@ -238,14 +237,14 @@
                     .then(response => {
                         return response.json();
                     })
-                    .then(cart => {
+                    .then(cartDto => {
                         const cartTable = document.querySelector('.cart-table');
                         const dateElement = document.querySelector('#last-updated');
 
-                        if (!cart.lastUpdated) {
+                        if (!cartDto.lastUpdated) {
                             dateElement.textContent = '';
                         } else {
-                            const lastUpdated = new Date(cart.lastUpdated);
+                            const lastUpdated = new Date(cartDto.lastUpdated);
 
                             const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
                             const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
@@ -253,40 +252,40 @@
                             dateElement.textContent = formattedDate;
                         }
 
-                        if (cart.cartItemDtos.length === 0) {
+                        if (cartDto.cartItemDtos.length === 0) {
                             const messageRow = document.createElement('tr');
                             messageRow.innerHTML = '<p style="text-align: center; font-size: 16px; color: #808080; position: relative; left: 100px;">Your cart is empty</p>';
                             cartTable.appendChild(messageRow);
                             return;
                         }
 
-                        cart.cartItemDtos.forEach(cartItem => {
+                        cartDto.cartItemDtos.forEach(cartItemDto => {
                             const cartItemElement = document.createElement('tr');
                             let selectOptions = '';
                             for (let i = 1; i <= 10; i++) {
                                 const optionText = i === 1 ? 'Quantity: 1' : i;
-                                selectOptions += `<option value="${i}" ${i === cartItem.quantity ? 'selected' : ''}>${optionText}</option>`;
+                                selectOptions += `<option value="${i}" ${i === cartItemDto.cartItem.quantity ? 'selected' : ''}>${optionText}</option>`;
                             }
                             cartItemElement.innerHTML = `
                                 <td>
                                     <div class="row">
                                         <div class="col-4">
-                                            <input type="checkbox" class="cart-checkbox" data-cart-item-id="${cartItem.cartItemId}">
+                                            <input type="checkbox" class="cart-checkbox" data-cart-item-id="${cartItemDto.cartItem.id}">
                                             <div class="product-image">
-                                                <a href="product-details.html?product=${cartItem.productId}">
-                                                    <img src="images/product/large-size/${cartItem.name}.jpg" alt="Li's Product Image">
+                                                <a href="product-details.html?product=${cartItemDto.cartItem.productId}">
+                                                    <img src="images/product/large-size/${cartItemDto.name}.jpg" alt="Li's Product Image">
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="col-8">
                                             <div class="cart-product-details">
                                                 <div>
-                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${cartItem.productId}">${cartItem.name}</a></p>
+                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${cartItemDto.cartItem.productId}">${cartItemDto.name}</a></p>
                                                 </div>
                                                 <div>
                                                     <div class="quantity-select">
-                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: ${cartItem.quantityInStock}</p>
-                                                        <select data-cart-item-id="${cartItem.cartItemId}">
+                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: ${cartItemDto.quantityInStock}</p>
+                                                        <select data-cart-item-id="${cartItemDto.cartItem.id}">
                                                             ${selectOptions}
                                                         </select>
                                                     </div>
@@ -294,8 +293,8 @@
                                                 <div>
                                                     <ul class="cart-options">
                                                         <li><a href="" class="link-inverse">Checkout</a></li>
-                                                        <li><a href="" class="remove link-inverse" data-id="${cartItem.cartItemId}">Remove</a></li>
-                                                        <li><a href="product-details.html?product=${cartItem.productId}" class="link-inverse">View details</a></li>      
+                                                        <li><a href="" class="remove link-inverse" data-cart-item-id="${cartItemDto.cartItem.id}">Remove</a></li>
+                                                        <li><a href="product-details.html?product=${cartItemDto.cartItem.productId}" class="link-inverse">View details</a></li>      
                                                     </ul>
                                                 </div>
                                             </div>
@@ -303,7 +302,7 @@
                                     </div>
                                 </td>
                                 <td style="text-align: right; width: 100px;">
-                                    <p style="font-weight: bold;">RM ${cartItem.price.toFixed(2)}</p>
+                                    <p style="font-weight: bold;">RM ${cartItemDto.price.toFixed(2)}</p>
                                 </td>
                             `;
                             cartTable.appendChild(cartItemElement);
@@ -352,11 +351,12 @@
                             });
                         });
 
+                        // remove cart item event
                         document.querySelectorAll('.remove').forEach(item => {
                             item.addEventListener('click', function(event) {
                                 event.preventDefault();
 
-                                fetch(`http://localhost:8080/carts/${userId}/cart-items/by-ids?cartItemIds=${this.dataset.id}`, {
+                                fetch(`http://localhost:8080/carts/${userId}/cart-items/by-ids?cartItemIds=${this.dataset.cartItemId}`, {
                                     method: 'DELETE',
                                 })
                                 .then(response => {
@@ -367,7 +367,7 @@
                                     }
                                 })
                                 .then(() => {
-                                    location.reload();
+                                    window.location.href = 'shopping-cart.html';
                                 })
                                 .catch(error => {
                                     console.error(error.message);
@@ -379,17 +379,15 @@
                         const itemCountElement = document.getElementById('item-count');
                         const subtotalElement = document.getElementById('subtotal');
 
-                        // Calculate summary based on selectedCartItems
-                        const selectedItemCount = Object.values(selectedCartItems).filter(item => item).length;
-                        const selectedSubtotal = cart.cartItemDtos.reduce((total, cartItem) => {
-                            if (selectedCartItems[cartItem.cartItemId]) {
-                                const selectedQuantity = cartItem.quantity; // Adjust this line based on your structure
-                                total += selectedQuantity * cartItem.price; // Calculate subtotal based on quantity and unit price
+                        let selectedSubtotal = 0;
+                        for (const cartItemDto of cartDto.cartItemDtos) {
+                            if (selectedCartItems[cartItemDto.cartItem.id]) {
+                                const selectedQuantity = cartItemDto.cartItem.quantity; // Adjust this line based on your structure
+                                selectedSubtotal += selectedQuantity * cartItemDto.price; // Calculate subtotal based on quantity and unit price
                             }
-                            return total;
-                        }, 0);
+                        }
 
-                        itemCountElement.textContent = selectedItemCount;
+                        itemCountElement.textContent = Object.keys(selectedCartItems).length;
                         subtotalElement.textContent = selectedSubtotal.toFixed(2);
                         
                     })
@@ -415,7 +413,7 @@
                         }
                     })
                     .then(() => {
-                        location.reload();
+                        window.location.href = 'shopping-cart.html';
                     })
                     .catch(error => {
                         console.error(error.message);

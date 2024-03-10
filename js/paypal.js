@@ -1,14 +1,25 @@
 window.paypal
     .Buttons({
+        style: {
+            color: 'gold',
+            shape: 'pill',
+            label: 'paypal',
+            height: 35
+        },
         async createOrder() {
 
             const urlParams = new URLSearchParams(window.location.search);
             // Get specific parameters
             const cartItemIds = urlParams.getAll('cartItemIds');
-            const subtotal = urlParams.get('subtotal');
+            const amount = urlParams.get('subtotal');
+            const userId = sessionStorage.getItem('userId');
+
+            console.log(cartItemIds);
+
+            const cartItemParams = cartItemIds.map(itemId => `cartItemIds=${encodeURIComponent(itemId)}`).join('&');
 
             try {
-                const response = await fetch(`http://localhost:8080/orders/init?amount=${subtotal}`, {
+                const response = await fetch(`http://localhost:8080/orders/init?userId=${userId}&amount=${amount}&${cartItemParams}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -24,7 +35,7 @@ window.paypal
                 });
 
                 const orderData = await response.json();
-                
+
                 if (orderData.paypalOrderId) {
                     
                     sessionStorage.setItem('orderId', orderData.orderId);

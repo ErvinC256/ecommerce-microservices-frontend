@@ -229,9 +229,21 @@
                             <div class="summary-container">
                                 <h2 style="font-weight: bold; font-size: 18px;">Order Summary</h2>
                                 <hr>
-                                <div class="summary-item">
-                                    <div style="font-weight: bold;">Subtotal <span style="color: #808080; padding-left: 10px; font-weight: normal;"><span id="item-count">0</span> items</span></div>
+                                <div class="summary-item" style="font-size: 16px;">
+                                    <div style="font-weight: bold;">Subtotal<span style="color: #808080; padding-left: 10px; font-weight: normal;"><span id="item-count">0</span> items</span></div>
                                     <div style="font-weight: bold;">RM <span id="subtotal">0.00</span></div>
+                                </div>
+                                <div class="summary-item">
+                                    <div style="font-size: 12px;">Shipping Fee</div>
+                                    <div style="font-size: 12px;">---</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div style="font-size: 12px;">Shipping Fee SST</div>
+                                    <div style="font-size: 12px;">---</div>
+                                </div>
+                                <div class="summary-item" style="font-size: 16px;">
+                                    <div style="font-weight: bold; color: #CD5C5C;">Order total</div>
+                                    <div style="font-weight: bold;">RM <span id="total">0.00</span></div>
                                 </div>
                                 <hr>
                                 <div class="payment-choice" style="padding-top: 10px; padding-bottom: 10px;">
@@ -240,7 +252,6 @@
                                         <input type="radio" name="" id="" style="margin-right: 10px;" checked><img src="images/icon/Screenshot 2024-03-08 231705.png" alt="" width="15%" style="margin-right: 10px;"><span>Paypal</span>
                                     </div>    
                                 </div>
-                                <hr>
                                 <div class="paypal-buttons" style="padding-top: 10px; padding-bottom: 10px;">
                                     <div id="paypal-button-container"></div>
                                     <p id="result-message"></p>
@@ -314,13 +325,14 @@
                 // Get URL parameters
                 const params = new URLSearchParams(window.location.search);
                 const subtotal = params.get('subtotal');
+                const total = params.get('total');
                 const cartItemIds = params.getAll('cartItemIds');
 
-                // Update Subtotal
+                // Update Subtotal and total
                 const subtotalElement = document.getElementById('subtotal');
-                if (subtotalElement) {
-                    subtotalElement.textContent = subtotal || '0.00';
-                }
+                const totalElement = document.getElementById('total');
+                subtotalElement.textContent = subtotal;
+                totalElement.textContent = subtotal;
 
                 // Update No of Items
                 const itemCountElement = document.getElementById('item-count');

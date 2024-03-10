@@ -273,14 +273,14 @@
                                             <input type="checkbox" class="cart-checkbox" data-cart-item-id="${cartItemDto.cartItem.id}">
                                             <div class="product-image">
                                                 <a href="product-details.html?product=${cartItemDto.cartItem.productId}">
-                                                    <img src="images/product/large-size/${cartItemDto.name}.jpg" alt="Li's Product Image">
+                                                    <img src="images/product/large-size/${cartItemDto.productName}.jpg" alt="Li's Product Image">
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="col-8">
                                             <div class="cart-product-details">
                                                 <div>
-                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${cartItemDto.cartItem.productId}">${cartItemDto.name}</a></p>
+                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${cartItemDto.cartItem.productId}">${cartItemDto.productName}</a></p>
                                                 </div>
                                                 <div>
                                                     <div class="quantity-select">
@@ -302,7 +302,7 @@
                                     </div>
                                 </td>
                                 <td style="text-align: right; width: 100px;">
-                                    <p style="font-weight: bold;">RM ${cartItemDto.price.toFixed(2)}</p>
+                                    <p style="font-weight: bold;">RM ${cartItemDto.productPrice.toFixed(2)}</p>
                                 </td>
                             `;
                             cartTable.appendChild(cartItemElement);
@@ -383,7 +383,7 @@
                         for (const cartItemDto of cartDto.cartItemDtos) {
                             if (selectedCartItems[cartItemDto.cartItem.id]) {
                                 const selectedQuantity = cartItemDto.cartItem.quantity; // Adjust this line based on your structure
-                                selectedSubtotal += selectedQuantity * cartItemDto.price; // Calculate subtotal based on quantity and unit price
+                                selectedSubtotal += selectedQuantity * cartItemDto.productPrice; // Calculate subtotal based on quantity and unit price
                             }
                         }
 

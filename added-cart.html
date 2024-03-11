@@ -256,22 +256,23 @@
                             .catch(error => {
                                 console.error(error);
                             });
+
+                        
+                        // checkout event
+                        document.querySelector('.checkout-button').addEventListener('click', function() {
+                            event.preventDefault();
+
+                            const params = new URLSearchParams(window.location.search);
+                            const cartItemId = params.get('cartItemId');
+
+                            let redirectURL = `shopping-cart.html?selectedCartItems=${cartItemId}`;
+                            window.location.href = redirectURL;
+                            
+                        });
                     })
                     .catch(error => {
                         console.error(error);
                     })
-
-                // checkout event
-                document.querySelector('.checkout-button').addEventListener('click', function() {
-                    event.preventDefault();
-
-                    const params = new URLSearchParams(window.location.search);
-                    const cartItemId = params.get('cartItemId');
-
-                    let redirectURL = `checkout.html?cartItemIds=${cartItemId}`;
-                    window.location.href = redirectURL;
-                    
-                });
 
             });
         </script>

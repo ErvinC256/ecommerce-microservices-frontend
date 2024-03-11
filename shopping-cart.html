@@ -316,16 +316,16 @@
                                 fetch(`http://localhost:8080/carts/${userId}/cart-items/${cartItemId}?newQuantity=${newQuantity}`, {
                                     method: 'PUT',
                                 })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('Failed to update cart item');
-                                    }
-                                    window.location.reload();
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                    // Handle error if needed
-                                });
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Failed to update cart item');
+                                        }
+                                        window.location.reload();
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                        // Handle error if needed
+                                    });
                             });
                         });
 
@@ -359,19 +359,19 @@
                                 fetch(`http://localhost:8080/carts/${userId}/cart-items/by-ids?cartItemIds=${this.dataset.cartItemId}`, {
                                     method: 'DELETE',
                                 })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        return response.json().then(errorData => {
-                                            throw new Error(errorData.message);
-                                        });
-                                    }
-                                })
-                                .then(() => {
-                                    window.location.href = 'shopping-cart.html';
-                                })
-                                .catch(error => {
-                                    console.error(error.message);
-                                });
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            return response.json().then(errorData => {
+                                                throw new Error(errorData.message);
+                                            });
+                                        }
+                                    })
+                                    .then(() => {
+                                        window.location.href = 'shopping-cart.html';
+                                    })
+                                    .catch(error => {
+                                        console.error(error.message);
+                                    });
                             });
                         });
 
@@ -405,19 +405,19 @@
                     fetch(`http://localhost:8080/carts/${userId}/cart-items/all`, {
                         method: 'DELETE'
                     })
-                    .then(response => {
-                        if (!response.ok) {
-                            return response.json().then(errorData => {
-                                throw new Error(errorData.message);
-                            });
-                        }
-                    })
-                    .then(() => {
-                        window.location.href = 'shopping-cart.html';
-                    })
-                    .catch(error => {
-                        console.error(error.message);
-                    });
+                        .then(response => {
+                            if (!response.ok) {
+                                return response.json().then(errorData => {
+                                    throw new Error(errorData.message);
+                                });
+                            }
+                        })
+                        .then(() => {
+                            window.location.href = 'shopping-cart.html';
+                        })
+                        .catch(error => {
+                            console.error(error.message);
+                        });
                 });
 
                 // checkout event

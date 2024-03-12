@@ -539,7 +539,7 @@
                             const quantity = document.querySelector('.quantity-select select').value;
 
                             // add item to cart
-                            fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
+                            fetch(`http://localhost:8083/carts/${userId}/cart-items`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',

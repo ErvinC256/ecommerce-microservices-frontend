@@ -236,7 +236,7 @@
                                         <br>
                                         <div>
                                             <ul class="cart-options">
-                                                <li><a class="link-inverse" href="product-details.html?product=${productDto.productId}">Back to product</a></li>      
+                                                <li><a class="link-inverse" href="product-details.html?product=${productDto.product.id}">Back to product</a></li>      
                                             </ul>
                                         </div>
                                     </div>
@@ -246,7 +246,7 @@
                         cartTable.appendChild(productItemElement);
                         
                         // fetch cart count
-                        fetch(`http://localhost:8080/carts/${userId}/cart-items/count`)
+                        fetch(`http://localhost:8083/carts/${userId}/cart-items/count`)
                             .then(response => {
                                 return response.json();
                             })

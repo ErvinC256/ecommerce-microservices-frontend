@@ -329,7 +329,7 @@
                 const productId = params.get('product');
 
                 // fetch product details
-                fetch(`http://localhost:8080/products/${productId}`) 
+                fetch(`http://localhost:8082/products/${productId}`) 
                     .then(response => {
                         return response.json();
                     })
@@ -566,7 +566,7 @@
                         });
 
                         //load similar items data
-                        fetch(`http://localhost:8080/products?categoryId=${categoryId}&subcategoryId=${subcategoryId}&page=0&size=10`) 
+                        fetch(`http://localhost:8082/products?categoryId=${categoryId}&subcategoryId=${subcategoryId}&page=0&size=10`) 
                             .then(response => {
                                 return response.json();
                             })

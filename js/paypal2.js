@@ -1,30 +1,15 @@
-// Define a function to initiate the PayPal button with proper configuration
-function setupPayPalButton() {
-    window.paypal.Buttons({
+window.paypal
+    .Buttons({
         style: {
             color: 'gold',
             shape: 'pill',
             label: 'paypal',
             height: 35
         },
-        // onInit is called when the button first renders
-        onInit: function(data, actions) {
-            // Disable the buttons
-            actions.disable();
-            // Listen for changes to the checkbox
-            document.querySelector('#confirm-checkbox')
-            .addEventListener('change', function(event) {
-                // Enable or disable the button when it is checked or unchecked
-                if (event.target.checked) {
-                    actions.enable();
-                } else {
-                    actions.disable();
-                }
-            });
-        },    
-        createOrder: async function (data, actions) {
-            // Fetch and initiate the order logic
+        async createOrder() {
+            
             const urlParams = new URLSearchParams(window.location.search);
+            // Get specific parameters
             const cartItemIds = urlParams.getAll('cartItemIds');
             const amount = urlParams.get('subtotal');
             const userId = sessionStorage.getItem('userId');
@@ -50,8 +35,11 @@ function setupPayPalButton() {
                 const orderData = await response.json();
 
                 if (orderData.paypalOrderId) {
+                    
                     sessionStorage.setItem('orderId', orderData.orderId);
+
                     return orderData.paypalOrderId;
+
                 } else {
                     const errorDetail = orderData?.details?.[0];
                     const errorMessage = errorDetail
@@ -65,7 +53,8 @@ function setupPayPalButton() {
                 resultMessage(`Could not initiate PayPal Checkout...<br><br>${error}`);
             }
         },
-        onApprove: async function (data, actions) {
+        async onApprove(data, actions) {
+
             const orderId = sessionStorage.getItem('orderId');
 
             try {
@@ -77,31 +66,58 @@ function setupPayPalButton() {
                 });
 
                 const orderData = await response.json();
+                // Three cases to handle:
+                //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                //   (2) Other non-recoverable errors -> Show a failure message
+                //   (3) Successful transaction -> Show confirmation or thank you message
+
                 const errorDetail = orderData?.details?.[0];
 
                 if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
-                    // Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                    // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                    // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
                     return actions.restart();
                 } else if (errorDetail) {
-                    // Other non-recoverable errors -> Show a failure message
+                    // (2) Other non-recoverable errors -> Show a failure message
                     throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
                 } else {
-                    // Successful transaction -> Redirect to success page
+                    // (3) Successful transaction -> Show confirmation or thank you message
+                    // Or go to another URL:  actions.redirect('thank_you.html');
+                    
+                    // console.log(orderData);
                     window.location.href = 'success.html';
+                    
                 }
             } catch (error) {
                 console.error(error);
-                resultMessage(`Sorry, your transaction could not be processed...<br><br>${error}`);
+                resultMessage(
+                    `Sorry, your transaction could not be processed...<br><br>${error}`,
+                );
             }
         },
-    }).render("#paypal-button-container"); // Render the PayPal button in the specified container
-}
-
-// Call the setup function when the window loads
-window.onload = setupPayPalButton;
+    })
+    .render("#paypal-button-container");
 
 // Example function to show a result to the user. Your site's UI library can be used instead.
 function resultMessage(message) {
     const container = document.querySelector("#result-message");
     container.innerHTML = message;
+}
+
+function validateForm() {
+    // Get form elements
+    const firstName = document.querySelector('input[name="firstName"]').value;
+    const lastName = document.querySelector('input[name="lastName"]').value;
+    const emailAddress = document.querySelector('input[name="email"]').value;
+    const phoneNumber = document.querySelector('input[name="contact"]').value;
+
+    // Check if any of the required fields are empty
+    if (!firstName || !lastName || !emailAddress || !phoneNumber) {
+        // Display an alert or perform any other action to notify the user
+        console.log('Please fill in all required fields.');
+        return false;
+    }
+
+    // All required fields are filled
+    return true;
 }

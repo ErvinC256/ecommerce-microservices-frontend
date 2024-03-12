@@ -205,7 +205,7 @@
                 const productId = params.get('productId');
 
                 // fetch product details
-                fetch(`http://localhost:8080/products/${productId}`) 
+                fetch(`http://localhost:8082/products/${productId}`) 
                     .then(response => {
                         return response.json();
                     })

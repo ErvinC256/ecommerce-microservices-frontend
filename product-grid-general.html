@@ -265,7 +265,7 @@
                 fetchAndRenderProducts(searchType, searchTerm, selectedPage);
 
                 // populate manufacturers options
-                fetch('http://localhost:8080/products/manufacturers')
+                fetch('http://localhost:8082/products/manufacturers')
                     .then(response => {
                         return response.json()
                     })
@@ -314,7 +314,7 @@
         <script>
             function fetchAndRenderProducts(searchType, searchTerm, selectedPage) {
         
-                let apiURL = `http://localhost:8080/products`;
+                let apiURL = `http://localhost:8082/products`;
 
                 switch (searchType) {
                     case 'New Arrivals':

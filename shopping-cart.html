@@ -264,15 +264,15 @@
                             let selectOptions = '';
                             for (let i = 1; i <= 10; i++) {
                                 const optionText = i === 1 ? 'Quantity: 1' : i;
-                                selectOptions += `<option value="${i}" ${i === cartItemDto.cartItem.quantity ? 'selected' : ''}>${optionText}</option>`;
+                                selectOptions += `<option value="${i}" ${i === cartItemDto.quantity ? 'selected' : ''}>${optionText}</option>`;
                             }
                             cartItemElement.innerHTML = `
                                 <td>
                                     <div class="row">
                                         <div class="col-4">
-                                            <input type="checkbox" class="cart-checkbox" data-cart-item-id="${cartItemDto.cartItem.id}">
+                                            <input type="checkbox" class="cart-checkbox" data-cart-item-id="${cartItemDto.cartItemId}">
                                             <div class="product-image">
-                                                <a href="product-details.html?product=${cartItemDto.cartItem.productId}">
+                                                <a href="product-details.html?product=${cartItemDto.productId}">
                                                     <img src="images/product/large-size/${cartItemDto.productName}.jpg" alt="Li's Product Image">
                                                 </a>
                                             </div>
@@ -280,12 +280,12 @@
                                         <div class="col-8">
                                             <div class="cart-product-details">
                                                 <div>
-                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${cartItemDto.cartItem.productId}">${cartItemDto.productName}</a></p>
+                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${cartItemDto.productId}">${cartItemDto.productName}</a></p>
                                                 </div>
                                                 <div>
                                                     <div class="quantity-select">
-                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: ${cartItemDto.quantityInStock}</p>
-                                                        <select data-cart-item-id="${cartItemDto.cartItem.id}">
+                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: <span data-product-id=${cartItemDto.productId} class="stock-count"></span></p>
+                                                        <select data-cart-item-id="${cartItemDto.cartItemId}">
                                                             ${selectOptions}
                                                         </select>
                                                     </div>
@@ -293,8 +293,8 @@
                                                 <div>
                                                     <ul class="cart-options">
                                                         <li><a href="" class="link-inverse">Checkout</a></li>
-                                                        <li><a href="" class="remove link-inverse" data-cart-item-id="${cartItemDto.cartItem.id}">Remove</a></li>
-                                                        <li><a href="product-details.html?product=${cartItemDto.cartItem.productId}" class="link-inverse">View details</a></li>      
+                                                        <li><a href="" class="remove link-inverse" data-cart-item-id="${cartItemDto.cartItemId}">Remove</a></li>
+                                                        <li><a href="product-details.html?product=${cartItemDto.productId}" class="link-inverse">View details</a></li>      
                                                     </ul>
                                                 </div>
                                             </div>
@@ -306,28 +306,26 @@
                                 </td>
                             `;
                             cartTable.appendChild(cartItemElement);
-
-                            // After appending cartItemElement to the DOM
-                            const selectElement = cartItemElement.querySelector('select');
-                            selectElement.addEventListener('change', function(event) {
-                                const newQuantity = parseInt(event.target.value);
-                                const cartItemId = parseInt(selectElement.dataset.cartItemId);
-
-                                fetch(`http://localhost:8083/carts/${userId}/cart-items/${cartItemId}?newQuantity=${newQuantity}`, {
-                                    method: 'PUT',
-                                })
-                                    .then(response => {
-                                        if (!response.ok) {
-                                            throw new Error('Failed to update cart item');
-                                        }
-                                        window.location.reload();
-                                    })
-                                    .catch(error => {
-                                        console.error(error);
-                                        // Handle error if needed
-                                    });
-                            });
                         });
+
+                        // Fetch stock counts
+                        const stockCountElements = document.querySelectorAll('.stock-count');
+                        const productIds = Array.from(stockCountElements).map(element => element.dataset.productId);
+                        const apiUrl = `http://localhost:8085/inventories?productIds=${productIds.join(',')}`;
+
+                        fetch(apiUrl)
+                            .then(response => response.json())
+                            .then(stockData => {
+                                stockData.forEach((stock, index) => {
+                                    // Populate each stock count element with the corresponding stock quantity
+                                    stockCountElements[index].textContent = stock.quantityInStock;
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error fetching stock counts:', error);
+                                // Handle error if needed
+                            });
+
 
                         // Set the checkboxes based on selectedCartItems
                         const urlParams = new URLSearchParams(window.location.search);
@@ -348,6 +346,29 @@
                                 event.preventDefault();
                                 
                                 setSessionStatus();
+                            });
+                        });
+
+                        // select new quantities event
+                        const selectElements = document.querySelectorAll('select');
+                        selectElements.forEach(selectElement => {
+                            selectElement.addEventListener('change', function(event) {
+                                const newQuantity = parseInt(event.target.value);
+                                const cartItemId = parseInt(selectElement.dataset.cartItemId);
+
+                                fetch(`http://localhost:8083/carts/${userId}/cart-items/${cartItemId}?newQuantity=${newQuantity}`, {
+                                    method: 'PUT',
+                                })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Failed to update cart item');
+                                    }
+                                    window.location.reload();
+                                })
+                                .catch(error => {
+                                    console.error(error);
+                                    // Handle error if needed
+                                });
                             });
                         });
 
@@ -381,8 +402,8 @@
 
                         let selectedSubtotal = 0;
                         for (const cartItemDto of cartDto.cartItemDtos) {
-                            if (selectedCartItems[cartItemDto.cartItem.id]) {
-                                const selectedQuantity = cartItemDto.cartItem.quantity; // Adjust this line based on your structure
+                            if (selectedCartItems[cartItemDto.cartItemId]) {
+                                const selectedQuantity = cartItemDto.quantity; // Adjust this line based on your structure
                                 selectedSubtotal += selectedQuantity * cartItemDto.productPrice; // Calculate subtotal based on quantity and unit price
                             }
                         }

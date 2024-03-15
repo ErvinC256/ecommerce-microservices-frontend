@@ -279,7 +279,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="username" placeholder="Enter username" id="">
+                        <input type="text" name="username" placeholder="Enter username">
                         <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -297,7 +297,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <select name="gender" id="">
+                        <select name="gender">
                             <option>Please select a gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -337,7 +337,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="date" name="birthday" id="">
+                        <input type="date" name="birthday">
                         <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -373,7 +373,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="password" name="password" placeholder="Enter password" id="">
+                        <input type="password" name="password" placeholder="Enter password">
                         <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -396,7 +396,7 @@
                 getCartNumber();
 
                 // load personal info
-                fetch(`http://localhost:8080/users/${sessionStorage.getItem('userId')}`)
+                fetch(`http://localhost:8081/users/${sessionStorage.getItem('userId')}`)
                     .then(response => {
                         return response.json();
                     })
@@ -517,7 +517,7 @@
                         }
                             
                         // update user
-                        fetch(`http://localhost:8080/users/${userId}`, {
+                        fetch(`http://localhost:8081/users/${userId}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',

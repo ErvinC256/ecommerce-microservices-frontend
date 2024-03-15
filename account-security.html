@@ -225,7 +225,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="confirmDelete" placeholder="Enter DELETE to proceed" id="">
+                        <input type="text" name="confirmDelete" placeholder="Enter DELETE to proceed">
                         <div class="error-message"></div>
                     </div>
                     <div class="modal-footer">
@@ -272,7 +272,7 @@
                         return;
                     }
 
-                    fetch(`http://localhost:8080/users/${userId}`, {
+                    fetch(`http://localhost:8081/users/${userId}`, {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json',

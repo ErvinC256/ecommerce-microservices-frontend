@@ -178,15 +178,15 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label for="">Street Address</label>
-                                                    <input type="text" placeholder="Enter street address">
+                                                    <input type="text" value="Street 1" placeholder="Enter street address">
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="">City</label>
-                                                    <input type="text" placeholder="Enter city">
+                                                    <input type="text" value="City 1" placeholder="Enter city">
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="">Zipcode</label>
-                                                    <input type="text" placeholder="Enter zipcode">
+                                                    <input type="text" value="Zipcode 1" placeholder="Enter zipcode">
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="">State</label>
@@ -203,7 +203,7 @@
                                                         <option value="Pulau Pinang">Pulau Pinang (Penang)</option>
                                                         <option value="Sabah">Sabah</option>
                                                         <option value="Sarawak">Sarawak</option>
-                                                        <option value="Selangor">Selangor</option>
+                                                        <option value="Selangor" selected>Selangor</option>
                                                         <option value="Terengganu">Terengganu</option>
                                                     </select>
                                                 </div>
@@ -359,43 +359,6 @@
                 addressFormStateInput.addEventListener('change', function() {
                     validateForm();
                 });
-
-                // load user addresses
-                fetch(`http://localhost:8080/users/${userId}/addresses`)
-                    .then(response => {
-                        return response.json()
-                    })
-                    .then(addresses => {
-                        addresses.forEach((address, index) => {
-                            addressContainer.innerHTML += `
-                                <div class="address-block2">
-                                    <div class="edit-block2">
-                                        <div class="edit-div2">
-                                            <label for="">Address</label>
-                                            <img src="images/logo/site-logo-only.jpg" alt="" style="width: 15%; position: relative; left: 5px; bottom: 5px;">
-                                        </div>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <span style="color: #808080;">Address ${index + 1}
-                                        </div>
-                                    </div>
-                                    <div class="details-block2">
-                                        <div style="font-size: 14px;">${address.streetAddress}</div>
-                                        <div style="font-size: 14px;">${address.city}</div>
-                                        <div style="font-size: 14px;">${address.zipcode}</div>
-                                        <div style="font-size: 14px;">${address.state}</div>
-                                        <div style="color: #808080;">Malaysia</div>
-                                    </div>
-                                    <label for="billingAddress${index}" style="cursor: pointer; font-size: 14px; color: #000;">
-                                        <input type="radio" id="billingAddress${index}" name="billingAddress" style="margin-right: 10px; position: relative; top: 2px;">
-                                        <span class="link-inverse" style="font-weight: bold;">Select this address for billing</span> 
-                                    </label>
-                                </div>
-                            `;
-                        });
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
                 
             });
         </script>

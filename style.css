@@ -957,17 +957,14 @@ iframe {
 .map iframe {
 	border: 0px;
 }
-.contact-form div,
-.contact-page div {
+.contact-form div {
     padding-bottom: 20px;
 }
-.contact-form label,
-.contact-page label {
+.contact-form label {
     font-weight: bold;
 }
-.contact-page {
-	padding-left: 5px;
-	background-color: #e7f1fd;
+.contact-div {
+	padding: 10px;
 }
 /*----------------------------------------*/
 /*  3.6 Product Grid Page

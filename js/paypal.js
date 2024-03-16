@@ -87,7 +87,7 @@ function setupPayPalButton() {
                     throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
                 } else {
                     // Successful transaction -> Redirect to success page
-                    window.location.href = 'success.html';
+                    window.location.href = 'order-success.html';
                 }
             } catch (error) {
                 console.error(error);

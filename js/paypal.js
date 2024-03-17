@@ -29,28 +29,25 @@ function setupPayPalButton() {
             const amount = urlParams.get('subtotal');
             const userId = sessionStorage.getItem('userId');
 
-            const cartItemParams = cartItemIds.map(itemId => `cartItemIds=${encodeURIComponent(itemId)}`).join('&');
+            // const cartItemParams = cartItemIds.map(itemId => `cartItemIds=${encodeURIComponent(itemId)}`).join('&');
 
             try {
-                const response = await fetch(`http://localhost:8084/orders/init?userId=${userId}&amount=${amount}&${cartItemParams}`, {
+                const response = await fetch(`http://localhost:8086/orders/init`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        cart: [
-                            {
-                                id: "YOUR_PRODUCT_ID",
-                                quantity: "YOUR_PRODUCT_QUANTITY",
-                            },
-                        ],
+                        userId: userId,
+                        cartItemIds: cartItemIds,
+                        amount: amount
                     }),
                 });
 
                 const orderData = await response.json();
 
                 if (orderData.paypalOrderId) {
-                    sessionStorage.setItem('orderId', orderData.orderId);
+                    sessionStorage.setItem('orderNumber', orderData.orderNumber);
                     return orderData.paypalOrderId;
                 } else {
                     const errorDetail = orderData?.details?.[0];
@@ -66,10 +63,10 @@ function setupPayPalButton() {
             }
         },
         onApprove: async function (data, actions) {
-            const orderId = sessionStorage.getItem('orderId');
+            const orderNumber = sessionStorage.getItem('orderNumber');
 
             try {
-                const response = await fetch(`http://localhost:8084/orders/capture?paypalOrderId=${data.orderID}&orderId=${orderId}`, {
+                const response = await fetch(`http://localhost:8086/orders/capture?paypalOrderId=${data.orderID}&orderNumber=${orderNumber}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

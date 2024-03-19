@@ -342,16 +342,16 @@
                                 fetch(`http://localhost:8083/carts/${userId}/cart-items/${cartItemId}?newQuantity=${newQuantity}`, {
                                     method: 'PUT',
                                 })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('Failed to update cart item');
-                                    }
-                                    window.location.reload();
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                    // Handle error if needed
-                                });
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Failed to update cart item');
+                                        }
+                                        window.location.reload();
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                        // Handle error if needed
+                                    });
                             });
                         });
 

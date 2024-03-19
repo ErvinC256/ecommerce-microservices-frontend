@@ -29,25 +29,20 @@ function setupPayPalButton() {
             const amount = urlParams.get('subtotal');
             const userId = sessionStorage.getItem('userId');
 
-            // const cartItemParams = cartItemIds.map(itemId => `cartItemIds=${encodeURIComponent(itemId)}`).join('&');
-
             try {
-                const response = await fetch(`http://localhost:8086/orders/init`, {
+                const response = await fetch(`http://localhost:8086/orders/init?amount=${amount}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({
-                        userId: userId,
-                        cartItemIds: cartItemIds,
-                        amount: amount
-                    }),
                 });
 
                 const orderData = await response.json();
 
                 if (orderData.paypalOrderId) {
-                    sessionStorage.setItem('orderNumber', orderData.orderNumber);
+                    sessionStorage.setItem('amount', amount);
+                    sessionStorage.setItem('cartItemIds', JSON.stringify(cartItemIds));
+
                     return orderData.paypalOrderId;
                 } else {
                     const errorDetail = orderData?.details?.[0];
@@ -63,14 +58,20 @@ function setupPayPalButton() {
             }
         },
         onApprove: async function (data, actions) {
-            const orderNumber = sessionStorage.getItem('orderNumber');
+            const amount = sessionStorage.getItem('amount');
+            const cartItemIds = JSON.parse(sessionStorage.getItem('cartItemIds'));
 
             try {
-                const response = await fetch(`http://localhost:8086/orders/capture?paypalOrderId=${data.orderID}&orderNumber=${orderNumber}`, {
+                const response = await fetch(`http://localhost:8086/orders/capture?paypalOrderId=${data.orderID}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    body: {
+                        userId: sessionStorage.getItem('userId'),
+                        amount: amount,
+                        cartItemIds: cartItemIds
+                    }
                 });
 
                 const orderData = await response.json();

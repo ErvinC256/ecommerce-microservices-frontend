@@ -58,20 +58,17 @@ function setupPayPalButton() {
             }
         },
         onApprove: async function (data, actions) {
+            const userId = sessionStorage.getItem('userId');
             const amount = sessionStorage.getItem('amount');
             const cartItemIds = JSON.parse(sessionStorage.getItem('cartItemIds'));
 
             try {
-                const response = await fetch(`http://localhost:8086/orders/capture?paypalOrderId=${data.orderID}`, {
+                const cartItemIdsQueryString = cartItemIds.map(id => `cartItemIds=${id}`).join('&');
+                const response = await fetch(`http://localhost:8086/orders/capture?paypalOrderId=${data.orderID}&userId=${userId}&amount=${amount}&${cartItemIdsQueryString}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: {
-                        userId: sessionStorage.getItem('userId'),
-                        amount: amount,
-                        cartItemIds: cartItemIds
-                    }
                 });
 
                 const orderData = await response.json();
@@ -85,7 +82,8 @@ function setupPayPalButton() {
                     throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
                 } else {
                     // Successful transaction -> Redirect to success page
-                    window.location.href = 'order-success.html';
+                    const orderNumber = orderData.orderNumber;
+                    window.location.href = `order-success.html?orderNumber=${orderNumber}`;
                 }
             } catch (error) {
                 console.error(error);

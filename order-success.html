@@ -146,7 +146,7 @@
                     <br>
                     <hr>
                     <br>
-                    <p>Your order number is <a href="#">9237427634826</a>. Your items will be delivered in 2 - 5 business days.</p>
+                    <p>Your order number is <a class="link-inverse" href="" id="order-number"></a>. Your items will be delivered in 2 - 5 business days.</p>
                 </div>
             </div>
             <section class="vh-100" style="background-color: #eee;">
@@ -230,7 +230,10 @@
                 getCartNumber();
 
                 
-                
+                const params = new URLSearchParams(window.location.search);
+                const orderNumber = params.get('orderNumber');
+
+                document.getElementById('order-number').textContent = orderNumber;
             });
         </script>
     </body>

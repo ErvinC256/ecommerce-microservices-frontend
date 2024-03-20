@@ -790,13 +790,8 @@ option {
 	margin-bottom: 5px;
 	font-size: 18px; 
 }
-.billing-basic-form,
-.billing-address-form {
-	padding: 20px;
-	border: 1px solid #e1e1e1;
-}
-.billing-basic-form div,
-.billing-address-form div {
+.billing-basic-form div:not(:last-child),
+.billing-address-form div:not(:last-child) {
     padding-bottom: 20px;
 }
 .billing-basic-form label,

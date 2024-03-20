@@ -127,92 +127,80 @@
                             <div class="section-title">
                                 <p style="font-weight: 14px; color: #FF0000;">Fill in all the information below</p>
                             </div><br><br>
-                            <ol class="activity-checkout">
-                                <li class="checkout-item">
-                                    <div class="avatar checkout-icon p-1">
-                                        <div class="avatar-title rounded-circle">
-                                            <i class="bx bxs-receipt"></i>
+                            <div style="padding-right: 50px;">
+                                <h3 style="font-weight: bold; font-size: 16px;">Billing Information</h3>
+                                <p style="margin-bottom: 10px;">Provide accurate billing information.</p>
+                                <form action="" class="billing-basic-form" style="margin-bottom: none;">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="First Name">First Name</label>
+                                            <input name="firstName"  type="text" placeholder="Enter first name">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="Last Name">Last Name</label>
+                                            <input name="lastName" type="text" placeholder="Enter last name">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">Email Address</label>
+                                            <input name="email" type="email" placeholder="Enter email address">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">Phone number</label>
+                                            <input name="contact" type="text" placeholder="Enter phone number">
                                         </div>
                                     </div>
-                                    <div class="feed-item-list">
-                                        <h3>Billing Information</h3>
-                                        <p style="margin-bottom: 20px;">Provide accurate billing information.</p>
-                                        <form action="" class="billing-basic-form">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label for="First Name">First Name</label>
-                                                    <input name="firstName"  type="text" placeholder="Enter first name">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="Last Name">Last Name</label>
-                                                    <input name="lastName" type="text" placeholder="Enter last name">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="">Email Address</label>
-                                                    <input name="email" type="email" placeholder="Enter email address">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="">Phone number</label>
-                                                    <input name="contact" type="text" placeholder="Enter phone number">
-                                                </div>
-                                            </div>
-                                        </form>
+                                </form>
+                            </div>
+                            <hr style="margin-bottom: 20px;">
+                            <div style="padding-right: 50px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <h3 style="font-weight: bold; font-size: 16px;">Shipping Information</h3>
+                                        <p style="margin-bottom: 10px;">Provide accurate shipping details for correct delivery.</p>
                                     </div>
-                                </li>
-                                <li class="checkout-item">
-                                    <div class="avatar checkout-icon p-1">
-                                        <div class="avatar-title rounded-circle bg-primary">
-                                            <i class="bx bxs-truck"></i>
+                                    <button class="my-button-inverse" style="height: 100%;">Edit your addresses</button>
+                                </div>
+                                <div id="addressContainer" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;"></div>
+                                <form id="moreText" style="display: none;" action="" class="billing-address-form">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="">Street Address</label>
+                                            <input type="text" value="Street 1" placeholder="Enter street address">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">City</label>
+                                            <input type="text" value="City 1" placeholder="Enter city">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">Zipcode</label>
+                                            <input type="text" value="Zipcode 1" placeholder="Enter zipcode">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">State</label>
+                                            <select id="state-select" style="width: 100%;">
+                                                <option value="">Please select a state</option>
+                                                <option value="Johor">Johor</option>
+                                                <option value="Kedah">Kedah</option>
+                                                <option value="Kelantan">Kelantan</option>
+                                                <option value="Melaka">Melaka (Malacca)</option>
+                                                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                                                <option value="Pahang">Pahang</option>
+                                                <option value="Perak">Perak</option>
+                                                <option value="Perlis">Perlis</option>
+                                                <option value="Pulau Pinang">Pulau Pinang (Penang)</option>
+                                                <option value="Sabah">Sabah</option>
+                                                <option value="Sarawak">Sarawak</option>
+                                                <option value="Selangor" selected>Selangor</option>
+                                                <option value="Terengganu">Terengganu</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="feed-item-list">
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <h3>Shipping Information</h3><button class="my-button-inverse">Edit your addresses</button>
-                                        </div>
-                                        <p style="margin-bottom: 20px;">Provide accurate shipping details for correct delivery.</p>
-                                        <div id="addressContainer" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;"></div>
-                                        <form id="moreText" style="display: none;" action="" class="billing-address-form">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label for="">Street Address</label>
-                                                    <input type="text" value="Street 1" placeholder="Enter street address">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="">City</label>
-                                                    <input type="text" value="City 1" placeholder="Enter city">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="">Zipcode</label>
-                                                    <input type="text" value="Zipcode 1" placeholder="Enter zipcode">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="">State</label>
-                                                    <select id="state-select" style="width: 100%;">
-                                                        <option value="">Please select a state</option>
-                                                        <option value="Johor">Johor</option>
-                                                        <option value="Kedah">Kedah</option>
-                                                        <option value="Kelantan">Kelantan</option>
-                                                        <option value="Melaka">Melaka (Malacca)</option>
-                                                        <option value="Negeri Sembilan">Negeri Sembilan</option>
-                                                        <option value="Pahang">Pahang</option>
-                                                        <option value="Perak">Perak</option>
-                                                        <option value="Perlis">Perlis</option>
-                                                        <option value="Pulau Pinang">Pulau Pinang (Penang)</option>
-                                                        <option value="Sabah">Sabah</option>
-                                                        <option value="Sarawak">Sarawak</option>
-                                                        <option value="Selangor" selected>Selangor</option>
-                                                        <option value="Terengganu">Terengganu</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <div style="background-color: #f0f2f2; padding: 10px;">
-                                            <a href="#" id="moreLink" onclick="showMore(event)" class="link-inverse">Fill up shipping information <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                            <a href="#" id="lessLink" style="display: none;" onclick="showLess(event)" class="link-inverse">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ol>
+                                </form>
+                                <div style="background-color: #f0f2f2; margin-top: 10px;">
+                                    <a href="#" id="moreLink" onclick="showMore(event)" class="link-inverse">Fill up shipping information <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <a href="#" id="lessLink" style="display: none;" onclick="showLess(event)" class="link-inverse">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-1"></div>
                         <div class="col-4">

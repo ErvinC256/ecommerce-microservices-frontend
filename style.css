@@ -742,80 +742,13 @@ option {
 /*----------------------------------------*/
 /*  3.2 Checkout Page
 /*----------------------------------------*/
-.activity-checkout {
-	padding-left: 15px;
+.personal-div,
+.address-div {
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
-.activity-checkout .checkout-icon {
-	position: absolute;
-	top: -4px;
-	left: -22px
-}
-.activity-checkout .checkout-item {
-	position: relative;
-	padding-bottom: 24px;
-	padding-left: 35px;
-	border-left: 2px solid #8d54ff
-}
-.activity-checkout .checkout-item:first-child {
-	border-color: #8d54ff
-}
-.activity-checkout .checkout-item:first-child:after {
-	background-color: #8d54ff
-}
-.activity-checkout .checkout-item:last-child {
-	border-color: transparent
-}
-.avatar {
-	height: 3rem;
-	width: 3rem
-}
-.avatar-title {
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	background-color: #8d54ff;
-	color: #fff;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	font-weight: 500;
-	height: 100%;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	width: 100%
-}
-.feed-item-list h3 {
-	font-weight: bold; 
-	margin-bottom: 5px;
-	font-size: 18px; 
-}
-.billing-basic-form div:not(:last-child),
 .billing-address-form div:not(:last-child) {
     padding-bottom: 20px;
-}
-.billing-basic-form label,
-.billing-address-form {
-    font-weight: bold;
-}
-.address-block2 {
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-	border: 1px solid #e1e1e1; 
-	margin-bottom: 20px; 
-	padding: 20px; 
-	border-radius: 5px;
-}
-.edit-block2 {
-	margin-bottom: 20px; 
-	border-bottom: 1px solid #e1e1e1;
-}
-.edit-div2 {
-	display: flex; 
-	justify-content: space-between;
-}
-.details-block2 {
-	margin-bottom: 20px; 
-	border-bottom: 1px solid #e1e1e1;
 }
 /*----------------------------------------*/
 /*  3.3 Sign In Register Page

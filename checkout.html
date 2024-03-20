@@ -126,42 +126,28 @@
                         <div class="col-7">
                             <div class="section-title">
                                 <p style="font-weight: 14px; color: #FF0000;">Fill in all the information below</p>
-                            </div><br><br>
-                            <div style="padding-right: 50px;">
-                                <h3 style="font-weight: bold; font-size: 16px;">Billing Information</h3>
-                                <p style="margin-bottom: 10px;">Provide accurate billing information.</p>
-                                <form action="" class="billing-basic-form" style="margin-bottom: none;">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="First Name">First Name</label>
-                                            <input name="firstName"  type="text" placeholder="Enter first name">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="Last Name">Last Name</label>
-                                            <input name="lastName" type="text" placeholder="Enter last name">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="">Email Address</label>
-                                            <input name="email" type="email" placeholder="Enter email address">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="">Phone number</label>
-                                            <input name="contact" type="text" placeholder="Enter phone number">
-                                        </div>
+                            </div>
+                            <div class="personal-div">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 style="font-weight: bold; font-size: 16px;">Personal info</h3>
                                     </div>
-                                </form>
+                                    <div class="col-5">
+                                        <button id="sign-in-checkout-button" class="my-button" style="display: none;">Sign in to checkout instead</button>
+                                        <button id="guest-checkout-button" class="my-button" style="display: none;" click="signOut()">Checkout as guest instead</button>
+                                    </div>
+                                </div>
+                                <p style="font-style: italic;">Checking out as <span id="username" style="color: #808080;">guest</span></p>
                             </div>
                             <hr style="margin-bottom: 20px;">
-                            <div style="padding-right: 50px;">
+                            <div class="adddress-div">
                                 <div style="display: flex; justify-content: space-between;">
                                     <div>
                                         <h3 style="font-weight: bold; font-size: 16px;">Shipping Information</h3>
                                         <p style="margin-bottom: 10px;">Provide accurate shipping details for correct delivery.</p>
                                     </div>
-                                    <button class="my-button-inverse" style="height: 100%;">Edit your addresses</button>
                                 </div>
-                                <div id="addressContainer" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;"></div>
-                                <form id="moreText" style="display: none;" action="" class="billing-address-form">
+                                <form id="moreText" action="" class="billing-address-form">
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="">Street Address</label>
@@ -197,10 +183,12 @@
                                     </div>
                                 </form>
                                 <div style="background-color: #f0f2f2; margin-top: 10px;">
-                                    <a href="#" id="moreLink" onclick="showMore(event)" class="link-inverse">Fill up shipping information <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <a href="#" id="lessLink" style="display: none;" onclick="showLess(event)" class="link-inverse">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                                    <a href="#" id="moreLink" style="display: none;" onclick="showMore(event)" class="link-inverse">Fill up shipping information <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <a href="#" id="lessLink" onclick="showLess(event)" class="link-inverse">See less details <i class="fa fa-angle-up" aria-hidden="true"></i></a>
                                 </div>
                             </div>
+                            <hr style="margin-top: 20px; margin-bottom: 20px;">
+                            <button class="my-button-inverse"><a href="shopping-cart.html">Back to cart</a></button>
                         </div>
                         <div class="col-1"></div>
                         <div class="col-4">
@@ -288,6 +276,28 @@
                 checkSignInStatus();
                 getCartNumber();
 
+                // personal info area
+                const userId = sessionStorage.getItem('userId'); // Replace with the actual userId
+                const username = sessionStorage.getItem('username');
+
+                document.querySelector('#username').textContent = username;
+
+                if (username === 'guest') {
+                    document.querySelector('#sign-in-checkout-button').style.display = 'block';
+
+                    // Event listener for sign-in-checkout-button
+                    document.querySelector('#sign-in-checkout-button').addEventListener('click', function() {
+                        window.location.href = 'sign-in.html';
+                    });
+                } else {
+                    document.querySelector('#guest-checkout-button').style.display = 'block';
+
+                    // Event listener for sign-in-checkout-button
+                    document.querySelector('#guest-checkout-button').addEventListener('click', function() {
+                        signOut();
+                    });
+                }
+
                 // Get URL parameters
                 const params = new URLSearchParams(window.location.search);
                 const subtotal = params.get('subtotal');
@@ -305,29 +315,6 @@
                 if (itemCountElement && cartItemIds) {
                     itemCountElement.textContent = cartItemIds.length.toString() || '0';
                 }
-
-                const userId = sessionStorage.getItem('userId'); // Replace with the actual userId
-                const username = sessionStorage.getItem('username');
-                const addressContainer = document.querySelector('#addressContainer');
-
-                // Disable and add event to the checkbox initially
-                const confirmCheckbox = document.getElementById('confirm-checkbox');
-                confirmCheckbox.disabled = true;
-
-                const basicFormInputs = document.querySelectorAll('.billing-basic-form input');
-                basicFormInputs.forEach(function(input) {
-                    input.addEventListener('input', validateForm);
-                });
-
-                const addressFormInputs = document.querySelectorAll('.billing-address-form input');
-                addressFormInputs.forEach(function(input) {
-                    input.addEventListener('input', validateForm);
-                });
-
-                const addressFormStateInput = document.querySelector('.billing-address-form #state-select');
-                addressFormStateInput.addEventListener('change', function() {
-                    validateForm();
-                });
                 
             });
         </script>
@@ -344,45 +331,6 @@
                 document.getElementById('moreText').style.display = 'none';
                 document.getElementById('moreLink').style.display = 'inline';
                 document.getElementById('lessLink').style.display = 'none';
-            }
-
-            function validateForm() {
-                // Check if all fields in both forms are filled
-                let allFieldsFilledBasicForm = true;
-                const basicFormInputs = document.querySelectorAll('.billing-basic-form input');
-                basicFormInputs.forEach(function(input) {
-                    if (input.value === '') {
-                        allFieldsFilledBasicForm = false;
-                        return; // Exit the loop if any field is empty
-                    }
-                });
-
-                let allFieldsFilledAddressForm = true;
-                const addressFormInputs = document.querySelectorAll('.billing-address-form input, .billing-address-form select option');
-                addressFormInputs.forEach(function(input) {
-                    // Check if it's a select element and the selected value is not empty
-                    if (input.tagName.toLowerCase() === 'select' && input.value === '') {
-                        allFieldsFilledAddressForm = false;
-                        return; // Exit the loop if the select box is not selected
-                    }
-                    // Check if it's an input element and the value is empty
-                    else if (input.tagName.toLowerCase() === 'input' && input.value === '') {
-                        allFieldsFilledAddressForm = false;
-                        return; // Exit the loop if any input field is empty
-                    }
-                });
-
-                // Enable or disable the checkbox based on the validation result
-                var confirmCheckbox = document.getElementById('confirm-checkbox');
-                var confirmLabel = document.getElementById('confirm-label');
-
-                if (allFieldsFilledBasicForm && allFieldsFilledAddressForm) {
-                    confirmCheckbox.disabled = false;
-                    confirmLabel.style.color = '#000';
-                } else {
-                    confirmCheckbox.disabled = true;
-                    confirmLabel.style.color = '#808080';
-                }
             }
         </script>
     </body>

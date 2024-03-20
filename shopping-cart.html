@@ -431,7 +431,7 @@
                     const params = new URLSearchParams(window.location.search);
                     const subtotal = document.getElementById('subtotal').textContent;
 
-                    let redirectURL = `checkout.html?subtotal=${subtotal}`;
+                    let redirectURL = `checkout.html?fromCart=true&subtotal=${subtotal}`;
 
                     if (params.has('selectedCartItems')) {
                         const cartItemIds = params.getAll('selectedCartItems');

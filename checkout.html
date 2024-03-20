@@ -138,11 +138,11 @@
                                 <p style="font-weight: 14px; color: #FF0000;">Fill in all the information below</p>
                             </div>
                             <div class="personal-div">
-                                <div class="row">
-                                    <div class="col-7">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
                                         <h3 style="font-weight: bold; font-size: 16px;">Personal info</h3>
                                     </div>
-                                    <div class="col-5">
+                                    <div>
                                         <button id="sign-in-checkout-button" class="my-button" style="display: none;">Sign in to checkout instead</button>
                                         <button id="guest-checkout-button" class="my-button" style="display: none;" click="signOut()">Checkout as guest instead</button>
                                     </div>
@@ -151,25 +151,31 @@
                             </div>
                             <hr style="margin-bottom: 20px;">
                             <div class="adddress-div">
-                                <div style="display: flex; justify-content: space-between;">
-                                    <div>
-                                        <h3 style="font-weight: bold; font-size: 16px;">Shipping Information</h3>
-                                        <p style="margin-bottom: 10px;">Provide accurate shipping details for correct delivery.</p>
-                                    </div>
+                                <div>
+                                    <h3 style="font-weight: bold; font-size: 16px;">Shipping Information</h3>
+                                    <p style="margin-bottom: 10px;">Provide accurate shipping details for correct delivery.</p>
                                 </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div id="addressContainer" style="margin-bottom: 20px;"></div>
+                                    <div>
+                                        <button id="change-primary-button" style="display: none;" class="my-button-inverse" style="height: 100%;"><a href="account-addresses.html">Change primary address</a></button>
+                                    </div>      
+                                </div>
+                                <hr>
+                                <label for="" style="font-size: 16px;">Provide an address</label>
                                 <form id="moreText" action="" class="billing-address-form">
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="">Street Address</label>
-                                            <input type="text" value="Street 1" placeholder="Enter street address">
+                                            <input type="text" placeholder="Enter street address">
                                         </div>
                                         <div class="col-6">
                                             <label for="">City</label>
-                                            <input type="text" value="City 1" placeholder="Enter city">
+                                            <input type="text" placeholder="Enter city">
                                         </div>
                                         <div class="col-6">
                                             <label for="">Zipcode</label>
-                                            <input type="text" value="Zipcode 1" placeholder="Enter zipcode">
+                                            <input type="text" placeholder="Enter zipcode">
                                         </div>
                                         <div class="col-6">
                                             <label for="">State</label>
@@ -186,7 +192,7 @@
                                                 <option value="Pulau Pinang">Pulau Pinang (Penang)</option>
                                                 <option value="Sabah">Sabah</option>
                                                 <option value="Sarawak">Sarawak</option>
-                                                <option value="Selangor" selected>Selangor</option>
+                                                <option value="Selangor">Selangor</option>
                                                 <option value="Terengganu">Terengganu</option>
                                             </select>
                                         </div>
@@ -307,6 +313,45 @@
                         signOut();
                     });
                 }
+
+                // load user addresses
+                const addressContainer = document.querySelector('#addressContainer');
+
+                fetch(`http://localhost:8081/users/${userId}/addresses?primary=true`)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(addresses => {
+                        let isTherePrimary = false;
+
+                        addresses.forEach((address, index) => {
+                            addressContainer.innerHTML += `
+                                <div>
+                                    <label for="" style="font-size: 16px;">Your primary address</label>
+                                    <div>
+                                        <div style="font-size: 14px;">${address.streetAddress}</div>
+                                        <div style="font-size: 14px;">${address.city}</div>
+                                        <div style="font-size: 14px;">${address.zipcode}</div>
+                                        <div style="font-size: 14px;">${address.state}</div>
+                                        <div style="color: #808080;">Malaysia</div>
+                                    </div>
+                                </div>
+                            `;
+
+                            if (address.primary) {
+                                isTherePrimary = true; // Set the flag to true if a primary address is found
+                            }
+
+                        });
+
+                        if (isTherePrimary) {
+                            document.getElementById('change-primary-button').style.display = 'block';
+                        }
+
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
 
                 // Get URL parameters
                 const params = new URLSearchParams(window.location.search);

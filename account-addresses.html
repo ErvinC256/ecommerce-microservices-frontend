@@ -249,6 +249,7 @@
                                     </select>
                                 </div>           
                             </div>
+                            <p style="display: flex; align-items: center;"><input style="margin-right: 10px;" type="checkbox" name="primary"><span>Set this address as primary address</span></p>
                         </form>
                         <div class="error-message"></div>
                     </div>
@@ -309,6 +310,7 @@
                                     </select>
                                 </div>           
                             </div>
+                            <p style="display: flex; align-items: center;"><input style="margin-right: 10px;" type="checkbox" name="primary"><span>Set this address as primary address</span></p>
                         </form>
                         <div class="error-message"></div>
                     </div>
@@ -348,6 +350,7 @@
                                         <div class="edit-div">
                                             <label for="">Address</label>
                                             <div>
+                                                <span style=" font-size: 16px; padding-right: 10px;">${address.primary ? 'Primary' : ''}</span>
                                                 <button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#addressModal-edit" data-index="${index}">Edit</button> 
                                                 <button type="button" class="my-button-inverse remove-button" data-index="${index}">Remove</button> 
                                             </div>
@@ -394,6 +397,7 @@
                             const updatedCity = modalFormEdit.querySelector('input[name="city"]').value;
                             const updatedZipcode = modalFormEdit.querySelector('input[name="zipcode"]').value;
                             const updatedState = modalFormEdit.querySelector('select').value;
+                            const isPrimary = modalFormEdit.querySelector('input[name="primary"]').checked;
 
                             if (addressId !== '' && updatedStreetAddress !== '' && updatedCity !== '' && updatedZipcode !== '' && updatedState !== '') {
                                 let updatedAddress = {
@@ -401,7 +405,8 @@
                                     streetAddress: updatedStreetAddress,
                                     city: updatedCity,
                                     zipcode: updatedZipcode,
-                                    state: updatedState
+                                    state: updatedState,
+                                    primary: isPrimary
                                 };
 
                                 // update address
@@ -485,13 +490,15 @@
                     const newCity = modalFormAdd.querySelector('input[name="city"]').value;
                     const newZipcode = modalFormAdd.querySelector('input[name="zipcode"]').value;
                     const newState = modalFormAdd.querySelector('select').value;
+                    const isPrimary = modalFormAdd.querySelector('input[name="primary"]').checked; // Get the value of the primary checkbox
 
                     if (newStreetAddress !== '' && newCity !== '' && newZipcode !== '' && newState !== '') {
                         let newAddress = {
                             streetAddress: newStreetAddress,
                             city: newCity,
                             zipcode: newZipcode,
-                            state: newState
+                            state: newState,
+                            primary: isPrimary
                         };
 
                         // add a new address

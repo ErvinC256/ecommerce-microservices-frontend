@@ -159,6 +159,7 @@
                             <div class="section-title">
                                 <h2>Your Addresses</h2>
                             </div><br><br>
+                            <div id="no-primary" style="color: red;"></div>
                             <div id="addressContainer" style="margin-bottom: 20px;"></div>
                             <button type="button" class="my-button-inverse add-address-button" data-toggle="modal" data-target="#addressModal-add">Add address</button>
                         </div>
@@ -343,6 +344,8 @@
                         return response.json()
                     })
                     .then(addresses => {
+                        let hasPrimaryAddress = false;
+
                         addresses.forEach((address, index) => {
                             addressContainer.innerHTML += `
                                 <div class="address-block">
@@ -367,7 +370,15 @@
                                 </div>
                             `;
 
+                            if (address.primary) {
+                                hasPrimaryAddress = true; // Set the flag to true if a primary address is found
+                            }
+
                         });
+
+                        if (!hasPrimaryAddress) {
+                            document.getElementById('no-primary').textContent = 'No primary address set';
+                        }
 
                         // "edit" button
                         const editButtons = document.querySelectorAll('.edit-button');

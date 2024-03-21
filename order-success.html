@@ -201,6 +201,10 @@
                             <div class="order-details-container" style="margin-bottom: 10px;">
                                 <!-- order details will be inserted here -->
                             </div>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;">
+                            <div class="shipping-address-container" style="margin-bottom: 10px;">
+                                <!-- shipping details will be inserted here -->
+                            </div>
                         </div>
                         <div class="col-7" style="text-align: right;">
                             <button class="my-button-inverse"><a href="index.html">Back to shopping</a></button>
@@ -308,9 +312,43 @@
                                 </tr>
                             </table>
                         `;
+
+                        // Retrieve data from session storage
+                        const streetAddress = sessionStorage.getItem('streetAddress');
+                        const city = sessionStorage.getItem('city');
+                        const zipcode = sessionStorage.getItem('zipcode');
+                        const state = sessionStorage.getItem('state');
+
+                        // Set shipping address table
+                        const shippingAddressContainer = document.querySelector('.shipping-address-container');
+                        shippingAddressContainer.innerHTML = `
+                            <table class="specifications">
+                                <tr>
+                                    <td>Shipping to</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">Street Address</td>
+                                    <td>${streetAddress}</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">City</td>
+                                    <td>${city}</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">Zipcode</td>
+                                    <td>${zipcode}</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">State</td>
+                                    <td>${state}</td>
+                                </tr>
+                            </table>
+                        `;
+
                     })
                     .catch(error => {
-                        console.error(error);
+                        // console.error(error);
                     });
             });
         </script>

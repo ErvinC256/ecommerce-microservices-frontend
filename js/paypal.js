@@ -11,8 +11,13 @@ function setupPayPalButton() {
         onInit: function(data, actions) {
             // Disable the buttons
             actions.disable();
-            // Listen for changes to the checkbox
-            document.querySelector('#confirm-checkbox')
+            
+            // Check if isTherePrimary session variable is true
+            if (sessionStorage.getItem('isTherePrimary') === 'true') {
+                // Enable PayPal since there's a primary address
+                actions.enable();
+            }
+            document.querySelector('#address-checkbox')
             .addEventListener('change', function(event) {
                 // Enable or disable the button when it is checked or unchecked
                 if (event.target.checked) {

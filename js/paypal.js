@@ -26,7 +26,7 @@ function setupPayPalButton() {
             // Fetch and initiate the order logic
             const urlParams = new URLSearchParams(window.location.search);
             const cartItemIds = urlParams.getAll('cartItemIds');
-            const amount = urlParams.get('subtotal');
+            const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
             const userId = sessionStorage.getItem('userId');
 
             try {

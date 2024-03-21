@@ -383,16 +383,18 @@
                         const itemCountElement = document.getElementById('item-count');
                         const subtotalElement = document.getElementById('subtotal');
 
-                        let selectedSubtotal = 0;
+                        let amount = 0;
                         for (const cartItemDto of cartDto.cartItemDtos) {
                             if (selectedCartItems[cartItemDto.cartItemId]) {
                                 const selectedQuantity = cartItemDto.quantity; // Adjust this line based on your structure
-                                selectedSubtotal += selectedQuantity * cartItemDto.productPrice; // Calculate subtotal based on quantity and unit price
+                                amount += selectedQuantity * cartItemDto.productPrice; // Calculate subtotal based on quantity and unit price
                             }
                         }
 
                         itemCountElement.textContent = Object.keys(selectedCartItems).length;
-                        subtotalElement.textContent = selectedSubtotal.toFixed(2);
+                        subtotalElement.textContent = amount.toFixed(2);
+
+                        sessionStorage.setItem('amount', amount);
                         
                     })
                     .catch(error => {
@@ -429,9 +431,8 @@
                     event.preventDefault();
 
                     const params = new URLSearchParams(window.location.search);
-                    const subtotal = document.getElementById('subtotal').textContent;
 
-                    let redirectURL = `checkout.html?fromCart=true&subtotal=${subtotal}`;
+                    let redirectURL = `checkout.html?fromCart=true`;
 
                     if (params.has('selectedCartItems')) {
                         const cartItemIds = params.getAll('selectedCartItems');

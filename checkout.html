@@ -393,7 +393,28 @@
                 addressCheckbox.addEventListener('change', function() {
                     updateSessionStorage();
                 });
-                
+
+                function checkFormFields() {
+                    const streetAddress = streetAddressInput.value.trim();
+                    const city = cityInput.value.trim();
+                    const zipcode = zipcodeInput.value.trim();
+                    const state = stateSelect.value;
+            
+                    if (streetAddress !== '' && city !== '' && zipcode !== '' && state !== '') {
+                        addressCheckbox.disabled = false;
+                    } else {
+                        addressCheckbox.disabled = true;
+                    }
+                }
+                // Function to update session storage when checkbox is checked
+                function updateSessionStorage() {
+                    if (addressCheckbox.checked) {
+                        sessionStorage.setItem('streetAddress', streetAddressInput.value.trim());
+                        sessionStorage.setItem('city', cityInput.value.trim());
+                        sessionStorage.setItem('zipcode', zipcodeInput.value.trim());
+                        sessionStorage.setItem('state', stateSelect.value);
+                    }                
+                }
             });
         </script>
         <script>
@@ -408,27 +429,6 @@
                 document.getElementById('moreText').style.display = 'none';
                 document.getElementById('moreLink').style.display = 'inline';
                 document.getElementById('lessLink').style.display = 'none';
-            }
-            function checkFormFields() {
-                const streetAddress = streetAddressInput.value.trim();
-                const city = cityInput.value.trim();
-                const zipcode = zipcodeInput.value.trim();
-                const state = stateSelect.value;
-        
-                if (streetAddress !== '' && city !== '' && zipcode !== '' && state !== '') {
-                    addressCheckbox.disabled = false;
-                } else {
-                    addressCheckbox.disabled = true;
-                }
-            }
-            // Function to update session storage when checkbox is checked
-            function updateSessionStorage() {
-                if (addressCheckbox.checked) {
-                    sessionStorage.setItem('streetAddress', streetAddressInput.value.trim());
-                    sessionStorage.setItem('city', cityInput.value.trim());
-                    sessionStorage.setItem('zipcode', zipcodeInput.value.trim());
-                    sessionStorage.setItem('state', stateSelect.value);
-                }                
             }
         </script>
     </body>

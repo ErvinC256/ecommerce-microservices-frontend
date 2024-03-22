@@ -305,8 +305,7 @@
                                 });
                             })
                             .catch(error => {
-                                console.error('Error fetching stock counts:', error);
-                                // Handle error if needed
+                                console.error(error);
                             });
 
 
@@ -350,7 +349,6 @@
                                     })
                                     .catch(error => {
                                         console.error(error);
-                                        // Handle error if needed
                                     });
                             });
                         });
@@ -374,7 +372,7 @@
                                         window.location.href = 'shopping-cart.html';
                                     })
                                     .catch(error => {
-                                        console.error(error.message);
+                                        console.error(error);
                                     });
                             });
                         });
@@ -422,7 +420,7 @@
                             window.location.href = 'shopping-cart.html';
                         })
                         .catch(error => {
-                            console.error(error.message);
+                            console.error(error);
                         });
                 });
 
@@ -473,7 +471,6 @@
                 // Redirect to the updated URL
                 window.location.href = currentUrl.href;
             }
-        
             function setSessionStatus() {
                 const selectedCartItems = {};
         
@@ -487,7 +484,6 @@
         
                 setUrlParams(selectedCartItems);
             }
-
             function setSessionStatusToTrue() {
                 const selectedCartItems = {};
         

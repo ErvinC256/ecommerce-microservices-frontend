@@ -295,7 +295,7 @@
                 sessionStorage.setItem('isTherePrimary', false);
 
                 // personal info area
-                const userId = sessionStorage.getItem('userId'); // Replace with the actual userId
+                const userId = sessionStorage.getItem('userId'); 
                 const username = sessionStorage.getItem('username');
 
                 document.querySelector('#username').textContent = username;
@@ -362,22 +362,37 @@
                         console.error(error);
                     });
 
-                // Get URL parameters
+                // update subtotal, total and item count in summary
                 const params = new URLSearchParams(window.location.search);
                 const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2) ;
                 const cartItemIds = params.getAll('cartItemIds');
 
-                // Update Subtotal and total
                 const subtotalElement = document.getElementById('subtotal');
                 const totalElement = document.getElementById('total');
                 subtotalElement.textContent = amount;
                 totalElement.textContent = amount;
 
-                // Update No of Items
                 const itemCountElement = document.getElementById('item-count');
                 if (itemCountElement && cartItemIds) {
                     itemCountElement.textContent = cartItemIds.length.toString() || '0';
                 }
+
+                // check address events
+                const streetAddressInput = document.getElementById('street-address');
+                const cityInput = document.getElementById('city');
+                const zipcodeInput = document.getElementById('zipcode');
+                const stateSelect = document.getElementById('state-select');
+                const addressCheckbox = document.getElementById('address-checkbox');
+            
+                streetAddressInput.addEventListener('input', checkFormFields);
+                cityInput.addEventListener('input', checkFormFields);
+                zipcodeInput.addEventListener('input', checkFormFields);
+                stateSelect.addEventListener('change', checkFormFields);
+
+                // Event listener for the address checkbox
+                addressCheckbox.addEventListener('change', function() {
+                    updateSessionStorage();
+                });
                 
             });
         </script>
@@ -388,21 +403,12 @@
                 document.getElementById('moreLink').style.display = 'none';
                 document.getElementById('lessLink').style.display = 'inline';
             }
-        
             function showLess(e) {
                 e.preventDefault();
                 document.getElementById('moreText').style.display = 'none';
                 document.getElementById('moreLink').style.display = 'inline';
                 document.getElementById('lessLink').style.display = 'none';
             }
-        </script>
-        <script>
-            const streetAddressInput = document.getElementById('street-address');
-            const cityInput = document.getElementById('city');
-            const zipcodeInput = document.getElementById('zipcode');
-            const stateSelect = document.getElementById('state-select');
-            const addressCheckbox = document.getElementById('address-checkbox');
-        
             function checkFormFields() {
                 const streetAddress = streetAddressInput.value.trim();
                 const city = cityInput.value.trim();
@@ -415,12 +421,6 @@
                     addressCheckbox.disabled = true;
                 }
             }
-        
-            streetAddressInput.addEventListener('input', checkFormFields);
-            cityInput.addEventListener('input', checkFormFields);
-            zipcodeInput.addEventListener('input', checkFormFields);
-            stateSelect.addEventListener('change', checkFormFields);
-
             // Function to update session storage when checkbox is checked
             function updateSessionStorage() {
                 if (addressCheckbox.checked) {
@@ -430,11 +430,6 @@
                     sessionStorage.setItem('state', stateSelect.value);
                 }                
             }
-
-            // Event listener for the address checkbox
-            addressCheckbox.addEventListener('change', function() {
-                updateSessionStorage();
-            });
         </script>
     </body>
 </html>

@@ -516,8 +516,7 @@
                                 }
                             })
                             .catch(error => {
-                                console.error('Error fetching stock counts:', error);
-                                // Handle error if needed
+                                console.error(error);
                             });
 
                         // populate info table
@@ -536,6 +535,7 @@
                             table.appendChild(row);
                         });
 
+                        // add to cart event
                         document.querySelector('#add-to-cart').addEventListener('click', function(e) {
                             e.preventDefault();
 
@@ -545,7 +545,6 @@
                             const productId = document.querySelector('input[name="product-id"]').value;
                             const quantity = document.querySelector('.quantity-select select').value;
 
-                            // add item to cart
                             fetch(`http://localhost:8083/carts/${userId}/cart-items`, {
                                 method: 'POST',
                                 headers: {
@@ -568,7 +567,7 @@
                                     window.location.href = `added-cart.html?productId=${productId}&cartItemId=${cartItem.id}`;
                                 })
                                 .catch(error => {
-                                    console.error(error.message);
+                                    console.error(error);
                                 });
                         });
 
@@ -629,14 +628,12 @@
                 document.getElementById('moreLink').style.display = 'none';
                 document.getElementById('lessLink').style.display = 'inline';
             }
-        
             function showLess(e) {
                 e.preventDefault();
                 document.getElementById('moreText').style.display = 'none';
                 document.getElementById('moreLink').style.display = 'inline';
                 document.getElementById('lessLink').style.display = 'none';
             }
-
             function capitalize(str) {
                 return str.toUpperCase();
             }

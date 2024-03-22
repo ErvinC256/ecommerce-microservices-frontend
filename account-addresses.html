@@ -331,8 +331,7 @@
                 checkSignInStatus();
                 getCartNumber();
 
-                // Assuming userId is available
-                const userId = sessionStorage.getItem('userId'); // Replace with the actual userId
+                const userId = sessionStorage.getItem('userId'); 
                 const addressContainer = document.querySelector('#addressContainer');
 
                 const modalFormEdit = document.querySelector('#addressModal-edit .address-form');
@@ -380,7 +379,7 @@
                             document.getElementById('no-primary').textContent = 'No primary address set';
                         }
 
-                        // "edit" button
+                        // "edit" button eveent
                         const editButtons = document.querySelectorAll('.edit-button');
                         editButtons.forEach(button => {
                             button.addEventListener('click', function() {
@@ -399,7 +398,7 @@
                             });
                         });
 
-                        // "update" button for edit-modal
+                        // "update" button event for edit-modal
                         const updateButton = document.querySelector('#addressModal-edit .update-button');
                         updateButton.addEventListener('click', function() {
 
@@ -439,7 +438,7 @@
                                         window.location.reload();
                                     })
                                     .catch(error => {
-                                        console.error(error.message);
+                                        console.error(error);
                                     });
 
                             } else {
@@ -448,7 +447,7 @@
                             }
                         });
 
-                        // Add event listener to handle the "Remove" button clicks
+                        // remove address event
                         const removeButtons = document.querySelectorAll('.remove-button');
                         removeButtons.forEach(button => {
                             button.addEventListener('click', function() {
@@ -474,7 +473,7 @@
                                         window.location.reload();
                                     })
                                     .catch(error => {
-                                        console.error(error.message);
+                                        console.error(error);
                                     });
 
                             });
@@ -532,7 +531,7 @@
                                 window.location.reload();
                             })
                             .catch(error => {
-                                console.error(error.message);
+                                console.error(error);
                             });
 
                     } else {

@@ -271,7 +271,7 @@
                         cardBody.innerHTML = html;
                     })
                     .catch(error => {
-                        console.log(error);
+                        console.error(error);
                     })
 
                 // populate tag options
@@ -393,7 +393,6 @@
                         console.error(error);
                     });
             }
-
             function handlePaginationClick(event) {
                 event.preventDefault();
 
@@ -422,7 +421,6 @@
                     }
                 }
             }
-
             function setSessionStatus(pageNumber) {
 
                 sessionStorage.setItem('selectedPage', pageNumber);

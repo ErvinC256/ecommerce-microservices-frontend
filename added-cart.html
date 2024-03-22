@@ -229,34 +229,35 @@
                         `;
                         cartTable.appendChild(productItemElement);
                         
-                        // fetch cart count
-                        fetch(`http://localhost:8083/carts/${userId}/cart-items/count`)
-                            .then(response => {
-                                return response.json();
-                            })
-                            .then(count => {
-                                document.querySelector('#cart-count').textContent = count;
-                            })
-                            .catch(error => {
-                                console.error(error);
-                            });
-
-                        
-                        // checkout event
-                        document.querySelector('.checkout-button').addEventListener('click', function() {
-                            event.preventDefault();
-
-                            const params = new URLSearchParams(window.location.search);
-                            const cartItemId = params.get('cartItemId');
-
-                            let redirectURL = `shopping-cart.html?selectedCartItems=${cartItemId}`;
-                            window.location.href = redirectURL;
-                            
-                        });
                     })
                     .catch(error => {
                         console.error(error);
                     })
+                    
+
+                // fetch cart count
+                fetch(`http://localhost:8083/carts/${userId}/cart-items/count`)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(count => {
+                        document.querySelector('#cart-count').textContent = count;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                // checkout event
+                document.querySelector('.checkout-button').addEventListener('click', function() {
+                    event.preventDefault();
+
+                    const params = new URLSearchParams(window.location.search);
+                    const cartItemId = params.get('cartItemId');
+
+                    let redirectURL = `shopping-cart.html?selectedCartItems=${cartItemId}`;
+                    window.location.href = redirectURL;
+                    
+                });
 
             });
         </script>

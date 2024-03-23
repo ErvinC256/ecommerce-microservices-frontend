@@ -11,12 +11,20 @@
         <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/helper.css">
         <link rel="stylesheet" href="style.css">
+        <!-- Datatable -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap4.css">
+        <!-- Datatable -->
         <script>
             if (sessionStorage.getItem('username') === 'guest') {
                 sessionStorage.setItem('redirectToPage', 'account-orders.html')
                 window.location.href = 'sign-in.html';
             }
         </script>
+        <style>
+            .order-detail {
+                text-align: right;
+            }
+        </style>
     </head>
     <body>
         <!-- Begin Body Wrapper -->
@@ -155,7 +163,7 @@
                                 <div class="side-tab"><a href="">Terms of Use</a></div>
                             </div>
                         </div>
-                        <div class="col-7">
+                        <div class="col-9">
                             <div class="product-tab">
                                 <div class="section-title">
                                     <h2>
@@ -170,30 +178,14 @@
                             <div class="tab-content">
                                 <div id="placed-orders" class="tab-pane active show" role="tabpanel">
                                     <div class="product-active owl-carousel">
-                                        <table class="table">
+                                        <table id="example" class="table" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th style="padding-top: 5px; padding-bottom: 5px;">Firstname</th>
-                                                    <th style="padding-top: 5px; padding-bottom: 5px;">Lastname</th>
-                                                    <th style="padding-top: 5px; padding-bottom: 5px;">Email</th>
+                                                    <th>Orders</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td>john@example.com</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Mary</td>
-                                                    <td>Moe</td>
-                                                    <td>mary@example.com</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>July</td>
-                                                    <td>Dooley</td>
-                                                    <td>july@example.com</td>
-                                                </tr>
+                                                <!-- orders will be inserted here -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -245,10 +237,15 @@
             <!-- Footer Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.usebootstrap.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/main.js"></script>
+        <!-- Datatable -->
+        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap4.js"></script>
+        <!-- Datatable -->
         <script>
             let loggedInUser;
 
@@ -257,7 +254,74 @@
                 checkSignInStatus();
                 getCartNumber();
 
+                fetch('http://localhost:8084/orders/2/by-status?completed=true') 
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(orders => {
+                        // Assuming 'orders' is an array containing the fetched data
+                        let tableBody = document.getElementById('example').getElementsByTagName('tbody')[0];
 
+                        // Iterate over each order and populate the table
+                        orders.forEach(order => {
+                            let newRow = tableBody.insertRow(); // Create a new row
+
+                            // Extract day and date from the date string
+                            let orderDate = new Date(order.dateCreated);
+                            let day = orderDate.toLocaleDateString('en-US', { weekday: 'long' });
+                            let date = orderDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                            
+                            // Populate the row with order data
+                            newRow.innerHTML = `
+                                <td>
+                                    <div class="row" style="background-color: #e7f1fd; padding: 5px; border: 1px solid #e1e1e1;">
+                                        <div class="col-2">
+                                            <p style="color: #808080; font-size: 12px;">ORDER PLACED</p>
+                                            <p>${day}, ${date}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p style="color: #808080; font-size: 12px;">TOTAL AMT.</p>
+                                            <p>RM ${order.totalAmount.toFixed(2)}</p>
+                                        </div>
+                                        <div class="col-8" style="text-align: right;">
+                                            <p style="color: #808080; font-size: 12px;">ORDER NUMBER #</p>
+                                            <p>${order.orderNumber}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="images/icon/no-image-icon-6-removebg-preview.png">
+                                        </div>
+                                        <div class="col-5">
+                                            <p style="font-weight: bold;">Order Number</p>
+                                            <p>${order.orderNumber}</p>
+                                            <hr style="margin-top: 10px; margin-bottom: 10px;">
+                                            <p style="font-weight: bold;">Payment Number</p>
+                                            <p>${order.paymentNumber}</p>
+                                            <br>
+                                            <a href="" class="link-inverse">View order details</a>
+                                        </div>
+                                        <div class="col-3 order-detail">
+                                            <p style="font-weight: bold;">Status</p>
+                                            <p>${order.status}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <button class="button-13">Buy again</button>
+                                            <button class="button-13">Archive order</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            `;
+                        });
+
+                        // Initialize DataTable
+                        $('#example').DataTable();
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                // new DataTable('#example');
             });
         </script>
     </body>

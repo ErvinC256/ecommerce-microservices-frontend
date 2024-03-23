@@ -302,10 +302,10 @@
 
                 switch (searchType) {
                     case 'New Arrivals':
-                        apiURL += '/by-new-arrivals?';
+                        apiURL += '/by-status?newArrivals=true&';
                         break;
                     case 'Best Sellers':
-                        apiURL += '/by-best-sellers?';
+                        apiURL += '/by-status?bestSellers=true&';
                         break;
                     case 'Search':
                         apiURL += '?';

@@ -358,7 +358,7 @@
                             item.addEventListener('click', function(event) {
                                 event.preventDefault();
 
-                                fetch(`http://localhost:8083/carts/${userId}/cart-items/by-ids?cartItemIds=${this.dataset.cartItemId}`, {
+                                fetch(`http://localhost:8083/carts/${userId}/cart-items/${this.dataset.cartItemId}`, {
                                     method: 'DELETE',
                                 })
                                     .then(response => {

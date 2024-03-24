@@ -254,7 +254,9 @@
                 checkSignInStatus();
                 getCartNumber();
 
-                fetch('http://localhost:8084/orders/2/by-status?completed=true') 
+                const userId = sessionStorage.getItem('userId');
+
+                fetch(`http://localhost:8084/orders/by-status?userId=${userId}&completed=true`) 
                     .then(response => {
                         return response.json();
                     })
@@ -305,9 +307,9 @@
                                             <p style="font-weight: bold;">Status</p>
                                             <p>${order.status}</p>
                                         </div>
-                                        <div class="col-2">
-                                            <button class="button-13">Buy again</button>
-                                            <button class="button-13">Archive order</button>
+                                        <div class="col-2" style="display: block;">
+                                            <button class="my-button" style="padding: 5px 10px; border-radius: 10px; width: 100%;">Buy again</button>
+                                            <button class="my-button-inverse" style="margin-top: 10px; padding: 5px 10px; border-radius: 10px; width: 100%;">Archive order</button>
                                         </div>
                                     </div>
                                 </td>

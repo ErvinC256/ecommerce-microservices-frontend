@@ -249,7 +249,7 @@
                 fetchAndRenderProducts(searchType, searchTerm, selectedPage);
 
                 // populate manufacturers options
-                fetch('http://localhost:8082/products/manufacturers')
+                fetch('http://localhost:8082/products/all/manufacturers')
                     .then(response => {
                         return response.json()
                     })

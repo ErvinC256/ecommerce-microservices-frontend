@@ -311,9 +311,9 @@
                 } else {
                     let apiURL;
                     if (subcategoryId !== null) {
-                        apiURL = `http://localhost:8082/products/manufacturers?categoryId=${categoryId}&subcategoryId=${subcategoryId}`;
+                        apiURL = `http://localhost:8082/products/all/manufacturers?categoryId=${categoryId}&subcategoryId=${subcategoryId}`;
                     } else {
-                        apiURL = `http://localhost:8082/products/manufacturers?categoryId=${categoryId}`;
+                        apiURL = `http://localhost:8082/products/all/manufacturers?categoryId=${categoryId}`;
                     }
                     // fetch manufacturers
                     fetch(apiURL)

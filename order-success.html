@@ -260,7 +260,7 @@
                 const orderNumber = params.get('orderNumber');
 
                 // fetch order details
-                fetch(`http://localhost:8084/orders/${userId}?orderNumber=${orderNumber}`)
+                fetch(`http://localhost:8084/orders/${orderNumber}`)
                     .then(response => {
                         return response.json();
                     })

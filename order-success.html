@@ -286,7 +286,10 @@
                         // set order details table
                         const orderDetailsContainer = document.querySelector('.order-details-container');
                         orderDetailsContainer.innerHTML = `
-                            <table class="specifications">
+                            <table class="specifications-2">
+                                <tr>
+                                    <td colspan="2" style="color: #808080; font-size: 14px; background-color: #e7f1fd; padding: 5px; border: 1px solid #e1e1e1;">Order details</td>
+                                </tr>
                                 <tr>
                                     <td style="font-weight: bold;">Order Number</td>
                                     <td>${order.orderNumber}</td>
@@ -324,10 +327,9 @@
                 // Set shipping address table
                 const shippingAddressContainer = document.querySelector('.shipping-address-container');
                 shippingAddressContainer.innerHTML = `
-                    <table class="specifications">
+                    <table class="specifications-2">
                         <tr>
-                            <td>Shipping to</td>
-                            <td></td>
+                            <td colspan="2" style="color: #808080; font-size: 14px; background-color: #e7f1fd; padding: 5px; border: 1px solid #e1e1e1;">Shipping to</td>
                         </tr>
                         <tr>
                             <td style="font-weight: bold;">Street Address</td>

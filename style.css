@@ -36,6 +36,7 @@
 			3.6 Product Grid Page
 			3.7 Product Details Page
 			3.8 Account Page
+			3.9 Order Success Page
 
 -----------------------------------------------------------------------------------*/
 @font-face {
@@ -1100,6 +1101,16 @@ iframe {
 .security-form .delete-button:hover,
 #deleteAccountModal .confirm-button:hover {
 	color: #fff;
+}
+/*----------------------------------------*/
+/*  3.9 Order Success Page
+/*----------------------------------------*/
+.specifications-2 {
+	width: 100%;
+	border-collapse: collapse;
+}
+.specifications-2 td {
+	padding: 8px;
 }
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

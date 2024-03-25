@@ -21,9 +21,135 @@
             }
         </script>
         <style>
-            .order-detail {
-                text-align: right;
+            .receipt-content .invoice-wrapper {
+                background: #FFF;
+                border: 1px solid #CDD3E2;
+                box-shadow: 0px 0px 1px #CCC;
+                padding: 40px 40px 60px;
+                border-radius: 4px; 
             }
+            .receipt-content .invoice-wrapper .payment-details span {
+                color: #A9B0BB;
+                display: block; 
+            }
+            .receipt-content .invoice-wrapper .payment-info {
+                margin-top: 25px;
+                padding-top: 15px; 
+            }
+            .receipt-content .invoice-wrapper .payment-info span {
+                color: #A9B0BB; 
+            }
+            .receipt-content .invoice-wrapper .payment-info strong {
+                display: block;
+                color: #444;
+                margin-top: 3px; 
+            }
+            @media (max-width: 767px) {
+                .receipt-content .invoice-wrapper .payment-info .text-right {
+                    text-align: left;
+                    margin-top: 20px; 
+                } 
+            }
+            .receipt-content .invoice-wrapper .payment-details {
+                border-top: 2px solid #EBECEE;
+                margin-top: 30px;
+                padding-top: 20px;
+                line-height: 22px; 
+            }
+            @media (max-width: 767px) {
+                .receipt-content .invoice-wrapper .payment-details .text-right {
+                    text-align: left;
+                    margin-top: 20px; 
+                } 
+            }
+            .receipt-content .invoice-wrapper .line-items {
+                margin-top: 40px; 
+            }
+            .receipt-content .invoice-wrapper .line-items .headers {
+                color: #A9B0BB;
+                font-size: 13px;
+                letter-spacing: .3px;
+                border-bottom: 2px solid #EBECEE;
+                padding-bottom: 4px; 
+            }
+            .receipt-content .invoice-wrapper .line-items .items {
+                margin-top: 8px;
+                border-bottom: 2px solid #EBECEE;
+                padding-bottom: 8px; 
+            }
+            .receipt-content .invoice-wrapper .line-items .items .item {
+                padding: 10px 0;
+                color: #696969;
+                font-size: 15px; 
+            }
+            @media (max-width: 767px) {
+                .receipt-content .invoice-wrapper .line-items .items .item {
+                    font-size: 13px; 
+                } 
+            }
+            .receipt-content .invoice-wrapper .line-items .items .item .amount {
+                letter-spacing: 0.1px;
+                color: #84868A;
+                font-size: 16px;
+            }
+            @media (max-width: 767px) {
+                .receipt-content .invoice-wrapper .line-items .items .item .amount {
+                    font-size: 13px; 
+                } 
+            }
+            .receipt-content .invoice-wrapper .line-items .total {
+                margin-top: 30px; 
+            }
+            .receipt-content .invoice-wrapper .line-items .total .extra-notes {
+                float: left;
+                width: 40%;
+                text-align: left;
+                font-size: 13px;
+                color: #7A7A7A;
+                line-height: 20px; 
+            }
+            @media (max-width: 767px) {
+                .receipt-content .invoice-wrapper .line-items .total .extra-notes {
+                    width: 100%;
+                    margin-bottom: 30px;
+                    float: none; 
+                } 
+            }
+            .receipt-content .invoice-wrapper .line-items .total .extra-notes strong {
+                display: block;
+                margin-bottom: 5px;
+                color: #454545; 
+            }
+            .receipt-content .invoice-wrapper .line-items .total .field {
+                margin-bottom: 7px;
+                font-size: 14px;
+                color: #555; 
+            }
+            .receipt-content .invoice-wrapper .line-items .total .field.grand-total {
+                margin-top: 10px;
+                font-size: 16px;
+                font-weight: 500; 
+            }
+            .receipt-content .invoice-wrapper .line-items .total .field.grand-total span {
+                color: #20A720;
+                font-size: 16px; 
+            }
+            .receipt-content .invoice-wrapper .line-items .total .field span {
+                display: inline-block;
+                margin-left: 20px;
+                min-width: 85px;
+                color: #84868A;
+                font-size: 15px; 
+            }
+            .receipt-content .invoice-wrapper .line-items .print {
+                margin-top: 50px;
+                text-align: center; 
+            }
+            .receipt-content .invoice-wrapper .line-items .print a i {
+                margin-right: 3px;
+                font-size: 14px; 
+            }
+
         </style>
     </head>
     <body>
@@ -237,7 +363,136 @@
             <!-- Footer Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
-        
+        <!-- Modal -->
+        <div class="modal" id="view-order-details-modal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="receipt-content">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="invoice-wrapper">
+                                    <div class="payment-info">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <span>Payment No.</span>
+                                                <strong>434334343</strong>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <span>Payment Date</span>
+                                                <strong>Jul 09, 2014 - 12:20 pm</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="payment-details">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <span>Client</span>
+                                                <strong>
+                                                    Andres felipe posada
+                                                </strong>
+                                                <p>
+                                                    989 5th Avenue <br>
+                                                    City of monterrey <br>
+                                                    55839 <br>
+                                                    USA <br>
+                                                    <a href="#">
+                                                        jonnydeff@gmail.com
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <span>Payment To</span>
+                                                <strong>
+                                                    Juan fernando arias
+                                                </strong>
+                                                <p>
+                                                    344 9th Avenue <br>
+                                                    San Francisco <br>
+                                                    99383 <br>
+                                                    USA <br>
+                                                    <a href="#">
+                                                        juanfer@gmail.com
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="line-items">
+                                        <div class="headers clearfix">
+                                            <div class="row">
+                                                <div class="col-xs-4">Description</div>
+                                                <div class="col-xs-3">Quantity</div>
+                                                <div class="col-xs-5 text-right">Amount</div>
+                                            </div>
+                                        </div>
+                                        <div class="items">
+                                            <div class="row item">
+                                                <div class="col-xs-4 desc">
+                                                    Html theme
+                                                </div>
+                                                <div class="col-xs-3 qty">
+                                                    3
+                                                </div>
+                                                <div class="col-xs-5 amount text-right">
+                                                    $60.00
+                                                </div>
+                                            </div>
+                                            <div class="row item">
+                                                <div class="col-xs-4 desc">
+                                                    Bootstrap snippet
+                                                </div>
+                                                <div class="col-xs-3 qty">
+                                                    1
+                                                </div>
+                                                <div class="col-xs-5 amount text-right">
+                                                    $20.00
+                                                </div>
+                                            </div>
+                                            <div class="row item">
+                                                <div class="col-xs-4 desc">
+                                                    Snippets on bootdey 
+                                                </div>
+                                                <div class="col-xs-3 qty">
+                                                    2
+                                                </div>
+                                                <div class="col-xs-5 amount text-right">
+                                                    $18.00
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="total text-right">
+                                            <p class="extra-notes">
+                                                <strong>Extra Notes</strong>
+                                                Please send all items at the same time to shipping address by next week.
+                                                Thanks a lot.
+                                            </p>
+                                            <div class="field">
+                                                Subtotal <span>$379.00</span>
+                                            </div>
+                                            <div class="field">
+                                                Shipping <span>$0.00</span>
+                                            </div>
+                                            <div class="field">
+                                                Discount <span>4.5%</span>
+                                            </div>
+                                            <div class="field grand-total">
+                                                Total <span>$312.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="print">
+                                            <a href="#">
+                                                <i class="fa fa-print"></i>
+                                                Print this receipt
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.usebootstrap.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -256,7 +511,7 @@
 
                 const userId = sessionStorage.getItem('userId');
 
-                fetch(`http://localhost:8084/orders/by-status?userId=${userId}&completed=true`) 
+                fetch(`http://localhost:8084/orders/by-status?userId=${userId}&placed=true`) 
                     .then(response => {
                         return response.json();
                     })
@@ -303,13 +558,13 @@
                                             <br>
                                             <a href="" class="link-inverse">View order details</a>
                                         </div>
-                                        <div class="col-3 order-detail">
+                                        <div class="col-2" style="text-align: right;">
                                             <p style="font-weight: bold;">Status</p>
                                             <p>${order.status}</p>
                                         </div>
-                                        <div class="col-2" style="display: block;">
-                                            <button class="my-button" style="padding: 5px 10px; border-radius: 10px; width: 100%;">Buy again</button>
-                                            <button class="my-button-inverse" style="margin-top: 10px; padding: 5px 10px; border-radius: 10px; width: 100%;">Archive order</button>
+                                        <div class="col-3" style="display: block;">
+                                            <button class="my-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}" data-toggle="modal" data-target="#view-order-details-modal">Buy again</button>
+                                            <button class="my-button-inverse" style="margin-top: 10px; padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}">View order details</button>
                                         </div>
                                     </div>
                                 </td>

@@ -35,7 +35,7 @@ function setupPayPalButton() {
             const userId = sessionStorage.getItem('userId');
 
             try {
-                const response = await fetch(`http://localhost:8086/orders/init?amount=${amount}`, {
+                const response = await fetch(`http://localhost:8086/payments/init?amount=${amount}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function setupPayPalButton() {
 
             try {
                 const cartItemIdsQueryString = cartItemIds.map(id => `cartItemIds=${id}`).join('&');
-                const response = await fetch(`http://localhost:8086/orders/capture?paypalOrderId=${data.orderID}&userId=${userId}&amount=${amount}&${cartItemIdsQueryString}`, {
+                const response = await fetch(`http://localhost:8086/payments/capture?paypalOrderId=${data.orderID}&userId=${userId}&amount=${amount}&${cartItemIdsQueryString}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

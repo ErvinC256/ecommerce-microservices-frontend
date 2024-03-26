@@ -319,7 +319,7 @@
                 // load user addresses
                 const addressContainer = document.querySelector('#addressContainer');
 
-                fetch(`http://localhost:8081/users/${userId}/addresses?primary=true`)
+                fetch(`http://localhost:8080/users/${userId}/addresses?primary=true`)
                     .then(response => {
                         return response.json()
                     })

@@ -206,7 +206,7 @@
                 getCartNumber();
 
                 //load laptop tablet deals data
-                fetch('http://localhost:8082/products?categoryId=1&maxPrice=2000&page=0&size=10') 
+                fetch('http://localhost:8080/products?categoryId=1&maxPrice=2000&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -225,7 +225,7 @@
                     });
 
                 //load electronics accessories deals data
-                fetch('http://localhost:8082/products?categoryId=2&maxPrice=500&page=0&size=10') 
+                fetch('http://localhost:8080/products?categoryId=2&maxPrice=500&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -244,7 +244,7 @@
                     });
                 
                 //load printers deals data
-                fetch('http://localhost:8082/products?categoryId=3&maxPrice=1000&page=0&size=10') 
+                fetch('http://localhost:8080/products?categoryId=3&maxPrice=1000&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })

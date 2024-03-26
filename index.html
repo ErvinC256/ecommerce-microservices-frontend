@@ -306,7 +306,7 @@
                 getCartNumber();
 
                 //load new arrivals
-                fetch('http://localhost:8082/products/by-status?newArrivals=true&page=0&size=10') 
+                fetch('http://localhost:8080/products/by-status?newArrivals=true&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -325,7 +325,7 @@
                     });
 
                 //load best sellers
-                fetch('http://localhost:8082/products/by-status?bestSellers=true&page=0&size=10') 
+                fetch('http://localhost:8080/products/by-status?bestSellers=true&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -344,7 +344,7 @@
                     });
 
                 //load deals data
-                fetch('http://localhost:8082/products?maxPrice=150&page=0&size=10') 
+                fetch('http://localhost:8080/products?maxPrice=150&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -363,7 +363,7 @@
                     });
 
                 //load laptop & tablets data
-                fetch('http://localhost:8082/products?categoryId=1&page=0&size=10') 
+                fetch('http://localhost:8080/products?categoryId=1&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -382,7 +382,7 @@
                     });
 
                 //load electronics & accessories data
-                fetch('http://localhost:8082/products?categoryId=2&page=0&size=10') 
+                fetch('http://localhost:8080/products?categoryId=2&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })
@@ -400,7 +400,7 @@
                     });
 
                 //load printers data
-                fetch('http://localhost:8082/products?categoryId=3&page=0&size=10') 
+                fetch('http://localhost:8080/products?categoryId=3&page=0&size=10') 
                     .then(response => {
                         return response.json();
                     })

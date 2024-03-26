@@ -260,7 +260,7 @@
                 const orderNumber = params.get('orderNumber');
 
                 // fetch order details
-                fetch(`http://localhost:8084/orders/${orderNumber}`)
+                fetch(`http://localhost:8080/orders/${orderNumber}`)
                     .then(response => {
                         return response.json();
                     })

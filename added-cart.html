@@ -189,7 +189,7 @@
                 const productId = params.get('productId');
 
                 // fetch product details
-                fetch(`http://localhost:8082/products/${productId}`) 
+                fetch(`http://localhost:8080/products/${productId}`) 
                     .then(response => {
                         return response.json();
                     })
@@ -236,7 +236,7 @@
                     
 
                 // fetch cart count
-                fetch(`http://localhost:8083/carts/${userId}/cart-items/count`)
+                fetch(`http://localhost:8080/carts/${userId}/cart-items/count`)
                     .then(response => {
                         return response.json();
                     })

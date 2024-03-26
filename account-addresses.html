@@ -338,7 +338,7 @@
                 const modalFormAdd = document.querySelector('#addressModal-add .address-form');
                 
                 // load user addresses
-                fetch(`http://localhost:8081/users/${userId}/addresses`)
+                fetch(`http://localhost:8080/users/${userId}/addresses`)
                     .then(response => {
                         return response.json()
                     })
@@ -420,7 +420,7 @@
                                 };
 
                                 // update address
-                                fetch(`http://localhost:8081/users/${userId}/addresses/${addressId}`, {
+                                fetch(`http://localhost:8080/users/${userId}/addresses/${addressId}`, {
                                     method: 'PUT',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -455,7 +455,7 @@
                                 const selectedAddress = addresses[index];
 
                                 // delete an address
-                                fetch(`http://localhost:8081/users/${userId}/addresses/${selectedAddress.id}`, {
+                                fetch(`http://localhost:8080/users/${userId}/addresses/${selectedAddress.id}`, {
                                         method: 'DELETE',
                                         headers: {
                                             'Content-Type': 'application/json',
@@ -512,7 +512,7 @@
                         };
 
                         // add a new address
-                        fetch(`http://localhost:8081/users/${userId}/addresses`, {
+                        fetch(`http://localhost:8080/users/${userId}/addresses`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',

@@ -313,7 +313,7 @@
                 const productId = params.get('product');
 
                 // fetch product details
-                fetch(`http://localhost:8082/products/${productId}`) 
+                fetch(`http://localhost:8080/products/${productId}`) 
                     .then(response => {
                         return response.json();
                     })
@@ -502,7 +502,7 @@
                         // populate stock count
                         const stockCountElement = document.querySelector('.stock-count');
 
-                        fetch(`http://localhost:8085/inventories?productIds=${product.id}`)
+                        fetch(`http://localhost:8080/inventories?productIds=${product.id}`)
                             .then(response => response.json())
                             .then(stockData => {
                                 // Check if stockData is an array
@@ -544,7 +544,7 @@
                             const productId = document.querySelector('input[name="product-id"]').value;
                             const quantity = document.querySelector('.quantity-select select').value;
 
-                            fetch(`http://localhost:8083/carts/${userId}/cart-items`, {
+                            fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -571,7 +571,7 @@
                         });
 
                         //load similar items data
-                        fetch(`http://localhost:8082/products?categoryId=${categoryId}&subcategoryId=${subcategoryId}&page=0&size=10`) 
+                        fetch(`http://localhost:8080/products?categoryId=${categoryId}&subcategoryId=${subcategoryId}&page=0&size=10`) 
                             .then(response => {
                                 return response.json();
                             })

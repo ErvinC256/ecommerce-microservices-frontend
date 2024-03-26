@@ -338,7 +338,7 @@
                                 const newQuantity = parseInt(event.target.value);
                                 const cartItemId = parseInt(selectElement.dataset.cartItemId);
 
-                                fetch(`http://localhost:8080/carts/${userId}/cart-items/${cartItemId}?newQuantity=${newQuantity}`, {
+                                fetch(`http://localhost:8083/carts/${userId}/cart-items/${cartItemId}?newQuantity=${newQuantity}`, {
                                     method: 'PUT',
                                 })
                                     .then(response => {
@@ -358,7 +358,7 @@
                             item.addEventListener('click', function(event) {
                                 event.preventDefault();
 
-                                fetch(`http://localhost:8080/carts/${userId}/cart-items/${this.dataset.cartItemId}`, {
+                                fetch(`http://localhost:8083/carts/${userId}/cart-items/${this.dataset.cartItemId}`, {
                                     method: 'DELETE',
                                 })
                                     .then(response => {
@@ -406,7 +406,7 @@
                     const userId = sessionStorage.getItem('userId');
 
                     // clear all the items in cart
-                    fetch(`http://localhost:8080/carts/${userId}/cart-items/all`, {
+                    fetch(`http://localhost:8083/carts/${userId}/cart-items/all`, {
                         method: 'DELETE'
                     })
                         .then(response => {

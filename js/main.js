@@ -97,7 +97,7 @@ function getCartNumber() {
 
 	const userId = sessionStorage.getItem('userId');
 
-	fetch(`http://localhost:8083/carts/${userId}/cart-items/count`) 
+	fetch(`http://localhost:8080/carts/${userId}/cart-items/count`) 
 		.then(response => {
 			return response.json();
 		})

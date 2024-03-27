@@ -534,27 +534,15 @@
 
                 // Add event listeners to the tab elements
                 document.getElementById('placed-orders-tab').addEventListener('click', function() {
-                    // Check if orders are already populated, if not, populate them
-                    if (!document.getElementById('example1').classList.contains('populated')) {
-                        populateOrders(userId, 'placed', 'example1');
-                        document.getElementById('example1').classList.add('populated');
-                    }
+                    populateOrders(userId, 'placed', 'example1');
                 });
 
                 document.getElementById('delivered-orders-tab').addEventListener('click', function() {
-                    // Check if orders are already populated, if not, populate them
-                    if (!document.getElementById('example2').classList.contains('populated')) {
-                        populateOrders(userId, 'delivered', 'example2');
-                        document.getElementById('example2').classList.add('populated');
-                    }
+                    populateOrders(userId, 'delivered', 'example2');
                 });
 
                 document.getElementById('completed-orders-tab').addEventListener('click', function() {
-                    // Check if orders are already populated, if not, populate them
-                    if (!document.getElementById('example3').classList.contains('populated')) {
-                        populateOrders(userId, 'completed', 'example3');
-                        document.getElementById('example3').classList.add('populated');
-                    }
+                    populateOrders(userId, 'completed', 'example3');
                 });
 
             });
@@ -562,66 +550,75 @@
         <script>
             // Define a function to populate orders based on status
             function populateOrders(userId, status, tableId) {
-                    fetch(`http://localhost:8080/orders/by-status?userId=${userId}&${status}=true`)
-                        .then(response => response.json())
-                        .then(orders => {
-                            let tableBody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
 
-                            orders.forEach(order => {
-                                let newRow = tableBody.insertRow(); // Create a new row
+                // Clear all other tables
+                const allTables = document.querySelectorAll('.table');
+                allTables.forEach(table => {
+                    if (table.id !== tableId) {
+                        table.getElementsByTagName('tbody')[0].innerHTML = '';
+                    }
+                });
 
-                                let orderDate = new Date(order.dateCreated);
-                                let day = orderDate.toLocaleDateString('en-US', { weekday: 'long' });
-                                let date = orderDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                fetch(`http://localhost:8080/orders/by-status?userId=${userId}&${status}=true`)
+                    .then(response => response.json())
+                    .then(orders => {
+                        let tableBody = document.getElementById(tableId).querySelector('tbody');
+                        
+                        orders.forEach(order => {
+                            let newRow = tableBody.insertRow(); // Create a new row
 
-                                newRow.innerHTML = `
-                                    <td>
-                                        <div class="row" style="background-color: #e7f1fd; padding: 5px; border: 1px solid #e1e1e1;">
-                                            <div class="col-2">
-                                                <p style="color: #808080; font-size: 12px;">ORDER PLACED</p>
-                                                <p>${day}, ${date}</p>
-                                            </div>
-                                            <div class="col-2">
-                                                <p style="color: #808080; font-size: 12px;">TOTAL AMT.</p>
-                                                <p>RM ${order.totalAmount.toFixed(2)}</p>
-                                            </div>
-                                            <div class="col-8" style="text-align: right;">
-                                                <p style="color: #808080; font-size: 12px;">ORDER NUMBER #</p>
-                                                <p>${order.orderNumber}</p>
-                                            </div>
+                            let orderDate = new Date(order.dateCreated);
+                            let day = orderDate.toLocaleDateString('en-US', { weekday: 'long' });
+                            let date = orderDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+                            newRow.innerHTML = `
+                                <td>
+                                    <div class="row" style="background-color: #e7f1fd; padding: 5px; border: 1px solid #e1e1e1;">
+                                        <div class="col-2">
+                                            <p style="color: #808080; font-size: 12px;">ORDER PLACED</p>
+                                            <p>${day}, ${date}</p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <img src="images/icon/no-image-icon-6-removebg-preview.png">
-                                            </div>
-                                            <div class="col-5">
-                                                <p style="font-weight: bold;">Order Number</p>
-                                                <p>${order.orderNumber}</p>
-                                                <hr style="margin-top: 10px; margin-bottom: 10px;">
-                                                <p style="font-weight: bold;">Payment Number</p>
-                                                <p>${order.paymentNumber}</p>
-                                                <br>
-                                                <a href="" class="link-inverse">View order details</a>
-                                            </div>
-                                            <div class="col-2" style="text-align: right;">
-                                                <p style="font-weight: bold;">Status</p>
-                                                <p>${order.status}</p>
-                                            </div>
-                                            <div class="col-3" style="display: block;">
-                                                <button class="my-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}" data-toggle="modal" data-target="#view-order-details-modal">Buy again</button>
-                                                <button class="my-button-inverse" style="margin-top: 10px; padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}">View order details</button>
-                                            </div>
+                                        <div class="col-2">
+                                            <p style="color: #808080; font-size: 12px;">TOTAL AMT.</p>
+                                            <p>RM ${order.totalAmount.toFixed(2)}</p>
                                         </div>
-                                    </td>
-                                `;
-                            });
-
-                            // Initialize DataTable
-                            $(`#${tableId}`).DataTable();
-                        })
-                        .catch(error => {
-                            console.error(error);
+                                        <div class="col-8" style="text-align: right;">
+                                            <p style="color: #808080; font-size: 12px;">ORDER NUMBER #</p>
+                                            <p>${order.orderNumber}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="images/icon/no-image-icon-6-removebg-preview.png">
+                                        </div>
+                                        <div class="col-5">
+                                            <p style="font-weight: bold;">Order Number</p>
+                                            <p>${order.orderNumber}</p>
+                                            <hr style="margin-top: 10px; margin-bottom: 10px;">
+                                            <p style="font-weight: bold;">Payment Number</p>
+                                            <p>${order.paymentNumber}</p>
+                                            <br>
+                                            <a href="" class="link-inverse">View order details</a>
+                                        </div>
+                                        <div class="col-2" style="text-align: right;">
+                                            <p style="font-weight: bold;">Status</p>
+                                            <p>${order.status}</p>
+                                        </div>
+                                        <div class="col-3" style="display: block;">
+                                            <button class="my-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}" data-toggle="modal" data-target="#view-order-details-modal">Buy again</button>
+                                            <button class="my-button-inverse" style="margin-top: 10px; padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}">View order details</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            `;
                         });
+
+                        // Initialize DataTable
+                        $(`#${tableId}`).DataTable();
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
                 }
         </script>
     </body>

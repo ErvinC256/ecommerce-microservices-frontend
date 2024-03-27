@@ -147,7 +147,7 @@
                     <br>
                     <hr>
                     <br>
-                    <p>Your order number is <a class="link-inverse" href="" id="order-number"></a>. Your items will be delivered in 2 - 5 business days.</p>
+                    <p>Your order number is <a class="link-inverse" href="account-orders.html" id="order-number"></a>. Your items will be delivered in 2 - 5 business days.</p>
                 </div>
             </div>
             <!-- Summary Area End Here -->
@@ -164,7 +164,7 @@
                                             <span class="text-muted small">by DHFL in 2 - 5 business days</span>
                                         </div>
                                         <div>
-                                            <button class="btn btn-outline-primary" type="button">View all orders</button>
+                                            <button class="btn btn-outline-primary" type="button"><a href="account-orders.html">View all orders</a></button>
                                         </div>
                                     </div>
                                     <hr class="my-4">
@@ -259,6 +259,8 @@
                 const params = new URLSearchParams(window.location.search);
                 const orderNumber = params.get('orderNumber');
 
+                document.getElementById('order-number').textContent = orderNumber;
+
                 // fetch order details
                 fetch(`http://localhost:8080/orders/${orderNumber}`)
                     .then(response => {
@@ -266,9 +268,6 @@
                     })
                     .then(order => {
 
-                        //set the order details
-                        document.getElementById('order-number').textContent = order.orderNumber;
-                        
                         const orderDate = new Date(order.dateCreated);
 
                         const day = orderDate.getDate();
@@ -285,7 +284,8 @@
 
                         // set order details table
                         const orderDetailsContainer = document.querySelector('.order-details-container');
-                        orderDetailsContainer.innerHTML = `
+                        const orderDetailsElement = document.createElement('div');
+                        orderDetailsElement.innerHTML = `
                             <table class="specifications-2">
                                 <tr>
                                     <td colspan="2" style="color: #808080; font-size: 14px; background-color: #e7f1fd; padding: 5px; border: 1px solid #e1e1e1;">Order details</td>
@@ -312,6 +312,8 @@
                                 </tr>
                             </table>
                         `;
+
+                        orderDetailsContainer.append(orderDetailsElement);
 
                     })
                     .catch(error => {

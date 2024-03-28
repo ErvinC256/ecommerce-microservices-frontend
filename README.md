@@ -23,5 +23,5 @@
 1. Browse Products
 2. Place Order
 3. Manage Account
-4. Track Orders
+4. Order Handling
 5. Manage Inventory

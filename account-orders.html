@@ -150,6 +150,11 @@
                 font-size: 14px; 
             }
 
+
+            .product-item {
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
         </style>
     </head>
     <body>
@@ -393,11 +398,11 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <span>Payment No.</span>
-                                                <strong>434334343</strong>
+                                                <strong class="payment-number"></strong>
                                             </div>
                                             <div class="col-sm-6 text-right">
                                                 <span>Payment Date</span>
-                                                <strong>Jul 09, 2014 - 12:20 pm</strong>
+                                                <strong class="payment-date"></strong>
                                             </div>
                                         </div>
                                     </div>
@@ -405,32 +410,18 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <span>Client</span>
-                                                <strong>
-                                                    Andres felipe posada
-                                                </strong>
-                                                <p>
-                                                    989 5th Avenue <br>
-                                                    City of monterrey <br>
-                                                    55839 <br>
-                                                    USA <br>
-                                                    <a href="#">
-                                                        jonnydeff@gmail.com
-                                                    </a>
-                                                </p>
+                                                <strong class="username"></strong>
                                             </div>
                                             <div class="col-sm-6 text-right">
                                                 <span>Payment To</span>
                                                 <strong>
-                                                    Juan fernando arias
+                                                    QuackCommerce
                                                 </strong>
                                                 <p>
-                                                    344 9th Avenue <br>
-                                                    San Francisco <br>
-                                                    99383 <br>
-                                                    USA <br>
-                                                    <a href="#">
-                                                        juanfer@gmail.com
-                                                    </a>
+                                                    123 Jalan Bukit Bintang <br>
+                                                    Kuala Lumpur <br>
+                                                    55100 <br>
+                                                    Malaysia <br>
                                                 </p>
                                             </div>
                                         </div>
@@ -438,70 +429,32 @@
                                     <div class="line-items">
                                         <div class="headers clearfix">
                                             <div class="row">
-                                                <div class="col-xs-4">Description</div>
-                                                <div class="col-xs-3">Quantity</div>
-                                                <div class="col-xs-5 text-right">Amount</div>
+                                                <div class="col-6">Description</div>
+                                                <div class="col-3">Purchased Quantity</div>
+                                                <div class="col-3" style="text-align: right;">Unit Price (RM)</div>
                                             </div>
                                         </div>
-                                        <div class="items">
-                                            <div class="row item">
-                                                <div class="col-xs-4 desc">
-                                                    Html theme
-                                                </div>
-                                                <div class="col-xs-3 qty">
-                                                    3
-                                                </div>
-                                                <div class="col-xs-5 amount text-right">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                            <div class="row item">
-                                                <div class="col-xs-4 desc">
-                                                    Bootstrap snippet
-                                                </div>
-                                                <div class="col-xs-3 qty">
-                                                    1
-                                                </div>
-                                                <div class="col-xs-5 amount text-right">
-                                                    $20.00
-                                                </div>
-                                            </div>
-                                            <div class="row item">
-                                                <div class="col-xs-4 desc">
-                                                    Snippets on bootdey 
-                                                </div>
-                                                <div class="col-xs-3 qty">
-                                                    2
-                                                </div>
-                                                <div class="col-xs-5 amount text-right">
-                                                    $18.00
-                                                </div>
-                                            </div>
+                                        <div class="product-items">
+                                            <!-- product items will be inserted here -->
                                         </div>
-                                        <div class="total text-right">
+                                        <div class="total text-right" style="padding-top: 10px;">
                                             <p class="extra-notes">
                                                 <strong>Extra Notes</strong>
                                                 Please send all items at the same time to shipping address by next week.
                                                 Thanks a lot.
                                             </p>
-                                            <div class="field">
-                                                Subtotal <span>$379.00</span>
+                                            <div class="field grand-total">
+                                                Subtotal (RM) <span class="my-subtotal"></span>
                                             </div>
                                             <div class="field">
-                                                Shipping <span>$0.00</span>
+                                                Shipping <span>---</span>
                                             </div>
                                             <div class="field">
-                                                Discount <span>4.5%</span>
+                                                Discount <span>---</span>
                                             </div>
                                             <div class="field grand-total">
-                                                Total <span>$312.00</span>
+                                                Total (RM) <span class="my-total"></span>
                                             </div>
-                                        </div>
-                                        <div class="print">
-                                            <a href="#">
-                                                <i class="fa fa-print"></i>
-                                                Print this receipt
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -565,7 +518,7 @@
                         let tableBody = document.getElementById(tableId).querySelector('tbody');
                         
                         orders.forEach(order => {
-                            let newRow = tableBody.insertRow(); // Create a new row
+                            let newRow = tableBody.insertRow();
 
                             let orderDate = new Date(order.dateCreated);
                             let day = orderDate.toLocaleDateString('en-US', { weekday: 'long' });
@@ -588,15 +541,17 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <input class="payment-date" type="hidden" value="${day}, ${date}">
                                         <div class="col-2">
                                             <img src="images/icon/no-image-icon-6-removebg-preview.png">
                                         </div>
                                         <div class="col-5">
+                                            <input class="order-amount" type="hidden" value="${order.totalAmount.toFixed(2)}">
                                             <p style="font-weight: bold;">Order Number</p>
                                             <p>${order.orderNumber}</p>
                                             <hr style="margin-top: 10px; margin-bottom: 10px;">
                                             <p style="font-weight: bold;">Payment Number</p>
-                                            <p>${order.paymentNumber}</p>
+                                            <p class="payment-number">${order.paymentNumber}</p>
                                             <br>
                                             <a href="" class="link-inverse">View order details</a>
                                         </div>
@@ -605,12 +560,67 @@
                                             <p>${order.status}</p>
                                         </div>
                                         <div class="col-3" style="display: block;">
-                                            <button class="my-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}" data-toggle="modal" data-target="#view-order-details-modal">Buy again</button>
-                                            <button class="my-button-inverse" style="margin-top: 10px; padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}">View order details</button>
+                                            <button class="my-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;">Buy again</button>
+                                            <button class="my-button-inverse view-details-button" style="margin-top: 10px; padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-number="${order.orderNumber}" data-toggle="modal" data-target="#view-order-details-modal">View order details</button>
                                         </div>
                                     </div>
                                 </td>
                             `;
+                        });
+
+                        // Add an event listener to the "View order details" buttons
+                        document.querySelectorAll('.view-details-button').forEach(button => {
+                            button.addEventListener('click', function() {
+                                // Get the closest row element
+                                const row = this.closest('.row');
+                                const orderNumber = this.getAttribute('data-order-number');
+
+                                // // Populate payment number and payment date on the modal
+                                // document.querySelector('#view-order-details-modal .payment-number').textContent = paymentNumber;
+                                // document.querySelector('#view-order-details-modal .payment-date').textContent = paymentDate;
+                                // document.querySelector('#view-order-details-modal .username').textContent = sessionStorage.getItem('username');
+                                // document.querySelector('#view-order-details-modal .my-subtotal').textContent = orderAmount;
+                                // document.querySelector('#view-order-details-modal .my-total').textContent = orderAmount;
+
+                                fetch(`http://localhost:8080/orders/${orderNumber}`)
+                                    .then(response => response.json())
+                                    .then(order => {
+
+                                        let orderDate = new Date(order.dateCreated);
+                                        let day = orderDate.toLocaleDateString('en-US', { weekday: 'long' });
+                                        let date = orderDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+                                        document.querySelector('#view-order-details-modal .payment-number').textContent = order.paymentNumber;
+                                        document.querySelector('#view-order-details-modal .payment-date').textContent = `${day}, ${date}`;
+                                        document.querySelector('#view-order-details-modal .username').textContent = sessionStorage.getItem('username');
+                                        
+                                        const productItemsContainer = document.querySelector('.product-items');
+
+                                        order.orderItemDtos.forEach(orderItem => {
+
+                                            const productName = orderItem.productName.split('-')[0].trim();
+
+                                            const productItemElement = document.createElement('div');
+                                            productItemElement.classList.add('row');
+                                            productItemElement.innerHTML = `
+                                                <div class="col-6 product-item">${productName}</div>
+                                                <div class="col-3 product-item">${orderItem.quantityPurchased}</div>
+                                                <div class="col-3 product-item" style="text-align: right;">${orderItem.productPrice}</div>
+                                            `;
+
+                                            productItemsContainer.append(productItemElement);
+
+                                        });
+
+                                        document.querySelector('#view-order-details-modal .my-subtotal').textContent = order.totalAmount;
+                                        document.querySelector('#view-order-details-modal .my-total').textContent = order.totalAmount;
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+
+
+                            });
                         });
 
                         // Initialize DataTable

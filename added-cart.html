@@ -143,6 +143,20 @@
                 </div>
             </div>
             <!-- Checkout Contents Area End Here -->
+            <!-- Begin Similar Items Area -->
+            <div class="similar-area mb-50">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Other products to add</h2>
+                    </div>
+                    <div class="row">
+                        <div class="product-active owl-carousel">
+                            <!-- //products will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Similar Items Area End here -->
             <!-- Begin Scroll Top  -->
             <div id="scrollToTop" class="mt-100">
                 back to top
@@ -228,7 +242,26 @@
                             </td>
                         `;
                         cartTable.appendChild(productItemElement);
-                        
+
+                        //load similar items data
+                        fetch(`http://localhost:8080/products?subcategoryId=${product.subcategory.id}&page=0&size=10`) 
+                            .then(response => {
+                                return response.json();
+                            })
+                            .then(products => {
+                                const productsContainer = document.querySelector('.similar-area .owl-carousel');
+                                productsContainer.innerHTML = '';
+                                products.content.forEach(product => {
+                                    const productElement = generateSingleProduct(product);
+                                    productsContainer.appendChild(productElement);
+
+                                });
+                                initializeOwlCarousel(productsContainer);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+
                     })
                     .catch(error => {
                         console.error(error);

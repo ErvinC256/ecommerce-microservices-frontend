@@ -88,7 +88,9 @@ function setupPayPalButton() {
                 } else {
                     // Successful transaction -> Redirect to success page
                     const orderNumber = orderData.orderNumber;
-                    window.location.href = `order-success.html?orderNumber=${orderNumber}`;
+                    setTimeout(function(){
+                        window.location.href = `order-success.html?orderNumber=${orderNumber}`;
+                    }, 2000); // Redirect after 2 seconds
                 }
             } catch (error) {
                 console.error(error);

@@ -389,6 +389,26 @@
         </div>
         <!-- Body Wrapper End Here -->
         <!-- Modal -->
+        <div class="modal" id="reorder-modal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Reorder</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="reorder-table">
+                            <!-- reorder items will be inserted here -->
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary my-button reorder-confirm-button">Reorder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <!-- Modal -->
         <div class="modal" id="view-order-details-modal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -502,6 +522,64 @@
                     populateOrders(userId, 'completed', 'example3');
                 });
 
+                // Add an event listener to the "reorder" buttons
+                document.querySelector('.reorder-confirm-button').addEventListener('click', function() {
+                    // Initialize an array to store AddToCartDto objects
+                    const reorderArray = [];
+
+                    // Iterate through each row in the reorder table
+                    document.querySelectorAll('.reorder-table tr').forEach(row => {
+                        // Extract product ID and quantity from the row
+                        const productId = row.querySelector('.product-id').value;
+                        
+                        const quantity = parseInt(row.querySelector('.quantity-select select').value);
+
+                        // Construct the AddToCartDto object
+                        const reorderItem = {
+                            productId: productId,
+                            quantity: quantity
+                        };
+
+                        // Add the AddToCartDto object to the array
+                        reorderArray.push(reorderItem);
+                    });
+
+                    fetch(`http://localhost:8080/carts/${userId}/cart-items/bulk`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            reorderItems: reorderArray
+                        }),
+                    })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(cartItemIds => {
+                            
+                            let redirectURL = `shopping-cart.html?`;
+
+                            for (let i = 0; i < cartItemIds.length; i++) {
+                                redirectURL += `selectedCartItems=${cartItemIds[i]}`;
+
+                                // Add ampersand if it's not the last parameter
+                                if (i < cartItemIds.length - 1) {
+                                    redirectURL += '&';
+                                }
+                            }
+
+                            redirectURL += 'reorder=true';
+
+                            window.location.href = redirectURL;
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                
+                });
+
+
             });
         </script>
         <script>
@@ -563,12 +641,79 @@
                                             <p>${order.status}</p>
                                         </div>
                                         <div class="col-3" style="display: block;">
-                                            <button class="my-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;">Buy again</button>
+                                            <button class="my-button reorder-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-number="${order.orderNumber}" data-toggle="modal" data-target="#reorder-modal">Reorder these items</button>
                                             <button class="my-button-inverse view-details-button" style="margin-top: 10px; padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-number="${order.orderNumber}" data-toggle="modal" data-target="#view-order-details-modal">View order details</button>
                                         </div>
                                     </div>
                                 </td>
                             `;
+                        });
+
+                        // Add an event listener to the "reorder" buttons
+                        document.querySelectorAll('.reorder-button').forEach(button => {
+                            button.addEventListener('click', function() {
+                                // Get the closest row element
+                                const row = this.closest('.row');
+                                const orderNumber = this.getAttribute('data-order-number');
+
+                                fetch(`http://localhost:8080/orders/${orderNumber}`)
+                                    .then(response => response.json())
+                                    .then(order => {
+                                        
+                                        const reorderTable = document.querySelector('.reorder-table');
+                                        reorderTable.innerHTML = '';
+                        
+                                        order.orderItemDtos.forEach(orderItem => {
+
+                                            const productName = orderItem.productName.split('-')[0].trim();
+                                            let selectOptions = '';
+                                            for (let i = 1; i <= 10; i++) {
+                                                const optionText = i === 1 ? 'Quantity: 1' : `Quantity: ${i}`;
+                                                selectOptions += `<option value="${i}" ${i === orderItem.quantityPurchased ? 'selected' : ''}>${optionText}</option>`;
+                                            }
+
+                                            const productItemElement = document.createElement('tr');
+                                            
+                                            productItemElement.innerHTML = `
+                                                <td>
+                                                    <input class="product-id" type="hidden" value="${orderItem.productId}">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="product-image">
+                                                                <a href="product-details.html?product=${orderItem.productId}">
+                                                                    <img src="images/product/large-size/${orderItem.productName}.jpg" alt="Li's Product Image">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <div class="cart-product-details">
+                                                                <div>
+                                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${orderItem.productId}">${orderItem.productName}</a></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="text-align: right; width: 100px;">
+                                                    <div class="quantity-select">
+                                                        <select>
+                                                            ${selectOptions}
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                            `;
+
+                                            reorderTable.append(productItemElement);
+
+                                        });
+
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+
+
+                            });
                         });
 
                         // Add an event listener to the "View order details" buttons
@@ -577,13 +722,6 @@
                                 // Get the closest row element
                                 const row = this.closest('.row');
                                 const orderNumber = this.getAttribute('data-order-number');
-
-                                // // Populate payment number and payment date on the modal
-                                // document.querySelector('#view-order-details-modal .payment-number').textContent = paymentNumber;
-                                // document.querySelector('#view-order-details-modal .payment-date').textContent = paymentDate;
-                                // document.querySelector('#view-order-details-modal .username').textContent = sessionStorage.getItem('username');
-                                // document.querySelector('#view-order-details-modal .my-subtotal').textContent = orderAmount;
-                                // document.querySelector('#view-order-details-modal .my-total').textContent = orderAmount;
 
                                 fetch(`http://localhost:8080/orders/${orderNumber}`)
                                     .then(response => response.json())
@@ -599,7 +737,7 @@
                                         
                                         const productItemsContainer = document.querySelector('.product-items');
                                         productItemsContainer.innerHTML = '';
-                                        
+
                                         order.orderItemDtos.forEach(orderItem => {
 
                                             const productName = orderItem.productName.split('-')[0].trim();

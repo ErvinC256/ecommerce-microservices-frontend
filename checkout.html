@@ -21,6 +21,28 @@
                 }
             });
         </script>
+        <style>
+            .loader {
+              border: 5px solid #f3f3f3;
+              border-radius: 50%;
+              border-top: 5px solid #3498db;
+              width: 50px;
+              height: 50px;
+              -webkit-animation: spin 2s linear infinite; /* Safari */
+              animation: spin 2s linear infinite;
+            }
+            
+            /* Safari */
+            @-webkit-keyframes spin {
+              0% { -webkit-transform: rotate(0deg); }
+              100% { -webkit-transform: rotate(360deg); }
+            }
+            
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            </style>
     </head>
     <body>
         <!-- Begin Body Wrapper -->
@@ -279,6 +301,17 @@
             <!-- Footer Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
+        <!-- Modal -->
+        <div class="modal" id="processingModal" tabindex="-1" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body" style="display: flex; align-items: center;">
+                        <div class="loader"></div>
+                        <div style="margin-left: 20px; font-size: 16px;">Processing your order, please wait a moment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Paypal Scripts -->
         <script src="https://www.paypal.com/sdk/js?client-id=AX4w4oVPgHYr4vzs6gAHUUWl_dZ86wqJ6hmcvrrbiiGQWm3A-Iy8A3pibRCvIYTX0MYZQkPF0tXx65ws&currency=MYR"></script>
         <script src="js/paypal.js"></script>

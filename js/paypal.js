@@ -86,9 +86,12 @@ function setupPayPalButton() {
                     // Other non-recoverable errors -> Show a failure message
                     throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
                 } else {
+                    $('#processingModal').modal('show');
+
                     // Successful transaction -> Redirect to success page
                     const orderNumber = orderData.orderNumber;
                     setTimeout(function(){
+                        $('#processingModal').modal('hide');
                         window.location.href = `order-success.html?orderNumber=${orderNumber}`;
                     }, 2000); // Redirect after 2 seconds
                 }

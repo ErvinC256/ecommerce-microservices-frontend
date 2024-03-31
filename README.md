@@ -1,6 +1,6 @@
 # ecommerce-microservices-frontend
 
-#### **under development **scalable with event-driven architecture **will deploy to aws once the implementation is done
+#### **under development **event-driven architecture
 ---
 
 <img src="https://github.com/ErvinC256/ecommerce-microservices-frontend/assets/149756489/5c9d7fc5-a175-41fc-85fe-b56000a2002c" width="75%">
@@ -20,8 +20,8 @@
 ---
 
 ### Main Features:
-1. Browse Products
-2. Place Order
-3. Manage Account
-4. Track Orders
-5. Manage Inventory
+1. Enhanced Product Search
+2. Order Placement & Payment
+3. Account Management
+4. Order Handling
+5. Inventory Management

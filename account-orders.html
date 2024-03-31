@@ -392,6 +392,9 @@
         <div class="modal" id="view-order-details-modal" tabindex="-1" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
+                    <div style="text-align: right; padding-right: 10px;">
+                        <button style="width: auto;" type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
                     <div class="receipt-content">
                         <div class="row">
                             <div class="col-12">
@@ -432,7 +435,7 @@
                                         <div class="headers clearfix">
                                             <div class="row">
                                                 <div class="col-6">Description</div>
-                                                <div class="col-3">Purchased Quantity</div>
+                                                <div class="col-3" style="text-align: center;">Purchased Quantity</div>
                                                 <div class="col-3" style="text-align: right;">Unit Price (RM)</div>
                                             </div>
                                         </div>
@@ -554,7 +557,6 @@
                                             <p style="font-weight: bold;">Payment Number</p>
                                             <p class="payment-number">${order.paymentNumber}</p>
                                             <br>
-                                            <a href="" class="link-inverse">View order details</a>
                                         </div>
                                         <div class="col-2" style="text-align: right;">
                                             <p style="font-weight: bold;">Status</p>
@@ -596,7 +598,8 @@
                                         document.querySelector('#view-order-details-modal .username').textContent = sessionStorage.getItem('username');
                                         
                                         const productItemsContainer = document.querySelector('.product-items');
-
+                                        productItemsContainer.innerHTML = '';
+                                        
                                         order.orderItemDtos.forEach(orderItem => {
 
                                             const productName = orderItem.productName.split('-')[0].trim();
@@ -605,7 +608,7 @@
                                             productItemElement.classList.add('row');
                                             productItemElement.innerHTML = `
                                                 <div class="col-6 product-item">${productName}</div>
-                                                <div class="col-3 product-item">${orderItem.quantityPurchased}</div>
+                                                <div class="col-3 product-item" style="text-align: center;">${orderItem.quantityPurchased}</div>
                                                 <div class="col-3 product-item" style="text-align: right;">${orderItem.productPrice}</div>
                                             `;
 

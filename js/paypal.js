@@ -92,7 +92,7 @@ function setupPayPalButton() {
                     const orderNumber = orderData.orderNumber;
                     setTimeout(function(){
                         $('#processingModal').modal('hide');
-                        window.location.href = `order-success.html?orderNumber=${orderNumber}`;
+                        window.location.href = `order-success.html?fromCheckout=true&orderNumber=${orderNumber}`;
                     }, 2000); // Redirect after 2 seconds
                 }
             } catch (error) {

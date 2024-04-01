@@ -17,8 +17,7 @@ function setupPayPalButton() {
                 // Enable PayPal since there's a primary address
                 actions.enable();
             }
-            document.querySelector('#address-checkbox')
-            .addEventListener('change', function(event) {
+            document.querySelector('#address-checkbox').addEventListener('change', function(event) {
                 // Enable or disable the button when it is checked or unchecked
                 if (event.target.checked) {
                     actions.enable();
@@ -26,13 +25,38 @@ function setupPayPalButton() {
                     actions.disable();
                 }
             });
-        },    
-        createOrder: async function (data, actions) {
-            // Fetch and initiate the order logic
+
             const urlParams = new URLSearchParams(window.location.search);
             const cartItemIds = urlParams.getAll('cartItemIds');
             const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
             const userId = sessionStorage.getItem('userId');
+
+            // create local order
+            fetch(`http://localhost:8080/orders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId: userId,
+                    amount: amount,
+                    cartItemIds: cartItemIds
+                })
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(orderId => {
+                    sessionStorage.setItem('orderId', orderId);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+        },    
+        createOrder: async function (data, actions) {
+
+            const amount = sessionStorage.getItem('amount');
 
             try {
                 const response = await fetch(`http://localhost:8080/payments/init?amount=${amount}`, {
@@ -45,8 +69,6 @@ function setupPayPalButton() {
                 const orderData = await response.json();
 
                 if (orderData.paypalOrderId) {
-                    sessionStorage.setItem('amount', amount);
-                    sessionStorage.setItem('cartItemIds', JSON.stringify(cartItemIds));
 
                     return orderData.paypalOrderId;
                 } else {
@@ -63,17 +85,24 @@ function setupPayPalButton() {
             }
         },
         onApprove: async function (data, actions) {
+
+            const orderId = sessionStorage.getItem('orderId');
             const userId = sessionStorage.getItem('userId');
-            const amount = sessionStorage.getItem('amount');
-            const cartItemIds = JSON.parse(sessionStorage.getItem('cartItemIds'));
+            const urlParams = new URLSearchParams(window.location.search);
+            const cartItemIds = urlParams.getAll('cartItemIds');
 
             try {
-                const cartItemIdsQueryString = cartItemIds.map(id => `cartItemIds=${id}`).join('&');
-                const response = await fetch(`http://localhost:8080/payments/capture?paypalOrderId=${data.orderID}&userId=${userId}&amount=${amount}&${cartItemIdsQueryString}`, {
+                
+                const response = await fetch(`http://localhost:8080/payments/capture?paypalOrderId=${data.orderID}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    body: JSON.stringify({
+                        orderId: orderId,
+                        userId: userId,
+                        cartItemIds: cartItemIds
+                    }) 
                 });
 
                 const orderData = await response.json();
@@ -86,13 +115,14 @@ function setupPayPalButton() {
                     // Other non-recoverable errors -> Show a failure message
                     throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
                 } else {
+
                     $('#processingModal').modal('show');
 
                     // Successful transaction -> Redirect to success page
                     const orderNumber = orderData.orderNumber;
                     setTimeout(function(){
                         $('#processingModal').modal('hide');
-                        window.location.href = `order-success.html?fromCheckout=true&orderNumber=${orderNumber}`;
+                        window.location.href = `order-success.html?fromCheckout=true&orderId=${orderData.orderId}`;
                     }, 2000); // Redirect after 2 seconds
                 }
             } catch (error) {

@@ -234,16 +234,16 @@
                 const userId = sessionStorage.getItem('userId');
 
                 const params = new URLSearchParams(window.location.search);
-                const orderNumber = params.get('orderNumber');
-
-                document.getElementById('order-number').textContent = orderNumber;
+                const orderId = params.get('orderId');
 
                 // fetch order details
-                fetch(`http://localhost:8080/orders/${orderNumber}`)
+                fetch(`http://localhost:8080/orders/${orderId}`)
                     .then(response => {
                         return response.json();
                     })
                     .then(order => {
+
+                        document.getElementById('order-number').textContent = order.orderNumber;
 
                         const orderDate = new Date(order.dateCreated);
 

@@ -26,6 +26,8 @@ function setupPayPalButton() {
                 }
             });
 
+        },    
+        onClick: function(data, actions) {
             const urlParams = new URLSearchParams(window.location.search);
             const cartItemIds = urlParams.getAll('cartItemIds');
             const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
@@ -52,11 +54,10 @@ function setupPayPalButton() {
                 .catch(error => {
                     console.error(error);
                 });
-
-        },    
+        },
         createOrder: async function (data, actions) {
 
-            const amount = sessionStorage.getItem('amount');
+            const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
 
             try {
                 const response = await fetch(`http://localhost:8080/payments/init?amount=${amount}`, {
@@ -69,8 +70,9 @@ function setupPayPalButton() {
                 const orderData = await response.json();
 
                 if (orderData.paypalOrderId) {
-
+                    
                     return orderData.paypalOrderId;
+                    
                 } else {
                     const errorDetail = orderData?.details?.[0];
                     const errorMessage = errorDetail
@@ -115,7 +117,6 @@ function setupPayPalButton() {
                     // Other non-recoverable errors -> Show a failure message
                     throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
                 } else {
-
                     $('#processingModal').modal('show');
 
                     // Successful transaction -> Redirect to success page

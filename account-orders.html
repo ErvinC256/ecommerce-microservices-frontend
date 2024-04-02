@@ -301,7 +301,7 @@
                                 <div class="section-title">
                                     <h2>
                                         <ul class="nav">
-                                            <li><a id="placed-orders-tab" class="active" data-toggle="tab" href="#placed-orders">Placed Orders</a></li>
+                                            <li><a id="pending-orders-tab" class="active" data-toggle="tab" href="#pending-orders">Pending Orders</a></li>
                                             <li><a id="delivered-orders-tab" data-toggle="tab" href="#delivered-orders">Delivered Orders</a></li>
                                             <li><a id="completed-orders-tab" data-toggle="tab" href="#completed-orders">Completed Orders</a></li>
                                          </ul>   
@@ -309,7 +309,7 @@
                                 </div>
                             </div>
                             <div class="tab-content">
-                                <div id="placed-orders" class="tab-pane active show" role="tabpanel">
+                                <div id="pending-orders" class="tab-pane active show" role="tabpanel">
                                     <div class="product-active owl-carousel">
                                         <table id="example1" class="table" style="width:100%">
                                             <thead>
@@ -506,12 +506,12 @@
 
                 const userId = sessionStorage.getItem('userId');
 
-                // populate placed orders
-                populateOrders(userId, 'placed', 'example1');
+                // populate pending orders
+                populateOrders(userId, 'pending', 'example1');
 
                 // Add event listeners to the tab elements
-                document.getElementById('placed-orders-tab').addEventListener('click', function() {
-                    populateOrders(userId, 'placed', 'example1');
+                document.getElementById('pending-orders-tab').addEventListener('click', function() {
+                    populateOrders(userId, 'pending', 'example1');
                 });
 
                 document.getElementById('delivered-orders-tab').addEventListener('click', function() {
@@ -641,8 +641,8 @@
                                             <p>${order.status}</p>
                                         </div>
                                         <div class="col-3" style="display: block;">
-                                            <button class="my-button reorder-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-number="${order.orderNumber}" data-toggle="modal" data-target="#reorder-modal">Reorder these items</button>
-                                            <button class="my-button-inverse view-details-button" style="margin-top: 10px; padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-number="${order.orderNumber}" data-toggle="modal" data-target="#view-order-details-modal">View order details</button>
+                                            <button class="my-button reorder-button" style="padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}" data-toggle="modal" data-target="#reorder-modal">Reorder these items</button>
+                                            <button class="my-button-inverse view-details-button" style="margin-top: 10px; padding: 5px 10px; border-radius: 5px; width: 100%;" data-order-id="${order.id}" data-toggle="modal" data-target="#view-order-details-modal">View order details</button>
                                         </div>
                                     </div>
                                 </td>
@@ -654,9 +654,9 @@
                             button.addEventListener('click', function() {
                                 // Get the closest row element
                                 const row = this.closest('.row');
-                                const orderNumber = this.getAttribute('data-order-number');
+                                const orderId = this.getAttribute('data-order-id');
 
-                                fetch(`http://localhost:8080/orders/${orderNumber}`)
+                                fetch(`http://localhost:8080/orders/${orderId}`)
                                     .then(response => response.json())
                                     .then(order => {
                                         
@@ -721,9 +721,9 @@
                             button.addEventListener('click', function() {
                                 // Get the closest row element
                                 const row = this.closest('.row');
-                                const orderNumber = this.getAttribute('data-order-number');
+                                const orderId = this.getAttribute('data-order-id');
 
-                                fetch(`http://localhost:8080/orders/${orderNumber}`)
+                                fetch(`http://localhost:8080/orders/${orderId}`)
                                     .then(response => response.json())
                                     .then(order => {
 

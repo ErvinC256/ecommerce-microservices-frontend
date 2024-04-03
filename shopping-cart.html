@@ -309,17 +309,17 @@
                             });
 
 
-                        // Set the checkboxes based on selectedCartItems
+                        // Set the checkboxes based on selectedCartItemIds
                         const urlParams = new URLSearchParams(window.location.search);
-                        const selectedCartItems = {};
+                        const selectedCartItemIds = {};
 
-                        urlParams.getAll('selectedCartItems').forEach(cartItemId => {
-                            selectedCartItems[cartItemId] = true;
+                        urlParams.getAll('selectedCartItemIds').forEach(cartItemId => {
+                            selectedCartItemIds[cartItemId] = true;
                         });
 
                         const checkboxes = document.querySelectorAll('.cart-checkbox');
                         checkboxes.forEach(checkbox => {
-                            checkbox.checked = selectedCartItems[checkbox.getAttribute('data-cart-item-id')];
+                            checkbox.checked = selectedCartItemIds[checkbox.getAttribute('data-cart-item-id')];
                         });
 
                         // Add event listener to checkboxes
@@ -380,19 +380,19 @@
                         // Update basket summary
                         const itemCountElement = document.getElementById('item-count');
                         const subtotalElement = document.getElementById('subtotal');
+                        
+                        itemCountElement.textContent = urlParams.getAll('selectedCartItemIds').length;
 
-                        let amount = 0;
-                        for (const cartItemDto of cartDto.cartItemDtos) {
-                            if (selectedCartItems[cartItemDto.cartItemId]) {
-                                const selectedQuantity = cartItemDto.quantity; // Adjust this line based on your structure
-                                amount += selectedQuantity * cartItemDto.productPrice; // Calculate subtotal based on quantity and unit price
-                            }
-                        }
-
-                        itemCountElement.textContent = Object.keys(selectedCartItems).length;
-                        subtotalElement.textContent = amount.toFixed(2);
-
-                        sessionStorage.setItem('amount', amount);
+                        fetch(`http://localhost:8080/carts/${userId}/cart-items/selected-amount?selectedCartItemIds=${urlParams.getAll('selectedCartItemIds').join(',')}`)
+                            .then(response => {
+                                return response.json();
+                            })
+                            .then(amount => {
+                                subtotalElement.textContent = amount.toFixed(2);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
                         
                     })
                     .catch(error => {
@@ -432,11 +432,11 @@
 
                     let redirectURL = `checkout.html?fromCart=true`;
 
-                    if (params.has('selectedCartItems')) {
-                        const cartItemIds = params.getAll('selectedCartItems');
+                    if (params.has('selectedCartItemIds')) {
+                        const cartItemIds = params.getAll('selectedCartItemIds');
 
                         for (let i = 0; i < cartItemIds.length; i++) {
-                            redirectURL += `&cartItemIds=${cartItemIds[i]}`;
+                            redirectURL += `&selectedCartItemIds=${cartItemIds[i]}`;
 
                             // Add ampersand if it's not the last parameter
                             if (i < cartItemIds.length - 1) {
@@ -453,12 +453,12 @@
             });
         </script>
         <script>
-            function setUrlParams(selectedCartItems) {
+            function setUrlParams(selectedCartItemIds) {
                 const params = new URLSearchParams();
         
-                for (const cartItemId in selectedCartItems) {
-                    if (selectedCartItems.hasOwnProperty(cartItemId) && selectedCartItems[cartItemId]) {
-                        params.append('selectedCartItems', cartItemId);
+                for (const cartItemId in selectedCartItemIds) {
+                    if (selectedCartItemIds.hasOwnProperty(cartItemId) && selectedCartItemIds[cartItemId]) {
+                        params.append('selectedCartItemIds', cartItemId);
                     }
                 }
         
@@ -472,29 +472,29 @@
                 window.location.href = currentUrl.href;
             }
             function setSessionStatus() {
-                const selectedCartItems = {};
+                const selectedCartItemIds = {};
         
                 // Iterate through each cart item checkbox
                 const cartCheckboxes = document.querySelectorAll('.cart-checkbox');
                 cartCheckboxes.forEach(checkbox => {
                     const cartItemId = checkbox.getAttribute('data-cart-item-id');
                     const isChecked = checkbox.checked;
-                    selectedCartItems[cartItemId] = isChecked;
+                    selectedCartItemIds[cartItemId] = isChecked;
                 });
         
-                setUrlParams(selectedCartItems);
+                setUrlParams(selectedCartItemIds);
             }
             function setSessionStatusToTrue() {
-                const selectedCartItems = {};
+                const selectedCartItemIds = {};
         
                 // Iterate through each cart item checkbox
                 const cartCheckboxes = document.querySelectorAll('.cart-checkbox');
                 cartCheckboxes.forEach(checkbox => {
                     const cartItemId = checkbox.getAttribute('data-cart-item-id');
-                    selectedCartItems[cartItemId] = true;
+                    selectedCartItemIds[cartItemId] = true;
                 });
         
-                setUrlParams(selectedCartItems);
+                setUrlParams(selectedCartItemIds);
             }
         </script>        
     </body>

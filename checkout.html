@@ -325,6 +325,8 @@
                 checkSignInStatus();
                 getCartNumber();
 
+                const urlParams = new URLSearchParams(window.location.search);
+
                 sessionStorage.setItem('isTherePrimary', false);
 
                 // personal info area
@@ -395,20 +397,25 @@
                         console.error(error);
                     });
 
-                // update subtotal, total and item count in summary
-                const params = new URLSearchParams(window.location.search);
-                const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2) ;
-                const cartItemIds = params.getAll('cartItemIds');
-
+                // Update basket summary
+                const itemCountElement = document.getElementById('item-count');
                 const subtotalElement = document.getElementById('subtotal');
                 const totalElement = document.getElementById('total');
-                subtotalElement.textContent = amount;
-                totalElement.textContent = amount;
+                
+                itemCountElement.textContent = urlParams.getAll('selectedCartItemIds').length;
 
-                const itemCountElement = document.getElementById('item-count');
-                if (itemCountElement && cartItemIds) {
-                    itemCountElement.textContent = cartItemIds.length.toString() || '0';
-                }
+                fetch(`http://localhost:8080/carts/${userId}/cart-items/selected-amount?selectedCartItemIds=${urlParams.getAll('selectedCartItemIds').join(',')}`)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(amount => {
+                        subtotalElement.textContent = amount.toFixed(2);
+                        totalElement.textContent = amount.toFixed(2);
+                        sessionStorage.setItem('amount', amount);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
 
                 // check address events
                 const streetAddressInput = document.getElementById('street-address');

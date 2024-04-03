@@ -301,7 +301,7 @@
                                 <div class="section-title">
                                     <h2>
                                         <ul class="nav">
-                                            <li><a id="pending-orders-tab" class="active" data-toggle="tab" href="#pending-orders">Pending Orders</a></li>
+                                            <li><a id="placed-orders-tab" class="active" data-toggle="tab" href="#placed-orders">Placed Orders</a></li>
                                             <li><a id="delivered-orders-tab" data-toggle="tab" href="#delivered-orders">Delivered Orders</a></li>
                                             <li><a id="completed-orders-tab" data-toggle="tab" href="#completed-orders">Completed Orders</a></li>
                                          </ul>   
@@ -309,7 +309,7 @@
                                 </div>
                             </div>
                             <div class="tab-content">
-                                <div id="pending-orders" class="tab-pane active show" role="tabpanel">
+                                <div id="placed-orders" class="tab-pane active show" role="tabpanel">
                                     <div class="product-active owl-carousel">
                                         <table id="example1" class="table" style="width:100%">
                                             <thead>
@@ -506,12 +506,12 @@
 
                 const userId = sessionStorage.getItem('userId');
 
-                // populate pending orders
-                populateOrders(userId, 'pending', 'example1');
+                // populate placed orders
+                populateOrders(userId, 'placed', 'example1');
 
                 // Add event listeners to the tab elements
-                document.getElementById('pending-orders-tab').addEventListener('click', function() {
-                    populateOrders(userId, 'pending', 'example1');
+                document.getElementById('placed-orders-tab').addEventListener('click', function() {
+                    populateOrders(userId, 'placed', 'example1');
                 });
 
                 document.getElementById('delivered-orders-tab').addEventListener('click', function() {

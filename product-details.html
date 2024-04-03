@@ -563,7 +563,7 @@
                                     return response.json();
                                 })
                                 .then((cartItem) => {
-                                    window.location.href = `added-cart.html?productId=${productId}  `;
+                                    window.location.href = `added-cart.html?cartItemId=${cartItem.id}&productId=${productId}  `;
                                 })
                                 .catch(error => {
                                     console.error(error);

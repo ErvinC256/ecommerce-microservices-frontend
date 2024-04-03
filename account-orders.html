@@ -525,7 +525,7 @@
                 // Add an event listener to the "reorder" buttons
                 document.querySelector('.reorder-confirm-button').addEventListener('click', function() {
                     // Initialize an array to store AddToCartDto objects
-                    const reorderArray = [];
+                    const addToCartBulkItems = [];
 
                     // Iterate through each row in the reorder table
                     document.querySelectorAll('.reorder-table tr').forEach(row => {
@@ -535,13 +535,13 @@
                         const quantity = parseInt(row.querySelector('.quantity-select select').value);
 
                         // Construct the AddToCartDto object
-                        const reorderItem = {
+                        const addToCartBulkItem = {
                             productId: productId,
                             quantity: quantity
                         };
 
                         // Add the AddToCartDto object to the array
-                        reorderArray.push(reorderItem);
+                        addToCartBulkItems.push(addToCartBulkItem);
                     });
 
                     fetch(`http://localhost:8080/carts/${userId}/cart-items/bulk`, {
@@ -550,7 +550,7 @@
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            reorderItems: reorderArray
+                            addToCartBulkItems: addToCartBulkItems
                         }),
                     })
                         .then(response => {
@@ -688,7 +688,7 @@
                                                         <div class="col-8">
                                                             <div class="cart-product-details">
                                                                 <div>
-                                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${orderItem.productId}">${orderItem.productName}</a></p>
+                                                                    <p><a href="product-details.html?product=${orderItem.productId}">${orderItem.productName}</a></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -730,11 +730,12 @@
                                         let orderDate = new Date(order.dateCreated);
                                         let day = orderDate.toLocaleDateString('en-US', { weekday: 'long' });
                                         let date = orderDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                                        let time = orderDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }); // Get time
 
                                         document.querySelector('#view-order-details-modal .payment-number').textContent = order.paymentNumber;
-                                        document.querySelector('#view-order-details-modal .payment-date').textContent = `${day}, ${date}`;
+                                        document.querySelector('#view-order-details-modal .payment-date').textContent = `${day}, ${date}, ${time}`; // Display time along with date
                                         document.querySelector('#view-order-details-modal .username').textContent = sessionStorage.getItem('username');
-                                        
+          
                                         const productItemsContainer = document.querySelector('.product-items');
                                         productItemsContainer.innerHTML = '';
 
@@ -747,15 +748,15 @@
                                             productItemElement.innerHTML = `
                                                 <div class="col-6 product-item">${productName}</div>
                                                 <div class="col-3 product-item" style="text-align: center;">${orderItem.quantityPurchased}</div>
-                                                <div class="col-3 product-item" style="text-align: right;">${orderItem.productPrice}</div>
+                                                <div class="col-3 product-item" style="text-align: right;">${orderItem.productPrice.toFixed(2)}</div>
                                             `;
 
                                             productItemsContainer.append(productItemElement);
 
                                         });
 
-                                        document.querySelector('#view-order-details-modal .my-subtotal').textContent = order.totalAmount;
-                                        document.querySelector('#view-order-details-modal .my-total').textContent = order.totalAmount;
+                                        document.querySelector('#view-order-details-modal .my-subtotal').textContent = order.totalAmount.toFixed(2);
+                                        document.querySelector('#view-order-details-modal .my-total').textContent = order.totalAmount.toFixed(2);
                                     })
                                     .catch(error => {
                                         console.error(error);

@@ -34,7 +34,7 @@ function setupPayPalButton() {
             const userId = sessionStorage.getItem('userId');
 
             // create local order
-            fetch(`http://localhost:8080/orders`, {
+            fetch(`http://localhost:8080/orders/init`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

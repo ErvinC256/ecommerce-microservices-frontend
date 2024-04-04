@@ -268,7 +268,7 @@
                                                 </div>
                                                 <div>
                                                     <div class="quantity-select">
-                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: <span data-product-id=${cartItemDto.productId} class="stock-count"></span></p>
+                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: <span data-product-id=${cartItemDto.productId} class="stock-count">${cartItemDto.quantityInStock}</span></p>
                                                         <select data-cart-item-id="${cartItemDto.cartItemId}">
                                                             ${selectOptions}
                                                         </select>
@@ -285,29 +285,11 @@
                                     </div>
                                 </td>
                                 <td style="text-align: right; width: 100px;">
-                                    <p style="font-weight: bold;">RM ${cartItemDto.productPrice.toFixed(2)}</p>
+                                    <p style="font-weight: bold;">RM ${cartItemDto.unitPrice.toFixed(2)}</p>
                                 </td>
                             `;
                             cartTable.appendChild(cartItemElement);
                         });
-
-                        // Fetch stock counts
-                        const stockCountElements = document.querySelectorAll('.stock-count');
-                        const productIds = Array.from(stockCountElements).map(element => element.dataset.productId);
-                        const apiUrl = `http://localhost:8080/inventories?productIds=${productIds.join(',')}`;
-
-                        fetch(apiUrl)
-                            .then(response => response.json())
-                            .then(stockData => {
-                                stockData.forEach((stock, index) => {
-                                    // Populate each stock count element with the corresponding stock quantity
-                                    stockCountElements[index].textContent = stock.quantityInStock;
-                                });
-                            })
-                            .catch(error => {
-                                console.error(error);
-                            });
-
 
                         // Set the checkboxes based on selectedCartItemIds
                         const urlParams = new URLSearchParams(window.location.search);

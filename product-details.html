@@ -371,7 +371,7 @@
                                                     ${product.productTag.bestSeller ? '<div class="product-tag best-seller">Best Seller</div>' : ''}
                                                 </div>
                                                 <div class="price-div">
-                                                    <p style="font-size: 24px; font-weight: bold;">RM ${product.price.toFixed(2)}</p>
+                                                    <p style="font-size: 24px; font-weight: bold;">RM ${product.unitPrice.toFixed(2)}</p>
                                                     <p style="font-size: 12px;">
                                                         Price above includes tax.
                                                     </p>
@@ -391,7 +391,7 @@
                                                                 <option value="9">9</option>
                                                                 <option value="10">10</option>
                                                             </select>
-                                                            <span style="color: #CD5C5C;"><span class="stock-count"></span> units available</span>
+                                                            <span style="color: #CD5C5C;"><span class="stock-count">${product.quantityInStock}</span> units available</span>
                                                         </div>
                                                         <input type="hidden" name="product-id" value="${product.id}">
                                                         <div style="margin-top: 10px;">
@@ -498,25 +498,6 @@
                             </div> 
                         `;
                         productsContainer.appendChild(productElement);          
-
-                        // populate stock count
-                        const stockCountElement = document.querySelector('.stock-count');
-
-                        fetch(`http://localhost:8080/inventories?productIds=${product.id}`)
-                            .then(response => response.json())
-                            .then(stockData => {
-                                // Check if stockData is an array
-                                if (Array.isArray(stockData) && stockData.length > 0) {
-                                    // Use the first element's quantityInStock property
-                                    stockCountElement.textContent = stockData[0].quantityInStock;
-                                } else {
-                                    // Handle case where no stock data is returned
-                                    stockCountElement.textContent = 'Not available';
-                                }
-                            })
-                            .catch(error => {
-                                console.error(error);
-                            });
 
                         // populate info table
                         let table = document.querySelector("#specifications table");

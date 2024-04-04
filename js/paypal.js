@@ -29,7 +29,7 @@ function setupPayPalButton() {
         },    
         onClick: function(data, actions) {
             const urlParams = new URLSearchParams(window.location.search);
-            const cartItemIds = urlParams.getAll('cartItemIds');
+            const cartItemIds = urlParams.getAll('selectedCartItemIds');
             const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
             const userId = sessionStorage.getItem('userId');
 
@@ -91,7 +91,7 @@ function setupPayPalButton() {
             const orderId = sessionStorage.getItem('orderId');
             const userId = sessionStorage.getItem('userId');
             const urlParams = new URLSearchParams(window.location.search);
-            const cartItemIds = urlParams.getAll('cartItemIds');
+            const cartItemIds = urlParams.getAll('selectedCartItemIds');
 
             try {
                 

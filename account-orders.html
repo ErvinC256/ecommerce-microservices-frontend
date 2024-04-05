@@ -524,24 +524,16 @@
 
                 // Add an event listener to the "reorder" buttons
                 document.querySelector('.reorder-confirm-button').addEventListener('click', function() {
-                    // Initialize an array to store AddToCartDto objects
-                    const addToCartBulkItems = [];
+                    const productQuantityMap = {};
 
                     // Iterate through each row in the reorder table
                     document.querySelectorAll('.reorder-table tr').forEach(row => {
                         // Extract product ID and quantity from the row
                         const productId = row.querySelector('.product-id').value;
-                        
                         const quantity = parseInt(row.querySelector('.quantity-select select').value);
 
-                        // Construct the AddToCartDto object
-                        const addToCartBulkItem = {
-                            productId: productId,
-                            quantity: quantity
-                        };
-
-                        // Add the AddToCartDto object to the array
-                        addToCartBulkItems.push(addToCartBulkItem);
+                        // Set the productId and quantity in the map
+                        productQuantityMap[productId] = quantity;
                     });
 
                     fetch(`http://localhost:8080/carts/${userId}/cart-items/bulk`, {
@@ -549,9 +541,7 @@
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({
-                            addToCartBulkItems: addToCartBulkItems
-                        }),
+                        body: JSON.stringify(productQuantityMap)
                     })
                         .then(response => {
                             return response.json();

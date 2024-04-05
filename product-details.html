@@ -528,7 +528,7 @@
                             const productQuantityMap = {};
                             productQuantityMap[productId] = quantity;
 
-                            fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
+                            fetch(`http://localhost:8080/carts/${userId}/cart-items/bulk`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -543,8 +543,10 @@
                                     }
                                     return response.json();
                                 })
-                                .then((cartItem) => {
-                                    window.location.href = `added-cart.html?cartItemId=${cartItem.id}&productId=${productId}  `;
+                                .then(cartItemIds => {
+                                    const cartItemId = cartItemIds[0];
+
+                                    window.location.href = `added-cart.html?cartItemId=${cartItemId}&productId=${productId}  `;
                                 })
                                 .catch(error => {
                                     console.error(error);

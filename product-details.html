@@ -391,7 +391,7 @@
                                                                 <option value="9">9</option>
                                                                 <option value="10">10</option>
                                                             </select>
-                                                            <span style="color: #CD5C5C;"><span class="stock-count">${product.quantityInStock}</span> units available</span>
+                                                            <span style="color: #CD5C5C;"><span class="stock-count">${product.quantityInStock}</span> units available<span class="stock-count-text"></span></span>
                                                         </div>
                                                         <input type="hidden" name="product-id" value="${product.id}">
                                                         <div style="margin-top: 10px;">
@@ -497,7 +497,11 @@
                                 </div>
                             </div> 
                         `;
-                        productsContainer.appendChild(productElement);          
+                        productsContainer.appendChild(productElement);      
+                        
+                        if (product.quantityInStock === 0) {
+                            document.querySelector('.stock-count-text').textContent = '- out of stock';
+                        }
 
                         // populate info table
                         let table = document.querySelector("#specifications table");

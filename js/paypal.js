@@ -28,6 +28,7 @@ function setupPayPalButton() {
 
         },    
         onClick: function(data, actions) {
+            
             const userId = sessionStorage.getItem('userId');
             const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
             const productQuantityMap = JSON.parse(sessionStorage.getItem('productQuantityMap'));

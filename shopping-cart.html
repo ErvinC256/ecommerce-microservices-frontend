@@ -256,7 +256,7 @@
                                         <div class="col-4">
                                             <input type="checkbox" class="cart-checkbox" data-cart-item-id="${cartItemDto.cartItemId}">
                                             <div class="product-image">
-                                                <a href="product-details.html?product=${cartItemDto.productId}">
+                                                <a href="product-details.html?productId=${cartItemDto.productId}">
                                                     <img src="images/product/large-size/${cartItemDto.productName}.jpg" alt="Li's Product Image">
                                                 </a>
                                             </div>
@@ -264,11 +264,11 @@
                                         <div class="col-8">
                                             <div class="cart-product-details">
                                                 <div>
-                                                    <p style="font-size: 16px;"><a href="product-details.html?product=${cartItemDto.productId}">${cartItemDto.productName}</a></p>
+                                                    <p class="product-name" style="font-size: 16px;"><a href="product-details.html?productId=${cartItemDto.productId}">${cartItemDto.productName}</a></p>
                                                 </div>
                                                 <div>
                                                     <div class="quantity-select">
-                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: <span data-product-id=${cartItemDto.productId} class="stock-count">${cartItemDto.quantityInStock}</span></p>
+                                                        <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: <span data-product-id=${cartItemDto.productId} class="stock-count">${cartItemDto.quantityInStock}</span><span class="stock-count-text"></span></p>
                                                         <select data-cart-item-id="${cartItemDto.cartItemId}">
                                                             ${selectOptions}
                                                         </select>
@@ -277,7 +277,7 @@
                                                 <div>
                                                     <ul class="cart-options">
                                                         <li><a href="" class="remove link-inverse" data-cart-item-id="${cartItemDto.cartItemId}">Remove</a></li>
-                                                        <li><a href="product-details.html?product=${cartItemDto.productId}" class="link-inverse">View details</a></li>      
+                                                        <li><a href="product-details.html?productId=${cartItemDto.productId}" class="link-inverse">View details</a></li>      
                                                     </ul>
                                                 </div>
                                             </div>
@@ -289,6 +289,20 @@
                                 </td>
                             `;
                             cartTable.appendChild(cartItemElement);
+                            
+                            // Select elements within the cart item element
+                            const checkbox = cartItemElement.querySelector('.cart-checkbox');
+                            const productName = cartItemElement.querySelector('.product-name');
+                            const stockCountText = cartItemElement.querySelector('.stock-count-text');
+
+                            // Check if the quantityInStock is 0
+                            if (cartItemDto.quantityInStock === 0) {
+                                // Apply styles to the specific elements within the cart item
+                                productName.style.color = '#808080';
+                                stockCountText.textContent = ' - out of stock';
+                                checkbox.disabled = true;
+                            }
+                         
                         });
 
                         // Set the checkboxes based on selectedCartItemIds
@@ -468,6 +482,7 @@
                 // Iterate through each cart item checkbox
                 const cartCheckboxes = document.querySelectorAll('.cart-checkbox');
                 cartCheckboxes.forEach(checkbox => {
+                
                     const cartItemId = checkbox.getAttribute('data-cart-item-id');
                     const isChecked = checkbox.checked;
                     selectedCartItemIds[cartItemId] = isChecked;
@@ -481,6 +496,9 @@
                 // Iterate through each cart item checkbox
                 const cartCheckboxes = document.querySelectorAll('.cart-checkbox');
                 cartCheckboxes.forEach(checkbox => {
+                    if (checkbox.disabled) {
+                        return;
+                    }
                     const cartItemId = checkbox.getAttribute('data-cart-item-id');
                     selectedCartItemIds[cartItemId] = true;
                 });

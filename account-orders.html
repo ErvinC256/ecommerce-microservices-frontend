@@ -402,7 +402,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary my-button reorder-confirm-button">Reorder</button>
+                        <button type="button" class="btn btn-primary my-button reorder-confirm-button">Add these to your cart</button>
                     </div>
                 </div>
             </div>
@@ -548,18 +548,9 @@
                         })
                         .then(cartItemIds => {
                             
-                            let redirectURL = `shopping-cart.html?`;
+                            let redirectURL = `shopping-cart.html`;
 
-                            for (let i = 0; i < cartItemIds.length; i++) {
-                                redirectURL += `selectedCartItemIds=${cartItemIds[i]}`;
-
-                                // Add ampersand if it's not the last parameter
-                                if (i < cartItemIds.length - 1) {
-                                    redirectURL += '&';
-                                }
-                            }
-
-                            redirectURL += '&reorder=true';
+                            redirectURL += '?reorder=true';
 
                             window.location.href = redirectURL;
                         })

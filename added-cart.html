@@ -137,6 +137,7 @@
                                 <button class="my-button" style="width: 100%;"><a href="shopping-cart.html">View cart</a></button>
                                 <h3><span>or</span></h3>
                                 <button class="my-button-inverse checkout-button" style="width: 100%;">Checkout this item</button>
+                                <div class="error-message"></div>
                             </div>
                         </div>
                     </div>
@@ -243,6 +244,23 @@
                         `;
                         cartTable.appendChild(productItemElement);
 
+                        // checkout event
+                        document.querySelector('.checkout-button').addEventListener('click', function() {
+                            event.preventDefault();
+
+                            const params = new URLSearchParams(window.location.search);
+                            const cartItemId = params.get('cartItemId');
+
+                            if (product.quantityInStock === 0) {
+                                document.querySelector('.error-message').textContent = 'out of stock';
+                            } else {
+                                let redirectURL = `checkout.html?fromCart=true`;
+                                redirectURL += `&selectedCartItemIds=${cartItemId}`;
+                                window.location.href = redirectURL;
+                            }
+                            
+                        });
+
                         //load similar items data
                         fetch(`http://localhost:8080/products?subcategoryId=${product.subcategory.id}&page=0&size=10`) 
                             .then(response => {
@@ -279,18 +297,6 @@
                     .catch(error => {
                         console.error(error);
                     });
-
-                // checkout event
-                document.querySelector('.checkout-button').addEventListener('click', function() {
-                    event.preventDefault();
-
-                    const params = new URLSearchParams(window.location.search);
-                    const cartItemId = params.get('cartItemId');
-
-                    let redirectURL = `shopping-cart.html?selectedCartItemIds=${cartItemId}`;
-                    window.location.href = redirectURL;
-                    
-                });
 
             });
         </script>

@@ -150,7 +150,7 @@ function generateSingleProduct(product) {
 	productElement.innerHTML = `
 		<div class="single-product-wrap">
 			<div class="product-image">
-				<a href="product-details.html?product=${product.id}">
+				<a href="product-details.html?productId=${product.id}">
 					<img src="images/product/large-size/${product.name}.jpg">
 					<div class="product-tag-container">
 						${product.productTag.newArrival ? '<div class="product-tag new-arrival">New Arrival</div>' : ''}
@@ -163,7 +163,7 @@ function generateSingleProduct(product) {
 					<span class="product-manufacturer">${product.manufacturer}</span>
 				</div>
 				<hr>
-				<p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
+				<p class="product-name"><a href="product-details.html?productId=${product.id}">${product.name}</a></p>
 				<hr>
 				<span class="product-price">RM ${product.unitPrice.toFixed(2)}</span>
 			</div>
@@ -177,7 +177,7 @@ function generateSingleProductSmall(product) {
 	productElement.innerHTML = `
 		<div class="single-product-wrap">
 			<div class="product-image">
-				<a href="product-details.html?product=${product.id}">
+				<a href="product-details.html?productId=${product.id}">
 					<img src="images/product/large-size/${product.name}.jpg">
 				</a>
 			</div>
@@ -199,7 +199,7 @@ function generateSingleProductGrid(product) {
 	productElement.innerHTML = `
 		<div class="single-product-wrap">
 			<div class="product-image">
-				<a href="product-details.html?product=${product.id}">
+				<a href="product-details.html?productId=${product.id}">
 					<img src="images/product/large-size/${product.name}.jpg">
 					<div class="product-tag-container">
 						${product.productTag.newArrival ? '<div class="product-tag new-arrival">New Arrival</div>' : ''}
@@ -212,7 +212,7 @@ function generateSingleProductGrid(product) {
 					<span class="product-manufacturer">${product.manufacturer}</span>
 				</div>
 				<hr>
-				<p class="product-name"><a href="product-details.html?product=${product.id}">${product.name}</a></p>
+				<p class="product-name"><a href="product-details.html?productId=${product.id}">${product.name}</a></p>
 				<hr>
 				<span class="product-price">RM ${product.unitPrice.toFixed(2)}</span>
 			</div>

@@ -536,7 +536,7 @@
                         productQuantityMap[productId] = quantity;
                     });
 
-                    fetch(`http://localhost:8080/carts/${userId}/cart-items/bulk`, {
+                    fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -671,7 +671,7 @@
                                                     <div class="row">
                                                         <div class="col-4">
                                                             <div class="product-image">
-                                                                <a href="product-details.html?product=${orderItem.productId}">
+                                                                <a href="product-details.html?productId=${orderItem.productId}">
                                                                     <img src="images/product/large-size/${orderItem.productName}.jpg" alt="Li's Product Image">
                                                                 </a>
                                                             </div>
@@ -679,7 +679,7 @@
                                                         <div class="col-8">
                                                             <div class="cart-product-details">
                                                                 <div>
-                                                                    <p><a href="product-details.html?product=${orderItem.productId}">${orderItem.productName}</a></p>
+                                                                    <p><a href="product-details.html?productId=${orderItem.productId}">${orderItem.productName}</a></p>
                                                                 </div>
                                                             </div>
                                                         </div>

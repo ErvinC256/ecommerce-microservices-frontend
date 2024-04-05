@@ -416,15 +416,24 @@
 
                     if (params.has('selectedCartItemIds')) {
                         const cartItemIds = params.getAll('selectedCartItemIds');
+                        const productQuantityMap = {};
 
-                        for (let i = 0; i < cartItemIds.length; i++) {
+                        cartItemIds.forEach((cartItemId, i) => {
+                            const quantitySelect = document.querySelector(`select[data-cart-item-id="${cartItemId}"]`);
+                            const productId = quantitySelect.parentNode.querySelector('.stock-count').getAttribute('data-product-id');
+                            const quantity = parseInt(quantitySelect.value);
+
+                            productQuantityMap[productId] = quantity;
+
                             redirectURL += `&selectedCartItemIds=${cartItemIds[i]}`;
 
                             // Add ampersand if it's not the last parameter
                             if (i < cartItemIds.length - 1) {
                                 redirectURL += '&';
                             }
-                        }
+                        });
+                        // Store product quantity map in session storage
+                        sessionStorage.setItem('productQuantityMap', JSON.stringify(productQuantityMap));
 
                         window.location.href = redirectURL;
                     } else {

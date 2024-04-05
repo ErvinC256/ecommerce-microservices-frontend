@@ -28,10 +28,9 @@ function setupPayPalButton() {
 
         },    
         onClick: function(data, actions) {
-            const urlParams = new URLSearchParams(window.location.search);
-            const cartItemIds = urlParams.getAll('selectedCartItemIds');
-            const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
             const userId = sessionStorage.getItem('userId');
+            const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
+            const productQuantityMap = JSON.parse(sessionStorage.getItem('productQuantityMap'));
 
             // create local order
             fetch(`http://localhost:8080/orders/init`, {
@@ -42,7 +41,7 @@ function setupPayPalButton() {
                 body: JSON.stringify({
                     userId: userId,
                     amount: amount,
-                    cartItemIds: cartItemIds
+                    productQuantityMap: productQuantityMap
                 })
             })
                 .then(response => {
@@ -56,7 +55,6 @@ function setupPayPalButton() {
                 });
         },
         createOrder: async function (data, actions) {
-
             const amount = parseInt(sessionStorage.getItem('amount')).toFixed(2);
 
             try {

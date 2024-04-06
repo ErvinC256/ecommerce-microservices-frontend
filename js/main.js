@@ -102,6 +102,9 @@ function getCartNumber() {
 		})
 		.then(response => {
 			document.querySelector('#cart-number').innerText = response;
+		})
+		.catch(error => {
+			console.error(error);
 		});
 }
 /*----------------------------------------*/

@@ -417,11 +417,10 @@
                 
                 // edit button events
                 const editButtons = document.querySelectorAll('.edit-button');
-
                 editButtons.forEach(button => {
                     button.addEventListener('click', function() {
                         
-                        const modalId = button.getAttribute('data-target').substring(1); // Removing the # from the modal ID
+                        const modalId = button.getAttribute('data-target').substring(1);
                         const modal = document.getElementById(modalId);
 
                         if (modalId === 'passwordModal') {

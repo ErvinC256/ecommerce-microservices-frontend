@@ -244,23 +244,6 @@
                         `;
                         cartTable.appendChild(productItemElement);
 
-                        // checkout event
-                        document.querySelector('.checkout-button').addEventListener('click', function() {
-                            event.preventDefault();
-
-                            const params = new URLSearchParams(window.location.search);
-                            const cartItemId = params.get('cartItemId');
-
-                            if (product.quantityInStock === 0) {
-                                document.querySelector('.error-message').textContent = 'out of stock';
-                            } else {
-                                let redirectURL = `checkout.html?fromCart=true`;
-                                redirectURL += `&selectedCartItemIds=${cartItemId}`;
-                                window.location.href = redirectURL;
-                            }
-                            
-                        });
-
                         //load similar items data
                         fetch(`http://localhost:8080/products?subcategoryId=${product.subcategory.id}&page=0&size=10`) 
                             .then(response => {
@@ -297,6 +280,23 @@
                     .catch(error => {
                         console.error(error);
                     });
+
+                // checkout event
+                document.querySelector('.checkout-button').addEventListener('click', function() {
+                    event.preventDefault();
+
+                    const params = new URLSearchParams(window.location.search);
+                    const cartItemId = params.get('cartItemId');
+
+                    if (product.quantityInStock === 0) {
+                        document.querySelector('.error-message').textContent = 'out of stock';
+                    } else {
+                        let redirectURL = `checkout.html?fromCart=true`;
+                        redirectURL += `&selectedCartItemIds=${cartItemId}`;
+                        window.location.href = redirectURL;
+                    }
+                    
+                });
 
             });
         </script>

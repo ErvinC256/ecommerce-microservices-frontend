@@ -394,8 +394,10 @@
                                                             <span style="color: #CD5C5C;"><span class="stock-count">${product.quantityInStock}</span> units available<span class="stock-count-text"></span></span>
                                                         </div>
                                                         <input type="hidden" name="product-id" value="${product.id}">
+                                                        <div style="margin-top: 5px;"><span class="units-sold"></span>units sold</div>
                                                         <div style="margin-top: 10px;">
                                                             <button type="submit" id="add-to-cart" class="my-button" style="margin-right: 10px;">Add to cart</button>
+                                                            <button type="submit" id="buy-now" class="my-button-inverse" style="margin-right: 10px;">Buy now</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -499,9 +501,26 @@
                         `;
                         productsContainer.appendChild(productElement);      
                         
+                        // fill in stock counts and units bought
                         if (product.quantityInStock === 0) {
                             document.querySelector('.stock-count-text').textContent = '- out of stock';
                         }
+
+                        fetch(`http://localhost:8080/orders/calculate-units-purchased?productId=${product.id}`)
+                            .then(response => {
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data === 0) {
+                                    document.querySelector('.units-sold').textContent = '0';
+                                } else {
+                                    document.querySelector('.units-sold').textContent = data;
+                                }
+                            
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
 
                         // populate info table
                         let table = document.querySelector("#specifications table");
@@ -550,7 +569,7 @@
                                 .then(cartItemIds => {
                                     const cartItemId = cartItemIds[0];
 
-                                    window.location.href = `added-cart.html?cartItemId=${cartItemId}&productId=${productId}  `;
+                                    window.location.href = `added-cart.html?cartItemId=${cartItemId}`;
                                 })
                                 .catch(error => {
                                     console.error(error);

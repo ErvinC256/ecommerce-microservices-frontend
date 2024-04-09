@@ -407,9 +407,10 @@
                 const itemCountElement = document.getElementById('item-count');
                 const subtotalElement = document.getElementById('subtotal');
                 
+                const urlParams = new URLSearchParams(window.location.search);
                 itemCountElement.textContent = urlParams.getAll('selectedCartItemIds').length;
 
-                fetch(`http://localhost:8080/carts/${userId}/cart-items/selected-amount?selectedCartItemIds=${urlParams.getAll('selectedCartItemIds').join(',')}`)
+                fetch(`http://localhost:8080/carts/${userId}/cart-items/calculate-amount?selectedCartItemIds=${urlParams.getAll('selectedCartItemIds').join(',')}`)
                     .then(response => {
                         return response.json();
                     })

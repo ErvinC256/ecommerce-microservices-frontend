@@ -611,6 +611,10 @@ option {
 .product-desc {
   position: relative;
 }
+.product-desc div {
+	display: flex; 
+	justify-content: space-between;
+}
 .product-desc .product-manufacturer {
 	color: #808080;
 	font-size: 12px;

@@ -161,7 +161,7 @@ function generateSingleProduct(product) {
 				</a>
 			</div>
 			<div class="product-desc">
-				<div style="display: flex; justify-content: space-between;">
+				<div>
 					<span class="product-manufacturer">${product.manufacturer}</span>
 				</div>
 				<hr>
@@ -184,7 +184,7 @@ function generateSingleProductSmall(product) {
 				</a>
 			</div>
 			<div class="product-desc">
-				<div style="display: flex; justify-content: space-between;">
+				<div>
 					<span class="product-manufacturer">${product.manufacturer}</span>
 				</div>
 				<hr>
@@ -210,7 +210,7 @@ function generateSingleProductGrid(product) {
 				</a>
 			</div>
 			<div class="product-desc">
-				<div style="display: flex; justify-content: space-between;">
+				<div>
 					<span class="product-manufacturer">${product.manufacturer}</span>
 				</div>
 				<hr>

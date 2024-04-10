@@ -352,7 +352,7 @@
                                         <div class="edit-div">
                                             <label for="">Address</label>
                                             <div>
-                                                <span style=" font-size: 16px; padding-right: 10px;">${address.primary ? 'Primary' : ''}</span>
+                                                <span style=" font-size: 16px; padding-right: 10px;">${address.isPrimary ? 'Primary' : ''}</span>
                                                 <button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#addressModal-edit" data-index="${index}">Edit</button> 
                                                 <button type="button" class="my-button-inverse remove-button" data-index="${index}">Remove</button> 
                                             </div>
@@ -369,7 +369,7 @@
                                 </div>
                             `;
 
-                            if (address.primary) {
+                            if (address.isPrimary) {
                                 hasPrimaryAddress = true; // Set the flag to true if a primary address is found
                             }
 
@@ -416,7 +416,7 @@
                                     city: updatedCity,
                                     zipcode: updatedZipcode,
                                     state: updatedState,
-                                    primary: isPrimary
+                                    isPrimary: isPrimary
                                 };
 
                                 // update address

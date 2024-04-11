@@ -340,7 +340,7 @@
                 // load user addresses
                 fetch(`http://localhost:8080/users/${userId}/addresses`)
                     .then(response => {
-                        return response.json()
+                        return response.json();
                     })
                     .then(addresses => {
                         let hasPrimaryAddress = false;
@@ -352,7 +352,7 @@
                                         <div class="edit-div">
                                             <label for="">Address</label>
                                             <div>
-                                                <span style=" font-size: 16px; padding-right: 10px;">${address.isPrimary ? 'Primary' : ''}</span>
+                                                <span style=" font-size: 16px; padding-right: 10px;">${address.makePrimary ? 'Primary' : ''}</span>
                                                 <button type="button" class="my-button-inverse edit-button" data-toggle="modal" data-target="#addressModal-edit" data-index="${index}">Edit</button> 
                                                 <button type="button" class="my-button-inverse remove-button" data-index="${index}">Remove</button> 
                                             </div>
@@ -369,7 +369,7 @@
                                 </div>
                             `;
 
-                            if (address.isPrimary) {
+                            if (address.makePrimary) {
                                 hasPrimaryAddress = true; // Set the flag to true if a primary address is found
                             }
 
@@ -407,7 +407,7 @@
                             const updatedCity = modalFormEdit.querySelector('input[name="city"]').value;
                             const updatedZipcode = modalFormEdit.querySelector('input[name="zipcode"]').value;
                             const updatedState = modalFormEdit.querySelector('select').value;
-                            const isPrimary = modalFormEdit.querySelector('input[name="primary"]').checked;
+                            const makePrimary = modalFormEdit.querySelector('input[name="primary"]').checked;
 
                             if (addressId !== '' && updatedStreetAddress !== '' && updatedCity !== '' && updatedZipcode !== '' && updatedState !== '') {
                                 let updatedAddress = {
@@ -416,8 +416,10 @@
                                     city: updatedCity,
                                     zipcode: updatedZipcode,
                                     state: updatedState,
-                                    isPrimary: isPrimary
+                                    makePrimary: makePrimary
                                 };
+
+                                console.log(updatedAddress);
 
                                 // update address
                                 fetch(`http://localhost:8080/users/${userId}/addresses/${addressId}`, {
@@ -429,8 +431,8 @@
                                 })
                                     .then(response => {
                                         if (!response.ok) {
-                                            return response.json().then(errorData => {
-                                                throw new Error(errorData.message);
+                                            return response.json().then(error => {
+                                                throw new Error(error.message);
                                             });
                                         }
                                     })
@@ -463,8 +465,8 @@
                                     })
                                     .then(response => {
                                         if (!response.ok) {
-                                            return response.json().then(errorData => {
-                                                throw new Error(errorData.message);
+                                            return response.json().then(error => {
+                                                throw new Error(error.message);
                                             });
                                         }
                                     })
@@ -500,7 +502,7 @@
                     const newCity = modalFormAdd.querySelector('input[name="city"]').value;
                     const newZipcode = modalFormAdd.querySelector('input[name="zipcode"]').value;
                     const newState = modalFormAdd.querySelector('select').value;
-                    const isPrimary = modalFormAdd.querySelector('input[name="primary"]').checked; // Get the value of the primary checkbox
+                    const makePrimary = modalFormAdd.querySelector('input[name="primary"]').checked; // Get the value of the primary checkbox
 
                     if (newStreetAddress !== '' && newCity !== '' && newZipcode !== '' && newState !== '') {
                         let newAddress = {
@@ -508,7 +510,7 @@
                             city: newCity,
                             zipcode: newZipcode,
                             state: newState,
-                            primary: isPrimary
+                            makePrimary: makePrimary
                         };
 
                         // add a new address
@@ -521,8 +523,8 @@
                             })
                             .then(response => {
                                 if (!response.ok) {
-                                    return response.json().then(errorData => {
-                                        throw new Error(errorData.message);
+                                    return response.json().then(error => {
+                                        throw new Error(error.message);
                                     });
                                 }
                                 return response.json();
@@ -531,7 +533,7 @@
                                 window.location.reload();
                             })
                             .catch(error => {
-                                console.error(error);
+                                console.error(error.message);
                             });
 
                     } else {

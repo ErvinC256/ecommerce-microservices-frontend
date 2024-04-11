@@ -509,8 +509,8 @@
                         })
                             .then(response => {
                                 if (!response.ok) {
-                                    return response.json().then(errorData => {
-                                        throw new Error(errorData.message);
+                                    return response.json().then(error => {
+                                        throw new Error(error.message);
                                     });
                                 }
                             })
@@ -523,7 +523,7 @@
                                 if (error.message === 'Email not in valid format') {
                                     document.querySelector('#emailModal .error-message').innerText = error.message;
                                 }
-                                else if (error === 'Password must be at least 6 characters') {
+                                else if (error.message === 'Password must be at least 6 characters') {
                                     document.querySelector('#passwordModal .error-message').innerText = error.message;
                                 }
                             });

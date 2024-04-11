@@ -359,8 +359,8 @@
                                 })
                                     .then(response => {
                                         if (!response.ok) {
-                                            return response.json().then(errorData => {
-                                                throw new Error(errorData.message);
+                                            return response.json().then(error => {
+                                                throw new Error(error.message);
                                             });
                                         }
                                     })
@@ -390,8 +390,8 @@
                     })
                         .then(response => {
                             if (!response.ok) {
-                                return response.json().then(errorData => {
-                                    throw new Error(errorData.message);
+                                return response.json().then(error => {
+                                    throw new Error(error.message);
                                 });
                             }
                         })

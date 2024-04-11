@@ -508,8 +508,9 @@
 
                                             const productName = orderItem.productName.split('-')[0].trim();
                                             let selectOptions = '';
+
                                             for (let i = 1; i <= 10; i++) {
-                                                const optionText = i === 1 ? 'Quantity: 1' : `Quantity: ${i}`;
+                                                const optionText = i === 1 ? 'Quantity: 1' : `${i}`;
                                                 selectOptions += `<option value="${i}" ${i === orderItem.quantityPurchased ? 'selected' : ''}>${optionText}</option>`;
                                             }
 

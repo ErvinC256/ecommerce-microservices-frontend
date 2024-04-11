@@ -394,7 +394,7 @@
                                                             <span style="color: #CD5C5C;"><span class="stock-count">${product.quantityInStock}</span> units available<span class="stock-count-text"></span></span>
                                                         </div>
                                                         <input type="hidden" name="product-id" value="${product.id}">
-                                                        <div style="margin-top: 5px;"><span class="units-sold"></span>units sold</div>
+                                                        <div style="margin-top: 5px;"><span class="units-sold"></span>units sold this month</div>
                                                         <div style="margin-top: 10px;">
                                                             <button type="submit" id="add-to-cart" class="my-button" style="margin-right: 10px;">Add to cart</button>
                                                         </div>
@@ -509,11 +509,11 @@
                             .then(response => {
                                 return response.json();
                             })
-                            .then(data => {
-                                if (data === 0) {
+                            .then(unitsSold => {
+                                if (unitsSold === 0) {
                                     document.querySelector('.units-sold').textContent = '0';
                                 } else {
-                                    document.querySelector('.units-sold').textContent = data;
+                                    document.querySelector('.units-sold').textContent = unitsSold;
                                 }
                             
                             })

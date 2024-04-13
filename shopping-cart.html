@@ -129,6 +129,7 @@
                                 <h2>Shopping Cart</h2>
                                 <p style="float: right;">Last Updated: <span id="last-updated"></span></p>
                             </div><br><br>
+                            <div class="unavailable-warning"><span class="unavailable-count"></span> item in your cart is currently unavailable.</div>
                             <div class="cart-contents">
                                 <table class="cart-table">
                                     <tr>
@@ -136,6 +137,14 @@
                                         <th style="text-align: right;">Unit price</th>
                                     </tr>
                                     <!-- cart items will be inserted here -->
+                                </table>
+                                <hr style="margin-top: 20px; margin-bottom: 20px;">
+                                <table class="unavailable-cart-table">
+                                    <tr style="background-color: #fff9e9; border: 1px solid #e1e1e1;">
+                                        <th>Currently unavailable</th>
+                                        <th></th>
+                                    </tr>
+                                    <!-- unavailable cart items will be inserted here -->
                                 </table>
                                 <br>
                                 <div>
@@ -223,7 +232,9 @@
                         return response.json();
                     })
                     .then(cartDto => {
+                        
                         const cartTable = document.querySelector('.cart-table');
+                        const unavailableCartTable = document.querySelector('.unavailable-cart-table');
                         const dateElement = document.querySelector('#last-updated');
 
                         if (!cartDto.lastUpdated) {
@@ -241,9 +252,11 @@
                             const messageRow = document.createElement('tr');
                             messageRow.innerHTML = '<p style="text-align: center; font-size: 16px; color: #808080; position: relative; left: 100px;">Your cart is empty</p>';
                             cartTable.appendChild(messageRow);
+                            document.querySelector('.unavailable-cart-table').style.display = 'none';
                             return;
                         }
 
+                        let unavailableCount = 0;
                         cartDto.cartItemDtos.forEach(cartItemDto => {
                             const cartItemElement = document.createElement('tr');
                             let selectOptions = '';
@@ -255,7 +268,9 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-4">
+                                            ${cartItemDto.quantityInStock > 0 ? `
                                             <input type="checkbox" class="cart-checkbox" data-cart-item-id="${cartItemDto.cartItemId}">
+                                            ` : ''}
                                             <div class="product-image">
                                                 <a href="product-details.html?productId=${cartItemDto.productId}">
                                                     <img src="images/product/large-size/${cartItemDto.productName}.jpg" alt="Li's Product Image">
@@ -270,7 +285,7 @@
                                                 <div>
                                                     <div class="quantity-select">
                                                         <p style="color: #CD5C5C; margin-bottom: 5px;">Stock Left: <span data-product-id=${cartItemDto.productId} class="stock-count">${cartItemDto.quantityInStock}</span><span class="stock-count-text"></span></p>
-                                                        <select data-cart-item-id="${cartItemDto.cartItemId}">
+                                                        <select style="width: 50%;" data-cart-item-id="${cartItemDto.cartItemId}">
                                                             ${selectOptions}
                                                         </select>
                                                     </div>
@@ -280,7 +295,9 @@
                                                         <li><a href="" class="remove link-inverse" data-cart-item-id="${cartItemDto.cartItemId}">Remove</a></li>
                                                         <li><a href="product-details.html?productId=${cartItemDto.productId}" class="link-inverse">View details</a></li>      
                                                     </ul>
+                                                    ${cartItemDto.quantityInStock > 0 ? `
                                                     <button class="my-button-inverse2 checkout-item-button" data-cart-item-id="${cartItemDto.cartItemId}" data-product-id="${cartItemDto.productId}" data-quantity="${cartItemDto.quantity}">Checkout this item</button>
+                                                    ` : ''}
                                                 </div>
                                             </div>
                                         </div>
@@ -290,8 +307,14 @@
                                     <p style="font-weight: bold;">RM ${cartItemDto.unitPrice.toFixed(2)}</p>
                                 </td>
                             `;
-                            cartTable.appendChild(cartItemElement);
-                            
+                            // Append to appropriate table based on quantityInStock
+                            if (cartItemDto.quantityInStock > 0) {
+                                cartTable.appendChild(cartItemElement);
+                            } else {
+                                unavailableCartTable.appendChild(cartItemElement);
+                                unavailableCount++;
+                            }
+ 
                             // Select elements within the cart item element
                             const checkbox = cartItemElement.querySelector('.cart-checkbox');
                             const productName = cartItemElement.querySelector('.product-name');
@@ -302,10 +325,12 @@
                                 // Apply styles to the specific elements within the cart item
                                 productName.style.color = '#808080';
                                 stockCountText.textContent = ' - out of stock';
-                                checkbox.disabled = true;
                             }
                          
                         });
+
+                        // render unavailable warning count
+                        document.querySelector('.unavailable-count').textContent = unavailableCount;
 
                         // Set the checkboxes based on selectedCartItemIds
                         const urlParams = new URLSearchParams(window.location.search);

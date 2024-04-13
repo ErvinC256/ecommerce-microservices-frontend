@@ -845,6 +845,12 @@ option {
 /*----------------------------------------*/
 /* 	3.4 Shopping Cart Page
 /*----------------------------------------*/
+.unavailable-warning {
+	background-color: #fff9e9; 
+	border: 1px solid #e1e1e1; 
+	padding: 5px; 
+	font-size: 12px;
+}
 .cart-table tr {
 	border-bottom: 1px solid #e1e1e1;
 }
@@ -854,6 +860,11 @@ option {
 .cart-table td {
 	padding: 10px 0px;
 	vertical-align: top;
+}
+.unavailable-cart-table th {
+	padding: 5px; 
+	font-size: 12px; 
+	font-weight: bold;
 }
 .cart-product-details > div {
 	margin-bottom: 20px;

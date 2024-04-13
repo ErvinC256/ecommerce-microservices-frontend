@@ -138,7 +138,7 @@
                                 <button class="my-button-inverse" style="width: 100%;"><a href="shopping-cart.html">View cart</a></button>
                                 <h3><span>or</span></h3>
                                 <button class="my-button checkout-button" style="width: 100%;">Checkout this item</button>
-                                <div class="error-message"></div>
+                                <div class="error-message" style="margin-top: 5px;"></div>
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                             const cartItemId = params.get('cartItemId');
 
                             if (cartItem.quantityInStock === 0) {
-                                document.querySelector('.error-message').textContent = 'out of stock';
+                                document.querySelector('.error-message').textContent = "checkout fail. out of stock";
                             } else {
                                 let redirectURL = `checkout.html?fromCart=true`;
                                 redirectURL += `&selectedCartItemIds=${cartItemId}`;

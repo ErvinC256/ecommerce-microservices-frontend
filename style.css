@@ -268,7 +268,7 @@ option {
 	background-color: #fff;
 	cursor: pointer;
 }
-.my-button-inverse2 {
+.my-button-empty {
 	background-color: #fff;
 	padding: 5px 30px;
 	border: none;
@@ -276,11 +276,24 @@ option {
 	border-radius: 20px;
 	font-size: 14px;
 }
-.my-button-inverse2:hover {
+.my-button-empty:hover {
 	outline: 2px solid #000;
 	cursor: pointer;
 }
-.my-button:active, .my-button:focus, .my-button-inverse:active, .my-button-inverse:focus {
+.my-button-amazon {
+	background-color: #fdd507;
+	padding: 5px 30px;
+	border: none;
+	border-radius: 20px;
+	font-size: 14px;
+}
+.my-button-amazon:hover {
+	filter: brightness(90%);
+	cursor: pointer;
+}
+.my-button:active, .my-button:focus, 
+.my-button-inverse:active, .my-button-inverse:focus,
+.my-button-amazon:active, .my-button-amazon:focus {
     outline: none;
 }
 .link-inverse {

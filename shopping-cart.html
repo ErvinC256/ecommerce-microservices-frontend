@@ -129,6 +129,7 @@
                                 <h2>Shopping Cart</h2>
                                 <p style="float: right;">Last Updated: <span id="last-updated"></span></p>
                             </div><br><br>
+                            <div class="free-shipping-text"></div>
                             <div class="unavailable-warning"><span class="unavailable-count"></span> item in your cart is currently unavailable.</div>
                             <div class="cart-contents">
                                 <table class="cart-table">
@@ -148,7 +149,7 @@
                                 </table>
                                 <br>
                                 <div>
-                                    <button class="my-button-inverse" id="clear-cart">Clear Cart</button>
+                                    <button class="my-button-empty" id="clear-cart">Clear Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -246,13 +247,15 @@
                             const formattedDate = lastUpdated.toLocaleDateString('en-US', options);
 
                             dateElement.textContent = formattedDate;
+                            
                         }
 
                         if (cartDto.cartItemDtos.length === 0) {
+                            
                             const messageRow = document.createElement('tr');
                             messageRow.innerHTML = '<p style="text-align: center; font-size: 16px; color: #808080; position: relative; left: 100px;">Your cart is empty</p>';
                             cartTable.appendChild(messageRow);
-                            document.querySelector('.unavailable-cart-table').style.display = 'none';
+                            
                             return;
                         }
 
@@ -296,7 +299,7 @@
                                                         <li><a href="product-details.html?productId=${cartItemDto.productId}" class="link-inverse">View details</a></li>      
                                                     </ul>
                                                     ${cartItemDto.quantityInStock > 0 ? `
-                                                    <button class="my-button-inverse2 checkout-item-button" data-cart-item-id="${cartItemDto.cartItemId}" data-product-id="${cartItemDto.productId}" data-quantity="${cartItemDto.quantity}">Checkout this item</button>
+                                                    <button class="my-button-empty checkout-item-button" data-cart-item-id="${cartItemDto.cartItemId}" data-product-id="${cartItemDto.productId}" data-quantity="${cartItemDto.quantity}">Checkout this item</button>
                                                     ` : ''}
                                                 </div>
                                             </div>
@@ -330,8 +333,13 @@
                         });
 
                         // render unavailable warning count
-                        document.querySelector('.unavailable-count').textContent = unavailableCount;
-
+                        if (unavailableCount > 0) {
+                            document.querySelector('.unavailable-count').textContent = unavailableCount;
+                        } else {
+                            document.querySelector('.unavailable-warning').style.display = 'none';
+                            document.querySelector('.unavailable-cart-table').style.display = 'none';
+                        }
+                        
                         // Set the checkboxes based on selectedCartItemIds
                         const urlParams = new URLSearchParams(window.location.search);
                         const selectedCartItemIds = {};
@@ -409,7 +417,7 @@
                                 const productId = button.dataset.productId;
                                 const quantity = button.dataset.quantity;
 
-                                let redirectURL = `checkout.html?fromCart=true`;
+                                let redirectURL = `checkout.html?`;
                                 redirectURL += `&selectedCartItemIds=${cartItemId}`;
 
                                 // construct product quantity map
@@ -478,7 +486,7 @@
 
                     const params = new URLSearchParams(window.location.search);
 
-                    let redirectURL = `checkout.html?fromCart=true`;
+                    let redirectURL = `checkout.html?`;
 
                     if (params.has('selectedCartItemIds')) {
                         const cartItemIds = params.getAll('selectedCartItemIds');

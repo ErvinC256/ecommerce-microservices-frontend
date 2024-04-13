@@ -255,7 +255,7 @@
                             if (cartItem.quantityInStock === 0) {
                                 document.querySelector('.error-message').textContent = "checkout fail. out of stock";
                             } else {
-                                let redirectURL = `checkout.html?fromCart=true`;
+                                let redirectURL = `checkout.html?`;
                                 redirectURL += `&selectedCartItemIds=${cartItemId}`;
 
                                 // construct productquantitymap

@@ -397,7 +397,8 @@
                                                         <input type="hidden" name="product-id" value="${product.id}">
                                                         <div style="margin-top: 5px;"><span class="units-sold"></span>units sold this month</div>
                                                         <div style="margin-top: 10px;">
-                                                            <button type="submit" id="add-to-cart" class="my-button" style="margin-right: 10px;">Add to cart</button>
+                                                            <button type="submit" id="add-to-cart" class="my-button-amazon" style="margin-right: 10px;">Add to cart</button>
+                                                            <button type="submit" id="buy-item" class="my-button-empty" style="margin-right: 10px;">Buy this item</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -570,6 +571,44 @@
                                     const cartItemId = cartItemIds[0];
 
                                     window.location.href = `added-cart.html?cartItemId=${cartItemId}`;
+                                })
+                                .catch(error => {
+                                    console.error(error);
+                                });
+                        });
+
+                        // buy item event
+                        document.querySelector('#buy-item').addEventListener('click', function(e) {
+                            e.preventDefault();
+
+                            // Get user id from session
+                            const userId = sessionStorage.getItem('userId');
+
+                            const productId = document.querySelector('input[name="product-id"]').value;
+                            const quantity = document.querySelector('.quantity-select select').value;
+
+                            const productQuantityMap = {};
+                            productQuantityMap[productId] = quantity;
+
+                            fetch(`http://localhost:8080/carts/${userId}/cart-items`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(productQuantityMap)
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        return response.json().then(error => {
+                                            throw new Error(error.message);
+                                        });
+                                    }
+                                    return response.json();
+                                })
+                                .then(cartItemIds => {
+                                    const cartItemId = cartItemIds[0];
+
+                                    window.location.href = `checkout.html?selectedCartItemIds=${cartItemId}`;
                                 })
                                 .catch(error => {
                                     console.error(error);

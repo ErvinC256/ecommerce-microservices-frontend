@@ -268,6 +268,18 @@ option {
 	background-color: #fff;
 	cursor: pointer;
 }
+.my-button-inverse2 {
+	background-color: #fff;
+	padding: 5px 30px;
+	border: none;
+	outline: 1px solid #000;
+	border-radius: 20px;
+	font-size: 14px;
+}
+.my-button-inverse2:hover {
+	outline: 2px solid #000;
+	cursor: pointer;
+}
 .my-button:active, .my-button:focus, .my-button-inverse:active, .my-button-inverse:focus {
     outline: none;
 }

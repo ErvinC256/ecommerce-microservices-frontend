@@ -96,6 +96,7 @@
                                         </ul>
                                     </li>
                                     <div class="hb-right">
+                                        <li><a href="deals.html">Deals</a></li>
                                         <li><a href="product-grid-general.html?searchType=New%20Arrivals">New Arrivals</a></li>
                                         <li><a href="product-grid-general.html?searchType=Best%20Sellers">Best Sellers</a></li>
                                     </div>
@@ -160,7 +161,7 @@
                                 </div>
                                 <hr>
                                 <div class="summary-item">
-                                    <button class="my-button checkout-button" style="width: 100%;">Proceed to checkout</button>
+                                    <button class="my-button checkout-items-button" style="width: 100%;">Proceed to checkout</button>
                                 </div>
                                 <div class="error-message"></div>
                                 <h3><span>or</span></h3>
@@ -274,11 +275,12 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div>
+                                                <div style="display: flex; justify-content: space-between;">
                                                     <ul class="cart-options">
                                                         <li><a href="" class="remove link-inverse" data-cart-item-id="${cartItemDto.cartItemId}">Remove</a></li>
                                                         <li><a href="product-details.html?productId=${cartItemDto.productId}" class="link-inverse">View details</a></li>      
                                                     </ul>
+                                                    <button class="my-button-inverse2 checkout-item-button" data-cart-item-id="${cartItemDto.cartItemId}" data-product-id="${cartItemDto.productId}" data-quantity="${cartItemDto.quantity}">Checkout this item</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -372,6 +374,30 @@
                                     });
                             });
                         });
+
+                        // checkout single item event
+                        document.querySelectorAll('.checkout-item-button').forEach(function(button) {
+                            button.addEventListener('click', function(event) {
+                                event.preventDefault();
+
+                                const cartItemId = button.dataset.cartItemId;
+                                const productId = button.dataset.productId;
+                                const quantity = button.dataset.quantity;
+
+                                let redirectURL = `checkout.html?fromCart=true`;
+                                redirectURL += `&selectedCartItemIds=${cartItemId}`;
+
+                                // construct product quantity map
+                                const productQuantityMap = {};
+                                productQuantityMap[productId] = quantity;
+
+                                // Store product quantity map in session storage
+                                sessionStorage.setItem('productQuantityMap', JSON.stringify(productQuantityMap));
+
+                                window.location.href = redirectURL;
+                            });
+                        });
+
                         
                     })
                     .catch(error => {
@@ -422,7 +448,7 @@
                     });
 
                 // checkout event
-                document.querySelector('.checkout-button').addEventListener('click', function(event) {
+                document.querySelector('.checkout-items-button').addEventListener('click', function(event) {
                     event.preventDefault();
 
                     const params = new URLSearchParams(window.location.search);

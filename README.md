@@ -29,7 +29,7 @@
     ```bash
     npm install -g http-server
     ```
-2. Navigate to your project folder.
+2. Navigate to the project folder.
 3. Run the following command:
     ```bash
     http-server -p 3000

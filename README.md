@@ -34,10 +34,7 @@
     npm install -g http-server
     ```
 
-2. **Navigate to the project folder**:
-    ```bash
-    cd path/to/your/project
-    ```
+2. Navigate to the project folder.
 
 3. **Run the following command**:
     ```bash

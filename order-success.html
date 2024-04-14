@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/helper.css">
         <link rel="stylesheet" href="style.css">
-        <script>
+        <!-- <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const urlParams = new URLSearchParams(window.location.search);
                 const fromCheckout = urlParams.get('fromCheckout');
@@ -20,7 +20,7 @@
                     window.location.href = 'checkout.html'; // Redirect to checkout.html if accessed directly
                 }
             });
-        </script>
+        </script> -->
     </head>
     <body>
         <!-- Begin Body Wrapper -->
@@ -142,7 +142,7 @@
                                             <span class="text-muted small">by DHFL in 2 - 5 business days</span>
                                         </div>
                                         <div>
-                                            <button class="btn btn-outline-primary" type="button"><a href="account-orders.html">View all orders</a></button>
+                                            <button class="my-button-empty" type="button"><a href="account-orders.html">View all orders</a></button>
                                         </div>
                                     </div>
                                     <hr class="my-4">
@@ -185,7 +185,7 @@
                             </div>
                         </div>
                         <div class="col-7" style="text-align: right;">
-                            <button class="my-button-inverse"><a href="index.html">Back to shopping</a></button>
+                            <button class="my-button-empty"><a href="index.html">Back to shopping</a></button>
                         </div>
                     </div>
                     
@@ -309,7 +309,7 @@
                 shippingAddressContainer.innerHTML = `
                     <table class="specifications-2">
                         <tr>
-                            <td colspan="2" style="color: #808080; font-size: 14px; background-color: #e7f1fd; padding: 5px; border: 1px solid #e1e1e1;">Shipping to</td>
+                            <td colspan="2" style="color: #808080; font-size: 14px; padding: 5px; border: 1px solid #e1e1e1;">Shipping to</td>
                         </tr>
                         <tr>
                             <td style="font-weight: bold;">Street Address</td>

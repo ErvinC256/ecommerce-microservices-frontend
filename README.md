@@ -14,7 +14,7 @@
 <br><br>
 <img src="https://github.com/ErvinC256/ecommerce-microservices-frontend/assets/149756489/30d542b4-a3fb-4677-9e94-e88746f098e5" width="75%">
 
-### Main Features:
+### 1. Main Features:
 - Enhanced Product Search
 - Order Placement & Payment
 - Account Management
@@ -23,12 +23,12 @@
 
 ---
 
-### Prerequisites:
+### 2. Prerequisites:
 - [Node.js](https://nodejs.org/en/download) installed
 
 ---
 
-### To Run:
+### 3. To Run:
 1. **Install `http-server` globally**:
     ```bash
     npm install -g http-server

@@ -44,3 +44,7 @@
 4. **Access the application at**:
    [http://localhost:3000](http://localhost:3000)
 
+---
+
+- Backend application at [https://github.com/ErvinC256/ecommerce-microservices-backend/tree/main](https://github.com/ErvinC256/ecommerce-microservices-backend/tree/main)
+

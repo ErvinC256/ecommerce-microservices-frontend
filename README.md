@@ -1,7 +1,5 @@
 # ecommerce-microservices-frontend
 
----
-
 <img src="https://github.com/ErvinC256/ecommerce-microservices-frontend/assets/149756489/5c9d7fc5-a175-41fc-85fe-b56000a2002c" width="75%">
 <br><br>
 <img src="https://github.com/ErvinC256/ecommerce-microservices-frontend/assets/149756489/c194a955-4099-4b58-a3a3-c84ba9157872" width="75%">
@@ -16,11 +14,28 @@
 <br><br>
 <img src="https://github.com/ErvinC256/ecommerce-microservices-frontend/assets/149756489/30d542b4-a3fb-4677-9e94-e88746f098e5" width="75%">
 
----
-
 ### Main Features:
-1. Enhanced Product Search
-2. Order Placement & Payment
-3. Account Management
-4. Order Handling
-5. Inventory Management
+- Enhanced Product Search
+- Order Placement & Payment
+- Account Management
+- Order Handling
+- Inventory Management
+
+### Prerequisites:
+- Node.js
+
+### To run:
+1. Install `http-server` by running:
+    ```bash
+    npm install -g http-server
+    ```
+2. Navigate to your project folder.
+3. Run the following command:
+    ```bash
+    http-server -p 3000
+    ```
+4. Access the application at:
+   [http://localhost:3000](http://localhost:3000)
+
+
+

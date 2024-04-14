@@ -21,21 +21,29 @@
 - Order Handling
 - Inventory Management
 
-### Prerequisites:
-- Node.js
+---
 
-### To run:
-1. Install `http-server` by running:
+### Prerequisites:
+- [Node.js](https://nodejs.org/en/download) installed
+
+---
+
+### To Run:
+1. **Install `http-server` globally**:
     ```bash
     npm install -g http-server
     ```
-2. Navigate to the project folder.
-3. Run the following command:
+
+2. **Navigate to the project folder**:
+    ```bash
+    cd path/to/your/project
+    ```
+
+3. **Run the following command**:
     ```bash
     http-server -p 3000
     ```
-4. Access the application at:
+
+4. **Access the application at**:
    [http://localhost:3000](http://localhost:3000)
-
-
 

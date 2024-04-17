@@ -347,23 +347,23 @@
                         addresses.forEach((address, index) => {
                             addressContainer.innerHTML += `
                                 <div class="address-block">
-                                    <div class="edit-block">
-                                        <div class="edit-div">
+                                    <div class="heading-block">
+                                        <div>
                                             <label for="">Address</label>
                                             <div>
-                                                <span style=" font-size: 16px; padding-right: 10px;">${address.makePrimary ? 'Primary' : ''}</span>
+                                                <span style="padding-right: 10px;">${address.makePrimary ? 'Primary' : ''}</span>
                                                 <button type="button" class="my-button edit-button" data-toggle="modal" data-target="#addressModal-edit" data-index="${index}">Edit</button> 
                                                 <button type="button" class="my-button-inverse remove-button" data-index="${index}">Remove</button> 
                                             </div>
                                         </div>
-                                        <span style="color: #808080;">Address ${index + 1}</span>
+                                        <span style="color: #8B0000;">Address ${index + 1}</span>
                                     </div>
                                     <div class="details-block">
-                                        <div style="font-size: 14px;">${address.streetAddress}</div>
-                                        <div style="font-size: 14px;">${address.city}</div>
-                                        <div style="font-size: 14px;">${address.zipcode}</div>
-                                        <div style="font-size: 14px;">${address.state}</div>
-                                        <div style="color: #808080;">Malaysia</div>
+                                        <p>${address.streetAddress}</p>
+                                        <p>${address.city}</p>
+                                        <p>${address.zipcode}</p>
+                                        <p>${address.state}</p>
+                                        <p style="color: #8B0000; font-size: 16px; font-weight: bold;">Malaysia</p>
                                     </div>
                                 </div>
                             `;

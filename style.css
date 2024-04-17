@@ -35,9 +35,11 @@
 			3.5 Contact Page
 			3.6 Product Grid Page
 			3.7 Product Details Page
-			3.8 Account Basic Info Page
-			3.9 Order Success Page
-			3.10 Account Orders Page
+			3.8 Account Commons
+			3.9 Account Addresses Page
+			3.10 Account Security Page
+			3.11 Account Orders Page
+			3.12 Order Success Page
 
 -----------------------------------------------------------------------------------*/
 @font-face {
@@ -1081,7 +1083,7 @@ iframe {
 	border-bottom: 1px solid #e1e1e1;
 }
 /*----------------------------------------*/
-/*  3.8 Account Basic Info Page
+/*  3.8 Account Commons
 /*----------------------------------------*/
 .side-tab-block {
 	margin-bottom: 20px;
@@ -1104,17 +1106,9 @@ iframe {
 .security-form div {
 	margin-bottom: 10px;
 }
-.edit-block {
-	margin-bottom: 30px; 
-	border-bottom: 1px solid #e1e1e1;
-}
-.edit-div {
-	display: flex; 
-	justify-content: space-between;
-}
-.address-container {
-	border-radius: 5px;
-}
+/*----------------------------------------*/
+/*  3.9 Account Addresses Page
+/*----------------------------------------*/
 .address-block {
 	border: 1px solid #e1e1e1; 
 	margin-bottom: 20px; 
@@ -1122,6 +1116,23 @@ iframe {
 	font-size: 16px;
 	border-radius: 5px;
 }
+.heading-block {
+	margin-bottom: 30px; 
+	border-bottom: 1px solid #e1e1e1;
+}
+.heading-block > div {
+	display: flex; 
+	justify-content: space-between;
+}
+.heading-block > span {
+	color: #808080;
+}
+.details-block > p {
+	font-size: 14px;
+}
+/*----------------------------------------*/
+/*  3.10 Account Security Page
+/*----------------------------------------*/
 .security-form .delete-button,
 #deleteAccountModal .confirm-button {
 	background-color: #8b0000;
@@ -1130,50 +1141,12 @@ iframe {
 #deleteAccountModal .confirm-button:hover {
 	color: #fff;
 }
+.edit-div {
+	display: flex;
+	justify-content: space-between;
+}
 /*----------------------------------------*/
-/*  3.9 Order Success Page
-/*----------------------------------------*/
-.specifications-2 {
-	width: 100%;
-	border-collapse: collapse;
-}
-.specifications-2 td {
-	padding: 8px;
-}
-.track-line {
-	height: 2px !important;
-	background-color: #488978;
-	opacity: 1;
-}
-.dot {
-	height: 10px;
-	width: 10px;
-	margin-left: 3px;
-	margin-right: 3px;
-	margin-top: 0px;
-	background-color: #488978;
-	border-radius: 50%;
-	display: inline-block
-}
-.big-dot {
-	height: 25px;
-	width: 25px;
-	margin-left: 0px;
-	margin-right: 0px;
-	margin-top: 0px;
-	background-color: #488978;
-	border-radius: 50%;
-	display: inline-block;
-}
-.big-dot i {
-	font-size: 12px;
-}
-.card-stepper {
-	z-index: 0
-}
-
-/*----------------------------------------*/
-/*  3.10 Account Orders Page
+/*  3.11 Account Orders Page
 /*----------------------------------------*/
 .receipt-content .invoice-wrapper {
 	background: #FFF;
@@ -1309,6 +1282,48 @@ iframe {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+/*----------------------------------------*/
+/*  3.12 Order Success Page
+/*----------------------------------------*/
+.specifications-2 {
+	width: 100%;
+	border-collapse: collapse;
+}
+.specifications-2 td {
+	padding: 8px;
+}
+.track-line {
+	height: 2px !important;
+	background-color: #488978;
+	opacity: 1;
+}
+.dot {
+	height: 10px;
+	width: 10px;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 0px;
+	background-color: #488978;
+	border-radius: 50%;
+	display: inline-block
+}
+.big-dot {
+	height: 25px;
+	width: 25px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	background-color: #488978;
+	border-radius: 50%;
+	display: inline-block;
+}
+.big-dot i {
+	font-size: 12px;
+}
+.card-stepper {
+	z-index: 0
+}
+
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/

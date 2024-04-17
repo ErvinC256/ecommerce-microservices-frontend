@@ -778,8 +778,8 @@ option {
 /*----------------------------------------*/
 /*  3.2 Checkout Page
 /*----------------------------------------*/
-.personal-div,
-.address-div {
+.personal-info,
+.shipping-address {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }

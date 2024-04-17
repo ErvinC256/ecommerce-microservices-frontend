@@ -126,7 +126,7 @@
                             <div class="section-title">
                                 <p style="font-weight: 14px; color: #FF0000;">Fill in all the information below</p>
                             </div>
-                            <div class="personal-div">
+                            <div class="personal-info">
                                 <div style="display: flex; justify-content: space-between;">
                                     <div>
                                         <h3 style="font-weight: bold; font-size: 16px;">Personal info</h3>
@@ -138,8 +138,8 @@
                                 </div>
                                 <p style="font-style: italic;">Checking out as <span id="username" style="color: #808080;">guest</span></p>
                             </div>
-                            <hr style="margin-bottom: 20px;">
-                            <div class="adddress-div">
+                            <hr>
+                            <div class="shipping-address">
                                 <div>
                                     <h3 style="font-weight: bold; font-size: 16px;">Shipping Information</h3>
                                     <p style="margin-bottom: 10px;">Provide accurate shipping details for correct delivery.</p>
@@ -150,8 +150,10 @@
                                         <button id="change-primary-button" style="display: none;" class="my-button-empty"><a href="account-addresses.html">Change primary address</a></button>
                                     </div>      
                                 </div>
-                                <hr>
-                                <label id="provide-address-text" for="" style="font-size: 16px;"></label>
+                            </div>
+                            <hr>
+                            <div class="provide-shipping-address">
+                                <label id="provide-address-text" for="" style="font-size: 16px; color: #8B0000;"></label>
                                 <form id="moreText" action="" class="billing-address-form">
                                     <div class="row">
                                         <div class="col-12">
@@ -197,7 +199,7 @@
                                 </div>
                             </div>
                             <hr style="margin-top: 20px; margin-bottom: 20px;">
-                            <button class="my-button-inverse"><a href="shopping-cart.html">Back to cart</a></button>
+                            <button class="my-button-empty"><a href="shopping-cart.html">Back to cart</a></button>
                         </div>
                         <div class="col-2"></div>
                         <div class="col-4">
@@ -332,13 +334,13 @@
                         addresses.forEach((address, index) => {
                             addressContainer.innerHTML += `
                                 <div>
-                                    <label for="" style="font-size: 16px;">Your primary address</label>
+                                    <label for="" style="font-size: 16px; color: #8B0000;">Your primary address</label>
                                     <div>
-                                        <div style="font-size: 14px;">${address.streetAddress}</div>
-                                        <div style="font-size: 14px;">${address.city}</div>
-                                        <div style="font-size: 14px;">${address.zipcode}</div>
-                                        <div style="font-size: 14px;">${address.state}</div>
-                                        <div style="color: #808080;">Malaysia</div>
+                                        <p style="font-size: 14px;">${address.streetAddress}</p>
+                                        <p style="font-size: 14px;">${address.city}</p>
+                                        <p style="font-size: 14px;">${address.zipcode}</p>
+                                        <p style="font-size: 14px;">${address.state}</p>
+                                        <p style="color: #8B0000; font-size: 16px; font-weight: bold;">Malaysia</p>
                                     </div>
                                 </div>
                             `;

@@ -401,6 +401,9 @@ option {
 	display: flex; 
 	align-items: center;
 }
+.header-middle .logo img {
+	width: 18%;
+}
 .header-middle .logo a:hover {
 	text-decoration: none;
 }

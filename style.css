@@ -412,15 +412,15 @@ option {
 	margin-left: 10px; 
 	font-size: 20px;
 }
-.hm-searchbox-area {
+.hm-searchbox-to-cart {
 	display: flex; 
 	align-items: center; 
 	justify-content: space-between;
 }
-.hm-searchbox-area select {
+.hm-searchbox-to-cart select {
 	width: 50%;
 }
-.hm-searchbox form {
+.hm-searchbox-to-cart form {
 	display: flex;
 	min-width: 638px;
 }

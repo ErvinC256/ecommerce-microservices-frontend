@@ -69,7 +69,6 @@ function setupPayPalButton() {
                 const orderData = await response.json();
 
                 if (orderData.paypalOrderId) {
-                    
                     return orderData.paypalOrderId;
                     
                 } else {

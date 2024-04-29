@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Social Login</title>
+</head>
+<body>
+    <a class="btn btn-block social-btn google" href="#" onclick="loginWithGoogle()">Log in with Google</a>
+    <!-- Add other social login buttons if needed -->
+</body>
+<script>
+    const API_BASE_URL = 'http://localhost:8080';
+    const ACCESS_TOKEN = 'accessToken';
+
+    const OAUTH2_REDIRECT_URI = 'http://localhost:3000/oauth2/redirect';
+
+    const GOOGLE_AUTH_URL = API_BASE_URL + '/oauth2/authorize/google?redirect_uri=' + encodeURIComponent(OAUTH2_REDIRECT_URI);
+    const FACEBOOK_AUTH_URL = API_BASE_URL + '/oauth2/authorize/facebook?redirect_uri=' + encodeURIComponent(OAUTH2_REDIRECT_URI);
+    const GITHUB_AUTH_URL = API_BASE_URL + '/oauth2/authorize/github?redirect_uri=' + encodeURIComponent(OAUTH2_REDIRECT_URI);
+
+    function loginWithGoogle() {
+        window.location.href = GOOGLE_AUTH_URL;
+    }
+
+    fetch('http://localhost:8080/auth/test2', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            
+            return response.text();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+</script>
+</html>

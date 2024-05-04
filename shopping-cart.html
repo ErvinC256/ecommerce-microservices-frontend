@@ -420,7 +420,7 @@
 
                                 // construct product quantity map
                                 const productQuantityMap = {};
-                                productQuantityMap[productId] = quantity;
+                                productQuantityMap[productId] = -quantity;
 
                                 // Store product quantity map in session storage
                                 sessionStorage.setItem('productQuantityMap', JSON.stringify(productQuantityMap));
@@ -495,7 +495,7 @@
                             const productId = quantitySelect.parentNode.querySelector('.stock-count').getAttribute('data-product-id');
                             const quantity = parseInt(quantitySelect.value);
 
-                            productQuantityMap[productId] = quantity;
+                            productQuantityMap[productId] = -quantity;
 
                             redirectURL += `&selectedCartItemIds=${cartItemIds[i]}`;
 

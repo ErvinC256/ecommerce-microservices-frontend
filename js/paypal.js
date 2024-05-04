@@ -90,6 +90,7 @@ function setupPayPalButton() {
             const userId = sessionStorage.getItem('userId');
             const urlParams = new URLSearchParams(window.location.search);
             const cartItemIds = urlParams.getAll('selectedCartItemIds');
+            const productQuantityMap = JSON.parse(sessionStorage.getItem('productQuantityMap'));
 
             try {
                 
@@ -101,7 +102,8 @@ function setupPayPalButton() {
                     body: JSON.stringify({
                         orderId: orderId,
                         userId: userId,
-                        cartItemIds: cartItemIds
+                        cartItemIds: cartItemIds,
+                        productQuantityMap: productQuantityMap
                     }) 
                 });
 
@@ -122,7 +124,7 @@ function setupPayPalButton() {
                     setTimeout(function(){
                         $('#processingModal').modal('hide');
                         window.location.href = `order-success.html?fromCheckout=true&orderId=${orderData.orderId}`;
-                    }, 2000); // Redirect after 2 seconds
+                    }, 3000); // Redirect after 2 seconds
                 }
             } catch (error) {
                 console.error(error);

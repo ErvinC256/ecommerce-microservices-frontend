@@ -259,7 +259,7 @@
 
                                 // construct productquantitymap
                                 const productQuantityMap = {};
-                                productQuantityMap[cartItem.productId] = cartItem.cartItemQuantity;
+                                productQuantityMap[cartItem.productId] = -cartItem.cartItemQuantity;
 
                                 // Store product quantity map in session storage
                                 sessionStorage.setItem('productQuantityMap', JSON.stringify(productQuantityMap));
